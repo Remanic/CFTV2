@@ -38,8 +38,8 @@ export const Hero = () => {
           </div>
           <div className="lg:w-1/2 relative">
             <img 
-              src="/placeholder.svg" 
-              alt="Student managing loans"
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80"
+              alt="Students collaborating on laptop while managing their loans"
               className="w-full h-auto rounded-lg shadow-xl animate-float"
             />
           </div>
