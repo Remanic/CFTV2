@@ -60,35 +60,37 @@ export const Hero = () => {
           </div>
           <div className="lg:w-1/2 relative h-[300px] md:h-[400px] w-full">
             <ChartContainer config={config} className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-4 rounded-lg shadow-xl">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={debtData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                  <defs>
-                    <linearGradient id="debtGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#2563eb" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                  <XAxis 
-                    dataKey="year" 
-                    className="text-muted-foreground text-xs"
-                  />
-                  <YAxis 
-                    className="text-muted-foreground text-xs"
-                    tickFormatter={(value) => `$${value}B`}
-                  />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Area 
-                    type="monotone" 
-                    dataKey="debt" 
-                    stroke="#2563eb" 
-                    fillOpacity={1} 
-                    fill="url(#debtGradient)"
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-              <div className="absolute bottom-4 left-4 text-sm font-medium text-muted-foreground">
-                U.S. Student Loan Debt Growth (in Billions)
+              <div className="relative h-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={debtData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="debtGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <XAxis 
+                      dataKey="year" 
+                      className="text-muted-foreground text-xs"
+                    />
+                    <YAxis 
+                      className="text-muted-foreground text-xs"
+                      tickFormatter={(value) => `$${value}B`}
+                    />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Area 
+                      type="monotone" 
+                      dataKey="debt" 
+                      stroke="#2563eb" 
+                      fillOpacity={1} 
+                      fill="url(#debtGradient)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+                <div className="absolute bottom-4 left-4 text-sm font-medium text-muted-foreground">
+                  U.S. Student Loan Debt Growth (in Billions)
+                </div>
               </div>
             </ChartContainer>
           </div>
