@@ -1,15 +1,10 @@
-import { DollarSign } from "lucide-react";
-
 export const Footer = () => {
   return (
     <footer className="bg-gray-50 border-t">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <DollarSign className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold text-primary">Cashflowtime</span>
-            </div>
+            <span className="text-xl font-bold text-primary">CashFlowTime</span>
             <p className="text-gray-600">
               Your trusted guide to financial freedom through smart student loan management.
             </p>
@@ -44,7 +39,7 @@ export const Footer = () => {
         </div>
         
         <div className="mt-12 pt-8 border-t text-center text-gray-600">
-          <p>&copy; {new Date().getFullYear()} Cashflowtime. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} CashFlowTime. All rights reserved.</p>
         </div>
       </div>
     </footer>
