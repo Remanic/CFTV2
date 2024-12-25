@@ -58,9 +58,16 @@ export const WhyNeedGuide = () => {
           </Card>
         </div>
         
-        <div className="text-center mt-16">
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            The Clock Is Ticking: Every day you wait is a day interest accrues and opportunities slip away. Start today, and take the first step toward a debt-free future. Your financial freedom starts now.
+        <div className="mt-16 p-8 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-lg border-2 border-primary/20 shadow-lg animate-float">
+          <div className="flex items-center justify-center mb-4">
+            <Clock className="h-8 w-8 text-primary animate-pulse" />
+          </div>
+          <h3 className="text-2xl font-bold text-primary mb-4">The Clock Is Ticking</h3>
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium">
+            Every day you wait is a day interest accrues and opportunities slip away. Start today, and take the first step toward a debt-free future. 
+            <span className="block mt-2 text-primary font-bold">
+              Your financial freedom starts now.
+            </span>
           </p>
         </div>
       </div>
