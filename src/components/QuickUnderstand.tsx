@@ -1,64 +1,86 @@
-import { Clock, BookOpen, Calculator, FileText } from "lucide-react";
+import { Calculator, Home, Car, CreditCard, PiggyBank } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const QuickUnderstand = () => {
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Master Your Loan in Minutes, Not Hours
+        <div className="text-center mb-16">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary">
+            Financial Planning Tools
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            Skip the confusion. Get crystal-clear understanding of your loans with our interactive guide.
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Make informed financial decisions with our comprehensive suite of calculators
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="transform hover:scale-105 transition-transform duration-300">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <Card className="border-2 border-primary/10 hover:border-primary/30 transition-colors duration-300">
             <CardHeader>
-              <Clock className="h-8 w-8 text-primary mb-4" />
-              <CardTitle className="text-xl">Smart Timeline</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Home className="h-6 w-6 text-primary" />
+                <span>Mortgage Calculator</span>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Visual repayment schedule that adapts to your financial situation
+                Calculate your monthly mortgage payments, including principal, interest, taxes, and insurance
               </p>
             </CardContent>
           </Card>
-          
-          <Card className="transform hover:scale-105 transition-transform duration-300">
+
+          <Card className="border-2 border-primary/10 hover:border-primary/30 transition-colors duration-300">
             <CardHeader>
-              <BookOpen className="h-8 w-8 text-primary mb-4" />
-              <CardTitle className="text-xl">Loan Terms Decoded</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Car className="h-6 w-6 text-primary" />
+                <span>Auto Loan Calculator</span>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Complex terms explained in simple language you'll actually understand
+                Estimate your monthly car payments and total interest over the loan term
               </p>
             </CardContent>
           </Card>
-          
-          <Card className="transform hover:scale-105 transition-transform duration-300">
+
+          <Card className="border-2 border-primary/10 hover:border-primary/30 transition-colors duration-300">
             <CardHeader>
-              <Calculator className="h-8 w-8 text-primary mb-4" />
-              <CardTitle className="text-xl">Smart Calculator</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <CreditCard className="h-6 w-6 text-primary" />
+                <span>Credit Card Payment Calculator</span>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Instantly see how different payment strategies affect your future
+                Plan your credit card debt repayment and understand total interest costs
               </p>
             </CardContent>
           </Card>
-          
-          <Card className="transform hover:scale-105 transition-transform duration-300">
+
+          <Card className="border-2 border-primary/10 hover:border-primary/30 transition-colors duration-300">
             <CardHeader>
-              <FileText className="h-8 w-8 text-primary mb-4" />
-              <CardTitle className="text-xl">FAFSA Made Easy</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Calculator className="h-6 w-6 text-primary" />
+                <span>EMI Calculator</span>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Step-by-step walkthrough with pro tips to maximize your aid
+                Calculate Equated Monthly Installments for any loan amount and term
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-2 border-primary/10 hover:border-primary/30 transition-colors duration-300">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <PiggyBank className="h-6 w-6 text-primary" />
+                <span>Savings Calculator</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                Plan your savings goals and calculate compound interest earnings
               </p>
             </CardContent>
           </Card>

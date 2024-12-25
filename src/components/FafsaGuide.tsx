@@ -1,4 +1,4 @@
-import { BookOpen, CheckCircle, AlertCircle, HelpCircle } from "lucide-react";
+import { BookOpen, CheckCircle, AlertCircle, HelpCircle, FileText, DollarSign, GraduationCap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const FafsaGuide = () => {
@@ -89,6 +89,65 @@ export const FafsaGuide = () => {
               </ul>
             </CardContent>
           </Card>
+        </div>
+
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold mb-8 text-center">How to Fill Out Your FAFSA Form</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="border-2 border-primary/10">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-6 w-6 text-primary" />
+                  <span>Required Documents</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-gray-600">
+                  <li>Social Security Number</li>
+                  <li>Tax returns and W-2s</li>
+                  <li>Bank statements</li>
+                  <li>Records of investments</li>
+                  <li>Records of untaxed income</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-primary/10">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <DollarSign className="h-6 w-6 text-primary" />
+                  <span>Financial Information</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-gray-600">
+                  <li>Parent financial information</li>
+                  <li>Student income details</li>
+                  <li>Asset information</li>
+                  <li>Investment records</li>
+                  <li>Business/farm ownership details</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-primary/10">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <GraduationCap className="h-6 w-6 text-primary" />
+                  <span>School Selection</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-gray-600">
+                  <li>List up to 10 schools</li>
+                  <li>School codes</li>
+                  <li>Housing plans</li>
+                  <li>Degree/certificate information</li>
+                  <li>Study level (undergraduate/graduate)</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
