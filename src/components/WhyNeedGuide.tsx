@@ -10,7 +10,7 @@ export const WhyNeedGuide = () => {
             Why You Need This Guide
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Don't let student loan debt control your future. Take charge with our comprehensive guide and expert strategies.
+            Don't let student loan debt define your life. It's time to take control with expert strategies designed to lighten your financial load and give you back your freedom.
           </p>
         </div>
         
@@ -18,13 +18,13 @@ export const WhyNeedGuide = () => {
           <Card className="border-2 border-primary/10 hover:border-primary/30 transition-colors duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <DollarSign className="h-6 w-6 text-primary" />
+                <AlertCircle className="h-6 w-6 text-primary" />
                 <span>$1.7 Trillion Crisis</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                The total U.S. student loan debt affects 43 million borrowers. Don't become another statistic.
+                America's student loan debt has reached a staggering $1.7 trillion, impacting 43 million borrowers. These aren't just numbers—they're dreams delayed, families stressed, and futures compromised. Don't let yourself become part of this growing crisis.
               </p>
             </CardContent>
           </Card>
@@ -33,12 +33,12 @@ export const WhyNeedGuide = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="h-6 w-6 text-warning" />
-                <span>20+ Years Burden</span>
+                <span>20+ Years of Struggle</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Without proper guidance, it takes 20+ years to pay off student loans. We'll show you how to cut that time in half.
+                On average, it takes over 20 years to pay off student loans, leaving millions trapped in financial limbo. Imagine how much life you could miss waiting for the weight to lift. With our guidance, you'll learn how to cut that timeline in half—or even faster.
               </p>
             </CardContent>
           </Card>
@@ -47,15 +47,21 @@ export const WhyNeedGuide = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <GraduationCap className="h-6 w-6 text-secondary" />
-                <span>Expert Strategy</span>
+                <span>Your Path to Freedom</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Get personalized repayment strategies and insider tips to optimize your loan payments and save thousands.
+                You don't need to navigate this alone. Our guide delivers personalized repayment strategies, forgiveness insights, and insider tips to save you thousands. We'll show you exactly how to turn your debt into a manageable, actionable plan—because your future is worth fighting for.
               </p>
             </CardContent>
           </Card>
+        </div>
+        
+        <div className="text-center mt-16">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            The Clock Is Ticking: Every day you wait is a day interest accrues and opportunities slip away. Start today, and take the first step toward a debt-free future. Your financial freedom starts now.
+          </p>
         </div>
       </div>
     </section>
