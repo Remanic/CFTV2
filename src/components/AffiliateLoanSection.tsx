@@ -1,13 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 import { ArrowRight, BadgeCheck, BadgeX, Info, Percent, Shield, Star, Trophy } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Link } from "react-router-dom";
 
 export const AffiliateLoanSection = () => {
   const lenders = [
@@ -79,6 +73,30 @@ export const AffiliateLoanSection = () => {
         "Economic hardship forbearance"
       ],
       link: "https://www.credible.com/commonbond-student-loans"
+    },
+    {
+      name: "Laurel Road",
+      type: "refinance",
+      featured: true,
+      fixedAPR: "4.24% - 8.99%",
+      variableAPR: "4.49% - 9.99%",
+      minCreditScore: 660,
+      pros: [
+        "Special rates for healthcare professionals",
+        "No maximum loan amount",
+        "Parent PLUS refinancing",
+        "Flexible terms"
+      ],
+      cons: [
+        "Limited forbearance options",
+        "Must have graduated to qualify"
+      ],
+      specialFeatures: [
+        "Healthcare professional discounts",
+        "Direct parent PLUS loan refinancing",
+        "Career support services"
+      ],
+      link: "https://www.credible.com/laurel-road-student-loans"
     }
   ];
 
@@ -90,11 +108,25 @@ export const AffiliateLoanSection = () => {
             Compare Top Student Loan Lenders
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-            Find and compare the best student loan refinancing rates from leading lenders. Pre-qualify in minutes without affecting your credit score.
+            Find and compare the best student loan and refinancing rates from leading lenders. Pre-qualify in minutes without affecting your credit score.
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-4">
             <Info className="h-4 w-4" />
             We earn affiliate commission when you get approved through our links
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-12">
+            <Card className="p-6 bg-primary/5 border-primary/20">
+              <h3 className="text-lg font-semibold mb-2">Private Student Loans</h3>
+              <p className="text-sm text-gray-600">
+                Fund your education with competitive rates and flexible repayment options.
+              </p>
+            </Card>
+            <Card className="p-6 bg-secondary/5 border-secondary/20">
+              <h3 className="text-lg font-semibold mb-2">Student Loan Refinancing</h3>
+              <p className="text-sm text-gray-600">
+                Lower your rate or adjust terms by refinancing existing student loans.
+              </p>
+            </Card>
           </div>
         </div>
 
@@ -124,6 +156,9 @@ export const AffiliateLoanSection = () => {
                     <div className="flex items-center gap-2 text-sm">
                       <Star className="h-4 w-4 text-warning" />
                       <span>Variable APR: {lender.variableAPR}</span>
+                    </div>
+                    <div className="mt-2 inline-flex items-center gap-1 text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
+                      {lender.type === 'refinance' ? 'Refinancing' : 'Private Loans'}
                     </div>
                   </div>
                 </div>
@@ -178,8 +213,17 @@ export const AffiliateLoanSection = () => {
           ))}
         </div>
 
+        <div className="mt-12 text-center">
+          <Link to="/all-lenders">
+            <Button variant="outline" size="lg" className="group">
+              View All Lenders
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </div>
+
         <div className="mt-16 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center gap-3 justify-center p-4 bg-white rounded-lg shadow-sm">
               <Shield className="h-6 w-6 text-primary" />
               <span className="text-sm text-gray-600">Bank-level data security</span>
