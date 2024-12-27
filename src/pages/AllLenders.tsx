@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, BadgeCheck, BadgeX, Info, Percent, Shield, Star, Trophy } from "lucide-react";
+import { ArrowLeft, BadgeCheck, BadgeX, Info, Percent, Shield, Star, Trophy, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AllLenders = () => {
