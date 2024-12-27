@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Info, Trophy, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -15,13 +14,13 @@ export const AffiliateLoanSection = () => {
     .slice(0, 3);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">
             Compare Top Student Loan Lenders
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
             Find and compare the best student loan and refinancing rates from leading lenders. Pre-qualify in minutes without affecting your credit score.
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
@@ -29,18 +28,18 @@ export const AffiliateLoanSection = () => {
             We earn affiliate commission when you get approved through our links
           </div>
 
-          <div className="flex justify-center gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
             <Button
               variant={selectedType === "private" ? "default" : "outline"}
               onClick={() => setSelectedType("private")}
-              className="min-w-[200px]"
+              className="w-full sm:w-auto sm:min-w-[200px]"
             >
               Private Student Loans
             </Button>
             <Button
               variant={selectedType === "refinance" ? "default" : "outline"}
               onClick={() => setSelectedType("refinance")}
-              className="min-w-[200px]"
+              className="w-full sm:w-auto sm:min-w-[200px]"
             >
               Student Loan Refinancing
             </Button>
@@ -49,7 +48,7 @@ export const AffiliateLoanSection = () => {
           <TrustIndicators />
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           {filteredLenders.map((lender, index) => (
             <LenderCard 
               key={lender.name} 
