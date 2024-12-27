@@ -1,29 +1,84 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BadgeCheck, Percent, Shield } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ArrowRight, BadgeCheck, BadgeX, Info, Percent, Shield, Star, Trophy } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const AffiliateLoanSection = () => {
-  const loanOptions = [
+  const lenders = [
     {
-      title: "Student Loan Refinancing",
-      description: "Lower your interest rates and save thousands",
-      rate: "From 4.25% APR",
-      benefits: ["No application fees", "Rate match guarantee", "Quick approval"],
-      link: "https://www.credible.com/student-loans"
+      name: "SoFi",
+      featured: true,
+      fixedAPR: "4.49% - 8.99%",
+      variableAPR: "4.99% - 9.99%",
+      minCreditScore: 650,
+      pros: [
+        "No origination fees",
+        "Career coaching included",
+        "Unemployment protection",
+        "Parent PLUS refinancing available"
+      ],
+      cons: [
+        "Requires good credit score",
+        "No cosigner release option"
+      ],
+      specialFeatures: [
+        "0.25% autopay discount",
+        "Member benefits program",
+        "Flexible repayment terms"
+      ],
+      link: "https://www.credible.com/sofi-student-loans"
     },
     {
-      title: "Personal Loans",
-      description: "Flexible funding for your needs",
-      rate: "From 5.99% APR",
-      benefits: ["Funds as fast as 1 day", "No prepayment penalties", "Fixed rates"],
-      link: "https://www.credible.com/personal-loans"
+      name: "Earnest",
+      featured: true,
+      fixedAPR: "4.25% - 9.99%",
+      variableAPR: "4.74% - 10.99%",
+      minCreditScore: 680,
+      pros: [
+        "Skip one payment per year",
+        "Flexible payment options",
+        "Merit-based underwriting",
+        "Customizable loan terms"
+      ],
+      cons: [
+        "Not available in all states",
+        "Higher credit score requirement"
+      ],
+      specialFeatures: [
+        "Precision pricing",
+        "No fees whatsoever",
+        "9-month grace period"
+      ],
+      link: "https://www.credible.com/earnest-student-loans"
     },
     {
-      title: "Home Loans",
-      description: "Find your perfect mortgage solution",
-      rate: "From 3.75% APR",
-      benefits: ["Compare multiple lenders", "Free rate quotes", "Expert support"],
-      link: "https://www.credible.com/mortgage"
+      name: "CommonBond",
+      featured: false,
+      fixedAPR: "4.44% - 8.99%",
+      variableAPR: "4.99% - 9.99%",
+      minCreditScore: 660,
+      pros: [
+        "Social impact program",
+        "Hybrid loan options",
+        "24/7 customer support",
+        "Flexible repayment plans"
+      ],
+      cons: [
+        "Limited state availability",
+        "Longer application process"
+      ],
+      specialFeatures: [
+        "Hybrid rate options",
+        "Social promise program",
+        "Economic hardship forbearance"
+      ],
+      link: "https://www.credible.com/commonbond-student-loans"
     }
   ];
 
@@ -32,55 +87,111 @@ export const AffiliateLoanSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Find Your Perfect Loan Match
+            Compare Top Student Loan Lenders
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Compare personalized offers from multiple lenders without affecting your credit score.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+            Find and compare the best student loan refinancing rates from leading lenders. Pre-qualify in minutes without affecting your credit score.
           </p>
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+            <Info className="h-4 w-4" />
+            We earn affiliate commission when you get approved through our links
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {loanOptions.map((option, index) => (
-            <Card key={index} className="border-2 hover:border-primary/20 transition-all duration-300">
-              <CardHeader>
-                <CardTitle>{option.title}</CardTitle>
-                <CardDescription>{option.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  <div className="flex items-center gap-2 text-lg font-semibold text-primary">
-                    <Percent className="h-5 w-5" />
-                    {option.rate}
+        <div className="space-y-8">
+          {lenders.map((lender, index) => (
+            <Card 
+              key={index} 
+              className={`border-2 hover:border-primary/20 transition-all duration-300 ${
+                lender.featured ? 'relative overflow-hidden' : ''
+              }`}
+            >
+              {lender.featured && (
+                <div className="absolute top-4 right-4 flex items-center gap-1 bg-primary text-white px-3 py-1 rounded-full text-sm">
+                  <Trophy className="h-4 w-4" />
+                  Featured Lender
+                </div>
+              )}
+              
+              <div className="grid md:grid-cols-12 gap-6 p-6">
+                <div className="md:col-span-3">
+                  <h3 className="text-2xl font-bold mb-2">{lender.name}</h3>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Star className="h-4 w-4 text-warning" />
+                      <span>Fixed APR: {lender.fixedAPR}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Star className="h-4 w-4 text-warning" />
+                      <span>Variable APR: {lender.variableAPR}</span>
+                    </div>
                   </div>
-                  
-                  <ul className="space-y-3">
-                    {option.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-gray-600">
-                        <BadgeCheck className="h-5 w-5 text-green-500" />
-                        {benefit}
+                </div>
+
+                <div className="md:col-span-3">
+                  <h4 className="font-semibold mb-2">Pros</h4>
+                  <ul className="space-y-1">
+                    {lender.pros.map((pro, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm">
+                        <BadgeCheck className="h-4 w-4 text-secondary" />
+                        {pro}
                       </li>
                     ))}
                   </ul>
-
-                  <div className="pt-4">
-                    <Button 
-                      className="w-full group"
-                      onClick={() => window.open(option.link, '_blank')}
-                    >
-                      Check Your Rate
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
                 </div>
-              </CardContent>
+
+                <div className="md:col-span-3">
+                  <h4 className="font-semibold mb-2">Cons</h4>
+                  <ul className="space-y-1">
+                    {lender.cons.map((con, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm">
+                        <BadgeX className="h-4 w-4 text-destructive" />
+                        {con}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="md:col-span-3 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-semibold mb-2">Special Features</h4>
+                    <ul className="space-y-1 text-sm mb-4">
+                      {lender.specialFeatures.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <Percent className="h-4 w-4 text-primary" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <Button 
+                    className="w-full group"
+                    onClick={() => window.open(lender.link, '_blank')}
+                  >
+                    Check Your Rate
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
+              </div>
             </Card>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-2 text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
-            <Shield className="h-5 w-5 text-primary" />
-            Your data is protected with bank-level security
+        <div className="mt-16 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex items-center gap-3 justify-center p-4 bg-white rounded-lg shadow-sm">
+              <Shield className="h-6 w-6 text-primary" />
+              <span className="text-sm text-gray-600">Bank-level data security</span>
+            </div>
+            <div className="flex items-center gap-3 justify-center p-4 bg-white rounded-lg shadow-sm">
+              <BadgeCheck className="h-6 w-6 text-secondary" />
+              <span className="text-sm text-gray-600">Pre-qualify without affecting credit</span>
+            </div>
+            <div className="flex items-center gap-3 justify-center p-4 bg-white rounded-lg shadow-sm">
+              <Trophy className="h-6 w-6 text-warning" />
+              <span className="text-sm text-gray-600">Compare multiple lenders instantly</span>
+            </div>
           </div>
         </div>
       </div>
