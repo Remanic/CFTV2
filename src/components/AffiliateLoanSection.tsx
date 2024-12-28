@@ -14,7 +14,6 @@ export const AffiliateLoanSection = () => {
     .slice(0, 3);
 
   const handleViewAllClick = () => {
-    // Smooth scroll to top when navigating
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -22,14 +21,14 @@ export const AffiliateLoanSection = () => {
     <section className="py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4 text-gray-900">
             Compare Top Student Loan Lenders
           </h2>
           <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
             Find and compare the best student loan and refinancing rates from leading lenders. Pre-qualify in minutes without affecting your credit score.
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
-            <Info className="h-4 w-4" />
+            <Info className="h-4 w-4 text-gray-700" />
             We earn affiliate commission when you get approved through our links
           </div>
 
