@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
@@ -7,6 +7,10 @@ export const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <div className="lg:w-2/3 space-y-6">
+            <div className="flex items-center justify-center lg:justify-start gap-2 text-warning font-semibold animate-pulse">
+              <Clock className="h-5 w-5" />
+              <span>The Clock Is Ticking - Don't Wait to Secure Your Future</span>
+            </div>
             <h1 className="text-3xl lg:text-5xl font-bold leading-tight">
               Navigate Your Student Loan Journey With Confidence
             </h1>
@@ -14,7 +18,7 @@ export const Hero = () => {
               Join over 50,000 students who've mastered their loan management and started their journey to becoming debt-free.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Start Free Guide <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button size="lg" variant="outline">

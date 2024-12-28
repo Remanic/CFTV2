@@ -13,6 +13,11 @@ export const AffiliateLoanSection = () => {
     .filter(lender => lender.type === selectedType)
     .slice(0, 3);
 
+  const handleViewAllClick = () => {
+    // Smooth scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <section className="py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
@@ -59,8 +64,12 @@ export const AffiliateLoanSection = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <Link to="/all-lenders">
-            <Button variant="outline" size="lg" className="group">
+          <Link to="/all-lenders" onClick={handleViewAllClick}>
+            <Button 
+              variant="default"
+              size="lg" 
+              className="group bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all"
+            >
               View All Lenders
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>

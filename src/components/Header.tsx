@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -26,9 +27,9 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center gap-2">
-            <span className="text-xl md:text-2xl font-bold text-primary tracking-tight">
+            <Link to="/" className="text-xl md:text-2xl font-bold text-primary tracking-tight hover:text-primary/90 transition-colors">
               CashFlowTime
-            </span>
+            </Link>
           </div>
           
           {isMobile ? (
