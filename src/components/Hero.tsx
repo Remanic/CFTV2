@@ -1,4 +1,4 @@
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, Hourglass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
@@ -9,7 +9,7 @@ export const Hero = () => {
           <div className="lg:w-2/3 space-y-6">
             <div className="flex items-center justify-center lg:justify-start gap-2 text-warning font-semibold animate-pulse">
               <Clock className="h-5 w-5" />
-              <span>The Clock Is Ticking - Don't Wait to Secure Your Future</span>
+              <span>Time-Sensitive Opportunity</span>
             </div>
             <h1 className="text-3xl lg:text-5xl font-bold leading-tight">
               Navigate Your Student Loan Journey With Confidence
@@ -17,6 +17,20 @@ export const Hero = () => {
             <p className="text-lg lg:text-xl text-gray-600">
               Join over 50,000 students who've mastered their loan management and started their journey to becoming debt-free.
             </p>
+            
+            <div className="bg-gradient-to-r from-warning/10 via-warning/20 to-warning/10 rounded-lg p-6 border border-warning/20 shadow-lg backdrop-blur-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <Hourglass className="h-6 w-6 text-warning animate-pulse" />
+                <h3 className="text-lg font-semibold text-gray-900">Every Day Counts</h3>
+              </div>
+              <p className="text-sm text-gray-700 mb-4">
+                Don't let interest pile up. Your financial freedom is just one decision away.
+              </p>
+              <div className="text-xs text-warning font-medium">
+                Take control of your future today
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
                 Start Free Guide <ArrowRight className="ml-2 h-4 w-4" />

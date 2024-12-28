@@ -24,7 +24,7 @@ export const WhyNeedGuide = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 leading-relaxed">
-                America's student loan debt has reached a staggering $1.7 trillion, impacting 43 million borrowers. These aren't just numbers—they're dreams delayed, families stressed, and futures compromised. Don't let yourself become part of this growing crisis.
+                America's student loan debt has reached a staggering $1.7 trillion, impacting 43 million borrowers. These aren't just numbers—they're dreams delayed, families stressed, and futures compromised.
               </p>
             </CardContent>
           </Card>
@@ -38,7 +38,7 @@ export const WhyNeedGuide = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 leading-relaxed">
-                On average, it takes over 20 years to pay off student loans, leaving millions trapped in financial limbo. Imagine how much life you could miss waiting for the weight to lift. With our guidance, you'll learn how to cut that timeline in half—or even faster.
+                On average, it takes over 20 years to pay off student loans, leaving millions trapped in financial limbo. With our guidance, you'll learn how to cut that timeline in half—or even faster.
               </p>
             </CardContent>
           </Card>
@@ -52,25 +52,10 @@ export const WhyNeedGuide = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 leading-relaxed">
-                You don't need to navigate this alone. Our guide delivers personalized repayment strategies, forgiveness insights, and insider tips to save you thousands. We'll show you exactly how to turn your debt into a manageable, actionable plan—because your future is worth fighting for.
+                You don't need to navigate this alone. Our guide delivers personalized repayment strategies, forgiveness insights, and insider tips to save you thousands.
               </p>
             </CardContent>
           </Card>
-        </div>
-        
-        <div className="mt-16 p-8 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-lg border-2 border-primary/20 shadow-lg animate-float backdrop-blur-sm">
-          <div className="flex items-center justify-center mb-4">
-            <Clock className="h-8 w-8 text-primary animate-pulse" />
-          </div>
-          <h3 className="text-2xl font-bold text-primary mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-            The Clock Is Ticking
-          </h3>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium">
-            Every day you wait is a day interest accrues and opportunities slip away. Start today, and take the first step toward a debt-free future. 
-            <span className="block mt-2 text-primary font-bold">
-              Your financial freedom starts now.
-            </span>
-          </p>
         </div>
       </div>
     </section>
