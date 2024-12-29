@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import AllLenders from "./pages/AllLenders";
+import MortgageCalculator from "./pages/MortgageCalculator";
+import AutoLoanCalculator from "./pages/AutoLoanCalculator";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +19,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/all-lenders" element={<AllLenders />} />
+          <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
+          <Route path="/auto-loan-calculator" element={<AutoLoanCalculator />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

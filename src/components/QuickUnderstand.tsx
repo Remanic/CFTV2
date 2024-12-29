@@ -1,7 +1,10 @@
 import { Calculator, Home, Car, CreditCard, PiggyBank } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 export const QuickUnderstand = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -15,7 +18,10 @@ export const QuickUnderstand = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card className="border-2 border-orange-200 hover:border-orange-300 transition-colors duration-300">
+          <Card 
+            className="border-2 border-orange-200 hover:border-orange-300 transition-colors duration-300 cursor-pointer"
+            onClick={() => navigate("/mortgage-calculator")}
+          >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-orange-500" />
@@ -29,7 +35,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-purple-200 hover:border-purple-300 transition-colors duration-300">
+          <Card 
+            className="border-2 border-purple-200 hover:border-purple-300 transition-colors duration-300 cursor-pointer"
+            onClick={() => navigate("/auto-loan-calculator")}
+          >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Car className="h-6 w-6 text-purple-500" />
