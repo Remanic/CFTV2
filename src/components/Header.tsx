@@ -6,16 +6,65 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Calculator, GraduationCap, PiggyBank, CreditCard, ChartBar } from "lucide-react";
 
 export const Header = () => {
   const isMobile = useIsMobile();
 
   const NavItems = () => (
     <>
-      <a href="#" className="text-gray-600 hover:text-primary transition-colors duration-200 text-base">Features</a>
-      <a href="#" className="text-gray-600 hover:text-primary transition-colors duration-200 text-base">Resources</a>
-      <a href="#" className="text-gray-600 hover:text-primary transition-colors duration-200 text-base">About</a>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger className="text-gray-600 hover:text-primary transition-colors duration-200 text-base">
+          Financial Planning Tools
+        </NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+            <li className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-md">
+              <Calculator className="h-5 w-5 text-orange-500" />
+              <span>EMI Calculator</span>
+            </li>
+            <li className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-md">
+              <PiggyBank className="h-5 w-5 text-green-500" />
+              <span>Savings Calculator</span>
+            </li>
+            <li className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-md">
+              <CreditCard className="h-5 w-5 text-purple-500" />
+              <span>Credit Card Calculator</span>
+            </li>
+            <li className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-md">
+              <ChartBar className="h-5 w-5 text-pink-500" />
+              <span>Investment Tools</span>
+            </li>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+
+      <NavigationMenuItem>
+        <NavigationMenuTrigger className="text-gray-600 hover:text-primary transition-colors duration-200 text-base">
+          FAFSA
+        </NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid w-[400px] gap-3 p-4">
+            <li className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-md">
+              <GraduationCap className="h-5 w-5 text-indigo-500" />
+              <span>FAFSA Guide</span>
+            </li>
+            <li className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-md">
+              <GraduationCap className="h-5 w-5 text-violet-500" />
+              <span>Application Tips</span>
+            </li>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+
       <Button size={isMobile ? "lg" : "default"} className="w-full md:w-auto">
         Get Started
       </Button>
@@ -57,7 +106,11 @@ export const Header = () => {
             </Sheet>
           ) : (
             <nav className="hidden md:flex items-center gap-8">
-              <NavItems />
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavItems />
+                </NavigationMenuList>
+              </NavigationMenu>
             </nav>
           )}
         </div>

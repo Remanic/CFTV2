@@ -15,10 +15,10 @@ export const QuickUnderstand = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card className="border-2 border-gray-200 hover:border-gray-300 transition-colors duration-300">
+          <Card className="border-2 border-orange-200 hover:border-orange-300 transition-colors duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Home className="h-6 w-6 text-gray-700" />
+                <Home className="h-6 w-6 text-orange-500" />
                 <span>Mortgage Calculator</span>
               </CardTitle>
             </CardHeader>
@@ -29,10 +29,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-gray-200 hover:border-gray-300 transition-colors duration-300">
+          <Card className="border-2 border-purple-200 hover:border-purple-300 transition-colors duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Car className="h-6 w-6 text-gray-700" />
+                <Car className="h-6 w-6 text-purple-500" />
                 <span>Auto Loan Calculator</span>
               </CardTitle>
             </CardHeader>
@@ -43,10 +43,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-gray-200 hover:border-gray-300 transition-colors duration-300">
+          <Card className="border-2 border-pink-200 hover:border-pink-300 transition-colors duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <CreditCard className="h-6 w-6 text-gray-700" />
+                <CreditCard className="h-6 w-6 text-pink-500" />
                 <span>Credit Card Payment Calculator</span>
               </CardTitle>
             </CardHeader>
@@ -57,10 +57,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-gray-200 hover:border-gray-300 transition-colors duration-300">
+          <Card className="border-2 border-indigo-200 hover:border-indigo-300 transition-colors duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Calculator className="h-6 w-6 text-gray-700" />
+                <Calculator className="h-6 w-6 text-indigo-500" />
                 <span>EMI Calculator</span>
               </CardTitle>
             </CardHeader>
@@ -71,10 +71,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-gray-200 hover:border-gray-300 transition-colors duration-300">
+          <Card className="border-2 border-green-200 hover:border-green-300 transition-colors duration-300">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <PiggyBank className="h-6 w-6 text-gray-700" />
+                <PiggyBank className="h-6 w-6 text-green-500" />
                 <span>Savings Calculator</span>
               </CardTitle>
             </CardHeader>
