@@ -52,7 +52,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-pink-200 hover:border-pink-300 transition-colors duration-300">
+          <Card 
+            className="border-2 border-pink-200 hover:border-pink-300 transition-colors duration-300 cursor-pointer"
+            onClick={() => navigate("/credit-card-calculator")}
+          >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <CreditCard className="h-6 w-6 text-pink-500" />
@@ -66,7 +69,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-indigo-200 hover:border-indigo-300 transition-colors duration-300">
+          <Card 
+            className="border-2 border-indigo-200 hover:border-indigo-300 transition-colors duration-300 cursor-pointer"
+            onClick={() => navigate("/emi-calculator")}
+          >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calculator className="h-6 w-6 text-indigo-500" />
@@ -80,7 +86,10 @@ export const QuickUnderstand = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-green-200 hover:border-green-300 transition-colors duration-300">
+          <Card 
+            className="border-2 border-green-200 hover:border-green-300 transition-colors duration-300 cursor-pointer"
+            onClick={() => navigate("/savings-calculator")}
+          >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <PiggyBank className="h-6 w-6 text-green-500" />
