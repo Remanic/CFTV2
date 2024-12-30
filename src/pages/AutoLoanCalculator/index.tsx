@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Car, DollarSign, Percent, Calendar } from "lucide-react";
+import { Car } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
