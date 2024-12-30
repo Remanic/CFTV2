@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";  // Added import for Card component
 import { DollarSign, Percent, Calendar } from "lucide-react";
 
 interface AutoLoanFormProps {
