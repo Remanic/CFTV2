@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -10,7 +8,6 @@ import { MortgageResults } from './MortgageResults';
 import { calculateMortgage, MortgageBreakdown } from './MortgageCalculationUtils';
 
 const MortgageCalculator: React.FC = () => {
-  const navigate = useNavigate();
   const { toast } = useToast();
   const [breakdown, setBreakdown] = useState<MortgageBreakdown | null>(null);
   const [calculationData, setCalculationData] = useState<{
@@ -61,14 +58,6 @@ const MortgageCalculator: React.FC = () => {
       <Header />
       <main className="flex-grow bg-gray-50">
         <div className="container mx-auto px-4 py-8">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate("/")}
-            className="mb-6"
-          >
-            ← Back to Home
-          </Button>
-
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <Home className="h-8 w-8 text-orange-500" />

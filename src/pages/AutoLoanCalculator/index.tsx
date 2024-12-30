@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
+import React, { useState } from 'react';
 import { Car } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { AutoLoanForm } from "./AutoLoanForm";
-import { AutoLoanResults } from "./AutoLoanResults";
-import { calculateAutoLoan } from "./AutoLoanCalculationUtils";
+import { AutoLoanForm } from './AutoLoanForm';
+import { AutoLoanResults } from './AutoLoanResults';
+import { calculateAutoLoan } from './AutoLoanCalculationUtils';
 
 const AutoLoanCalculator = () => {
   const { toast } = useToast();
