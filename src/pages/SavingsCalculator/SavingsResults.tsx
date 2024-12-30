@@ -15,7 +15,7 @@ export const SavingsResults: React.FC<SavingsResultsProps> = ({ breakdown }) => 
         <div className="space-y-4">
           <p className="text-sm text-green-600">Projected Savings Amount</p>
           <p className="text-3xl font-bold text-green-700">
-            ${breakdown.projectedAmount.toFixed(2)}
+            ${breakdown.futureValue.toFixed(2)}
           </p>
           <div className="grid grid-cols-2 gap-4 pt-4 border-t border-green-200">
             <div>
