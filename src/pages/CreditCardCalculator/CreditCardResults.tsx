@@ -15,7 +15,7 @@ export const CreditCardResults: React.FC<CreditCardResultsProps> = ({ breakdown 
         <div className="space-y-4">
           <p className="text-sm text-pink-600">Total Monthly Payment</p>
           <p className="text-3xl font-bold text-pink-700">
-            ${(breakdown.monthlyPayment).toFixed(2)}
+            ${breakdown.monthlyPayment.toFixed(2)}
           </p>
 
           <div className="grid grid-cols-2 gap-4 pt-4 border-t border-pink-200">
@@ -66,11 +66,13 @@ export const CreditCardResults: React.FC<CreditCardResultsProps> = ({ breakdown 
             Enter your credit card details and click Calculate to see your payment plan.
           </p>
           <div className="bg-white p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-700 mb-2">Tips</h3>
+            <h3 className="font-semibold text-gray-700 mb-2">Credit Card Management Tips</h3>
             <ul className="list-disc list-inside space-y-2 text-sm text-gray-600">
               <li>Pay more than the minimum payment to reduce interest costs</li>
               <li>Consider balance transfer options for high-interest cards</li>
               <li>Create a budget to avoid accumulating new credit card debt</li>
+              <li>Set up automatic payments to avoid missing due dates</li>
+              <li>Monitor your credit utilization ratio</li>
             </ul>
           </div>
         </div>

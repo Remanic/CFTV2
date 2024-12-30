@@ -66,11 +66,13 @@ export const EMIResults: React.FC<EMIResultsProps> = ({ breakdown }) => {
             Enter your loan details and click Calculate to see your estimated EMI payments.
           </p>
           <div className="bg-white p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-700 mb-2">Tips</h3>
+            <h3 className="font-semibold text-gray-700 mb-2">Tips for EMI Planning</h3>
             <ul className="list-disc list-inside space-y-2 text-sm text-gray-600">
               <li>A longer loan term means lower EMI but higher total interest paid</li>
               <li>Consider your monthly income and expenses when deciding EMI amount</li>
               <li>Check for any processing fees or additional charges</li>
+              <li>Try to make a larger down payment to reduce your EMI burden</li>
+              <li>Compare different lenders to get the best interest rates</li>
             </ul>
           </div>
         </div>
