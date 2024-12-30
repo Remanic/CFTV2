@@ -5,6 +5,11 @@ import { useNavigate } from "react-router-dom";
 export const QuickUnderstand = () => {
   const navigate = useNavigate();
 
+  const handleNavigate = (path: string) => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    navigate(path);
+  };
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -20,7 +25,7 @@ export const QuickUnderstand = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Card 
             className="border-2 border-orange-200 hover:border-orange-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => navigate("/mortgage-calculator")}
+            onClick={() => handleNavigate("/mortgage-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -37,7 +42,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-purple-200 hover:border-purple-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => navigate("/auto-loan-calculator")}
+            onClick={() => handleNavigate("/auto-loan-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -54,7 +59,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-pink-200 hover:border-pink-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => navigate("/credit-card-calculator")}
+            onClick={() => handleNavigate("/credit-card-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -71,7 +76,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-indigo-200 hover:border-indigo-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => navigate("/emi-calculator")}
+            onClick={() => handleNavigate("/emi-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -88,7 +93,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-green-200 hover:border-green-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => navigate("/savings-calculator")}
+            onClick={() => handleNavigate("/savings-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
