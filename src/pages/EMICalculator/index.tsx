@@ -3,11 +3,14 @@ import { Calculator } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { EMIForm } from './EMIForm';
 import { EMIResults } from './EMIResults';
 import { calculateEMI, EMIBreakdown } from './EMICalculationUtils';
 
 const EMICalculator: React.FC = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [breakdown, setBreakdown] = useState<EMIBreakdown | null>(null);
 
@@ -45,6 +48,14 @@ const EMICalculator: React.FC = () => {
       <Header />
       <main className="flex-grow bg-gray-50">
         <div className="container mx-auto px-4 py-8">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate("/")}
+            className="mb-6"
+          >
+            ← Back to Home
+          </Button>
+
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <Calculator className="h-8 w-8 text-indigo-500" />
