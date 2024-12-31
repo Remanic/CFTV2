@@ -22,11 +22,13 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/all-lenders" element={<AllLenders />} />
-          <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
-          <Route path="/auto-loan-calculator" element={<AutoLoanCalculator />} />
-          <Route path="/credit-card-calculator" element={<CreditCardCalculator />} />
-          <Route path="/emi-calculator" element={<EMICalculator />} />
-          <Route path="/savings-calculator" element={<SavingsCalculator />} />
+          <Route path="/mortgage-loan-calculator" element={<MortgageCalculator />} />
+          <Route path="/auto-loan-payment-calculator" element={<AutoLoanCalculator />} />
+          <Route path="/credit-card-payment-calculator" element={<CreditCardCalculator />} />
+          <Route path="/monthly-loan-emi-calculator" element={<EMICalculator />} />
+          <Route path="/compound-savings-calculator" element={<SavingsCalculator />} />
+          <Route path="/fafsa-application-guide" element={<Navigate to="/" replace />} />
+          <Route path="/fafsa-application-tips" element={<Navigate to="/" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
