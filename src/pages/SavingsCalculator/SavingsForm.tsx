@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { DollarSign, Percent, Calendar } from 'lucide-react';
+import { InputField } from './components/InputField';
+import { CalculateButton } from './components/CalculateButton';
 
 interface SavingsFormProps {
   onCalculate: (formData: {
@@ -38,85 +37,57 @@ export const SavingsForm: React.FC<SavingsFormProps> = ({ onCalculate }) => {
     onCalculate(numericData);
   };
 
+  const inputFields = [
+    {
+      id: 'initialDeposit',
+      label: 'Initial Deposit',
+      value: formData.initialDeposit,
+      placeholder: 'e.g. 5000',
+      Icon: DollarSign
+    },
+    {
+      id: 'monthlyContribution',
+      label: 'Monthly Contribution',
+      value: formData.monthlyContribution,
+      placeholder: 'e.g. 500',
+      Icon: DollarSign
+    },
+    {
+      id: 'annualReturn',
+      label: 'Expected Annual Return',
+      value: formData.annualReturn,
+      placeholder: 'e.g. 7',
+      Icon: Percent
+    },
+    {
+      id: 'years',
+      label: 'Investment Period (Years)',
+      value: formData.years,
+      placeholder: 'e.g. 20',
+      Icon: Calendar
+    },
+    {
+      id: 'taxRate',
+      label: 'Tax Rate',
+      value: formData.taxRate,
+      placeholder: 'e.g. 25',
+      Icon: Percent
+    }
+  ];
+
   return (
     <div className="space-y-6">
-      <div className="space-y-2">
-        <Label htmlFor="initialDeposit" className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" /> Initial Deposit
-        </Label>
-        <Input
-          id="initialDeposit"
-          type="number"
-          value={formData.initialDeposit}
-          onChange={(e) => handleInputChange('initialDeposit', e.target.value)}
-          placeholder="e.g. 5000"
-          className="text-lg"
+      {inputFields.map((field) => (
+        <InputField
+          key={field.id}
+          {...field}
+          onChange={(value) => handleInputChange(field.id as keyof typeof formData, value)}
         />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="monthlyContribution" className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" /> Monthly Contribution
-        </Label>
-        <Input
-          id="monthlyContribution"
-          type="number"
-          value={formData.monthlyContribution}
-          onChange={(e) => handleInputChange('monthlyContribution', e.target.value)}
-          placeholder="e.g. 500"
-          className="text-lg"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="annualReturn" className="flex items-center gap-2">
-          <Percent className="h-4 w-4" /> Expected Annual Return
-        </Label>
-        <Input
-          id="annualReturn"
-          type="number"
-          value={formData.annualReturn}
-          onChange={(e) => handleInputChange('annualReturn', e.target.value)}
-          placeholder="e.g. 7"
-          className="text-lg"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="years" className="flex items-center gap-2">
-          <Calendar className="h-4 w-4" /> Investment Period (Years)
-        </Label>
-        <Input
-          id="years"
-          type="number"
-          value={formData.years}
-          onChange={(e) => handleInputChange('years', e.target.value)}
-          placeholder="e.g. 20"
-          className="text-lg"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="taxRate" className="flex items-center gap-2">
-          <Percent className="h-4 w-4" /> Tax Rate
-        </Label>
-        <Input
-          id="taxRate"
-          type="number"
-          value={formData.taxRate}
-          onChange={(e) => handleInputChange('taxRate', e.target.value)}
-          placeholder="e.g. 25"
-          className="text-lg"
-        />
-      </div>
-
-      <Button 
+      ))}
+      <CalculateButton 
         onClick={handleSubmit}
-        className="w-full bg-green-500 hover:bg-green-600"
-        size="lg"
-      >
-        Calculate Savings Growth
-      </Button>
+        label="Calculate Savings Growth"
+      />
     </div>
   );
 };

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { DollarSign, Percent } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { CreditCardInputField } from './components/CreditCardInputField';
 
 interface CreditCardFormProps {
   onCalculate: (formData: {
@@ -35,64 +34,46 @@ export const CreditCardForm: React.FC<CreditCardFormProps> = ({ onCalculate }) =
     onCalculate(numericData);
   };
 
+  const inputFields = [
+    {
+      id: 'balance',
+      label: 'Current Balance',
+      value: formData.balance,
+      placeholder: 'e.g. 5000',
+      Icon: DollarSign
+    },
+    {
+      id: 'interestRate',
+      label: 'Annual Interest Rate (APR)',
+      value: formData.interestRate,
+      placeholder: 'e.g. 18.99',
+      Icon: Percent
+    },
+    {
+      id: 'minimumPayment',
+      label: 'Minimum Monthly Payment',
+      value: formData.minimumPayment,
+      placeholder: 'e.g. 100',
+      Icon: DollarSign
+    },
+    {
+      id: 'additionalPayment',
+      label: 'Additional Monthly Payment',
+      value: formData.additionalPayment,
+      placeholder: 'e.g. 50',
+      Icon: DollarSign
+    }
+  ];
+
   return (
     <div className="space-y-6">
-      <div className="space-y-2">
-        <Label htmlFor="balance" className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" /> Current Balance
-        </Label>
-        <Input
-          id="balance"
-          type="number"
-          value={formData.balance}
-          onChange={(e) => handleInputChange('balance', e.target.value)}
-          placeholder="e.g. 5000"
-          className="text-lg"
+      {inputFields.map((field) => (
+        <CreditCardInputField
+          key={field.id}
+          {...field}
+          onChange={(value) => handleInputChange(field.id as keyof typeof formData, value)}
         />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="interestRate" className="flex items-center gap-2">
-          <Percent className="h-4 w-4" /> Annual Interest Rate (APR)
-        </Label>
-        <Input
-          id="interestRate"
-          type="number"
-          value={formData.interestRate}
-          onChange={(e) => handleInputChange('interestRate', e.target.value)}
-          placeholder="e.g. 18.99"
-          className="text-lg"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="minimumPayment" className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" /> Minimum Monthly Payment
-        </Label>
-        <Input
-          id="minimumPayment"
-          type="number"
-          value={formData.minimumPayment}
-          onChange={(e) => handleInputChange('minimumPayment', e.target.value)}
-          placeholder="e.g. 100"
-          className="text-lg"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="additionalPayment" className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" /> Additional Monthly Payment
-        </Label>
-        <Input
-          id="additionalPayment"
-          type="number"
-          value={formData.additionalPayment}
-          onChange={(e) => handleInputChange('additionalPayment', e.target.value)}
-          placeholder="e.g. 50"
-          className="text-lg"
-        />
-      </div>
-
+      ))}
       <Button 
         onClick={handleSubmit}
         className="w-full bg-pink-500 hover:bg-pink-600"

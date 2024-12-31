@@ -1,8 +1,7 @@
 import React from 'react';
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { DollarSign, Percent, Calendar } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { MortgageInputField } from './components/MortgageInputField';
 
 interface MortgageFormProps {
   onCalculate: (formData: {
@@ -41,61 +40,60 @@ export const MortgageForm: React.FC<MortgageFormProps> = ({ onCalculate }) => {
     onCalculate(numericData);
   };
 
+  const inputFields = [
+    {
+      id: 'homePrice',
+      label: 'Home Price',
+      value: formData.homePrice,
+      placeholder: 'e.g. 300000',
+      Icon: DollarSign
+    },
+    {
+      id: 'downPayment',
+      label: 'Down Payment',
+      value: formData.downPayment,
+      placeholder: 'e.g. 60000',
+      Icon: DollarSign
+    },
+    {
+      id: 'interestRate',
+      label: 'Interest Rate',
+      value: formData.interestRate,
+      placeholder: 'e.g. 4.5',
+      Icon: Percent
+    },
+    {
+      id: 'loanTerm',
+      label: 'Loan Term (Years)',
+      value: formData.loanTerm,
+      placeholder: 'e.g. 30',
+      Icon: Calendar
+    },
+    {
+      id: 'propertyTax',
+      label: 'Annual Property Tax',
+      value: formData.propertyTax,
+      placeholder: 'e.g. 3600',
+      Icon: DollarSign
+    },
+    {
+      id: 'insurance',
+      label: 'Annual Insurance',
+      value: formData.insurance,
+      placeholder: 'e.g. 1200',
+      Icon: DollarSign
+    }
+  ];
+
   return (
     <div className="space-y-6">
-      {[
-        { 
-          label: 'Home Price', 
-          key: 'homePrice', 
-          icon: <DollarSign className="h-4 w-4" />,
-          placeholder: 'e.g. 300000'
-        },
-        { 
-          label: 'Down Payment', 
-          key: 'downPayment', 
-          icon: <DollarSign className="h-4 w-4" />,
-          placeholder: 'e.g. 60000'
-        },
-        { 
-          label: 'Interest Rate', 
-          key: 'interestRate', 
-          icon: <Percent className="h-4 w-4" />,
-          placeholder: 'e.g. 4.5'
-        },
-        { 
-          label: 'Loan Term (Years)', 
-          key: 'loanTerm', 
-          icon: <Calendar className="h-4 w-4" />,
-          placeholder: 'e.g. 30'
-        },
-        { 
-          label: 'Annual Property Tax', 
-          key: 'propertyTax', 
-          icon: <DollarSign className="h-4 w-4" />,
-          placeholder: 'e.g. 3600'
-        },
-        { 
-          label: 'Annual Insurance', 
-          key: 'insurance', 
-          icon: <DollarSign className="h-4 w-4" />,
-          placeholder: 'e.g. 1200'
-        }
-      ].map(({ label, key, icon, placeholder }) => (
-        <div key={key} className="space-y-2">
-          <Label htmlFor={key} className="flex items-center gap-2">
-            {icon} {label}
-          </Label>
-          <Input
-            id={key}
-            type="number"
-            value={formData[key as keyof typeof formData]}
-            onChange={(e) => handleInputChange(key as keyof typeof formData, e.target.value)}
-            placeholder={placeholder}
-            className="text-lg"
-          />
-        </div>
+      {inputFields.map((field) => (
+        <MortgageInputField
+          key={field.id}
+          {...field}
+          onChange={(value) => handleInputChange(field.id as keyof typeof formData, value)}
+        />
       ))}
-
       <Button 
         onClick={handleSubmit}
         className="w-full bg-orange-500 hover:bg-orange-600"
