@@ -25,7 +25,7 @@ export const QuickUnderstand = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Card 
             className="border-2 border-orange-200 hover:border-orange-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/mortgage-calculator")}
+            onClick={() => handleNavigate("/mortgage-loan-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -42,7 +42,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-purple-200 hover:border-purple-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/auto-loan-calculator")}
+            onClick={() => handleNavigate("/auto-loan-payment-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -59,7 +59,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-pink-200 hover:border-pink-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/credit-card-calculator")}
+            onClick={() => handleNavigate("/credit-card-payment-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -76,7 +76,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-indigo-200 hover:border-indigo-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/emi-calculator")}
+            onClick={() => handleNavigate("/monthly-loan-emi-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -93,7 +93,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-green-200 hover:border-green-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/savings-calculator")}
+            onClick={() => handleNavigate("/compound-savings-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
