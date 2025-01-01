@@ -9,7 +9,7 @@ interface EMIResultsProps {
 export const EMIResults: React.FC<EMIResultsProps> = ({ breakdown }) => {
   return (
     <Card className="bg-indigo-50 p-6 rounded-lg space-y-6">
-      <h2 className="text-xl font-semibold text-indigo-700">EMI Breakdown</h2>
+      <h2 className="text-xl font-semibold text-indigo-700">Monthly Payment Breakdown</h2>
       
       {breakdown ? (
         <div className="space-y-4">
@@ -90,9 +90,9 @@ export const EMIResults: React.FC<EMIResultsProps> = ({ breakdown }) => {
           <div className="bg-white p-4 rounded-lg">
             <h3 className="font-semibold text-gray-700 mb-2">EMI Tips</h3>
             <ul className="list-disc list-inside space-y-2 text-sm text-gray-600">
-              <li>Lower interest rates significantly reduce your EMI</li>
-              <li>Longer loan terms mean lower EMIs but higher total interest</li>
-              <li>Consider prepayment options to reduce total interest</li>
+              <li>A higher down payment can significantly reduce your monthly EMI</li>
+              <li>Consider all fees and charges before finalizing your loan</li>
+              <li>Compare different loan terms to find the best balance between EMI and total interest</li>
               <li>Check processing fees before finalizing the loan</li>
               <li>Maintain a good credit score for better interest rates</li>
             </ul>
