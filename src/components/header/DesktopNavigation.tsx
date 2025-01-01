@@ -21,11 +21,11 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
             Calculators
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] max-w-[calc(100vw-2rem)] -translate-x-1/4">
+            <ul className="grid w-[300px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] max-w-[calc(100vw-2rem)]">
               {calculatorLinks.map(({ icon: Icon, label, path, color }) => (
                 <li key={path}>
                   <Link
-                    to={path}
+                    to={path.toLowerCase()}
                     className="flex items-center gap-3 rounded-lg p-3 hover:bg-gray-50 transition-colors"
                   >
                     <Icon className={`h-5 w-5 ${color}`} />

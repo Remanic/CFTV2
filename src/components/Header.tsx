@@ -18,31 +18,31 @@ export const Header = () => {
     { 
       icon: Home, 
       label: "Mortgage Calculator", 
-      path: "/mortgage-calculator", 
+      path: "/mortgage-loan-calculator", 
       color: "text-blue-500" 
     },
     { 
       icon: Car, 
       label: "Auto Loan Calculator", 
-      path: "/auto-loan-calculator", 
+      path: "/auto-loan-payment-calculator", 
       color: "text-green-500" 
     },
     { 
       icon: CreditCard, 
       label: "Credit Card Calculator", 
-      path: "/credit-card-calculator", 
+      path: "/credit-card-payment-calculator", 
       color: "text-purple-500" 
     },
     { 
       icon: Calculator, 
       label: "EMI Calculator", 
-      path: "/emi-calculator", 
+      path: "/monthly-loan-emi-calculator", 
       color: "text-orange-500" 
     },
     { 
       icon: PiggyBank, 
       label: "Savings Calculator", 
-      path: "/savings-calculator", 
+      path: "/compound-savings-calculator", 
       color: "text-pink-500" 
     },
   ];
