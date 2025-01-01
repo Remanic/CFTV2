@@ -13,10 +13,12 @@ export const CreditCardResults: React.FC<CreditCardResultsProps> = ({ breakdown 
       
       {breakdown ? (
         <div className="space-y-4">
-          <p className="text-sm text-pink-600">Total Monthly Payment</p>
-          <p className="text-3xl font-bold text-pink-700">
-            ${breakdown.monthlyPayment.toFixed(2)}
-          </p>
+          <div>
+            <p className="text-sm text-pink-600">Total Monthly Payment</p>
+            <p className="text-3xl font-bold text-pink-700">
+              ${breakdown.monthlyPayment.toFixed(2)}
+            </p>
+          </div>
 
           <div className="grid grid-cols-2 gap-4 pt-4 border-t border-pink-200">
             <div>
@@ -34,7 +36,7 @@ export const CreditCardResults: React.FC<CreditCardResultsProps> = ({ breakdown 
           </div>
 
           <div className="pt-4 border-t border-pink-200">
-            <p className="text-sm text-pink-600">Total Amount Paid</p>
+            <p className="text-sm text-pink-600">Total Amount to Pay</p>
             <p className="text-3xl font-bold text-pink-700">
               ${breakdown.totalPaid.toFixed(2)}
             </p>
@@ -55,6 +57,36 @@ export const CreditCardResults: React.FC<CreditCardResultsProps> = ({ breakdown 
                 <span className="text-gray-600">Time Saved:</span>
                 <span className="font-medium text-green-600">
                   {breakdown.minimumPaymentMonths - breakdown.monthsToPayoff} months
+                </span>
+              </p>
+              <p className="flex justify-between">
+                <span className="text-gray-600">Interest Savings:</span>
+                <span className="font-medium text-green-600">
+                  ${(breakdown.totalInterest * (breakdown.minimumPaymentMonths - breakdown.monthsToPayoff) / breakdown.monthsToPayoff).toFixed(2)}
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg">
+            <h3 className="font-semibold text-gray-700 mb-2">Payment Schedule</h3>
+            <div className="space-y-2 text-sm">
+              <p className="flex justify-between">
+                <span className="text-gray-600">Monthly Principal:</span>
+                <span className="font-medium">
+                  ${(breakdown.monthlyPayment - (breakdown.totalInterest / breakdown.monthsToPayoff)).toFixed(2)}
+                </span>
+              </p>
+              <p className="flex justify-between">
+                <span className="text-gray-600">Monthly Interest:</span>
+                <span className="font-medium">
+                  ${(breakdown.totalInterest / breakdown.monthsToPayoff).toFixed(2)}
+                </span>
+              </p>
+              <p className="flex justify-between">
+                <span className="text-gray-600">Payoff Date:</span>
+                <span className="font-medium">
+                  {new Date(Date.now() + (breakdown.monthsToPayoff * 30 * 24 * 60 * 60 * 1000)).toLocaleDateString()}
                 </span>
               </p>
             </div>
