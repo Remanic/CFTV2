@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
-import { Home } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Home, DollarSign, Percent, Calendar } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { MortgageForm } from './MortgageForm';
-import { MortgageResults } from './MortgageResults';
-import { calculateMortgage, MortgageBreakdown } from './MortgageCalculationUtils';
+import { useToast } from "@/components/ui/use-toast";
+import { MortgageSummary } from "./components/MortgageSummary";
 
-const MortgageCalculator: React.FC = () => {
+const MortgageCalculator = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
-  const [breakdown, setBreakdown] = useState<MortgageBreakdown | null>(null);
-  const [calculationData, setCalculationData] = useState<{
-    homePrice: number;
-    downPayment: number;
+  const [homePrice, setHomePrice] = useState("");
+  const [downPayment, setDownPayment] = useState("");
+  const [interestRate, setInterestRate] = useState("");
+  const [loanTerm, setLoanTerm] = useState("");
+  const [propertyTax, setPropertyTax] = useState("");
+  const [insurance, setInsurance] = useState("");
+  const [breakdown, setBreakdown] = useState<{
+    principal: number;
+    interest: number;
+    tax: number;
+    insurance: number;
+    total: number;
   } | null>(null);
 
-  const handleCalculate = (formData: {
-    homePrice: number;
-    downPayment: number;
-    interestRate: number;
-    loanTerm: number;
-    propertyTax: number;
-    insurance: number;
-  }) => {
-    if (Object.values(formData).some(value => !value)) {
+  const handleBack = () => {
+    const previousPath = location.state?.from || "/";
+    navigate(previousPath);
+  };
+
+  const calculateMortgage = () => {
+    if (!homePrice || !downPayment || !interestRate || !loanTerm || !propertyTax || !insurance) {
       toast({
         title: "Missing Information",
         description: "Please fill in all fields to calculate your mortgage payment.",
@@ -32,19 +43,24 @@ const MortgageCalculator: React.FC = () => {
       return;
     }
 
-    const { monthlyPayment, breakdown } = calculateMortgage(
-      formData.homePrice,
-      formData.downPayment,
-      formData.interestRate,
-      formData.loanTerm,
-      formData.propertyTax,
-      formData.insurance
-    );
+    const principal = parseFloat(homePrice) - parseFloat(downPayment);
+    const monthlyRate = parseFloat(interestRate) / 100 / 12;
+    const months = parseFloat(loanTerm) * 12;
+    const monthlyTax = parseFloat(propertyTax) / 12;
+    const monthlyInsurance = parseFloat(insurance) / 12;
 
-    setBreakdown(breakdown);
-    setCalculationData({
-      homePrice: formData.homePrice,
-      downPayment: formData.downPayment
+    const monthlyPrincipalAndInterest = 
+      (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) / 
+      (Math.pow(1 + monthlyRate, months) - 1);
+
+    const totalMonthly = monthlyPrincipalAndInterest + monthlyTax + monthlyInsurance;
+
+    setBreakdown({
+      principal: monthlyPrincipalAndInterest - (principal * monthlyRate),
+      interest: principal * monthlyRate,
+      tax: monthlyTax,
+      insurance: monthlyInsurance,
+      total: totalMonthly
     });
 
     toast({
@@ -64,16 +80,120 @@ const MortgageCalculator: React.FC = () => {
               <h1 className="text-3xl font-bold">Mortgage Calculator</h1>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <MortgageForm onCalculate={handleCalculate} />
-              {breakdown && calculationData && (
-                <MortgageResults 
-                  breakdown={breakdown} 
-                  homePrice={calculationData.homePrice}
-                  downPayment={calculationData.downPayment}
+            <Card className="p-6">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="homePrice" className="flex items-center gap-2">
+                        <DollarSign className="h-4 w-4" /> Home Price
+                      </Label>
+                      <Input
+                        id="homePrice"
+                        type="number"
+                        value={homePrice}
+                        onChange={(e) => setHomePrice(e.target.value)}
+                        placeholder="e.g. 300000"
+                        className="text-lg"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="downPayment" className="flex items-center gap-2">
+                        <DollarSign className="h-4 w-4" /> Down Payment
+                      </Label>
+                      <Input
+                        id="downPayment"
+                        type="number"
+                        value={downPayment}
+                        onChange={(e) => setDownPayment(e.target.value)}
+                        placeholder="e.g. 60000"
+                        className="text-lg"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="interestRate" className="flex items-center gap-2">
+                        <Percent className="h-4 w-4" /> Interest Rate
+                      </Label>
+                      <Input
+                        id="interestRate"
+                        type="number"
+                        step="0.1"
+                        value={interestRate}
+                        onChange={(e) => setInterestRate(e.target.value)}
+                        placeholder="e.g. 4.5"
+                        className="text-lg"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="loanTerm" className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" /> Loan Term (Years)
+                      </Label>
+                      <Input
+                        id="loanTerm"
+                        type="number"
+                        value={loanTerm}
+                        onChange={(e) => setLoanTerm(e.target.value)}
+                        placeholder="e.g. 30"
+                        className="text-lg"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="propertyTax" className="flex items-center gap-2">
+                        <DollarSign className="h-4 w-4" /> Annual Property Tax
+                      </Label>
+                      <Input
+                        id="propertyTax"
+                        type="number"
+                        value={propertyTax}
+                        onChange={(e) => setPropertyTax(e.target.value)}
+                        placeholder="e.g. 3600"
+                        className="text-lg"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="insurance" className="flex items-center gap-2">
+                        <DollarSign className="h-4 w-4" /> Annual Insurance
+                      </Label>
+                      <Input
+                        id="insurance"
+                        type="number"
+                        value={insurance}
+                        onChange={(e) => setInsurance(e.target.value)}
+                        placeholder="e.g. 1200"
+                        className="text-lg"
+                      />
+                    </div>
+                  </div>
+
+                  <Button 
+                    onClick={calculateMortgage}
+                    className="w-full bg-orange-500 hover:bg-orange-600"
+                    size="lg"
+                  >
+                    Calculate Mortgage Payment
+                  </Button>
+                </div>
+
+                <MortgageSummary 
+                  breakdown={breakdown}
+                  loanDetails={breakdown ? {
+                    homePrice: parseFloat(homePrice),
+                    downPayment: parseFloat(downPayment),
+                    interestRate: parseFloat(interestRate),
+                    loanTerm: parseFloat(loanTerm)
+                  } : null}
                 />
-              )}
-            </div>
+              </div>
+            </Card>
           </div>
         </div>
       </main>

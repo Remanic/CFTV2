@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -13,6 +13,7 @@ import { MobileNavigation } from "./header/MobileNavigation";
 
 export const Header = () => {
   const isMobile = useIsMobile();
+  const location = useLocation();
 
   const calculatorLinks = [
     { 
@@ -45,7 +46,10 @@ export const Header = () => {
       path: "/compound-savings-calculator", 
       color: "text-pink-500" 
     },
-  ];
+  ].map(link => ({
+    ...link,
+    state: { from: location.pathname }
+  }));
 
   const mainCalculators = calculatorLinks.slice(0, 3);
   const additionalCalculators = calculatorLinks.slice(3);
