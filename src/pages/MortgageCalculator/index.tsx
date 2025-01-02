@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Home, DollarSign, Percent, Calendar } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
 import { MortgageSummary } from "./components/MortgageSummary";
 
 const MortgageCalculator = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
   const [homePrice, setHomePrice] = useState("");
@@ -27,11 +25,6 @@ const MortgageCalculator = () => {
     insurance: number;
     total: number;
   } | null>(null);
-
-  const handleBack = () => {
-    const previousPath = location.state?.from || "/";
-    navigate(previousPath);
-  };
 
   const calculateMortgage = () => {
     if (!homePrice || !downPayment || !interestRate || !loanTerm || !propertyTax || !insurance) {
@@ -174,13 +167,12 @@ const MortgageCalculator = () => {
                     </div>
                   </div>
 
-                  <Button 
+                  <button 
                     onClick={calculateMortgage}
-                    className="w-full bg-orange-500 hover:bg-orange-600"
-                    size="lg"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg transition-colors duration-200"
                   >
                     Calculate Mortgage Payment
-                  </Button>
+                  </button>
                 </div>
 
                 <MortgageSummary 

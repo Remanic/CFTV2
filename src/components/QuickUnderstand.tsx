@@ -1,13 +1,14 @@
 import { Calculator, Home, Car, CreditCard, PiggyBank } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const QuickUnderstand = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavigate = (path: string) => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    navigate(path);
+    navigate(path, { state: { from: location.pathname } });
   };
 
   return (
