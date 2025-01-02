@@ -10,10 +10,16 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Calculator, Home, Car, CreditCard, PiggyBank } from "lucide-react";
 import { DesktopNavigation } from "./header/DesktopNavigation";
 import { MobileNavigation } from "./header/MobileNavigation";
+import { useEffect } from "react";
 
 export const Header = () => {
   const isMobile = useIsMobile();
   const location = useLocation();
+
+  // Scroll to top whenever location changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const calculatorLinks = [
     { 
