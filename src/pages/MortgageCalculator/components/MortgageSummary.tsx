@@ -39,6 +39,8 @@ export const MortgageSummary = ({ breakdown, loanDetails }: MortgageSummaryProps
   const totalPayments = breakdown.total * (loanDetails.loanTerm * 12);
   const totalInterest = totalPayments - (loanDetails.homePrice - loanDetails.downPayment);
   const loanToValue = ((loanDetails.homePrice - loanDetails.downPayment) / loanDetails.homePrice) * 100;
+  const monthlyIncome = (breakdown.total / 0.28).toFixed(2); // Assuming 28% DTI ratio
+  const yearlyIncome = (Number(monthlyIncome) * 12).toFixed(2);
 
   return (
     <div className="bg-orange-50 p-6 rounded-lg space-y-6">
@@ -107,6 +109,23 @@ export const MortgageSummary = ({ breakdown, loanDetails }: MortgageSummaryProps
               <p className="flex justify-between">
                 <span className="text-gray-600">Loan to Value Ratio:</span>
                 <span className="font-medium">{loanToValue.toFixed(1)}%</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="pt-4 border-t">
+            <h3 className="font-semibold text-gray-700 mb-2">Income Requirements</h3>
+            <div className="space-y-2 text-sm">
+              <p className="flex justify-between">
+                <span className="text-gray-600">Recommended Monthly Income:</span>
+                <span className="font-medium">${monthlyIncome}</span>
+              </p>
+              <p className="flex justify-between">
+                <span className="text-gray-600">Recommended Yearly Income:</span>
+                <span className="font-medium">${yearlyIncome}</span>
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                Based on 28% debt-to-income ratio
               </p>
             </div>
           </div>
