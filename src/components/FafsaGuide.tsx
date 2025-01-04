@@ -54,55 +54,39 @@ export const FafsaGuide = () => {
             Join over 10 million students who use FAFSA annually to access federal financial aid. Let us guide you through every step of the process.
           </p>
           
-          {/* Deadlines Section */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 max-w-5xl mx-auto">
-            <Card className="bg-white/50 backdrop-blur border-2 border-blue-100 hover:border-blue-200 transition-all duration-300">
-              <CardHeader className="space-y-1">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calendar className="h-5 w-5 text-blue-500" />
-                  <span>Application Opens</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-blue-600 font-semibold">{deadlines.applicationStart}</p>
-              </CardContent>
-            </Card>
+          {/* Updated Deadlines Section */}
+          <div className="flex flex-wrap justify-center gap-8 mb-16 max-w-4xl mx-auto">
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
+              <div className="text-left">
+                <p className="text-sm font-medium text-gray-500">Application Opens</p>
+                <p className="font-semibold text-blue-700">{deadlines.applicationStart}</p>
+              </div>
+            </div>
             
-            <Card className="bg-white/50 backdrop-blur border-2 border-red-100 hover:border-red-200 transition-all duration-300">
-              <CardHeader className="space-y-1">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertCircle className="h-5 w-5 text-red-500" />
-                  <span>Federal Deadline</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-red-600 font-semibold">{deadlines.federalDeadline}</p>
-              </CardContent>
-            </Card>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="text-left">
+                <p className="text-sm font-medium text-gray-500">Federal Deadline</p>
+                <p className="font-semibold text-red-700">{deadlines.federalDeadline}</p>
+              </div>
+            </div>
             
-            <Card className="bg-white/50 backdrop-blur border-2 border-orange-100 hover:border-orange-200 transition-all duration-300">
-              <CardHeader className="space-y-1">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calendar className="h-5 w-5 text-orange-500" />
-                  <span>State Deadlines</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-orange-600 font-semibold">{deadlines.stateDeadlines}</p>
-              </CardContent>
-            </Card>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+              <div className="text-left">
+                <p className="text-sm font-medium text-gray-500">State Deadlines</p>
+                <p className="font-semibold text-orange-700">{deadlines.stateDeadlines}</p>
+              </div>
+            </div>
             
-            <Card className="bg-white/50 backdrop-blur border-2 border-purple-100 hover:border-purple-200 transition-all duration-300">
-              <CardHeader className="space-y-1">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calendar className="h-5 w-5 text-purple-500" />
-                  <span>Priority Deadlines</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-purple-600 font-semibold">{deadlines.priorityDeadlines}</p>
-              </CardContent>
-            </Card>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+              <div className="text-left">
+                <p className="text-sm font-medium text-gray-500">Priority Deadlines</p>
+                <p className="font-semibold text-purple-700">{deadlines.priorityDeadlines}</p>
+              </div>
+            </div>
           </div>
         </div>
 
