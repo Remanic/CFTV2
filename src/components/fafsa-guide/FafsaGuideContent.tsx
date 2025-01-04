@@ -39,12 +39,16 @@ export const FafsaGuideContent = () => {
         <link rel="canonical" href="https://yourwebsite.com/fafsa-application-guide" />
       </Helmet>
 
-      {/* Progress bar - responsive positioning */}
-      <div className="hidden md:block fixed top-16 left-0 right-0 z-50">
-        <Progress value={progress} className="h-1 rounded-none" />
-      </div>
-      <div className="md:hidden sticky top-16 left-0 right-0 z-50">
-        <Progress value={progress} className="h-1 rounded-none" />
+      {/* Progress bar - now consistently positioned below header for both mobile and desktop */}
+      <div className="sticky top-16 left-0 right-0 z-50 bg-white dark:bg-gray-900">
+        <Progress 
+          value={progress} 
+          className="h-1 rounded-none bg-gray-200 dark:bg-gray-700"
+          style={{
+            '--progress-background': '#9b87f5',
+            '--progress-foreground': '#7E69AB'
+          } as React.CSSProperties}
+        />
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
