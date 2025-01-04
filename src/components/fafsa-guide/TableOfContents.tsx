@@ -50,10 +50,10 @@ export const TableOfContents = () => {
             <button
               onClick={() => scrollToSection(id)}
               className={cn(
-                "text-left w-full px-3 py-2 rounded-md transition-colors",
+                "text-left w-full px-3 py-2 rounded-md transition-colors text-sm",
                 "hover:bg-gray-100",
                 activeSection === id
-                  ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
+                  ? "text-blue-600 bg-blue-50 hover:bg-blue-100 font-medium"
                   : "text-gray-600"
               )}
             >
