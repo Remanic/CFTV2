@@ -1,153 +1,135 @@
-import { BookOpen, CheckCircle, AlertCircle, HelpCircle, FileText, DollarSign, GraduationCap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { BookOpen, ClipboardCheck, Calculator, Calendar, AlertCircle } from "lucide-react";
 
 export const FafsaGuide = () => {
+  const navigate = useNavigate();
+  
+  const currentYear = new Date().getFullYear();
+  const nextYear = currentYear + 1;
+  
+  const deadlines = {
+    applicationStart: "December 31, 2024",
+    federalDeadline: "June 30, 2025",
+    stateDeadlines: "Varies by state - Check early!",
+    priorityDeadlines: "As early as February 2025"
+  };
+
+  const guides = [
+    {
+      title: "Comprehensive Guide to Filling Out the FAFSA Form",
+      description: "Step-by-step instructions to complete your FAFSA application successfully",
+      icon: BookOpen,
+      color: "bg-blue-50 hover:bg-blue-100 border-blue-200",
+      textColor: "text-blue-700",
+      path: "/fafsa-application-guide"
+    },
+    {
+      title: "Review & Understand Your FAFSA Submission",
+      description: "Learn how to review and understand your FAFSA submission details",
+      icon: ClipboardCheck,
+      color: "bg-green-50 hover:bg-green-100 border-green-200",
+      textColor: "text-green-700",
+      path: "/fafsa-review-guide"
+    },
+    {
+      title: "FAFSA Aid Estimator",
+      description: "Calculate your estimated financial aid before submitting your application",
+      icon: Calculator,
+      color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
+      textColor: "text-purple-700",
+      path: "/fafsa-aid-estimator"
+    }
+  ];
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
             Master Your FAFSA Application
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Join over 10 million students who use FAFSA annually to access federal financial aid. Let us guide you through the process.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            Join over 10 million students who use FAFSA annually to access federal financial aid. Let us guide you through every step of the process.
           </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card className="border-2 border-primary/10 hover:border-primary/30 transition-colors duration-300">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BookOpen className="h-6 w-6 text-gray-700" />
-                <span>Step-by-Step Guide</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>Create your FSA ID</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>Gather required documents</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>Complete the FAFSA form</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 border-warning/10 hover:border-warning/30 transition-colors duration-300">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <AlertCircle className="h-6 w-6 text-gray-700" />
-                <span>Important Deadlines</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>Federal Deadline: June 30, 2024</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>State Deadlines vary - Check early!</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>School Deadlines - Priority dates</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 border-secondary/10 hover:border-secondary/30 transition-colors duration-300">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <HelpCircle className="h-6 w-6 text-gray-700" />
-                <span>Expert Support</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>24/7 FAFSA Help Line</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>Common mistakes to avoid</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-gray-700 mt-1 flex-shrink-0" />
-                  <span>Document checklist</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-8 text-center text-gray-900">How to Fill Out Your FAFSA Form</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-2 border-primary/10">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <FileText className="h-6 w-6 text-gray-700" />
-                  <span>Required Documents</span>
+          
+          {/* Deadlines Section */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 max-w-5xl mx-auto">
+            <Card className="bg-white/50 backdrop-blur border-2 border-blue-100 hover:border-blue-200 transition-all duration-300">
+              <CardHeader className="space-y-1">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calendar className="h-5 w-5 text-blue-500" />
+                  <span>Application Opens</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3 text-gray-600">
-                  <li>Social Security Number</li>
-                  <li>Tax returns and W-2s</li>
-                  <li>Bank statements</li>
-                  <li>Records of investments</li>
-                  <li>Records of untaxed income</li>
-                </ul>
+                <p className="text-blue-600 font-semibold">{deadlines.applicationStart}</p>
               </CardContent>
             </Card>
-
-            <Card className="border-2 border-primary/10">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <DollarSign className="h-6 w-6 text-gray-700" />
-                  <span>Financial Information</span>
+            
+            <Card className="bg-white/50 backdrop-blur border-2 border-red-100 hover:border-red-200 transition-all duration-300">
+              <CardHeader className="space-y-1">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <AlertCircle className="h-5 w-5 text-red-500" />
+                  <span>Federal Deadline</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3 text-gray-600">
-                  <li>Parent financial information</li>
-                  <li>Student income details</li>
-                  <li>Asset information</li>
-                  <li>Investment records</li>
-                  <li>Business/farm ownership details</li>
-                </ul>
+                <p className="text-red-600 font-semibold">{deadlines.federalDeadline}</p>
               </CardContent>
             </Card>
-
-            <Card className="border-2 border-primary/10">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="h-6 w-6 text-gray-700" />
-                  <span>School Selection</span>
+            
+            <Card className="bg-white/50 backdrop-blur border-2 border-orange-100 hover:border-orange-200 transition-all duration-300">
+              <CardHeader className="space-y-1">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calendar className="h-5 w-5 text-orange-500" />
+                  <span>State Deadlines</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3 text-gray-600">
-                  <li>List up to 10 schools</li>
-                  <li>School codes</li>
-                  <li>Housing plans</li>
-                  <li>Degree/certificate information</li>
-                  <li>Study level (undergraduate/graduate)</li>
-                </ul>
+                <p className="text-orange-600 font-semibold">{deadlines.stateDeadlines}</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-white/50 backdrop-blur border-2 border-purple-100 hover:border-purple-200 transition-all duration-300">
+              <CardHeader className="space-y-1">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Calendar className="h-5 w-5 text-purple-500" />
+                  <span>Priority Deadlines</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-purple-600 font-semibold">{deadlines.priorityDeadlines}</p>
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {guides.map((guide, index) => (
+            <Card 
+              key={index}
+              className={`group relative overflow-hidden ${guide.color} border-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+            >
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  <guide.icon className={`h-6 w-6 ${guide.textColor}`} />
+                  <span className={guide.textColor}>{guide.title}</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-600">{guide.description}</p>
+                <Button 
+                  onClick={() => navigate(guide.path)}
+                  className="w-full bg-white hover:bg-gray-50 text-gray-800 border border-gray-200"
+                >
+                  Learn More
+                </Button>
+              </CardContent>
+              <div className="absolute inset-0 border-2 border-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+            </Card>
+          ))}
         </div>
       </div>
     </section>

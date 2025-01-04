@@ -10,6 +10,9 @@ import AutoLoanCalculator from "./pages/AutoLoanCalculator";
 import CreditCardCalculator from "./pages/CreditCardCalculator";
 import EMICalculator from "./pages/EMICalculator";
 import SavingsCalculator from "./pages/SavingsCalculator";
+import FafsaGuide from "./pages/FafsaGuide";
+import FafsaReview from "./pages/FafsaReview";
+import FafsaEstimator from "./pages/FafsaEstimator";
 
 const queryClient = new QueryClient();
 
@@ -27,8 +30,9 @@ const App = () => (
           <Route path="/credit-card-payment-calculator" element={<CreditCardCalculator />} />
           <Route path="/monthly-loan-emi-calculator" element={<EMICalculator />} />
           <Route path="/compound-savings-calculator" element={<SavingsCalculator />} />
-          <Route path="/fafsa-application-guide" element={<Navigate to="/" replace />} />
-          <Route path="/fafsa-application-tips" element={<Navigate to="/" replace />} />
+          <Route path="/fafsa-application-guide" element={<FafsaGuide />} />
+          <Route path="/fafsa-review-guide" element={<FafsaReview />} />
+          <Route path="/fafsa-aid-estimator" element={<FafsaEstimator />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
