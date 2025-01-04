@@ -4,6 +4,7 @@ import { Clock, BookOpen, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents } from "./TableOfContents";
 import { FaqSection } from "./FaqSection";
+import { Helmet } from "react-helmet";
 
 export const FafsaGuideContent = () => {
   const [progress, setProgress] = useState(0);
@@ -29,32 +30,48 @@ export const FafsaGuideContent = () => {
 
   return (
     <main className="flex-grow">
-      {/* Progress bar */}
-      <div className="fixed top-16 left-0 right-0 z-50">
+      <Helmet>
+        <title>Complete Guide to Filling Out the FAFSA Form (2024-2025) | Step by Step Instructions</title>
+        <meta name="description" content="Learn how to fill out your FAFSA form correctly with our comprehensive guide. Step-by-step instructions, deadlines, and expert tips for maximizing your financial aid." />
+        <meta name="keywords" content="FAFSA guide, how to fill out FAFSA, FAFSA application help, FAFSA instructions, financial aid application, college financial aid, FAFSA deadlines" />
+        <meta property="og:title" content="Complete Guide to Filling Out the FAFSA Form (2024-2025)" />
+        <meta property="og:description" content="Step-by-step guide to completing your FAFSA application successfully. Get expert tips and maximize your chances of receiving financial aid." />
+        <link rel="canonical" href="https://yourwebsite.com/fafsa-application-guide" />
+      </Helmet>
+
+      {/* Progress bar - responsive positioning */}
+      <div className="hidden md:block fixed top-16 left-0 right-0 z-50">
+        <Progress value={progress} className="h-1 rounded-none" />
+      </div>
+      <div className="md:hidden sticky top-16 left-0 right-0 z-50">
         <Progress value={progress} className="h-1 rounded-none" />
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <header className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Complete Guide to Filling Out the FAFSA Form
+          </h1>
+          <div className="flex items-center gap-4 text-gray-600">
+            <span className="flex items-center gap-2">
+              <Clock className="h-4 w-4" />
+              {readingTime}
+            </span>
+            <span className="flex items-center gap-2">
+              <BookOpen className="h-4 w-4" />
+              Complete Guide
+            </span>
+          </div>
+        </header>
+
+        {/* Table of Contents - Compact version */}
+        <div className="bg-gray-50 rounded-lg p-4 mb-8">
+          <TableOfContents />
+        </div>
+
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main content */}
-          <article className="lg:w-3/4">
-            <header className="mb-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Comprehensive Guide to Filling Out the FAFSA Form
-              </h1>
-              <div className="flex items-center gap-4 text-gray-600">
-                <span className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  {readingTime}
-                </span>
-                <span className="flex items-center gap-2">
-                  <BookOpen className="h-4 w-4" />
-                  Complete Guide
-                </span>
-              </div>
-            </header>
-
-            <div className="prose prose-lg max-w-none">
+          <article className="lg:w-full prose prose-lg max-w-none">
               <p className="lead text-xl text-gray-600 mb-8">
                 Filling out the Free Application for Federal Student Aid (FAFSA) is a key step in getting financial help for college. By completing this form, you can qualify for grants, loans, and work-study opportunities that reduce your education costs. This guide explains each step clearly so you can fill out the FAFSA confidently and avoid mistakes.
               </p>
@@ -173,15 +190,7 @@ export const FafsaGuideContent = () => {
               </section>
 
               <FaqSection />
-            </div>
           </article>
-
-          {/* Table of contents sidebar */}
-          <aside className="lg:w-1/4">
-            <div className="sticky top-20">
-              <TableOfContents />
-            </div>
-          </aside>
         </div>
       </div>
 

@@ -94,7 +94,8 @@ export const FafsaGuide = () => {
           {guides.map((guide, index) => (
             <Card 
               key={index}
-              className={`group relative overflow-hidden ${guide.color} border-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+              onClick={() => navigate(guide.path)}
+              className={`group relative overflow-hidden ${guide.color} border-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}
             >
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
 
 const sections = [
   { id: "what-is-fafsa", title: "1. What Is the FAFSA?" },
@@ -42,26 +43,26 @@ export const TableOfContents = () => {
   };
 
   return (
-    <nav className="bg-gray-50 p-6 rounded-lg">
-      <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
-      <ul className="space-y-3">
-        {sections.map(({ id, title }) => (
-          <li key={id}>
-            <button
-              onClick={() => scrollToSection(id)}
-              className={cn(
-                "text-left w-full px-3 py-2 rounded-md transition-colors text-sm",
-                "hover:bg-gray-100",
-                activeSection === id
-                  ? "text-blue-600 bg-blue-50 hover:bg-blue-100 font-medium"
-                  : "text-gray-600"
-              )}
-            >
-              {title}
-            </button>
-          </li>
-        ))}
-      </ul>
+    <nav className="flex flex-wrap gap-2 justify-start items-center">
+      {sections.map(({ id, title }) => (
+        <button
+          key={id}
+          onClick={() => scrollToSection(id)}
+          className={cn(
+            "flex items-center gap-1 px-3 py-1.5 rounded-full text-sm transition-colors",
+            "hover:bg-gray-100",
+            activeSection === id
+              ? "bg-blue-50 text-blue-600 font-medium"
+              : "text-gray-600"
+          )}
+        >
+          <ChevronRight className={cn(
+            "h-3 w-3 transition-transform",
+            activeSection === id ? "transform rotate-90" : ""
+          )} />
+          {title}
+        </button>
+      ))}
     </nav>
   );
 };
