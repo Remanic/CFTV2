@@ -34,11 +34,27 @@ export const FafsaGuide = () => {
       path: "/fafsa-review-guide"
     },
     {
+      title: "FAFSA Deadline Guide 2024-2025",
+      description: "Important deadlines and submission timeline for the 2024-2025 academic year",
+      icon: Calendar,
+      color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
+      textColor: "text-purple-700",
+      path: "/fafsa-deadline-2024-2025"
+    },
+    {
+      title: "FAFSA Deadline Guide 2025-2026",
+      description: "Key dates and deadlines for the 2025-2026 academic year FAFSA submission",
+      icon: Calendar,
+      color: "bg-orange-50 hover:bg-orange-100 border-orange-200",
+      textColor: "text-orange-700",
+      path: "/fafsa-deadline-2025-2026"
+    },
+    {
       title: "FAFSA Aid Estimator",
       description: "Calculate your estimated financial aid before submitting your application",
       icon: Calculator,
-      color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
-      textColor: "text-purple-700",
+      color: "bg-pink-50 hover:bg-pink-100 border-pink-200",
+      textColor: "text-pink-700",
       path: "/fafsa-aid-estimator"
     }
   ];
