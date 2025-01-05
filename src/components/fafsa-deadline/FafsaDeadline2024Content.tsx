@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 export const FafsaDeadline2024Content = () => {
   const [progress, setProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const readingTime = "10 min read";
+  const readingTime = "5 min read";
 
   useEffect(() => {
     const updateProgress = () => {
@@ -29,11 +29,9 @@ export const FafsaDeadline2024Content = () => {
   return (
     <main className="flex-grow">
       <Helmet>
-        <title>FAFSA Deadlines 2024-2025: Complete Guide & Important Dates | Federal & State Deadlines</title>
-        <meta name="description" content="Essential FAFSA deadlines for 2024-2025 academic year. Federal deadline June 30, 2025. State-specific deadlines and tips for maximizing financial aid opportunities." />
-        <meta name="keywords" content="FAFSA deadline 2024-2025, FAFSA due date, financial aid deadline, college application deadline, FAFSA submission date" />
-        <meta property="og:title" content="FAFSA Deadlines 2024-2025: Complete Guide & Important Dates" />
-        <meta property="og:description" content="Comprehensive guide to FAFSA deadlines for 2024-2025. Learn about federal, state, and college-specific deadlines to maximize your financial aid." />
+        <title>FAFSA Deadlines 2024-2025 | Federal & State Aid Application Due Dates</title>
+        <meta name="description" content="Complete guide to FAFSA deadlines 2024-2025. Federal deadline June 30, 2025. State deadlines vary. Submit early for maximum financial aid opportunities." />
+        <meta name="keywords" content="FAFSA deadline 2024-2025, FAFSA due date 2024, financial aid deadline, FAFSA submission date, college financial aid 2024" />
         <link rel="canonical" href="https://yourwebsite.com/fafsa-deadline-2024-2025" />
       </Helmet>
 
@@ -41,17 +39,13 @@ export const FafsaDeadline2024Content = () => {
         <Progress 
           value={progress} 
           className="h-1 rounded-none bg-gray-200 dark:bg-gray-700"
-          style={{
-            '--progress-background': '#9b87f5',
-            '--progress-foreground': '#7E69AB'
-          } as React.CSSProperties}
         />
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <header className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Comprehensive Guide: FAFSA Deadline for the Academic Year 2024-2025
+            FAFSA Deadlines for 2024-2025: Complete Guide
           </h1>
           <div className="flex items-center gap-4 text-gray-600">
             <span className="flex items-center gap-2">
@@ -60,7 +54,7 @@ export const FafsaDeadline2024Content = () => {
             </span>
             <span className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              Complete Guide
+              Essential Guide
             </span>
           </div>
         </header>
@@ -131,6 +125,7 @@ export const FafsaDeadline2024Content = () => {
             </div>
           </section>
         </div>
+
       </div>
 
       {showScrollTop && (
