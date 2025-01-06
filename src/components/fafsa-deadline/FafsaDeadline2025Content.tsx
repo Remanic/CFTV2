@@ -33,7 +33,8 @@ export const FafsaDeadline2025Content = () => {
     { state: "California", date: "March 2, 2025" },
     { state: "Texas", date: "January 15, 2025" },
     { state: "New York", date: "May 1, 2025" },
-    { state: "Florida", date: "May 15, 2025" }
+    { state: "Florida", date: "May 15, 2025" },
+    { state: "Illinois", date: "As soon as possible after October 1, 2024" }
   ];
 
   const generalFaqs = [
@@ -43,7 +44,41 @@ export const FafsaDeadline2025Content = () => {
     },
     {
       question: "Do I need to submit a FAFSA every year?",
-      answer: "Yes, eligibility for financial aid is reassessed annually"
+      answer: "Yes, financial aid eligibility is reassessed annually"
+    },
+    {
+      question: "What if I'm an independent student?",
+      answer: "You'll only need your own financial information, not your parents'"
+    }
+  ];
+
+  const deadlineFaqs = [
+    {
+      question: "What happens if I miss the federal deadline?",
+      answer: "You won't be eligible for federal aid for that academic year"
+    },
+    {
+      question: "Can I submit the FAFSA after my state's deadline?",
+      answer: "You may still qualify for federal aid but will miss state-specific grants and scholarships"
+    },
+    {
+      question: "What if I have multiple schools with different deadlines?",
+      answer: "Submit your FAFSA before the earliest deadline to ensure eligibility across all schools"
+    }
+  ];
+
+  const lifeSavingTips = [
+    {
+      question: "What should I do if I lose access to my FSA ID?",
+      answer: "Use the 'Forgot Username/Password' feature on StudentAid.gov to recover it quickly"
+    },
+    {
+      question: "How can I ensure I don't miss important updates?",
+      answer: "Enable notifications on your FAFSA account and check your email regularly"
+    },
+    {
+      question: "What if I need help completing my FAFSA?",
+      answer: "Reach out to your school's financial aid office or attend a local FAFSA workshop"
     }
   ];
 
@@ -59,7 +94,13 @@ export const FafsaDeadline2025Content = () => {
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <DeadlineHeader year="2025-2026" readingTime="5 min read" />
+        <DeadlineHeader year="2025-2026" readingTime="8 min read" />
+        
+        <div className="prose prose-lg max-w-none mb-8">
+          <p className="lead text-xl text-gray-600">
+            Submitting the FAFSA (Free Application for Federal Student Aid) on time is crucial for maximizing your financial aid opportunities. Missing the deadline can significantly reduce the amount of aid available to you. This guide outlines all the essential deadlines, tips, and frequently asked questions to help you stay on track for the 2025-2026 academic year.
+          </p>
+        </div>
         
         <KeyDeadlines 
           federalDeadline="June 30, 2026"
@@ -67,12 +108,60 @@ export const FafsaDeadline2025Content = () => {
           stateDeadlines={stateDeadlines}
         />
         
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-6">Why Submitting Early Matters</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <h3 className="text-lg font-semibold mb-3">Maximize Aid Opportunities</h3>
+              <p className="text-gray-600">Many grants and scholarships are awarded on a first-come, first-served basis.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <h3 className="text-lg font-semibold mb-3">Resolve Issues Promptly</h3>
+              <p className="text-gray-600">Submitting early allows time to correct errors or provide additional documentation if required.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <h3 className="text-lg font-semibold mb-3">Meet All Deadlines</h3>
+              <p className="text-gray-600">Early submission ensures you meet federal, state, and institutional deadlines.</p>
+            </div>
+          </div>
+        </section>
+        
         <RequiredDocuments />
         
         <section id="faq" className="scroll-mt-20 mt-12">
           <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <FAQSection title="General FAQs" faqs={generalFaqs} />
+            <FAQSection title="Deadline-Specific FAQs" faqs={deadlineFaqs} />
+            <FAQSection title="Life-Saving Tips" faqs={lifeSavingTips} />
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-6">Final Tips for Success</h2>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">1.</span>
+                <span>Mark Your Calendar - Set reminders for key deadlines to avoid last-minute stress.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">2.</span>
+                <span>Use Online Tools - The FAFSA4caster on StudentAid.gov can help estimate your aid eligibility.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">3.</span>
+                <span>Seek Assistance - Attend FAFSA workshops or ask your school's financial aid office for help if needed.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">4.</span>
+                <span>Monitor Your Status - Regularly check your FAFSA dashboard for updates or requests for additional information.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="font-semibold mr-2">5.</span>
+                <span>File Early Even if Incomplete - Submit your FAFSA with the best estimates if waiting for tax information. Corrections can be made later.</span>
+              </li>
+            </ul>
           </div>
         </section>
       </div>
