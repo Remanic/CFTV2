@@ -7,6 +7,7 @@ import { DeadlineHeader } from "./shared/DeadlineHeader";
 import { KeyDeadlines } from "./shared/KeyDeadlines";
 import { RequiredDocuments } from "./shared/RequiredDocuments";
 import { FAQSection } from "./shared/FAQSection";
+import { StateDeadlineFinder } from "./StateDeadlineFinder";
 
 export const FafsaDeadline2024Content = () => {
   const [progress, setProgress] = useState(0);
@@ -37,55 +38,6 @@ export const FafsaDeadline2024Content = () => {
     { state: "Illinois", date: "As soon as possible after October 1, 2023" }
   ];
 
-  const generalFaqs = [
-    {
-      question: "When does the FAFSA open for 2024-2025?",
-      answer: "October 1, 2023"
-    },
-    {
-      question: "Do I need to submit a FAFSA every year?",
-      answer: "Yes, eligibility for financial aid is reassessed annually"
-    },
-    {
-      question: "What if my parents' financial situation has changed?",
-      answer: "Contact your school's financial aid office to request a professional judgment review"
-    },
-    {
-      question: "What happens if I miss the federal deadline?",
-      answer: "You'll lose eligibility for federal aid for that academic year"
-    },
-    {
-      question: "Can I correct my FAFSA after submission?",
-      answer: "Yes, corrections can be made until June 30, 2025"
-    }
-  ];
-
-  const deadlineFaqs = [
-    {
-      question: "Can I still qualify for state aid if I miss the state deadline?",
-      answer: "Generally, no. State aid programs often adhere strictly to their deadlines"
-    },
-    {
-      question: "What if I forgot to include a school?",
-      answer: "Log in to your FAFSA account and add the school under 'Make FAFSA Corrections'"
-    }
-  ];
-
-  const lifeSavingTips = [
-    {
-      question: "How can I avoid missing critical deadlines?",
-      answer: "Set calendar reminders for federal, state, and school deadlines"
-    },
-    {
-      question: "What if I need help completing the FAFSA?",
-      answer: "Attend a FAFSA workshop or contact your school's financial aid office"
-    },
-    {
-      question: "How can I track my FAFSA status?",
-      answer: "Log in to your FAFSA dashboard regularly to monitor progress and resolve any issues"
-    }
-  ];
-
   return (
     <main className="flex-grow">
       <Helmet>
@@ -111,28 +63,13 @@ export const FafsaDeadline2024Content = () => {
           openingDate="October 1, 2023"
           stateDeadlines={stateDeadlines}
         />
-        
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">Why Early Submission is Important</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Priority for Limited Funds</h3>
-              <p className="text-gray-600">Many state and institutional aid programs award funds on a first-come, first-served basis.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Time to Address Issues</h3>
-              <p className="text-gray-600">Submitting early allows time to resolve errors or provide additional documentation if needed.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Meeting All Deadlines</h3>
-              <p className="text-gray-600">Early submission ensures you meet federal, state, and institutional deadlines.</p>
-            </div>
-          </div>
+
+        <section className="my-12">
+          <h2 className="text-2xl font-bold mb-6">State Deadlines Finder</h2>
+          <StateDeadlineFinder />
         </section>
         
-        <RequiredDocuments />
-        
-        <section id="faq" className="scroll-mt-20 mt-12">
+        <section className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <FAQSection title="General FAQs" faqs={generalFaqs} />
