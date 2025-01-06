@@ -38,6 +38,51 @@ export const FafsaDeadline2024Content = () => {
     { state: "Illinois", date: "As soon as possible after October 1, 2023" }
   ];
 
+  const generalFaqs = [
+    {
+      question: "When does the FAFSA open for 2024-2025?",
+      answer: "December 31, 2023"
+    },
+    {
+      question: "Do I need to submit a FAFSA every year?",
+      answer: "Yes, you must submit a new FAFSA for each academic year you want to receive financial aid."
+    },
+    {
+      question: "What if I'm an independent student?",
+      answer: "Independent students only need to provide their own financial information (and their spouse's if married) on the FAFSA."
+    }
+  ];
+
+  const deadlineFaqs = [
+    {
+      question: "What happens if I miss the federal deadline?",
+      answer: "If you miss the federal deadline, you won't be eligible for federal aid for that academic year. Submit as early as possible to maximize your aid opportunities."
+    },
+    {
+      question: "Can I submit the FAFSA after my state's deadline?",
+      answer: "While you can still submit for federal aid, you may miss out on state-specific grants and scholarships if you submit after your state's deadline."
+    },
+    {
+      question: "What if I have multiple schools with different deadlines?",
+      answer: "Submit your FAFSA by the earliest deadline to ensure you're considered for aid at all schools."
+    }
+  ];
+
+  const lifeSavingTips = [
+    {
+      question: "What should I do if I lose access to my FSA ID?",
+      answer: "Visit StudentAid.gov and use the 'Forgot Username/Password' feature to recover your FSA ID quickly."
+    },
+    {
+      question: "How can I ensure I don't miss important updates?",
+      answer: "Enable notifications on your StudentAid.gov account and check your email regularly for updates about your FAFSA status."
+    },
+    {
+      question: "What if I need help completing my FAFSA?",
+      answer: "Contact your school's financial aid office, attend a FAFSA workshop, or call the Federal Student Aid Information Center at 1-800-4-FED-AID."
+    }
+  ];
+
   return (
     <main className="flex-grow">
       <Helmet>
