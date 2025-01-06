@@ -34,7 +34,7 @@ export const FafsaGuide = () => {
       path: "/fafsa-review-guide"
     },
     {
-      title: "FAFSA Deadline Guide 2024-2025",
+      title: "FAFSA Deadlines for 2024",
       description: "Important deadlines and submission timeline for the 2024-2025 academic year",
       icon: Calendar,
       color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
@@ -42,7 +42,7 @@ export const FafsaGuide = () => {
       path: "/fafsa-deadline-2024-2025"
     },
     {
-      title: "FAFSA Deadline Guide 2025-2026",
+      title: "FAFSA Deadlines for 2025",
       description: "Key dates and deadlines for the 2025-2026 academic year FAFSA submission",
       icon: Calendar,
       color: "bg-orange-50 hover:bg-orange-100 border-orange-200",
@@ -70,36 +70,36 @@ export const FafsaGuide = () => {
             Join over 10 million students who use FAFSA annually to access federal financial aid. Let us guide you through every step of the process.
           </p>
           
-          {/* Updated Deadlines Section */}
-          <div className="flex flex-wrap justify-center gap-8 mb-16 max-w-4xl mx-auto">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-gray-500">Application Opens</p>
+          {/* Updated Deadlines Section with improved alignment */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-16 max-w-4xl mx-auto">
+            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
+              <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse mb-3"></div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-500 mb-1">Application Opens</p>
                 <p className="font-semibold text-blue-700">{deadlines.applicationStart}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-gray-500">Federal Deadline</p>
+            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
+              <div className="w-3 h-3 rounded-full bg-red-500 mb-3"></div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-500 mb-1">Federal Deadline</p>
                 <p className="font-semibold text-red-700">{deadlines.federalDeadline}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-gray-500">State Deadlines</p>
+            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
+              <div className="w-3 h-3 rounded-full bg-orange-500 mb-3"></div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-500 mb-1">State Deadlines</p>
                 <p className="font-semibold text-orange-700">{deadlines.stateDeadlines}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-gray-500">Priority Deadlines</p>
+            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
+              <div className="w-3 h-3 rounded-full bg-purple-500 mb-3"></div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-gray-500 mb-1">Priority Deadlines</p>
                 <p className="font-semibold text-purple-700">{deadlines.priorityDeadlines}</p>
               </div>
             </div>
