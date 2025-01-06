@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
-import { Clock, BookOpen, ChevronUp } from "lucide-react";
+import { Clock, BookOpen, ChevronUp, Calendar, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet";
 
 export const FafsaDeadline2025Content = () => {
   const [progress, setProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const readingTime = "5 min read";
+  const readingTime = "3 min read";
 
   useEffect(() => {
     const updateProgress = () => {
@@ -29,24 +29,27 @@ export const FafsaDeadline2025Content = () => {
   return (
     <main className="flex-grow">
       <Helmet>
-        <title>FAFSA Deadlines 2025-2026 | Federal & State Aid Application Due Dates</title>
-        <meta name="description" content="Complete guide to FAFSA deadlines 2025-2026. Federal deadline June 30, 2026. State deadlines vary. Submit early for maximum financial aid opportunities." />
+        <title>FAFSA Deadlines 2025-2026 | Complete Federal & State Aid Application Guide</title>
+        <meta name="description" content="Essential FAFSA deadlines for 2025-2026 academic year. Federal deadline June 30, 2026. State deadlines vary. Submit early for maximum financial aid opportunities." />
         <meta name="keywords" content="FAFSA deadline 2025-2026, FAFSA due date 2025, financial aid deadline, FAFSA submission date, college financial aid 2025" />
         <link rel="canonical" href="https://yourwebsite.com/fafsa-deadline-2025-2026" />
       </Helmet>
 
       <div className="sticky top-16 left-0 right-0 z-50 bg-white dark:bg-gray-900">
-        <Progress 
-          value={progress} 
-          className="h-1 rounded-none bg-gray-200 dark:bg-gray-700"
-        />
+        <Progress value={progress} className="h-1 rounded-none bg-gray-200 dark:bg-gray-700" />
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <header className="mb-8">
+          <div className="flex items-center gap-2 text-blue-600 mb-4">
+            <Calendar className="h-5 w-5" />
+            <span className="text-sm font-medium">Updated for 2025-2026</span>
+          </div>
+          
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             FAFSA Deadlines for 2025-2026: Complete Guide
           </h1>
+          
           <div className="flex items-center gap-4 text-gray-600">
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
@@ -56,77 +59,126 @@ export const FafsaDeadline2025Content = () => {
               <BookOpen className="h-4 w-4" />
               Essential Guide
             </span>
+            <span className="flex items-center gap-2">
+              <AlertCircle className="h-4 w-4" />
+              Last Updated: {new Date().toLocaleDateString()}
+            </span>
           </div>
         </header>
 
         <div className="prose prose-lg max-w-none">
-          <p className="lead text-xl text-gray-600 mb-8">
-            Submitting the FAFSA (Free Application for Federal Student Aid) on time is crucial for maximizing your financial aid opportunities. Missing the deadline can significantly reduce the amount of aid available to you. This guide outlines all the essential deadlines, tips, and frequently asked questions to help you stay on track for the 2025-2026 academic year.
-          </p>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8">
+            <p className="text-blue-700">
+              Submitting your FAFSA (Free Application for Federal Student Aid) on time is crucial for maximizing your financial aid opportunities. This guide outlines key deadlines and steps for the 2025-2026 academic year.
+            </p>
+          </div>
 
           <section id="key-deadlines" className="scroll-mt-20">
             <h2 className="text-2xl font-bold mb-6">Key FAFSA Deadlines for 2025-2026</h2>
             
-            <h3 className="text-xl font-semibold mb-4">Federal Deadline</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Deadline:</strong> June 30, 2026</li>
-              <li><strong>Details:</strong> The federal deadline applies to all applicants. However, submitting closer to October 1, 2024 (when the FAFSA opens), ensures priority consideration for aid.</li>
-            </ul>
-
-            <h3 className="text-xl font-semibold mt-6 mb-4">State Deadlines</h3>
-            <p>Each state sets its own FAFSA deadline for state-specific grants and scholarships. Below are some examples:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>California:</strong> March 2, 2025</li>
-              <li><strong>Texas:</strong> Priority deadline is January 15, 2025</li>
-              <li><strong>New York:</strong> May 1, 2025</li>
-              <li><strong>Florida:</strong> May 15, 2025</li>
-              <li><strong>Illinois:</strong> As soon as possible after October 1, 2024</li>
-            </ul>
-          </section>
-
-          <section id="early-submission" className="scroll-mt-20 mt-12">
-            <h2 className="text-2xl font-bold mb-6">Why Submitting Early Matters</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Maximize Aid Opportunities</h3>
-                <p>Many grants and scholarships are awarded on a first-come, first-served basis.</p>
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">Federal Deadline</h3>
+                <p className="text-red-600 font-bold mb-2">June 30, 2026</p>
+                <p className="text-gray-600">Submit as early as possible, starting October 1, 2024</p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Resolve Issues Promptly</h3>
-                <p>Submitting early allows time to correct errors or provide additional documentation if required.</p>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">State Deadlines</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li>California: March 2, 2025</li>
+                  <li>Texas: January 15, 2025</li>
+                  <li>New York: May 1, 2025</li>
+                  <li>Florida: May 15, 2025</li>
+                </ul>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Meet All Deadlines</h3>
-                <p>Early submission ensures you meet federal, state, and institutional deadlines.</p>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">College Deadlines</h3>
+                <p className="text-gray-600">Check with individual colleges for their specific institutional aid deadlines</p>
               </div>
             </div>
           </section>
 
-          <section id="completion-steps" className="scroll-mt-20 mt-12">
-            <h2 className="text-2xl font-bold mb-6">Steps to Complete the FAFSA for 2025-2026</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">1. Gather Required Documents</h3>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>Social Security numbers (or Alien Registration Number for non-U.S. citizens)</li>
-                  <li>2023 tax returns and W-2 forms</li>
-                  <li>Records of untaxed income</li>
-                  <li>FSA ID (create one at StudentAid.gov if you don't have one)</li>
-                </ul>
+          <section id="early-submission" className="scroll-mt-20 mt-12">
+            <h2 className="text-2xl font-bold mb-6">Why Early Submission is Important</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-green-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-2">Priority for Limited Funds</h3>
+                <p>First-come, first-served basis for many aid programs</p>
               </div>
               
-              <div>
-                <h3 className="text-xl font-semibold mb-4">2. Fill Out the FAFSA</h3>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>Visit StudentAid.gov and log in with your FSA ID</li>
-                  <li>Provide accurate information, especially about income and household size</li>
-                  <li>Use the IRS Data Retrieval Tool (DRT) to transfer tax data directly from the IRS</li>
-                </ul>
+              <div className="bg-blue-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-2">Time to Address Issues</h3>
+                <p>Resolve errors and provide additional documentation if needed</p>
+              </div>
+              
+              <div className="bg-purple-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-2">Meet All Deadlines</h3>
+                <p>Ensure eligibility for federal, state, and institutional aid</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="required-documents" className="scroll-mt-20 mt-12">
+            <h2 className="text-2xl font-bold mb-6">Required Documents</h2>
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <ul className="space-y-3">
+                <li>Social Security numbers or Alien Registration Numbers</li>
+                <li>2023 tax returns and W-2 forms</li>
+                <li>Records of untaxed income</li>
+                <li>FSA ID (create at StudentAid.gov)</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="faq" className="scroll-mt-20 mt-12">
+            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">General FAQs</h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="font-medium">When does the FAFSA open for 2025-2026?</p>
+                    <p className="text-gray-600">October 1, 2024</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Do I need to submit a FAFSA every year?</p>
+                    <p className="text-gray-600">Yes, eligibility for financial aid is reassessed annually</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">Deadline-Specific FAQs</h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="font-medium">What happens if I miss the federal deadline?</p>
+                    <p className="text-gray-600">You'll lose eligibility for federal aid for that academic year</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Can I still qualify for state aid if I miss the state deadline?</p>
+                    <p className="text-gray-600">Generally, no. State aid programs often adhere strictly to their deadlines</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="final-tips" className="scroll-mt-20 mt-12">
+            <h2 className="text-2xl font-bold mb-6">Final Tips for Success</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">Submit Early</h3>
+                <p className="text-gray-600">File your FAFSA as soon as it opens to maximize aid opportunities</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">Stay Organized</h3>
+                <p className="text-gray-600">Keep track of all deadlines and maintain copies of your submissions</p>
               </div>
             </div>
           </section>
         </div>
-
       </div>
 
       {showScrollTop && (
