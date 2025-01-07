@@ -19,24 +19,37 @@ export const StateDeadlineFinder = () => {
   const [selectedState, setSelectedState] = useState<string>("");
   const [selectedDeadline, setSelectedDeadline] = useState<StateDeadline | null>(null);
   const [noResults, setNoResults] = useState(false);
+  const [searchResults, setSearchResults] = useState<StateDeadline[]>([]);
 
   const handleStateSelect = (state: string) => {
     setSelectedState(state);
     const deadline = stateDeadlines.find(d => d.state === state);
     setSelectedDeadline(deadline || null);
-    setSearchTerm(state);
     setNoResults(false);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
-    setNoResults(false);
-
-    if (!value) {
-      setSelectedState("");
-      setSelectedDeadline(null);
+    
+    if (!value.trim()) {
+      setSearchResults([]);
+      setNoResults(false);
+      return;
     }
+
+    const filtered = stateDeadlines.filter(deadline =>
+      deadline.state.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setSearchResults(filtered);
+    setNoResults(filtered.length === 0);
+  };
+
+  const handleSearchResultClick = (deadline: StateDeadline) => {
+    setSelectedDeadline(deadline);
+    setSearchTerm(deadline.state);
+    setSearchResults([]);
   };
 
   const clearSearch = () => {
@@ -44,15 +57,8 @@ export const StateDeadlineFinder = () => {
     setSelectedState("");
     setSelectedDeadline(null);
     setNoResults(false);
+    setSearchResults([]);
   };
-
-  const filteredStates = stateDeadlines.filter(deadline =>
-    deadline.state.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  useEffect(() => {
-    setNoResults(searchTerm.length > 0 && filteredStates.length === 0);
-  }, [searchTerm, filteredStates.length]);
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
@@ -83,14 +89,30 @@ export const StateDeadlineFinder = () => {
                   <X className="h-4 w-4" />
                 </Button>
               )}
+              
+              {/* Search Results Dropdown */}
+              {searchResults.length > 0 && searchTerm && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
+                  {searchResults.map((deadline) => (
+                    <button
+                      key={deadline.state}
+                      className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                      onClick={() => handleSearchResultClick(deadline)}
+                    >
+                      {deadline.state}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
+            
             <div className="flex-1">
               <Select value={selectedState} onValueChange={handleStateSelect}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select your state" />
                 </SelectTrigger>
                 <SelectContent>
-                  {filteredStates.map((deadline) => (
+                  {stateDeadlines.map((deadline) => (
                     <SelectItem key={deadline.state} value={deadline.state}>
                       {deadline.state}
                     </SelectItem>
