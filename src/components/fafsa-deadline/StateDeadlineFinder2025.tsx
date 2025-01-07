@@ -24,9 +24,19 @@ export const StateDeadlineFinder2025 = () => {
 
   const handleStateSelect = (state: string) => {
     setSelectedState(state);
-    // Get the first matching deadline for the selected state
-    const deadline = stateDeadlines2025.find(d => d.state === state);
-    setSelectedDeadline(deadline || null);
+    // Get all deadlines for the selected state
+    const deadlines = stateDeadlines2025.filter(d => d.state === state);
+    // Combine all deadlines into one
+    if (deadlines.length > 0) {
+      const combinedDeadline: StateDeadline = {
+        state: state,
+        deadline: deadlines.map(d => d.deadline).join('\n'),
+        details: deadlines.map(d => d.details).join('\n\n')
+      };
+      setSelectedDeadline(combinedDeadline);
+    } else {
+      setSelectedDeadline(null);
+    }
     setNoResults(false);
   };
 
@@ -40,19 +50,29 @@ export const StateDeadlineFinder2025 = () => {
       return;
     }
 
-    // Filter and deduplicate search results
-    const filtered = Array.from(
-      new Map(
+    // Get unique states that match the search term
+    const matchingStates = Array.from(
+      new Set(
         stateDeadlines2025
           .filter(deadline => 
             deadline.state.toLowerCase().includes(value.toLowerCase())
           )
-          .map(item => [item.state, item])
-      ).values()
+          .map(d => d.state)
+      )
     );
 
-    setSearchResults(filtered);
-    setNoResults(filtered.length === 0);
+    // For each matching state, combine all its deadlines
+    const combinedResults = matchingStates.map(state => {
+      const stateDeadlines = stateDeadlines2025.filter(d => d.state === state);
+      return {
+        state: state,
+        deadline: stateDeadlines.map(d => d.deadline).join('\n'),
+        details: stateDeadlines.map(d => d.details).join('\n\n')
+      };
+    });
+
+    setSearchResults(combinedResults);
+    setNoResults(combinedResults.length === 0);
   };
 
   const handleSearchResultClick = (deadline: StateDeadline) => {
@@ -144,7 +164,7 @@ export const StateDeadlineFinder2025 = () => {
               <div className="space-y-4">
                 <div>
                   <p className="font-medium text-blue-800">Deadline:</p>
-                  <p className="text-blue-700">{selectedDeadline.deadline}</p>
+                  <p className="text-blue-700 whitespace-pre-line">{selectedDeadline.deadline}</p>
                 </div>
                 <div>
                   <p className="font-medium text-blue-800">Details:</p>
