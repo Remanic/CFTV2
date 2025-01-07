@@ -7,6 +7,7 @@ import { DeadlineHeader } from "./shared/DeadlineHeader";
 import { KeyDeadlines } from "./shared/KeyDeadlines";
 import { RequiredDocuments } from "./shared/RequiredDocuments";
 import { FAQSection } from "./shared/FAQSection";
+import { StateDeadlineFinder2025 } from "./StateDeadlineFinder2025";
 
 export const FafsaDeadline2025Content = () => {
   const [progress, setProgress] = useState(0);
@@ -108,25 +109,10 @@ export const FafsaDeadline2025Content = () => {
           stateDeadlines={stateDeadlines}
         />
         
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">Why Submitting Early Matters</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Maximize Aid Opportunities</h3>
-              <p className="text-gray-600">Many grants and scholarships are awarded on a first-come, first-served basis.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Resolve Issues Promptly</h3>
-              <p className="text-gray-600">Submitting early allows time to correct errors or provide additional documentation if required.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Meet All Deadlines</h3>
-              <p className="text-gray-600">Early submission ensures you meet federal, state, and institutional deadlines.</p>
-            </div>
-          </div>
+        <section className="my-12">
+          <h2 className="text-2xl font-bold mb-6">State Deadlines Finder</h2>
+          <StateDeadlineFinder2025 />
         </section>
-        
-        <RequiredDocuments />
         
         <section id="faq" className="scroll-mt-20 mt-12">
           <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
