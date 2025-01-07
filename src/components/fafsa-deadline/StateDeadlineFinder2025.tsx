@@ -19,8 +19,12 @@ export const StateDeadlineFinder2025 = () => {
   const [noResults, setNoResults] = useState(false);
   const [searchResults, setSearchResults] = useState<StateDeadline[]>([]);
 
+  // Get unique states for the selector
+  const uniqueStates = Array.from(new Set(stateDeadlines2025.map(d => d.state))).sort();
+
   const handleStateSelect = (state: string) => {
     setSelectedState(state);
+    // Get the first matching deadline for the selected state
     const deadline = stateDeadlines2025.find(d => d.state === state);
     setSelectedDeadline(deadline || null);
     setNoResults(false);
@@ -36,8 +40,15 @@ export const StateDeadlineFinder2025 = () => {
       return;
     }
 
-    const filtered = stateDeadlines2025.filter(deadline =>
-      deadline.state.toLowerCase().includes(value.toLowerCase())
+    // Filter and deduplicate search results
+    const filtered = Array.from(
+      new Map(
+        stateDeadlines2025
+          .filter(deadline => 
+            deadline.state.toLowerCase().includes(value.toLowerCase())
+          )
+          .map(item => [item.state, item])
+      ).values()
     );
 
     setSearchResults(filtered);
@@ -88,7 +99,6 @@ export const StateDeadlineFinder2025 = () => {
                 </Button>
               )}
               
-              {/* Search Results Dropdown */}
               {searchResults.length > 0 && searchTerm && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
                   {searchResults.map((deadline) => (
@@ -110,9 +120,9 @@ export const StateDeadlineFinder2025 = () => {
                   <SelectValue placeholder="Select your state" />
                 </SelectTrigger>
                 <SelectContent>
-                  {stateDeadlines2025.map((deadline) => (
-                    <SelectItem key={deadline.state} value={deadline.state}>
-                      {deadline.state}
+                  {uniqueStates.map((state) => (
+                    <SelectItem key={state} value={state}>
+                      {state}
                     </SelectItem>
                   ))}
                 </SelectContent>
