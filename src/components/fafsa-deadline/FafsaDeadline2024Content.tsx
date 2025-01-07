@@ -105,8 +105,8 @@ export const FafsaDeadline2024Content = () => {
         
         <KeyDeadlines 
           federalDeadline="June 30, 2025"
-          openingDate="October 1, 2023"
-          stateDeadlines={stateDeadlines}
+          openingDate="December 31, 2023"
+          stateDeadlines={[]}
         />
 
         <section className="my-12">
