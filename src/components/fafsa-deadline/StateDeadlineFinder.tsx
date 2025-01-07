@@ -11,8 +11,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-// Move state deadlines data to a separate file for better organization
-import { stateDeadlines } from "./data/stateDeadlines";
+// Import both the data and the type
+import { stateDeadlines, StateDeadline } from "./data/stateDeadlines";
 
 export const StateDeadlineFinder = () => {
   const [searchTerm, setSearchTerm] = useState("");
