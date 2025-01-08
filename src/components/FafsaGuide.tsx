@@ -20,11 +20,11 @@ export const FafsaGuide = () => {
   const guides = [
     {
       title: "Find Your State's FAFSA Deadline",
-      description: "Easy-to-use tool to check FAFSA deadlines for your state",
+      description: "Check FAFSA deadlines for your state",
       icon: Search,
       color: "bg-yellow-50 hover:bg-yellow-100 border-yellow-200",
       textColor: "text-yellow-700",
-      component: StateDeadlineFinderTool
+      path: "/fafsa-state-deadline-finder"
     },
     {
       title: "Comprehensive Guide to Filling Out the FAFSA Form",
@@ -84,7 +84,7 @@ export const FafsaGuide = () => {
           {guides.map((guide, index) => (
             <Card 
               key={index}
-              onClick={() => guide.component ? null : navigate(guide.path)}
+              onClick={() => navigate(guide.path)}
               className={`group relative overflow-hidden ${guide.color} border-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}
             >
               <CardHeader>
@@ -95,16 +95,15 @@ export const FafsaGuide = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-gray-600">{guide.description}</p>
-                {guide.component ? (
-                  <guide.component />
-                ) : (
-                  <Button 
-                    onClick={() => navigate(guide.path)}
-                    className="w-full bg-white hover:bg-gray-50 text-gray-800 border border-gray-200"
-                  >
-                    Learn More
-                  </Button>
-                )}
+                <Button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(guide.path);
+                  }}
+                  className="w-full bg-white hover:bg-gray-50 text-gray-800 border border-gray-200"
+                >
+                  Learn More
+                </Button>
               </CardContent>
               <div className="absolute inset-0 border-2 border-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
             </Card>
