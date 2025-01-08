@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, ClipboardCheck, Calculator, Calendar, AlertCircle, Search } from "lucide-react";
+import { BookOpen, ClipboardCheck, Calculator, Calendar, Search } from "lucide-react";
 import { StateDeadlineFinderTool } from "./fafsa-deadline/StateDeadlineFinderTool";
 
 export const FafsaGuide = () => {
@@ -79,8 +79,6 @@ export const FafsaGuide = () => {
             Join over 10 million students who use FAFSA annually to access federal financial aid. Let us guide you through every step of the process.
           </p>
         </div>
-
-        <StateDeadlineFinderTool />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {guides.map((guide, index) => (
