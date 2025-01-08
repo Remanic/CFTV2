@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, ClipboardCheck, Calculator, Calendar, AlertCircle } from "lucide-react";
+import { BookOpen, ClipboardCheck, Calculator, Calendar, AlertCircle, Search } from "lucide-react";
+import { StateDeadlineFinderTool } from "./fafsa-deadline/StateDeadlineFinderTool";
 
 export const FafsaGuide = () => {
   const navigate = useNavigate();
@@ -17,6 +18,14 @@ export const FafsaGuide = () => {
   };
 
   const guides = [
+    {
+      title: "Find Your State's FAFSA Deadline",
+      description: "Easy-to-use tool to check FAFSA deadlines for your state",
+      icon: Search,
+      color: "bg-yellow-50 hover:bg-yellow-100 border-yellow-200",
+      textColor: "text-yellow-700",
+      component: StateDeadlineFinderTool
+    },
     {
       title: "Comprehensive Guide to Filling Out the FAFSA Form",
       description: "Step-by-step instructions to complete your FAFSA application successfully",
@@ -69,48 +78,15 @@ export const FafsaGuide = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Join over 10 million students who use FAFSA annually to access federal financial aid. Let us guide you through every step of the process.
           </p>
-          
-          {/* Updated Deadlines Section with improved alignment */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-16 max-w-4xl mx-auto">
-            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-              <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse mb-3"></div>
-              <div className="text-center">
-                <p className="text-sm font-medium text-gray-500 mb-1">Application Opens</p>
-                <p className="font-semibold text-blue-700">{deadlines.applicationStart}</p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-              <div className="w-3 h-3 rounded-full bg-red-500 mb-3"></div>
-              <div className="text-center">
-                <p className="text-sm font-medium text-gray-500 mb-1">Federal Deadline</p>
-                <p className="font-semibold text-red-700">{deadlines.federalDeadline}</p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-              <div className="w-3 h-3 rounded-full bg-orange-500 mb-3"></div>
-              <div className="text-center">
-                <p className="text-sm font-medium text-gray-500 mb-1">State Deadlines</p>
-                <p className="font-semibold text-orange-700">{deadlines.stateDeadlines}</p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-              <div className="w-3 h-3 rounded-full bg-purple-500 mb-3"></div>
-              <div className="text-center">
-                <p className="text-sm font-medium text-gray-500 mb-1">Priority Deadlines</p>
-                <p className="font-semibold text-purple-700">{deadlines.priorityDeadlines}</p>
-              </div>
-            </div>
-          </div>
         </div>
+
+        <StateDeadlineFinderTool />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {guides.map((guide, index) => (
             <Card 
               key={index}
-              onClick={() => navigate(guide.path)}
+              onClick={() => guide.component ? null : navigate(guide.path)}
               className={`group relative overflow-hidden ${guide.color} border-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}
             >
               <CardHeader>
@@ -121,12 +97,16 @@ export const FafsaGuide = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-gray-600">{guide.description}</p>
-                <Button 
-                  onClick={() => navigate(guide.path)}
-                  className="w-full bg-white hover:bg-gray-50 text-gray-800 border border-gray-200"
-                >
-                  Learn More
-                </Button>
+                {guide.component ? (
+                  <guide.component />
+                ) : (
+                  <Button 
+                    onClick={() => navigate(guide.path)}
+                    className="w-full bg-white hover:bg-gray-50 text-gray-800 border border-gray-200"
+                  >
+                    Learn More
+                  </Button>
+                )}
               </CardContent>
               <div className="absolute inset-0 border-2 border-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
             </Card>
