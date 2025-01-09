@@ -1,6 +1,6 @@
-import { EstimatorInput } from "./types";
+import { EstimatorInput, AidBreakdown } from "./types";
 
-export const calculateEstimatedAid = (input: EstimatorInput): number => {
+export const calculateEstimatedAid = (input: EstimatorInput): AidBreakdown => {
   // Convert string inputs to numbers
   const householdIncome = parseFloat(input.householdIncome) || 0;
   const studentIncome = parseFloat(input.studentIncome) || 0;
@@ -8,34 +8,53 @@ export const calculateEstimatedAid = (input: EstimatorInput): number => {
   const parentAssets = parseFloat(input.parentAssets || "0");
   const householdSize = parseInt(input.householdSize) || 1;
 
-  // Basic calculation logic based on federal methodology
-  let estimatedFamilyContribution = 0;
-  
-  // Calculate income contribution
+  // Calculate EFC (Expected Family Contribution)
   const totalIncome = householdIncome + studentIncome;
-  const incomeAllowance = householdSize * 12000; // Basic allowance per person
+  const incomeAllowance = householdSize * 12000;
   const availableIncome = Math.max(0, totalIncome - incomeAllowance);
-  
-  // Calculate asset contribution
   const totalAssets = studentAssets + (input.dependentStatus === "dependent" ? parentAssets : 0);
-  const assetContribution = totalAssets * 0.2; // 20% of assets
-  
-  // Calculate total family contribution
-  estimatedFamilyContribution = (availableIncome * 0.5) + assetContribution;
+  const assetContribution = totalAssets * 0.2;
+  const efc = (availableIncome * 0.5) + assetContribution;
 
-  // Base aid amounts by college type
-  const baseAidAmounts = {
-    public: 20000,
-    private: 35000,
-    community: 12000,
-  };
+  // Calculate Pell Grant (2024-2025 maximum: $7,395)
+  let pellGrant = 0;
+  if (totalIncome <= 60000) {
+    pellGrant = Math.min(7395, Math.max(0, 7395 - (efc / 2)));
+  }
+
+  // Calculate FSEOG Grant (Federal Supplemental Educational Opportunity Grant)
+  let fseogGrant = 0;
+  if (totalIncome <= 30000) {
+    fseogGrant = 1000;
+  }
+
+  // Determine loan limits based on dependency status and year in school
+  const subsidizedLoanLimit = input.dependentStatus === "dependent" ? 3500 : 5500;
+  const unsubsidizedLoanLimit = input.dependentStatus === "dependent" ? 2000 : 6000;
+
+  // Generate suggestions based on circumstances
+  const suggestions: string[] = [];
+  
+  if (totalIncome > 60000) {
+    suggestions.push("Consider submitting the FAFSA as early as possible to maximize aid opportunities.");
+  }
+  if (input.dependentStatus === "dependent" && totalIncome <= 60000) {
+    suggestions.push("You may be eligible for maximum Pell Grant funding.");
+  }
+  if (studentAssets > 10000) {
+    suggestions.push("Consider discussing asset management strategies with a financial advisor to optimize aid eligibility.");
+  }
+  suggestions.push("Remember to check your state's grant programs for additional funding opportunities.");
 
   // Calculate total estimated aid
-  let estimatedAid = baseAidAmounts[input.collegeType];
-  
-  // Adjust based on EFC
-  estimatedAid = Math.max(0, estimatedAid - estimatedFamilyContribution);
+  const totalAid = pellGrant + fseogGrant + subsidizedLoanLimit + unsubsidizedLoanLimit;
 
-  // Round to nearest hundred
-  return Math.round(estimatedAid / 100) * 100;
+  return {
+    totalAid: Math.round(totalAid / 100) * 100,
+    pellGrant: Math.round(pellGrant / 100) * 100,
+    fseogGrant: Math.round(fseogGrant / 100) * 100,
+    subsidizedLoanLimit,
+    unsubsidizedLoanLimit,
+    suggestions
+  };
 };

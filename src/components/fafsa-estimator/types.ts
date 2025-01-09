@@ -9,4 +9,13 @@ export interface EstimatorInput {
   collegeType: "public" | "private" | "community";
 }
 
+export interface AidBreakdown {
+  totalAid: number;
+  pellGrant: number;
+  fseogGrant: number;
+  subsidizedLoanLimit: number;
+  unsubsidizedLoanLimit: number;
+  suggestions: string[];
+}
+
 export type FormData = EstimatorInput;
