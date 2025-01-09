@@ -15,6 +15,7 @@ import FafsaReview from "./pages/FafsaReview";
 import FafsaEstimator from "./pages/FafsaEstimator";
 import FafsaDeadline2024 from "./pages/FafsaDeadline2024";
 import FafsaDeadline2025 from "./pages/FafsaDeadline2025";
+import StateDeadlineFinder from "./pages/StateDeadlineFinder";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/fafsa-aid-estimator" element={<FafsaEstimator />} />
           <Route path="/fafsa-deadline-2024-2025" element={<FafsaDeadline2024 />} />
           <Route path="/fafsa-deadline-2025-2026" element={<FafsaDeadline2025 />} />
+          <Route path="/state-deadline-finder" element={<StateDeadlineFinder />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, ClipboardCheck, Calculator, Calendar, Search } from "lucide-react";
-import { StateDeadlineFinderTool } from "./fafsa-deadline/StateDeadlineFinderTool";
 
 export const FafsaGuide = () => {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ export const FafsaGuide = () => {
       icon: Search,
       color: "bg-yellow-50 hover:bg-yellow-100 border-yellow-200",
       textColor: "text-yellow-700",
-      path: "/fafsa-state-deadline-finder"
+      path: "/state-deadline-finder"
     },
     {
       title: "Comprehensive Guide to Filling Out the FAFSA Form",
