@@ -4,7 +4,7 @@ interface EstimatorInput {
   dependentStatus: "dependent" | "independent";
   studentIncome: string;
   studentAssets: string;
-  parentAssets?: string;
+  parentAssets: string;  // Made non-optional since we always want a value (empty string if not applicable)
   stateOfResidence: string;
   collegeType: "public" | "private" | "community";
 }

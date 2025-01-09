@@ -17,7 +17,7 @@ const formSchema = z.object({
   dependentStatus: z.enum(["dependent", "independent"]),
   studentIncome: z.string().min(1, "Required"),
   studentAssets: z.string().min(1, "Required"),
-  parentAssets: z.string().optional(),
+  parentAssets: z.string().min(1, "Required"),  // Made required
   stateOfResidence: z.string().min(1, "Required"),
   collegeType: z.enum(["public", "private", "community"]),
 });
@@ -34,7 +34,7 @@ export const FafsaEstimatorTool = () => {
       dependentStatus: "dependent",
       studentIncome: "",
       studentAssets: "",
-      parentAssets: "",
+      parentAssets: "",  // Empty string as default value
       stateOfResidence: "",
       collegeType: "public",
     },
