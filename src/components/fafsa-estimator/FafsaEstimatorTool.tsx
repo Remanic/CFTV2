@@ -10,7 +10,7 @@ import { Calculator } from "lucide-react";
 import { calculateEstimatedAid } from "./estimatorUtils";
 import { FormFields } from "./FormFields";
 import { EstimatorResults } from "./EstimatorResults";
-import { FormData } from "./types";
+import { FormData, AidBreakdown } from "./types";
 
 const formSchema = z.object({
   householdIncome: z.string().min(1, "Required"),
@@ -25,7 +25,7 @@ const formSchema = z.object({
 
 export const FafsaEstimatorTool = () => {
   const { toast } = useToast();
-  const [estimatedAid, setEstimatedAid] = useState<number | null>(null);
+  const [estimatedAid, setEstimatedAid] = useState<AidBreakdown | null>(null);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
