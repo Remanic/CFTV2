@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, GraduationCap, ChartBar } from "lucide-react";
+import { ChevronDown, ChevronUp, GraduationCap, ChartBar, Search, BookOpen, ClipboardCheck, Calendar, Calculator } from "lucide-react";
 import { useState } from "react";
 
 interface MobileNavigationProps {
@@ -22,39 +22,75 @@ export const MobileNavigation = ({
   mainCalculators,
   additionalCalculators,
 }: MobileNavigationProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isCalculatorsExpanded, setIsCalculatorsExpanded] = useState(false);
+  const [isFafsaExpanded, setIsFafsaExpanded] = useState(false);
+
+  const fafsaLinks = [
+    {
+      icon: Search,
+      label: "Find State Deadlines",
+      path: "/state-deadline-finder",
+      color: "text-yellow-500"
+    },
+    {
+      icon: BookOpen,
+      label: "Complete Guide",
+      path: "/fafsa-application-guide",
+      color: "text-blue-500"
+    },
+    {
+      icon: ClipboardCheck,
+      label: "Review & Understand",
+      path: "/fafsa-review-guide",
+      color: "text-green-500"
+    },
+    {
+      icon: Calendar,
+      label: "2024 Deadlines",
+      path: "/fafsa-deadline-2024-2025",
+      color: "text-purple-500"
+    },
+    {
+      icon: Calendar,
+      label: "2025 Deadlines",
+      path: "/fafsa-deadline-2025-2026",
+      color: "text-orange-500"
+    },
+    {
+      icon: Calculator,
+      label: "Aid Estimator",
+      path: "/fafsa-aid-estimator",
+      color: "text-pink-500"
+    }
+  ];
 
   return (
     <div className="space-y-4 py-4">
       <div className="space-y-2">
-        <div className="font-medium text-sm text-gray-500 px-3">Main Calculators</div>
-        {mainCalculators.map(({ icon: Icon, label, path, color }) => (
-          <Link
-            key={path}
-            to={path}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Icon className={`h-5 w-5 ${color}`} />
-            <span className="text-sm font-medium text-gray-700">{label}</span>
-          </Link>
-        ))}
-      </div>
-
-      <div className="border-t pt-4">
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={() => setIsCalculatorsExpanded(!isCalculatorsExpanded)}
           className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-500"
         >
-          More Calculators
-          {isExpanded ? (
+          Calculators
+          {isCalculatorsExpanded ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
             <ChevronDown className="h-4 w-4" />
           )}
         </button>
 
-        {isExpanded && (
-          <div className="mt-2 space-y-2">
+        {isCalculatorsExpanded && (
+          <div className="space-y-2">
+            {mainCalculators.map(({ icon: Icon, label, path, color }) => (
+              <Link
+                key={path}
+                to={path}
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Icon className={`h-5 w-5 ${color}`} />
+                <span className="text-sm font-medium text-gray-700">{label}</span>
+              </Link>
+            ))}
             {additionalCalculators.map(({ icon: Icon, label, path, color }) => (
               <Link
                 key={path}
@@ -70,21 +106,32 @@ export const MobileNavigation = ({
       </div>
 
       <div className="border-t pt-4">
-        <div className="font-medium text-sm text-gray-500 px-3 mb-2">FAFSA</div>
-        <Link
-          to="/fafsa-application-guide"
-          className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+        <button
+          onClick={() => setIsFafsaExpanded(!isFafsaExpanded)}
+          className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-500"
         >
-          <GraduationCap className="h-5 w-5 text-indigo-500" />
-          <span className="text-sm font-medium text-gray-700">FAFSA Guide</span>
-        </Link>
-        <Link
-          to="/fafsa-application-tips"
-          className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-        >
-          <ChartBar className="h-5 w-5 text-violet-500" />
-          <span className="text-sm font-medium text-gray-700">Application Tips</span>
-        </Link>
+          FAFSA Resources
+          {isFafsaExpanded ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
+        </button>
+
+        {isFafsaExpanded && (
+          <div className="mt-2 space-y-2">
+            {fafsaLinks.map(({ icon: Icon, label, path, color }) => (
+              <Link
+                key={path}
+                to={path}
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Icon className={`h-5 w-5 ${color}`} />
+                <span className="text-sm font-medium text-gray-700">{label}</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="border-t pt-4 px-3">
