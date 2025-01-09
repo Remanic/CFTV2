@@ -11,7 +11,8 @@ export const StateDeadlineFinderTool = () => {
 
   const handleYearSelect = (year: "2024" | "2025") => {
     setSelectedYear(year);
-    navigate(year === "2024" ? "/fafsa-deadline-2024-2025" : "/fafsa-deadline-2025-2026");
+    const path = year === "2024" ? "/fafsa-deadline-2024-2025" : "/fafsa-deadline-2025-2026";
+    navigate(`${path}#state-deadlines-finder`);
   };
 
   return (
@@ -22,11 +23,6 @@ export const StateDeadlineFinderTool = () => {
           name="description" 
           content="Find FAFSA deadlines for your state for 2024-2025 and 2025-2026 academic years. Easy-to-use tool to check state-specific FAFSA submission deadlines and requirements."
         />
-        <meta 
-          name="keywords" 
-          content="FAFSA deadlines, state FAFSA deadline, FAFSA 2024-2025, FAFSA 2025-2026, financial aid deadlines, college application deadlines"
-        />
-        <link rel="canonical" href="https://yourwebsite.com/fafsa-state-deadline-finder" />
       </Helmet>
 
       <Card className="w-full">

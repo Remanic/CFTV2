@@ -8,6 +8,7 @@ import { KeyDeadlines } from "./shared/KeyDeadlines";
 import { RequiredDocuments } from "./shared/RequiredDocuments";
 import { FAQSection } from "./shared/FAQSection";
 import { StateDeadlineFinder } from "./StateDeadlineFinder";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const FafsaDeadline2024Content = () => {
   const [progress, setProgress] = useState(0);
@@ -109,8 +110,21 @@ export const FafsaDeadline2024Content = () => {
           stateDeadlines={[]}
         />
 
-        <section className="my-12">
+        <section className="my-12" id="state-deadlines-finder">
           <h2 className="text-2xl font-bold mb-6">State Deadlines Finder</h2>
+          <div className="mb-6">
+            <Card className="bg-blue-50">
+              <CardContent className="pt-6">
+                <h3 className="font-semibold text-gray-700 mb-2">Search Tips</h3>
+                <ul className="list-disc list-inside space-y-2 text-sm text-gray-600">
+                  <li>Type or select your state to see specific deadlines</li>
+                  <li>Pay attention to priority deadlines if available</li>
+                  <li>Some states have multiple deadlines for different programs</li>
+                  <li>Always verify deadlines with your school's financial aid office</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
           <StateDeadlineFinder />
         </section>
         
