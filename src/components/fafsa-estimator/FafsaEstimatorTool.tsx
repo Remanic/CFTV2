@@ -21,7 +21,7 @@ const formSchema = z.object({
   parentAssets: z.string().min(1, "Required"),
   stateOfResidence: z.string().min(1, "Required"),
   collegeType: z.enum(["public", "private", "community"]),
-}) satisfies z.ZodType<FormData>;
+});
 
 export const FafsaEstimatorTool = () => {
   const { toast } = useToast();
