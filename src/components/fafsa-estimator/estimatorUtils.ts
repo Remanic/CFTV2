@@ -1,13 +1,4 @@
-interface EstimatorInput {
-  householdIncome: string;
-  householdSize: string;
-  dependentStatus: "dependent" | "independent";
-  studentIncome: string;
-  studentAssets: string;
-  parentAssets: string;  // Made non-optional since we always want a value (empty string if not applicable)
-  stateOfResidence: string;
-  collegeType: "public" | "private" | "community";
-}
+import { EstimatorInput } from "./types";
 
 export const calculateEstimatedAid = (input: EstimatorInput): number => {
   // Convert string inputs to numbers
