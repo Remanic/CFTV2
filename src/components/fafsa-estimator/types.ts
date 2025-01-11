@@ -5,14 +5,16 @@ export interface EstimatorInput {
   studentIncome: string;
   studentAssets: string;
   parentAssets: string;
-  stateOfResidence: string;
-  collegeType: "public" | "private" | "community";
+  educationLevel: "undergraduate" | "graduate" | "professional";
+  enrollmentStatus: "full-time" | "part-time";
+  academicProgram: "regular" | "medical" | "law" | "other";
 }
 
 export interface AidBreakdown {
   totalAid: number;
   pellGrant: number;
-  fseogGrant: number;
+  federalSEOG: number;
+  workStudy: number;
   subsidizedLoanLimit: number;
   unsubsidizedLoanLimit: number;
   suggestions: string[];

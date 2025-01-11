@@ -19,8 +19,9 @@ const formSchema = z.object({
   studentIncome: z.string().min(1, "Required"),
   studentAssets: z.string().min(1, "Required"),
   parentAssets: z.string().min(1, "Required"),
-  stateOfResidence: z.string().min(1, "Required"),
-  collegeType: z.enum(["public", "private", "community"]),
+  educationLevel: z.enum(["undergraduate", "graduate", "professional"]),
+  enrollmentStatus: z.enum(["full-time", "part-time"]),
+  academicProgram: z.enum(["regular", "medical", "law", "other"])
 });
 
 export const FafsaEstimatorTool = () => {
@@ -36,8 +37,9 @@ export const FafsaEstimatorTool = () => {
       studentIncome: "",
       studentAssets: "",
       parentAssets: "",
-      stateOfResidence: "",
-      collegeType: "public",
+      educationLevel: "undergraduate",
+      enrollmentStatus: "full-time",
+      academicProgram: "regular"
     },
   });
 
