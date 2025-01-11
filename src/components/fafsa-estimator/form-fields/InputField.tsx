@@ -1,8 +1,9 @@
 import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { DollarSign } from "lucide-react";
+import { DollarSign, Info } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { FormData } from "../types";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface InputFieldProps {
   form: UseFormReturn<FormData>;
@@ -11,6 +12,7 @@ interface InputFieldProps {
   placeholder: string;
   showDollarSign?: boolean;
   helperText?: string;
+  tooltip?: string;
 }
 
 export const InputField = ({ 
@@ -19,7 +21,8 @@ export const InputField = ({
   label, 
   placeholder, 
   showDollarSign = false,
-  helperText 
+  helperText,
+  tooltip
 }: InputFieldProps) => {
   return (
     <FormField
@@ -27,7 +30,21 @@ export const InputField = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <div className="flex items-center gap-2">
+            <FormLabel>{label}</FormLabel>
+            {tooltip && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger type="button">
+                    <Info className="h-4 w-4 text-muted-foreground" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{tooltip}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+          </div>
           <FormControl>
             <div className="relative">
               {showDollarSign && (

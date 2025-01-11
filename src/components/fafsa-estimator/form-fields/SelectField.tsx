@@ -1,7 +1,9 @@
 import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Info } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { FormData } from "../types";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface SelectFieldProps {
   form: UseFormReturn<FormData>;
@@ -10,6 +12,7 @@ interface SelectFieldProps {
   placeholder: string;
   options: { value: string; label: string; }[];
   helperText?: string;
+  tooltip?: string;
 }
 
 export const SelectField = ({ 
@@ -18,7 +21,8 @@ export const SelectField = ({
   label, 
   placeholder, 
   options,
-  helperText 
+  helperText,
+  tooltip
 }: SelectFieldProps) => {
   return (
     <FormField
@@ -26,7 +30,21 @@ export const SelectField = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <div className="flex items-center gap-2">
+            <FormLabel>{label}</FormLabel>
+            {tooltip && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger type="button">
+                    <Info className="h-4 w-4 text-muted-foreground" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{tooltip}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+          </div>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>
