@@ -1,4 +1,4 @@
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { DollarSign } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
@@ -10,9 +10,17 @@ interface InputFieldProps {
   label: string;
   placeholder: string;
   showDollarSign?: boolean;
+  helperText?: string;
 }
 
-export const InputField = ({ form, name, label, placeholder, showDollarSign = false }: InputFieldProps) => {
+export const InputField = ({ 
+  form, 
+  name, 
+  label, 
+  placeholder, 
+  showDollarSign = false,
+  helperText 
+}: InputFieldProps) => {
   return (
     <FormField
       control={form.control}
@@ -32,6 +40,7 @@ export const InputField = ({ form, name, label, placeholder, showDollarSign = fa
               />
             </div>
           </FormControl>
+          {helperText && <FormDescription>{helperText}</FormDescription>}
           <FormMessage />
         </FormItem>
       )}

@@ -1,4 +1,4 @@
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { UseFormReturn } from "react-hook-form";
 import { FormData } from "../types";
@@ -9,9 +9,17 @@ interface SelectFieldProps {
   label: string;
   placeholder: string;
   options: { value: string; label: string; }[];
+  helperText?: string;
 }
 
-export const SelectField = ({ form, name, label, placeholder, options }: SelectFieldProps) => {
+export const SelectField = ({ 
+  form, 
+  name, 
+  label, 
+  placeholder, 
+  options,
+  helperText 
+}: SelectFieldProps) => {
   return (
     <FormField
       control={form.control}
@@ -33,6 +41,7 @@ export const SelectField = ({ form, name, label, placeholder, options }: SelectF
               ))}
             </SelectContent>
           </Select>
+          {helperText && <FormDescription>{helperText}</FormDescription>}
           <FormMessage />
         </FormItem>
       )}
