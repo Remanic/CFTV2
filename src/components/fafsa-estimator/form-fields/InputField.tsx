@@ -4,6 +4,7 @@ import { DollarSign, Info } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 import { FormData } from "../types";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface InputFieldProps {
   form: UseFormReturn<FormData>;
@@ -24,6 +25,8 @@ export const InputField = ({
   helperText,
   tooltip
 }: InputFieldProps) => {
+  const isMobile = useIsMobile();
+
   return (
     <FormField
       control={form.control}
@@ -33,12 +36,21 @@ export const InputField = ({
           <div className="flex items-center gap-2">
             <FormLabel>{label}</FormLabel>
             {tooltip && (
-              <TooltipProvider>
+              <TooltipProvider delayDuration={0}>
                 <Tooltip>
-                  <TooltipTrigger type="button">
+                  <TooltipTrigger 
+                    type="button" 
+                    className={`p-1 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ${
+                      isMobile ? 'touch-none' : ''
+                    }`}
+                  >
                     <Info className="h-4 w-4 text-muted-foreground" />
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent 
+                    side={isMobile ? "bottom" : "right"}
+                    align={isMobile ? "center" : "start"}
+                    className="max-w-[200px] text-sm"
+                  >
                     <p>{tooltip}</p>
                   </TooltipContent>
                 </Tooltip>
