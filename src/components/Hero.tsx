@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Hourglass, CheckCircle2, BookOpen, Calculator, PiggyBank, Star } from "lucide-react";
+import { ArrowRight, Clock, Hourglass, CheckCircle2, BookOpen, Calculator, PiggyBank, Star, GraduationCap, DollarSign, Search, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState, useEffect } from "react";
@@ -27,36 +27,41 @@ export const Hero = () => {
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
-  const steps = [
+  const benefits = [
     {
-      title: "Get Free Guide",
-      description: "Expert tips to reduce your loan burden",
-      icon: <BookOpen className="h-6 w-6 text-primary" />,
+      title: "FAFSA Aid Estimator",
+      description: "Know how much aid you qualify for",
+      icon: <GraduationCap className="h-6 w-6 text-primary" />,
     },
     {
-      title: "Calculate Savings",
-      description: "Find your ideal repayment plan",
-      icon: <Calculator className="h-6 w-6 text-primary" />,
+      title: "Repayment Calculator",
+      description: "Compare options and pick the best plan",
+      icon: <DollarSign className="h-6 w-6 text-primary" />,
     },
     {
-      title: "Start Saving",
-      description: "Begin your debt-free journey",
-      icon: <PiggyBank className="h-6 w-6 text-primary" />,
+      title: "Loan Forgiveness Insights",
+      description: "Find out if you're eligible",
+      icon: <Search className="h-6 w-6 text-primary" />,
+    },
+    {
+      title: "Private Lender Comparison",
+      description: "Rates, pros & cons, all in one place",
+      icon: <Building className="h-6 w-6 text-primary" />,
     },
   ];
 
   const testimonials = [
     {
-      quote: "This guide helped me save over $5,000 in interest and choose the perfect repayment plan for my situation!",
+      quote: "CashFlowTime showed me how to save over $5,000 in interest and get on a repayment plan that works for me!",
       author: "Sarah M.",
       role: "Recent Graduate",
-      image: "/placeholder.svg"
+      image: "/photo-1581091226825-a6a2a5aee158"
     },
     {
       quote: "I was overwhelmed by repayment options until I found this resource. Now I'm confidently managing my loans!",
       author: "Michael K.",
       role: "Graduate Student",
-      image: "/placeholder.svg"
+      image: "/photo-1486312338219-ce68d2c6f44d"
     }
   ];
 
@@ -75,50 +80,42 @@ export const Hero = () => {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           <div className="w-full lg:w-1/2 space-y-6 lg:space-y-8 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-2 text-warning font-semibold">
-              <Clock className="h-5 w-5 text-gray-700" />
-              <span>Offer Expires Soon - Limited Time Access</span>
+              <Clock className="h-5 w-5" />
+              <span>Limited Time – Get Free Access to Premium Tools & Expert Guidance Today</span>
             </div>
             
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900">
-                Break Free from Student Loan Stress
-                <span className="block text-primary mt-2">Start Your Debt-Free Journey Today</span>
+                Your Complete Student Loan Solution
+                <span className="block text-lg md:text-xl text-gray-600 mt-4">
+                  Navigate FAFSA, Find the Best Loan Plans, Maximize Aid, and Simplify Repayment – All in One Place
+                </span>
               </h1>
               
-              <div className="flex flex-wrap gap-4 text-lg text-gray-600 justify-center lg:justify-start">
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
-                  Confused about repayment plans?
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
-                  Struggling with high interest?
-                </span>
-              </div>
+              <p className="text-lg text-gray-600">
+                Used by students and parents to save thousands on interest and reduce loan stress.
+              </p>
             </div>
-
-            <p className="text-lg lg:text-xl text-gray-600">
-              Join over 50,000 students who've saved an average of $5,000 in interest using our expert guidance and tools.
-            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
-                Get Expert Tips & Save $1000s <ArrowRight className="ml-2 h-4 w-4" />
+                Get Your Free Personalized Loan Plan <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline">
-                Find Best Plan in 60 Seconds
+              <Button size="lg" variant="outline" className="border-2">
+                Explore All Tools for Free <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
-            <div className="flex items-center justify-center lg:justify-start gap-4">
-              <div className="flex -space-x-2">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center">
-                    <Star className="h-4 w-4 text-warning" />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="text-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
+                    {benefit.icon}
                   </div>
-                ))}
-              </div>
-              <span className="text-sm text-gray-600">Trusted by 50,000+ Students</span>
+                  <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{benefit.description}</p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -128,7 +125,23 @@ export const Hero = () => {
                 <h3 className="text-xl font-semibold text-gray-900">Your Journey to Financial Freedom</h3>
                 <Progress value={progress} className="h-2" />
                 <div className="grid grid-cols-3 gap-4">
-                  {steps.map((step, index) => (
+                  {[
+                    {
+                      title: "Get Free Guide",
+                      description: "Expert tips to reduce your loan burden",
+                      icon: <BookOpen className="h-6 w-6 text-primary" />,
+                    },
+                    {
+                      title: "Calculate Savings",
+                      description: "Find your ideal repayment plan",
+                      icon: <Calculator className="h-6 w-6 text-primary" />,
+                    },
+                    {
+                      title: "Start Saving",
+                      description: "Begin your debt-free journey",
+                      icon: <PiggyBank className="h-6 w-6 text-primary" />,
+                    },
+                  ].map((step, index) => (
                     <button
                       key={index}
                       className={`text-center p-4 rounded-lg transition-colors ${
@@ -151,7 +164,7 @@ export const Hero = () => {
 
             <div className="bg-gradient-to-r from-warning/10 via-warning/20 to-warning/10 rounded-lg p-6 border border-warning/20">
               <div className="flex items-center gap-3 mb-3">
-                <Hourglass className="h-6 w-6 text-warning" />
+                <Star className="h-6 w-6 text-warning" />
                 <h3 className="text-lg font-semibold text-gray-900">Student Success Stories</h3>
               </div>
               <div className="relative overflow-hidden" style={{ height: '120px' }}>
