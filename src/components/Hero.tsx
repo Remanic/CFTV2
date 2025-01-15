@@ -90,13 +90,18 @@ export const Hero = () => {
             </div>
             
             <div className="space-y-4">
+
               <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900">
                 Your Complete Student Loan Solution
-                <span className="block text-lg md:text-xl text-gray-600 mt-4">
-                  Navigate FAFSA, Find the Best Loan Plans, Maximize Aid, and Simplify Repayment – All in One Place
-                </span>
+                <div className="flex flex-col space-y-2 mt-6">
+                  <span className="text-lg md:text-xl font-medium text-primary">Navigate FAFSA</span>
+                  <span className="text-lg md:text-xl font-medium text-secondary">Find the Best Loan Plans</span>
+                  <span className="text-lg md:text-xl font-medium text-warning">Maximize Aid</span>
+                  <span className="text-lg md:text-xl font-medium text-primary">Simplify Repayment</span>
+                  <span className="text-base md:text-lg text-gray-600 mt-2">All in One Place</span>
+                </div>
               </h1>
-              
+
               {/* Emotional Hook */}
               <p className="text-lg text-gray-600 italic">
                 Say goodbye to loan stress and confusion – start your journey to financial freedom today.
