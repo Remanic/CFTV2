@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Shield } from "lucide-react";
+import { ArrowRight, Clock, Shield, GraduationCap, DollarSign, Search, Building, BookOpen, Calculator, PiggyBank, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState, useEffect } from "react";
@@ -8,6 +8,7 @@ export const Hero = () => {
   const [progress, setProgress] = useState(0);
   const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
   const [activeStep, setActiveStep] = useState<number | null>(null);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,6 +20,14 @@ export const Hero = () => {
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Add testimonial rotation effect
+  useEffect(() => {
+    const testimonialTimer = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev === 0 ? 1 : 0));
+    }, 5000);
+    return () => clearInterval(testimonialTimer);
   }, []);
 
   const formatTime = (seconds: number) => {
