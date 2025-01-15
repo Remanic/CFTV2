@@ -1,9 +1,10 @@
 import { GraduationCap, Search, Star, CheckCircle2 } from "lucide-react";
 import { FeaturePill } from "./FeaturePill";
+import CurvedConnector from "./CurvedConnector";
 
 export const FeaturesList = () => {
   return (
-    <div className="flex flex-col items-center space-y-6">
+    <div className="flex flex-col items-center mt-8">
       <div className="flex flex-wrap justify-center gap-3">
         <FeaturePill
           icon={GraduationCap}
@@ -27,12 +28,9 @@ export const FeaturesList = () => {
         />
       </div>
       
-      <div className="relative">
-        <div className="absolute left-1/2 -translate-x-1/2 w-px h-8 bg-gradient-to-b from-primary/50 to-transparent" />
-      </div>
+      <CurvedConnector />
       
-      <span className="text-base md:text-lg text-gray-600 font-medium relative">
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-1 bg-primary/10 rounded-full" />
+      <span className="text-lg md:text-xl text-gray-700 font-medium relative">
         All in One Place
       </span>
     </div>
