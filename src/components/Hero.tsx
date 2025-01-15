@@ -93,13 +93,27 @@ export const Hero = () => {
 
               <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900">
                 Your Complete Student Loan Solution
-                <div className="flex flex-col space-y-2 mt-6">
-                  <span className="text-lg md:text-xl font-medium text-primary">Navigate FAFSA</span>
-                  <span className="text-lg md:text-xl font-medium text-secondary">Find the Best Loan Plans</span>
-                  <span className="text-lg md:text-xl font-medium text-warning">Maximize Aid</span>
-                  <span className="text-lg md:text-xl font-medium text-primary">Simplify Repayment</span>
-                  <span className="text-base md:text-lg text-gray-600 mt-2">All in One Place</span>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
+                    <GraduationCap className="h-4 w-4" />
+                    <span>Navigate FAFSA</span>
+                  </div>
+                  <div className="inline-flex items-center space-x-2 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
+                    <Search className="h-4 w-4" />
+                    <span>Find Best Loans</span>
+                  </div>
+                  <div className="inline-flex items-center space-x-2 bg-warning/10 text-warning px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
+                    <Star className="h-4 w-4" />
+                    <span>Maximize Aid</span>
+                  </div>
+                  <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
+                    <CheckCircle2 className="h-4 w-4" />
+                    <span>Simplify Repayment</span>
+                  </div>
                 </div>
+                <span className="block text-base md:text-lg text-gray-600 mt-3 font-normal">
+                  All in One Place
+                </span>
               </h1>
 
               {/* Emotional Hook */}
