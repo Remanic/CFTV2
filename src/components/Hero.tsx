@@ -1,11 +1,11 @@
-import { ArrowRight, Clock, Shield, GraduationCap, DollarSign, Search, Building } from "lucide-react";
+import { ArrowRight, Clock, CheckCircle2, BookOpen, Calculator, PiggyBank, Star, GraduationCap, DollarSign, Search, Building, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState, useEffect } from "react";
 
 export const Hero = () => {
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(3600);
+  const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   useEffect(() => {
@@ -30,89 +30,200 @@ export const Hero = () => {
     {
       title: "FAFSA Aid Estimator",
       description: "Know how much aid you qualify for",
-      icon: <GraduationCap className="h-5 w-5 text-primary" />,
+      icon: <GraduationCap className="h-6 w-6 text-primary" />,
     },
     {
       title: "Repayment Calculator",
       description: "Compare options and pick the best plan",
-      icon: <DollarSign className="h-5 w-5 text-primary" />,
+      icon: <DollarSign className="h-6 w-6 text-primary" />,
     },
     {
-      title: "Loan Forgiveness",
+      title: "Loan Forgiveness Insights",
       description: "Find out if you're eligible",
-      icon: <Search className="h-5 w-5 text-primary" />,
+      icon: <Search className="h-6 w-6 text-primary" />,
     },
     {
-      title: "Lender Comparison",
-      description: "Compare rates & options",
-      icon: <Building className="h-5 w-5 text-primary" />,
+      title: "Private Lender Comparison",
+      description: "Rates, pros & cons, all in one place",
+      icon: <Building className="h-6 w-6 text-primary" />,
     },
   ];
 
+  const testimonials = [
+    {
+      quote: "CashFlowTime showed me how to save over $5,000 in interest and get on a repayment plan that works for me!",
+      author: "Sarah M.",
+      role: "Recent Graduate",
+      image: "/photo-1581091226825-a6a2a5aee158"
+    },
+    {
+      quote: "I was overwhelmed by repayment options until I found this resource. Now I'm confidently managing my loans!",
+      author: "Michael K.",
+      role: "Graduate Student",
+      image: "/photo-1486312338219-ce68d2c6f44d"
+    }
+  ];
+
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-8 md:py-12 overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="flex flex-col lg:flex-row items-center gap-6">
-          {/* Left Column - Main Content */}
-          <div className="w-full lg:w-3/5 space-y-4">
-            {/* Urgency Banner - More Compact */}
-            <div className="bg-warning/10 rounded-full px-4 py-1.5 inline-flex items-center gap-2 text-sm text-warning font-medium">
-              <Clock className="h-4 w-4" />
-              <span>Limited Time: Free Premium Access</span>
+    <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-repeat opacity-20"></div>
+      </div>
+
+      <div className="container mx-auto px-4 max-w-6xl relative">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          <div className="w-full lg:w-1/2 space-y-6 lg:space-y-8 text-center lg:text-left">
+            {/* Urgency Banner */}
+            <div className="bg-warning/10 rounded-full px-6 py-2 inline-flex items-center justify-center lg:justify-start gap-2 text-warning font-semibold">
+              <Clock className="h-5 w-5" />
+              <span>Act Now: Free Premium Access Ends {formatTime(timeLeft)}</span>
             </div>
             
-            {/* Main Heading - Condensed */}
-            <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-bold leading-tight text-gray-900">
+            <div className="space-y-4">
+
+              <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900">
                 Your Complete Student Loan Solution
+                <div className="flex flex-col space-y-2 mt-6">
+                  <span className="text-lg md:text-xl font-medium text-primary">Navigate FAFSA</span>
+                  <span className="text-lg md:text-xl font-medium text-secondary">Find the Best Loan Plans</span>
+                  <span className="text-lg md:text-xl font-medium text-warning">Maximize Aid</span>
+                  <span className="text-lg md:text-xl font-medium text-primary">Simplify Repayment</span>
+                  <span className="text-base md:text-lg text-gray-600 mt-2">All in One Place</span>
+                </div>
               </h1>
-              <div className="flex flex-col space-y-1">
-                <span className="text-base font-medium text-primary">Navigate FAFSA</span>
-                <span className="text-base font-medium text-secondary">Find Best Loan Plans</span>
-                <span className="text-base font-medium text-warning">Maximize Aid</span>
-                <span className="text-base font-medium text-primary">Simplify Repayment</span>
+
+              {/* Emotional Hook */}
+              <p className="text-lg text-gray-600 italic">
+                Say goodbye to loan stress and confusion – start your journey to financial freedom today.
+              </p>
+
+              {/* Trust Badge */}
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-600">
+                <Shield className="h-5 w-5 text-primary" />
+                <span className="font-medium">Trusted by over 10,000 students and parents</span>
               </div>
             </div>
 
-            {/* Trust Badge - Compact */}
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Shield className="h-4 w-4 text-primary" />
-              <span>Trusted by 10,000+ students</span>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+                Get Your Free Personalized Loan Plan <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button size="lg" variant="outline" className="border-2">
+                Explore All Tools for Free <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
 
-            {/* CTA Buttons - Inline */}
-            <div className="flex flex-wrap gap-3">
-              <Button size="sm" className="bg-primary hover:bg-primary/90">
-                Get Free Loan Plan <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button size="sm" variant="outline" className="border">
-                Explore Tools <ArrowRight className="h-4 w-4" />
-              </Button>
+            {/* Benefits Grid with Enhanced Visual Hierarchy */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+              {benefits.map((benefit, index) => (
+                <div 
+                  key={index} 
+                  className="text-center p-4 rounded-xl bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300 border border-gray-100"
+                >
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{benefit.description}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Column - Benefits Grid */}
-          <div className="w-full lg:w-2/5">
-            <div className="bg-white/80 rounded-lg p-4 shadow-sm border border-gray-100">
-              <div className="grid grid-cols-2 gap-3">
-                {benefits.map((benefit, index) => (
-                  <div 
-                    key={index} 
-                    className="p-3 rounded-lg hover:bg-gray-50 transition-colors"
+          <div className="w-full lg:w-1/2 space-y-6">
+            <div className="bg-white rounded-xl shadow-xl p-6 border border-gray-100">
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-gray-900">Your Journey to Financial Freedom</h3>
+                <Progress value={progress} className="h-2" />
+                <div className="grid grid-cols-3 gap-4">
+                  {[
+                    {
+                      title: "Get Free Guide",
+                      description: "Expert tips to reduce your loan burden",
+                      icon: <BookOpen className="h-6 w-6 text-primary" />,
+                    },
+                    {
+                      title: "Calculate Savings",
+                      description: "Find your ideal repayment plan",
+                      icon: <Calculator className="h-6 w-6 text-primary" />,
+                    },
+                    {
+                      title: "Start Saving",
+                      description: "Begin your debt-free journey",
+                      icon: <PiggyBank className="h-6 w-6 text-primary" />,
+                    },
+                  ].map((step, index) => (
+                    <button
+                      key={index}
+                      className={`text-center p-4 rounded-lg transition-all duration-300 ${
+                        activeStep === index 
+                          ? 'bg-primary/10 shadow-md' 
+                          : 'hover:bg-gray-50 hover:shadow-sm'
+                      }`}
+                      onClick={() => setActiveStep(activeStep === index ? null : index)}
+                    >
+                      {step.icon}
+                      <div className="text-primary font-semibold mt-2">{step.title}</div>
+                      {activeStep === index && (
+                        <div className="text-sm text-gray-600 mt-2 animate-fade-in">
+                          {step.description}
+                        </div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced Testimonial Section */}
+            <div className="bg-gradient-to-r from-warning/10 via-warning/20 to-warning/10 rounded-lg p-6 border border-warning/20">
+              <div className="flex items-center gap-3 mb-4">
+                <Star className="h-6 w-6 text-warning" />
+                <h3 className="text-lg font-semibold text-gray-900">Student Success Stories</h3>
+              </div>
+              <div className="relative overflow-hidden" style={{ height: '140px' }}>
+                {testimonials.map((testimonial, index) => (
+                  <div
+                    key={index}
+                    className={`absolute w-full transition-all duration-500 ${
+                      index === currentTestimonial
+                        ? 'translate-x-0 opacity-100'
+                        : 'translate-x-full opacity-0'
+                    }`}
                   >
-                    <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 mb-2">
-                      {benefit.icon}
+                    <div className="flex items-start gap-4">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.author}
+                        className="w-16 h-16 rounded-full object-cover border-2 border-warning/20"
+                      />
+                      <div>
+                        <p className="text-gray-700 italic text-sm leading-relaxed">{testimonial.quote}</p>
+                        <div className="mt-2 text-sm font-medium text-gray-900">
+                          - {testimonial.author}, <span className="text-gray-600">{testimonial.role}</span>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-sm font-semibold text-gray-900">{benefit.title}</h3>
-                    <p className="text-xs text-gray-600 mt-1">{benefit.description}</p>
                   </div>
                 ))}
               </div>
+            </div>
 
-              {/* Progress Indicator */}
-              <div className="mt-4">
-                <Progress value={progress} className="h-1" />
-              </div>
+            {/* Trust Badges */}
+            <div className="flex justify-center items-center gap-6 bg-white/50 rounded-lg p-4">
+              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
+              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
+              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
             </div>
           </div>
         </div>
