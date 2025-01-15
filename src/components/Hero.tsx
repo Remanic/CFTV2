@@ -1,7 +1,8 @@
-import { ArrowRight, Clock, CheckCircle2, BookOpen, Calculator, PiggyBank, Star, GraduationCap, DollarSign, Search, Building, Shield } from "lucide-react";
+import { ArrowRight, Clock, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState, useEffect } from "react";
+import { FeaturesList } from "./hero/FeaturesList";
 
 export const Hero = () => {
   const [progress, setProgress] = useState(0);
@@ -26,53 +27,6 @@ export const Hero = () => {
     return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
 
-  const benefits = [
-    {
-      title: "FAFSA Aid Estimator",
-      description: "Know how much aid you qualify for",
-      icon: <GraduationCap className="h-6 w-6 text-primary" />,
-    },
-    {
-      title: "Repayment Calculator",
-      description: "Compare options and pick the best plan",
-      icon: <DollarSign className="h-6 w-6 text-primary" />,
-    },
-    {
-      title: "Loan Forgiveness Insights",
-      description: "Find out if you're eligible",
-      icon: <Search className="h-6 w-6 text-primary" />,
-    },
-    {
-      title: "Private Lender Comparison",
-      description: "Rates, pros & cons, all in one place",
-      icon: <Building className="h-6 w-6 text-primary" />,
-    },
-  ];
-
-  const testimonials = [
-    {
-      quote: "CashFlowTime showed me how to save over $5,000 in interest and get on a repayment plan that works for me!",
-      author: "Sarah M.",
-      role: "Recent Graduate",
-      image: "/photo-1581091226825-a6a2a5aee158"
-    },
-    {
-      quote: "I was overwhelmed by repayment options until I found this resource. Now I'm confidently managing my loans!",
-      author: "Michael K.",
-      role: "Graduate Student",
-      image: "/photo-1486312338219-ce68d2c6f44d"
-    }
-  ];
-
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Background Pattern */}
@@ -90,30 +44,9 @@ export const Hero = () => {
             </div>
             
             <div className="space-y-4">
-
               <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900">
                 Your Complete Student Loan Solution
-                <div className="flex flex-wrap gap-2 mt-4">
-                  <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
-                    <GraduationCap className="h-4 w-4" />
-                    <span>Navigate FAFSA</span>
-                  </div>
-                  <div className="inline-flex items-center space-x-2 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
-                    <Search className="h-4 w-4" />
-                    <span>Find Best Loans</span>
-                  </div>
-                  <div className="inline-flex items-center space-x-2 bg-warning/10 text-warning px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
-                    <Star className="h-4 w-4" />
-                    <span>Maximize Aid</span>
-                  </div>
-                  <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-sm md:text-base font-medium">
-                    <CheckCircle2 className="h-4 w-4" />
-                    <span>Simplify Repayment</span>
-                  </div>
-                </div>
-                <span className="block text-base md:text-lg text-gray-600 mt-3 font-normal">
-                  All in One Place
-                </span>
+                <FeaturesList />
               </h1>
 
               {/* Emotional Hook */}
@@ -139,7 +72,28 @@ export const Hero = () => {
 
             {/* Benefits Grid with Enhanced Visual Hierarchy */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-              {benefits.map((benefit, index) => (
+              {[
+                {
+                  title: "FAFSA Aid Estimator",
+                  description: "Know how much aid you qualify for",
+                  icon: <GraduationCap className="h-6 w-6 text-primary" />,
+                },
+                {
+                  title: "Repayment Calculator",
+                  description: "Compare options and pick the best plan",
+                  icon: <DollarSign className="h-6 w-6 text-primary" />,
+                },
+                {
+                  title: "Loan Forgiveness Insights",
+                  description: "Find out if you're eligible",
+                  icon: <Search className="h-6 w-6 text-primary" />,
+                },
+                {
+                  title: "Private Lender Comparison",
+                  description: "Rates, pros & cons, all in one place",
+                  icon: <Building className="h-6 w-6 text-primary" />,
+                },
+              ].map((benefit, index) => (
                 <div 
                   key={index} 
                   className="text-center p-4 rounded-xl bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300 border border-gray-100"
@@ -154,6 +108,7 @@ export const Hero = () => {
             </div>
           </div>
 
+          {/* Right Side Content */}
           <div className="w-full lg:w-1/2 space-y-6">
             <div className="bg-white rounded-xl shadow-xl p-6 border border-gray-100">
               <div className="space-y-4">
@@ -206,7 +161,20 @@ export const Hero = () => {
                 <h3 className="text-lg font-semibold text-gray-900">Student Success Stories</h3>
               </div>
               <div className="relative overflow-hidden" style={{ height: '140px' }}>
-                {testimonials.map((testimonial, index) => (
+                {[
+                  {
+                    quote: "CashFlowTime showed me how to save over $5,000 in interest and get on a repayment plan that works for me!",
+                    author: "Sarah M.",
+                    role: "Recent Graduate",
+                    image: "/photo-1581091226825-a6a2a5aee158"
+                  },
+                  {
+                    quote: "I was overwhelmed by repayment options until I found this resource. Now I'm confidently managing my loans!",
+                    author: "Michael K.",
+                    role: "Graduate Student",
+                    image: "/photo-1486312338219-ce68d2c6f44d"
+                  }
+                ].map((testimonial, index) => (
                   <div
                     key={index}
                     className={`absolute w-full transition-all duration-500 ${
