@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Hourglass, CheckCircle2, BookOpen, Calculator, PiggyBank, Star, GraduationCap, DollarSign, Search, Building } from "lucide-react";
+import { ArrowRight, Clock, CheckCircle2, BookOpen, Calculator, PiggyBank, Star, GraduationCap, DollarSign, Search, Building, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState, useEffect } from "react";
@@ -12,7 +12,6 @@ export const Hero = () => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -24,7 +23,7 @@ export const Hero = () => {
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
 
   const benefits = [
@@ -76,12 +75,18 @@ export const Hero = () => {
 
   return (
     <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 max-w-6xl">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-repeat opacity-20"></div>
+      </div>
+
+      <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           <div className="w-full lg:w-1/2 space-y-6 lg:space-y-8 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-warning font-semibold">
+            {/* Urgency Banner */}
+            <div className="bg-warning/10 rounded-full px-6 py-2 inline-flex items-center justify-center lg:justify-start gap-2 text-warning font-semibold">
               <Clock className="h-5 w-5" />
-              <span>Limited Time – Get Free Access to Premium Tools & Expert Guidance Today</span>
+              <span>Act Now: Free Premium Access Ends {formatTime(timeLeft)}</span>
             </div>
             
             <div className="space-y-4">
@@ -92,9 +97,16 @@ export const Hero = () => {
                 </span>
               </h1>
               
-              <p className="text-lg text-gray-600">
-                Used by students and parents to save thousands on interest and reduce loan stress.
+              {/* Emotional Hook */}
+              <p className="text-lg text-gray-600 italic">
+                Say goodbye to loan stress and confusion – start your journey to financial freedom today.
               </p>
+
+              {/* Trust Badge */}
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-600">
+                <Shield className="h-5 w-5 text-primary" />
+                <span className="font-medium">Trusted by over 10,000 students and parents</span>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -106,9 +118,13 @@ export const Hero = () => {
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            {/* Benefits Grid with Enhanced Visual Hierarchy */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
               {benefits.map((benefit, index) => (
-                <div key={index} className="text-center p-4 rounded-lg hover:bg-gray-50 transition-colors">
+                <div 
+                  key={index} 
+                  className="text-center p-4 rounded-xl bg-white/50 hover:bg-white hover:shadow-md transition-all duration-300 border border-gray-100"
+                >
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
                     {benefit.icon}
                   </div>
@@ -144,8 +160,10 @@ export const Hero = () => {
                   ].map((step, index) => (
                     <button
                       key={index}
-                      className={`text-center p-4 rounded-lg transition-colors ${
-                        activeStep === index ? 'bg-primary/10' : 'hover:bg-gray-50'
+                      className={`text-center p-4 rounded-lg transition-all duration-300 ${
+                        activeStep === index 
+                          ? 'bg-primary/10 shadow-md' 
+                          : 'hover:bg-gray-50 hover:shadow-sm'
                       }`}
                       onClick={() => setActiveStep(activeStep === index ? null : index)}
                     >
@@ -162,12 +180,13 @@ export const Hero = () => {
               </div>
             </div>
 
+            {/* Enhanced Testimonial Section */}
             <div className="bg-gradient-to-r from-warning/10 via-warning/20 to-warning/10 rounded-lg p-6 border border-warning/20">
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3 mb-4">
                 <Star className="h-6 w-6 text-warning" />
                 <h3 className="text-lg font-semibold text-gray-900">Student Success Stories</h3>
               </div>
-              <div className="relative overflow-hidden" style={{ height: '120px' }}>
+              <div className="relative overflow-hidden" style={{ height: '140px' }}>
                 {testimonials.map((testimonial, index) => (
                   <div
                     key={index}
@@ -181,12 +200,12 @@ export const Hero = () => {
                       <img
                         src={testimonial.image}
                         alt={testimonial.author}
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="w-16 h-16 rounded-full object-cover border-2 border-warning/20"
                       />
                       <div>
-                        <p className="text-gray-700 italic">{testimonial.quote}</p>
-                        <div className="mt-2 text-sm text-gray-600">
-                          - {testimonial.author}, {testimonial.role}
+                        <p className="text-gray-700 italic text-sm leading-relaxed">{testimonial.quote}</p>
+                        <div className="mt-2 text-sm font-medium text-gray-900">
+                          - {testimonial.author}, <span className="text-gray-600">{testimonial.role}</span>
                         </div>
                       </div>
                     </div>
@@ -195,10 +214,11 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-4">
-              <img src="/placeholder.svg" alt="Partner Logo" className="h-8 opacity-50 hover:opacity-100 transition-opacity" />
-              <img src="/placeholder.svg" alt="Partner Logo" className="h-8 opacity-50 hover:opacity-100 transition-opacity" />
-              <img src="/placeholder.svg" alt="Partner Logo" className="h-8 opacity-50 hover:opacity-100 transition-opacity" />
+            {/* Trust Badges */}
+            <div className="flex justify-center items-center gap-6 bg-white/50 rounded-lg p-4">
+              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
+              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
+              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
             </div>
           </div>
         </div>
