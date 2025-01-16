@@ -1,15 +1,12 @@
-import { ArrowRight, Clock, Shield, GraduationCap, DollarSign, Search, Building, BookOpen, Calculator, PiggyBank } from "lucide-react";
+import { ArrowRight, Clock, Shield, GraduationCap, DollarSign, Search, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useState, useEffect } from "react";
 import { FeaturesList } from "./hero/FeaturesList";
-import TestimonialSection from "./hero/TestimonialSection";
 
 export const Hero = () => {
   const [progress, setProgress] = useState(0);
   const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
-  const [activeStep, setActiveStep] = useState<number | null>(null);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,14 +18,6 @@ export const Hero = () => {
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
     return () => clearTimeout(timer);
-  }, []);
-
-  // Add testimonial rotation effect
-  useEffect(() => {
-    const testimonialTimer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev === 0 ? 1 : 0));
-    }, 5000);
-    return () => clearInterval(testimonialTimer);
   }, []);
 
   const formatTime = (seconds: number) => {
@@ -115,63 +104,6 @@ export const Hero = () => {
                   <p className="text-sm text-gray-600 mt-1">{benefit.description}</p>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Right Side Content */}
-          <div className="w-full lg:w-1/2 space-y-6">
-            <div className="bg-white rounded-xl shadow-xl p-6 border border-gray-100">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900">Your Journey to Financial Freedom</h3>
-                <Progress value={progress} className="h-2" />
-                <div className="grid grid-cols-3 gap-4">
-                  {[
-                    {
-                      title: "Get Free Guide",
-                      description: "Expert tips to reduce your loan burden",
-                      icon: <BookOpen className="h-6 w-6 text-primary" />,
-                    },
-                    {
-                      title: "Calculate Savings",
-                      description: "Find your ideal repayment plan",
-                      icon: <Calculator className="h-6 w-6 text-primary" />,
-                    },
-                    {
-                      title: "Start Saving",
-                      description: "Begin your debt-free journey",
-                      icon: <PiggyBank className="h-6 w-6 text-primary" />,
-                    },
-                  ].map((step, index) => (
-                    <button
-                      key={index}
-                      className={`text-center p-4 rounded-lg transition-all duration-300 ${
-                        activeStep === index 
-                          ? 'bg-primary/10 shadow-md' 
-                          : 'hover:bg-gray-50 hover:shadow-sm'
-                      }`}
-                      onClick={() => setActiveStep(activeStep === index ? null : index)}
-                    >
-                      {step.icon}
-                      <div className="text-primary font-semibold mt-2">{step.title}</div>
-                      {activeStep === index && (
-                        <div className="text-sm text-gray-600 mt-2 animate-fade-in">
-                          {step.description}
-                        </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            {/* Enhanced Testimonial Section */}
-            <TestimonialSection currentTestimonial={currentTestimonial} />
-
-            {/* Trust Badges */}
-            <div className="flex justify-center items-center gap-6 bg-white/50 rounded-lg p-4">
-              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
-              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
-              <img src="/placeholder.svg" alt="Partner Logo" className="h-10 opacity-50 hover:opacity-100 transition-opacity" />
             </div>
           </div>
         </div>
