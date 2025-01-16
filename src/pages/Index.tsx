@@ -6,6 +6,7 @@ import { FafsaGuide } from "@/components/FafsaGuide";
 import { AffiliateLoanSection } from "@/components/AffiliateLoanSection";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { HowItWorks } from "@/components/HowItWorks";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
+        <HowItWorks />
         <WhyNeedGuide />
         <AffiliateLoanSection />
         <FafsaGuide />
