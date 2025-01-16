@@ -1,6 +1,5 @@
 import { GraduationCap, Search, Star, CheckCircle2 } from "lucide-react";
 import { FeaturePill } from "./FeaturePill";
-import CurvedConnector from "./CurvedConnector";
 
 export const FeaturesList = () => {
   return (
@@ -9,28 +8,26 @@ export const FeaturesList = () => {
         <FeaturePill
           icon={GraduationCap}
           text="Navigate FAFSA"
-          className="bg-primary/10 text-primary"
+          className="bg-[#8B5CF6]/10 text-[#8B5CF6]"
         />
         <FeaturePill
           icon={Search}
           text="Find Best Loans"
-          className="bg-secondary/10 text-secondary"
+          className="bg-[#D946EF]/10 text-[#D946EF]"
         />
         <FeaturePill
           icon={Star}
           text="Maximize Aid"
-          className="bg-warning/10 text-warning"
+          className="bg-[#F97316]/10 text-[#F97316]"
         />
         <FeaturePill
           icon={CheckCircle2}
           text="Simplify Repayment"
-          className="bg-primary/10 text-primary"
+          className="bg-[#0EA5E9]/10 text-[#0EA5E9]"
         />
       </div>
       
-      <CurvedConnector />
-      
-      <span className="text-lg md:text-xl text-gray-700 font-medium relative">
+      <span className="text-lg md:text-xl text-[#9b87f5] font-medium mt-8">
         All in One Place
       </span>
     </div>
