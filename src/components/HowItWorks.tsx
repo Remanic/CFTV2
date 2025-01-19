@@ -125,7 +125,7 @@ export const HowItWorks = () => {
             <div
               key={step.number}
               className={cn(
-                "group relative p-6 rounded-xl transition-all duration-300",
+                "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
                 "hover:shadow-lg hover:scale-105",
                 "bg-white border border-gray-100",
                 activeStep === index ? "ring-2 ring-blue-500" : ""
@@ -143,7 +143,7 @@ export const HowItWorks = () => {
                 {step.title}
               </h3>
               
-              <ul className="space-y-2 text-gray-600 mb-6">
+              <ul className="space-y-2 text-gray-600 mb-6 flex-grow">
                 {step.content.map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <ChevronRight className="w-4 h-4 mt-1 text-blue-500" />
