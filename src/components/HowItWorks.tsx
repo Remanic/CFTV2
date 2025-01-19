@@ -105,13 +105,13 @@ export const HowItWorks = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+    <section className="py-20 bg-gradient-to-b from-white to-[#E6F3FF]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+          <h2 className="text-4xl font-bold mb-4 text-[#1E3A8A]">
             How CashFlowTime Works
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-[#475569]">
             A simple 6-step guide to tackle student loans with confidence
           </p>
         </div>
@@ -124,26 +124,26 @@ export const HowItWorks = () => {
               className={cn(
                 "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
                 "hover:shadow-lg",
-                "bg-white border border-gray-100",
-                activeStep === index ? "ring-2 ring-blue-500" : ""
+                "bg-white border border-[#E2E8F0]",
+                activeStep === index ? "ring-2 ring-[#3B82F6]" : ""
               )}
               onMouseEnter={() => setActiveStep(index)}
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 font-bold">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#DBEAFE] text-[#3B82F6] font-bold">
                   {step.number}
                 </div>
-                <step.icon className="w-6 h-6 text-blue-600" />
+                <step.icon className="w-6 h-6 text-[#3B82F6]" />
               </div>
               
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-xl font-semibold text-[#1E3A8A] mb-4">
                 {step.title}
               </h3>
               
-              <ul className="space-y-2 text-gray-600 mb-6 flex-grow">
+              <ul className="space-y-2 text-[#475569] mb-6 flex-grow">
                 {step.content.map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <ChevronRight className="w-4 h-4 mt-1 text-blue-500" />
+                    <ChevronRight className="w-4 h-4 mt-1 text-[#3B82F6]" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -151,8 +151,7 @@ export const HowItWorks = () => {
               
               <Button
                 asChild
-                className="w-full mt-auto group-hover:bg-blue-600"
-                variant="secondary"
+                className="w-full mt-auto bg-[#3B82F6] hover:bg-[#2563EB] text-white transition-colors"
               >
                 <a href={step.cta.link}>{step.cta.text}</a>
               </Button>
@@ -162,34 +161,37 @@ export const HowItWorks = () => {
 
         {/* Mobile Accordion Layout */}
         <div className="lg:hidden">
-          <Accordion type="single" collapsible>
+          <Accordion type="single" collapsible className="space-y-4">
             {steps.map((step, index) => (
-              <AccordionItem key={step.number} value={`step-${index}`}>
-                <AccordionTrigger className="hover:no-underline">
+              <AccordionItem 
+                key={step.number} 
+                value={`step-${index}`}
+                className="border border-[#E2E8F0] rounded-lg bg-white"
+              >
+                <AccordionTrigger className="hover:no-underline px-4">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold text-sm">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#DBEAFE] text-[#3B82F6] font-bold text-sm">
                       {step.number}
                     </div>
                     <div className="flex items-center gap-2">
-                      <step.icon className="w-5 h-5 text-blue-600" />
-                      <span className="text-left font-semibold">{step.title}</span>
+                      <step.icon className="w-5 h-5 text-[#3B82F6]" />
+                      <span className="text-left font-semibold text-[#1E3A8A]">{step.title}</span>
                     </div>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="px-4 pb-4">
                   <div className="pl-14">
-                    <ul className="space-y-2 text-gray-600 mb-4">
+                    <ul className="space-y-2 text-[#475569] mb-4">
                       {step.content.map((item, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <ChevronRight className="w-4 h-4 mt-1 text-blue-500" />
+                          <ChevronRight className="w-4 h-4 mt-1 text-[#3B82F6]" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                     <Button
                       asChild
-                      className="w-full mt-2"
-                      variant="secondary"
+                      className="w-full mt-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white transition-colors"
                     >
                       <a href={step.cta.link}>{step.cta.text}</a>
                     </Button>
