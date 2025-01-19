@@ -16,7 +16,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 
 const steps = [
   {
@@ -104,7 +103,6 @@ const steps = [
 
 export const HowItWorks = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const progress = ((activeStep + 1) / steps.length) * 100;
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-blue-50">
@@ -116,7 +114,6 @@ export const HowItWorks = () => {
           <p className="text-xl text-gray-600">
             A simple 6-step guide to tackle student loans with confidence
           </p>
-          <Progress value={progress} className="w-full max-w-md mx-auto mt-6" />
         </div>
 
         {/* Desktop Grid Layout */}
@@ -126,7 +123,7 @@ export const HowItWorks = () => {
               key={step.number}
               className={cn(
                 "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
-                "hover:shadow-lg hover:scale-105",
+                "hover:shadow-lg",
                 "bg-white border border-gray-100",
                 activeStep === index ? "ring-2 ring-blue-500" : ""
               )}
