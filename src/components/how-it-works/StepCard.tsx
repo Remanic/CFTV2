@@ -1,0 +1,63 @@
+import { LucideIcon, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+interface StepCardProps {
+  number: string;
+  title: string;
+  Icon: LucideIcon;
+  content: string[];
+  cta: {
+    text: string;
+    link: string;
+  };
+  isActive?: boolean;
+  onMouseEnter?: () => void;
+}
+
+export const StepCard = ({
+  number,
+  title,
+  Icon,
+  content,
+  cta,
+  isActive,
+  onMouseEnter,
+}: StepCardProps) => (
+  <div
+    className={cn(
+      "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
+      "hover:shadow-lg",
+      "bg-white border border-[#E2E8F0]",
+      isActive ? "ring-2 ring-[#3B82F6]" : ""
+    )}
+    onMouseEnter={onMouseEnter}
+  >
+    <div className="flex items-center gap-4 mb-4">
+      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#DBEAFE] text-[#3B82F6] font-bold">
+        {number}
+      </div>
+      <Icon className="w-6 h-6 text-[#3B82F6]" />
+    </div>
+    
+    <h3 className="text-xl font-semibold text-[#1E3A8A] mb-4">
+      {title}
+    </h3>
+    
+    <ul className="space-y-2 text-[#475569] mb-6 flex-grow">
+      {content.map((item, i) => (
+        <li key={i} className="flex items-start gap-2">
+          <ChevronRight className="w-4 h-4 mt-1 text-[#3B82F6]" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+    
+    <Button
+      asChild
+      className="w-full mt-auto bg-[#3B82F6] hover:bg-[#2563EB] text-white transition-colors"
+    >
+      <a href={cta.link}>{cta.text}</a>
+    </Button>
+  </div>
+);
