@@ -16,6 +16,8 @@ import FafsaEstimator from "./pages/FafsaEstimator";
 import FafsaDeadline2024 from "./pages/FafsaDeadline2024";
 import FafsaDeadline2025 from "./pages/FafsaDeadline2025";
 import StateDeadlineFinder from "./pages/StateDeadlineFinder";
+import PublicServiceLoanForgiveness from "./pages/PublicServiceLoanForgiveness";
+import TeacherLoanForgiveness from "./pages/TeacherLoanForgiveness";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +41,8 @@ const App = () => (
           <Route path="/fafsa-deadline-2024-2025" element={<FafsaDeadline2024 />} />
           <Route path="/fafsa-deadline-2025-2026" element={<FafsaDeadline2025 />} />
           <Route path="/state-deadline-finder" element={<StateDeadlineFinder />} />
+          <Route path="/public-service-loan-forgiveness" element={<PublicServiceLoanForgiveness />} />
+          <Route path="/teacher-loan-forgiveness" element={<TeacherLoanForgiveness />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,6 @@
 import { GuideCard } from "./fafsa-guide/GuideCard";
 import { GuideHeader } from "./fafsa-guide/GuideHeader";
-import { BookOpen, ClipboardCheck, Calculator, Calendar, Search } from "lucide-react";
+import { BookOpen, ClipboardCheck, Calculator, Calendar, Search, Award } from "lucide-react";
 
 export const FafsaGuide = () => {
   const guides = [
@@ -51,6 +51,22 @@ export const FafsaGuide = () => {
       color: "bg-pink-50 hover:bg-pink-100 border-pink-200",
       textColor: "text-pink-700",
       path: "/fafsa-aid-estimator"
+    },
+    {
+      title: "Public Service Loan Forgiveness (PSLF)",
+      description: "Learn about PSLF eligibility and application process",
+      icon: Award,
+      color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
+      textColor: "text-indigo-700",
+      path: "/public-service-loan-forgiveness"
+    },
+    {
+      title: "Teacher Loan Forgiveness Program",
+      description: "Guide to loan forgiveness for qualified teachers",
+      icon: Award,
+      color: "bg-teal-50 hover:bg-teal-100 border-teal-200",
+      textColor: "text-teal-700",
+      path: "/teacher-loan-forgiveness"
     }
   ];
 
