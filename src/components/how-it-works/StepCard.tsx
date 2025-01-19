@@ -29,25 +29,25 @@ export const StepCard = ({
       "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
       "hover:shadow-lg",
       "bg-white border border-[#E2E8F0]",
-      isActive ? "ring-2 ring-[#3B82F6]" : ""
+      isActive ? "ring-2 ring-[#8B5CF6]" : ""
     )}
     onMouseEnter={onMouseEnter}
   >
     <div className="flex items-center gap-4 mb-4">
-      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#DBEAFE] text-[#3B82F6] font-bold">
+      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#F1F0FB] text-[#8B5CF6] font-bold">
         {number}
       </div>
-      <Icon className="w-6 h-6 text-[#3B82F6]" />
+      <Icon className="w-6 h-6 text-[#8B5CF6]" />
     </div>
     
-    <h3 className="text-xl font-semibold text-[#1E3A8A] mb-4">
+    <h3 className="text-xl font-semibold text-[#2D3748] mb-4">
       {title}
     </h3>
     
-    <ul className="space-y-2 text-[#475569] mb-6 flex-grow">
+    <ul className="space-y-2 text-[#4A5568] mb-6 flex-grow">
       {content.map((item, i) => (
         <li key={i} className="flex items-start gap-2">
-          <ChevronRight className="w-4 h-4 mt-1 text-[#3B82F6]" />
+          <ChevronRight className="w-4 h-4 mt-1 text-[#8B5CF6]" />
           <span>{item}</span>
         </li>
       ))}
@@ -55,7 +55,7 @@ export const StepCard = ({
     
     <Button
       asChild
-      className="w-full mt-auto bg-[#3B82F6] hover:bg-[#2563EB] text-white transition-colors"
+      className="w-full mt-auto bg-[#8B5CF6] hover:bg-[#7C3AED] text-white transition-colors"
     >
       <a href={cta.link}>{cta.text}</a>
     </Button>

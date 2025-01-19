@@ -8,13 +8,13 @@ export const HowItWorks = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-[#E6F3FF]">
+    <section className="py-20 bg-gradient-to-b from-white to-[#F1F0FB]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-[#1E3A8A]">
+          <h2 className="text-4xl font-bold mb-4 text-[#2D3748]">
             How CashFlowTime Works
           </h2>
-          <p className="text-xl text-[#475569]">
+          <p className="text-xl text-[#4A5568]">
             A simple 6-step guide to tackle student loans with confidence
           </p>
         </div>
