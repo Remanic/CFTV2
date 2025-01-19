@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Accordion } from "@/components/ui/accordion";
-import { StepCard } from "./how-it-works/StepCard";
-import { MobileStepCard } from "./how-it-works/MobileStepCard";
+import { SectionHeader } from "./how-it-works/SectionHeader";
+import { DesktopStepsGrid } from "./how-it-works/DesktopStepsGrid";
+import { MobileStepsAccordion } from "./how-it-works/MobileStepsAccordion";
 import { steps } from "./how-it-works/steps";
 
 export const HowItWorks = () => {
@@ -10,46 +10,16 @@ export const HowItWorks = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-white to-[#F1F0FB]">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-[#2D3748]">
-            How CashFlowTime Works
-          </h2>
-          <p className="text-xl text-[#4A5568]">
-            A simple 6-step guide to tackle student loans with confidence
-          </p>
-        </div>
-
-        {/* Desktop Grid Layout */}
-        <div className="hidden lg:grid grid-cols-3 gap-6 max-w-7xl mx-auto mb-12">
-          {steps.map((step, index) => (
-            <StepCard
-              key={step.number}
-              number={step.number}
-              title={step.title}
-              Icon={step.icon}
-              content={step.content}
-              cta={step.cta}
-              isActive={activeStep === index}
-              onMouseEnter={() => setActiveStep(index)}
-            />
-          ))}
-        </div>
-
-        {/* Mobile Accordion Layout */}
-        <div className="lg:hidden">
-          <Accordion type="single" collapsible className="space-y-4">
-            {steps.map((step) => (
-              <MobileStepCard
-                key={step.number}
-                number={step.number}
-                title={step.title}
-                Icon={step.icon}
-                content={step.content}
-                cta={step.cta}
-              />
-            ))}
-          </Accordion>
-        </div>
+        <SectionHeader 
+          title="How CashFlowTime Works"
+          subtitle="A simple 6-step guide to tackle student loans with confidence"
+        />
+        <DesktopStepsGrid 
+          steps={steps}
+          activeStep={activeStep}
+          onStepHover={setActiveStep}
+        />
+        <MobileStepsAccordion steps={steps} />
       </div>
     </section>
   );

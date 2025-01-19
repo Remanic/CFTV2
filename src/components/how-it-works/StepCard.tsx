@@ -29,7 +29,7 @@ export const StepCard = ({
       "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
       "hover:shadow-lg",
       "bg-white border border-[#E2E8F0]",
-      isActive ? "ring-2 ring-[#8B5CF6]" : ""
+      isActive ? "ring-2 ring-[#8B5CF6]" : "border-[#E2E8F0]"
     )}
     onMouseEnter={onMouseEnter}
   >
