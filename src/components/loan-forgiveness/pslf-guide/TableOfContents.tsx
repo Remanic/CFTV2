@@ -4,9 +4,9 @@ import { ChevronRight } from "lucide-react";
 
 const sections = [
   { id: "what-is-pslf", title: "1. What is PSLF?" },
-  { id: "eligibility", title: "2. Eligibility Requirements" },
-  { id: "application-process", title: "3. Application Process" },
-  { id: "payment-tracking", title: "4. Payment Tracking" },
+  { id: "eligibility", title: "2. Steps to Qualify" },
+  { id: "payments", title: "3. Qualifying Payments" },
+  { id: "tips", title: "4. Success Tips" },
   { id: "faqs", title: "5. FAQs" },
 ];
 
