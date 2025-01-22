@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Progress } from "@/components/ui/progress";
-import { Clock, BookOpen, ChevronUp } from "lucide-react";
+import { Clock, BookOpen, ChevronUp, CheckCircle, AlertCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents } from "@/components/fafsa-guide/TableOfContents";
 import { FAQSection } from "@/components/fafsa-deadline/shared/FAQSection";
@@ -54,6 +53,14 @@ const LatestLoanForgiveness = () => {
     {
       question: "Does employment type affect PSLF eligibility?",
       answer: "Yes, only roles in public service or nonprofit organizations qualify."
+    },
+    {
+      question: "Are unpaid interest and fees forgiven under IDR plans?",
+      answer: "Yes, any remaining balance, including interest, is forgiven at the end of the repayment term."
+    },
+    {
+      question: "Can I apply for multiple programs simultaneously?",
+      answer: "Yes, provided you meet the eligibility requirements for each program."
     }
   ];
 
@@ -65,7 +72,12 @@ const LatestLoanForgiveness = () => {
       </Helmet>
 
       <div className="sticky top-16 left-0 right-0 z-50 bg-white dark:bg-gray-900">
-        <Progress value={progress} className="h-1 rounded-none bg-gray-200 dark:bg-gray-700" />
+        <div className="h-1 bg-gray-200 dark:bg-gray-700">
+          <div
+            className="h-1 bg-blue-600 transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -110,19 +122,29 @@ const LatestLoanForgiveness = () => {
 
           <section id="latest-programs" className="scroll-mt-20 mt-12">
             <h2 className="text-2xl font-bold mb-4">Latest Loan Forgiveness Programs (2024-2025)</h2>
-            <div className="space-y-6">
+            <div className="grid gap-6">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold mb-3">1. Public Service Loan Forgiveness (PSLF)</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  This program offers forgiveness of the remaining balance on Direct Loans after 120 qualifying payments under an eligible repayment plan while working full-time for a qualifying employer.
-                </p>
+                <div className="flex items-start gap-4">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1" />
+                  <div>
+                    <h3 className="text-xl font-semibold mb-3">Public Service Loan Forgiveness (PSLF)</h3>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      This program offers forgiveness of the remaining balance on Direct Loans after 120 qualifying payments under an eligible repayment plan while working full-time for a qualifying employer.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold mb-3">2. Income-Driven Repayment (IDR) Forgiveness</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  After 20 or 25 years of qualifying payments, depending on the plan, any remaining loan balance is forgiven.
-                </p>
+                <div className="flex items-start gap-4">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1" />
+                  <div>
+                    <h3 className="text-xl font-semibold mb-3">Income-Driven Repayment (IDR) Forgiveness</h3>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      After 20 or 25 years of qualifying payments, depending on the plan, any remaining loan balance is forgiven.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -131,12 +153,17 @@ const LatestLoanForgiveness = () => {
             <h2 className="text-2xl font-bold mb-4">Steps to Apply for Loan Forgiveness</h2>
             <div className="space-y-4">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold mb-3">1. Determine Eligibility</h3>
-                <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300">
-                  <li>Research the requirements for each program</li>
-                  <li>Verify your employment status and loan type</li>
-                  <li>Use official tools to confirm eligibility</li>
-                </ul>
+                <div className="flex items-start gap-4">
+                  <ArrowRight className="h-6 w-6 text-blue-500 mt-1" />
+                  <div>
+                    <h3 className="text-xl font-semibold mb-3">1. Determine Eligibility</h3>
+                    <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300">
+                      <li>Research the requirements for each program</li>
+                      <li>Verify your employment status and loan type</li>
+                      <li>Use official tools to confirm eligibility</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -144,11 +171,14 @@ const LatestLoanForgiveness = () => {
           <section id="pitfalls" className="scroll-mt-20 mt-12">
             <h2 className="text-2xl font-bold mb-4">Common Pitfalls to Avoid</h2>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-              <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2">
-                <li>Missing Deadlines: Always stay aware of application and recertification deadlines</li>
-                <li>Incomplete Documentation: Review forms thoroughly to prevent delays</li>
-                <li>Unqualified Employment or Loans: Confirm eligibility before applying</li>
-              </ul>
+              <div className="flex items-start gap-4">
+                <AlertCircle className="h-6 w-6 text-red-500 mt-1" />
+                <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2">
+                  <li>Missing Deadlines: Always stay aware of application and recertification deadlines</li>
+                  <li>Incomplete Documentation: Review forms thoroughly to prevent delays</li>
+                  <li>Unqualified Employment or Loans: Confirm eligibility before applying</li>
+                </ul>
+              </div>
             </div>
           </section>
 
