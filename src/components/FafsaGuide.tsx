@@ -1,6 +1,6 @@
 import { GuideCard } from "./fafsa-guide/GuideCard";
 import { GuideHeader } from "./fafsa-guide/GuideHeader";
-import { BookOpen, ClipboardCheck, Calculator, Calendar, Search, Award, GraduationCap, School } from "lucide-react";
+import { BookOpen, ClipboardCheck, Calculator, Calendar, Search } from "lucide-react";
 
 export const FafsaGuide = () => {
   const guides = [
@@ -51,30 +51,6 @@ export const FafsaGuide = () => {
       color: "bg-pink-50 hover:bg-pink-100 border-pink-200",
       textColor: "text-pink-700",
       path: "/fafsa-aid-estimator"
-    },
-    {
-      title: "Public Service Loan Forgiveness (PSLF)",
-      description: "Complete guide to PSLF eligibility, requirements, and application process",
-      icon: GraduationCap,
-      color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
-      textColor: "text-rose-700",
-      path: "/public-service-loan-forgiveness"
-    },
-    {
-      title: "Teacher Loan Forgiveness Program",
-      description: "Comprehensive guide for teachers seeking loan forgiveness",
-      icon: School,
-      color: "bg-cyan-50 hover:bg-cyan-100 border-cyan-200",
-      textColor: "text-cyan-700",
-      path: "/teacher-loan-forgiveness"
-    },
-    {
-      title: "Comprehensive Guide: Public Service Loan Forgiveness (PSLF)",
-      description: "In-depth analysis of PSLF program benefits and requirements",
-      icon: Award,
-      color: "bg-emerald-50 hover:bg-emerald-100 border-emerald-200",
-      textColor: "text-emerald-700",
-      path: "/pslf-comprehensive-guide"
     }
   ];
 
@@ -82,8 +58,8 @@ export const FafsaGuide = () => {
     <section className="py-20 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4">
         <GuideHeader 
-          title="Master Your FAFSA Application & Loan Forgiveness"
-          description="Join millions of students who use FAFSA and explore loan forgiveness opportunities. Let us guide you through every step of the process."
+          title="Master Your FAFSA Application"
+          description="Join millions of students who use FAFSA annually. Let us guide you through every step of the process."
         />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
