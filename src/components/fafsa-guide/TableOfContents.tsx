@@ -2,7 +2,16 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 
-const sections = [
+interface Section {
+  id: string;
+  title: string;
+}
+
+interface TableOfContentsProps {
+  sections?: Section[];
+}
+
+const defaultSections = [
   { id: "what-is-fafsa", title: "1. What Is the FAFSA?" },
   { id: "how-to-fill", title: "2. How to Fill Out the FAFSA" },
   { id: "after-submit", title: "3. After You Submit" },
@@ -10,7 +19,7 @@ const sections = [
   { id: "faqs", title: "5. FAQs" },
 ];
 
-export const TableOfContents = () => {
+export const TableOfContents = ({ sections = defaultSections }: TableOfContentsProps) => {
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
@@ -33,7 +42,7 @@ export const TableOfContents = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sections]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
