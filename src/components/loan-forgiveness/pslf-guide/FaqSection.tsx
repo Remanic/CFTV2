@@ -3,35 +3,43 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const faqs = [
   {
     question: "Is PSLF taxable?",
-    answer: "No, loan forgiveness under PSLF is not considered taxable income."
+    answer: "No, loan forgiveness under PSLF is not taxable income."
   },
   {
     question: "Does my job title matter?",
-    answer: "No, eligibility depends on your employer, not your specific job title."
+    answer: "No, eligibility depends on your employer, not your job title."
   },
   {
     question: "How do I apply?",
-    answer: "Use the PSLF Help Tool on StudentAid.gov to complete and submit the form. Accuracy is crucial."
+    answer: "Use the PSLF Help Tool to complete and submit the form. Accuracy is crucial."
   },
   {
     question: "Can part-time work qualify?",
-    answer: "Yes, if you work multiple part-time jobs for qualifying employers totaling at least 30 hours per week."
+    answer: "Yes, if you work part-time for multiple qualifying employers, totaling at least 30 hours weekly."
   },
   {
     question: "Do deferred payments count?",
-    answer: "No, only payments made during active repayment count toward PSLF."
+    answer: "No, only payments made during active repayment count."
+  },
+  {
+    question: "What if I overpay?",
+    answer: "Overpayments won't count as multiple payments but will reduce your balance."
   },
   {
     question: "What if I switch jobs?",
-    answer: "Ensure your new employer qualifies and submit a new PSLF Form. Previous qualifying payments still count."
+    answer: "Ensure your new employer qualifies and continue submitting forms promptly."
   },
   {
-    question: "What happens if my employer's status changes?",
+    question: "What happens if my employer's nonprofit status changes?",
     answer: "You must work for a qualifying employer at the time of each payment and during your application."
   },
   {
     question: "Can past payments count retroactively?",
     answer: "Yes, under certain conditions. Check for temporary waivers on StudentAid.gov."
+  },
+  {
+    question: "What if my servicer changes?",
+    answer: "Retain all communications and payment records to ensure a seamless transition."
   }
 ];
 
@@ -41,11 +49,11 @@ export const FaqSection = () => {
       <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
       <Accordion type="single" collapsible className="w-full space-y-2">
         {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`faq-${index}`} className="bg-white border rounded-lg">
+          <AccordionItem key={index} value={`faq-${index}`} className="bg-white dark:bg-gray-800 border rounded-lg">
             <AccordionTrigger className="px-4 hover:no-underline">
               <span className="text-left font-medium">{faq.question}</span>
             </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4 text-gray-600">
+            <AccordionContent className="px-4 pb-4 text-gray-600 dark:text-gray-300">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

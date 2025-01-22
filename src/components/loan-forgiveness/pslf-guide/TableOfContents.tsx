@@ -5,9 +5,10 @@ import { ChevronRight } from "lucide-react";
 const sections = [
   { id: "what-is-pslf", title: "1. What is PSLF?" },
   { id: "eligibility", title: "2. Steps to Qualify" },
-  { id: "payments", title: "3. Qualifying Payments" },
+  { id: "common-pitfalls", title: "3. Common Pitfalls" },
   { id: "tips", title: "4. Success Tips" },
   { id: "faqs", title: "5. FAQs" },
+  { id: "final-steps", title: "6. Final Steps" },
 ];
 
 export const TableOfContents = () => {
@@ -50,10 +51,10 @@ export const TableOfContents = () => {
           onClick={() => scrollToSection(id)}
           className={cn(
             "flex items-center gap-1 px-3 py-1.5 rounded-full text-sm transition-colors",
-            "hover:bg-gray-100",
+            "hover:bg-gray-100 dark:hover:bg-gray-700",
             activeSection === id
-              ? "bg-blue-50 text-blue-600 font-medium"
-              : "text-gray-600"
+              ? "bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-200 font-medium"
+              : "text-gray-600 dark:text-gray-300"
           )}
         >
           <ChevronRight className={cn(
