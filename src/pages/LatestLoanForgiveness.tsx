@@ -3,7 +3,7 @@ import { Progress } from "@/components/ui/progress";
 import { Clock, BookOpen, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TableOfContents } from "@/components/fafsa-guide/TableOfContents";
-import { FaqSection } from "@/components/fafsa-deadline/shared/FAQSection";
+import { FAQSection } from "@/components/fafsa-deadline/shared/FAQSection";
 import { Helmet } from "react-helmet";
 
 const LatestLoanForgiveness = () => {
@@ -154,7 +154,7 @@ const LatestLoanForgiveness = () => {
 
           <section id="faqs" className="scroll-mt-20 mt-12">
             <h2 className="text-2xl font-bold mb-4">FAQs About Loan Forgiveness Programs</h2>
-            <FaqSection title="Frequently Asked Questions" faqs={faqs} />
+            <FAQSection title="Frequently Asked Questions" faqs={faqs} />
           </section>
 
           <section id="tips" className="scroll-mt-20 mt-12">
