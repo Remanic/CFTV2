@@ -1,6 +1,6 @@
 import { GuideCard } from "./fafsa-guide/GuideCard";
 import { GuideHeader } from "./fafsa-guide/GuideHeader";
-import { GraduationCap, School, Award, Check, Info } from "lucide-react";
+import { GraduationCap, School, Award, CheckCircle2, Info } from "lucide-react";
 
 export const LoanForgivenessPrograms = () => {
   const guides = [
@@ -29,16 +29,16 @@ export const LoanForgivenessPrograms = () => {
       path: "/pslf-comprehensive-guide"
     },
     {
-      title: "Check Your Eligibility",
-      description: "Find out if you qualify for student loan forgiveness programs",
-      icon: Check,
+      title: "Free Eligibility Check Tool",
+      description: "Find out instantly if you qualify for student loan forgiveness programs with our interactive tool",
+      icon: CheckCircle2,
       color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
       textColor: "text-indigo-700",
       path: "/loan-forgiveness-eligibility"
     },
     {
-      title: "Latest Loan Forgiveness Programs",
-      description: "Stay updated with the newest student loan forgiveness opportunities",
+      title: "Latest Loan Forgiveness Updates",
+      description: "Stay informed with the newest student loan forgiveness opportunities and program changes",
       icon: Info,
       color: "bg-violet-50 hover:bg-violet-100 border-violet-200",
       textColor: "text-violet-700",
@@ -51,7 +51,7 @@ export const LoanForgivenessPrograms = () => {
       <div className="container mx-auto px-4">
         <GuideHeader 
           title="Student Loan Forgiveness Programs"
-          description="Explore various loan forgiveness options and find out if you qualify for federal student loan forgiveness programs."
+          description="Discover your path to financial freedom. Check your eligibility for federal student loan forgiveness programs and get personalized guidance on your journey to debt relief."
         />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">

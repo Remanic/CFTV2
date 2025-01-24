@@ -20,6 +20,7 @@ import PublicServiceLoanForgiveness from "./pages/PublicServiceLoanForgiveness";
 import TeacherLoanForgiveness from "./pages/TeacherLoanForgiveness";
 import PSLFComprehensiveGuide from "./pages/PSLFComprehensiveGuide";
 import LatestLoanForgiveness from "./pages/LatestLoanForgiveness";
+import LoanForgivenessEligibility from "./pages/LoanForgivenessEligibility";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/teacher-loan-forgiveness" element={<TeacherLoanForgiveness />} />
           <Route path="/pslf-comprehensive-guide" element={<PSLFComprehensiveGuide />} />
           <Route path="/latest-loan-forgiveness" element={<LatestLoanForgiveness />} />
+          <Route path="/loan-forgiveness-eligibility" element={<LoanForgivenessEligibility />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
