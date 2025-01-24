@@ -1,4 +1,5 @@
-import { ArrowRight, Shield, GraduationCap, DollarSign, Search, Building } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FeaturesList } from "./hero/FeaturesList";
 
@@ -7,7 +8,7 @@ export const Hero = () => {
     <section className="relative py-8 md:py-12 lg:py-16 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-repeat opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('placeholder.svg')] bg-repeat opacity-20"></div>
       </div>
 
       <div className="container mx-auto px-4 max-w-6xl relative">
@@ -40,28 +41,28 @@ export const Hero = () => {
           </div>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {[
               {
-                title: "FAFSA Aid Estimator",
-                description: "Know how much aid you qualify for",
-                icon: <GraduationCap className="h-6 w-6 text-primary" />,
+                icon: <Shield className="h-6 w-6 text-primary" />,
+                title: "Expert Guidance",
+                description: "Step-by-step help with FAFSA and loan applications"
               },
               {
-                title: "Repayment Calculator",
-                description: "Compare options and pick the best plan",
-                icon: <DollarSign className="h-6 w-6 text-primary" />,
+                icon: <Shield className="h-6 w-6 text-primary" />,
+                title: "Smart Comparison",
+                description: "Compare lenders and find your best rate"
               },
               {
-                title: "Loan Forgiveness Insights",
-                description: "Find out if you're eligible",
-                icon: <Search className="h-6 w-6 text-primary" />,
+                icon: <Shield className="h-6 w-6 text-primary" />,
+                title: "Aid Optimization",
+                description: "Maximize your financial aid opportunities"
               },
               {
-                title: "Private Lender Comparison",
-                description: "Rates, pros & cons, all in one place",
-                icon: <Building className="h-6 w-6 text-primary" />,
-              },
+                icon: <Shield className="h-6 w-6 text-primary" />,
+                title: "Easy Management",
+                description: "Track and manage all your loans in one place"
+              }
             ].map((benefit, index) => (
               <div 
                 key={index} 
@@ -70,8 +71,8 @@ export const Hero = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
                   {benefit.icon}
                 </div>
-                <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
-                <p className="text-sm text-gray-600 mt-1">{benefit.description}</p>
+                <h3 className="font-semibold text-gray-900 mb-2">{benefit.title}</h3>
+                <p className="text-gray-600 text-sm">{benefit.description}</p>
               </div>
             ))}
           </div>
