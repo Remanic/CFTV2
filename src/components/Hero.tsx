@@ -8,7 +8,7 @@ export const Hero = () => {
     <section className="relative py-8 md:py-12 lg:py-16 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-[url('placeholder.svg')] bg-repeat opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-repeat opacity-20"></div>
       </div>
 
       <div className="container mx-auto px-4 max-w-6xl relative">
