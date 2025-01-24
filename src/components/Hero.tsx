@@ -5,27 +5,27 @@ import { FeaturesList } from "./hero/FeaturesList";
 
 export const Hero = () => {
   return (
-    <section className="relative py-8 md:py-12 lg:py-16 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <section className="relative py-6 md:py-10 lg:py-14 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-repeat opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('placeholder.svg')] bg-repeat opacity-20"></div>
       </div>
 
       <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="space-y-4">
-            <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold leading-tight tracking-tight text-gray-900 mt-2 font-mono">
+            <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold leading-tight tracking-tight text-gray-900 mt-2 font-mono whitespace-nowrap">
               Your Complete Student Loan Solution
               <FeaturesList />
             </h1>
 
             {/* Emotional Hook with darker color */}
-            <p className="text-lg text-gray-800 italic font-mono">
+            <p className="text-lg text-gray-800 italic font-sans">
               Say goodbye to loan stress and confusion – start your journey to financial freedom today.
             </p>
 
             {/* Trust Badge */}
-            <div className="flex items-center justify-center gap-2 text-gray-600 font-mono">
+            <div className="flex items-center justify-center gap-2 text-gray-600 font-sans">
               <Shield className="h-5 w-5 text-primary" />
               <span className="font-medium">Trusted by over 10,000 students and parents</span>
             </div>
