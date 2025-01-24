@@ -1,31 +1,8 @@
-import { ArrowRight, Clock, Shield, GraduationCap, DollarSign, Search, Building } from "lucide-react";
+import { ArrowRight, Shield, GraduationCap, DollarSign, Search, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { useState, useEffect } from "react";
 import { FeaturesList } from "./hero/FeaturesList";
 
 export const Hero = () => {
-  const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(3600);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-  };
-
   return (
     <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Background Pattern */}
@@ -35,12 +12,6 @@ export const Hero = () => {
 
       <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          {/* Urgency Banner */}
-          <div className="bg-warning/10 rounded-full px-6 py-2 inline-flex items-center justify-center gap-2 text-warning font-semibold">
-            <Clock className="h-5 w-5" />
-            <span>Act Now: Free Premium Access Ends {formatTime(timeLeft)}</span>
-          </div>
-          
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-8">
               Your Complete Student Loan Solution
@@ -69,7 +40,7 @@ export const Hero = () => {
           </div>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             {[
               {
                 title: "FAFSA Aid Estimator",
