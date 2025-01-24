@@ -8,26 +8,26 @@ export const FeaturesList = () => {
         <FeaturePill
           icon={GraduationCap}
           text="Navigate FAFSA"
-          className="bg-[#8B5CF6]/10 text-[#8B5CF6] w-full sm:w-auto"
+          className="bg-[#8B5CF6]/10 text-[#8B5CF6] w-full sm:w-auto font-semibold"
         />
         <FeaturePill
           icon={Search}
           text="Find Best Loans"
-          className="bg-[#D946EF]/10 text-[#D946EF] w-full sm:w-auto"
+          className="bg-[#D946EF]/10 text-[#D946EF] w-full sm:w-auto font-semibold"
         />
         <FeaturePill
           icon={Star}
           text="Maximize Aid"
-          className="bg-[#F97316]/10 text-[#F97316] w-full sm:w-auto"
+          className="bg-[#F97316]/10 text-[#F97316] w-full sm:w-auto font-semibold"
         />
         <FeaturePill
           icon={CheckCircle2}
           text="Simplify Repayment"
-          className="bg-[#0EA5E9]/10 text-[#0EA5E9] w-full sm:w-auto"
+          className="bg-[#0EA5E9]/10 text-[#0EA5E9] w-full sm:w-auto font-semibold"
         />
       </div>
       
-      <span className="text-lg md:text-xl font-serif italic mt-8 text-[#9b87f5]">
+      <span className="text-lg md:text-xl font-serif italic mt-8 text-black">
         All in One Place
       </span>
     </div>

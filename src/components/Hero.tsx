@@ -12,14 +12,14 @@ export const Hero = () => {
 
       <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-8">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900 mt-2">
               Your Complete Student Loan Solution
               <FeaturesList />
             </h1>
 
-            {/* Emotional Hook */}
-            <p className="text-lg text-gray-600 italic">
+            {/* Emotional Hook with darker color */}
+            <p className="text-lg text-gray-800 italic">
               Say goodbye to loan stress and confusion – start your journey to financial freedom today.
             </p>
 
