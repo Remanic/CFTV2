@@ -21,6 +21,10 @@ import TeacherLoanForgiveness from "./pages/TeacherLoanForgiveness";
 import PSLFComprehensiveGuide from "./pages/PSLFComprehensiveGuide";
 import LatestLoanForgiveness from "./pages/LatestLoanForgiveness";
 import LoanForgivenessEligibility from "./pages/LoanForgivenessEligibility";
+import FederalLoansGuide from "./pages/FederalLoansGuide";
+import LoanComparisonGuide from "./pages/LoanComparisonGuide";
+import ParentPlusGuide from "./pages/ParentPlusGuide";
+import StudentLoanEssentials from "./pages/StudentLoanEssentials";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +53,10 @@ const App = () => (
           <Route path="/pslf-comprehensive-guide" element={<PSLFComprehensiveGuide />} />
           <Route path="/latest-loan-forgiveness" element={<LatestLoanForgiveness />} />
           <Route path="/loan-forgiveness-eligibility" element={<LoanForgivenessEligibility />} />
+          <Route path="/federal-loans-guide" element={<FederalLoansGuide />} />
+          <Route path="/loan-comparison-guide" element={<LoanComparisonGuide />} />
+          <Route path="/parent-plus-guide" element={<ParentPlusGuide />} />
+          <Route path="/student-loan-essentials" element={<StudentLoanEssentials />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
