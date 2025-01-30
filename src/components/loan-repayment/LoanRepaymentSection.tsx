@@ -14,6 +14,7 @@ export const LoanRepaymentSection = () => {
       icon: Calculator,
       color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
       textColor: "text-indigo-700",
+      path: "/loan-repayment-calculator",
       onClick: () => setShowCalculator(true)
     },
     {
@@ -22,6 +23,7 @@ export const LoanRepaymentSection = () => {
       icon: DollarSign,
       color: "bg-fuchsia-50 hover:bg-fuchsia-100 border-fuchsia-200",
       textColor: "text-fuchsia-700",
+      path: "/income-driven-repayment",
       onClick: () => setShowCalculator(true)
     },
     {
@@ -30,6 +32,7 @@ export const LoanRepaymentSection = () => {
       icon: Wallet,
       color: "bg-teal-50 hover:bg-teal-100 border-teal-200",
       textColor: "text-teal-700",
+      path: "/standard-repayment",
       onClick: () => setShowCalculator(true)
     },
     {
@@ -38,6 +41,7 @@ export const LoanRepaymentSection = () => {
       icon: TrendingUp,
       color: "bg-amber-50 hover:bg-amber-100 border-amber-200",
       textColor: "text-amber-700",
+      path: "/graduated-repayment",
       onClick: () => setShowCalculator(true)
     }
   ];
