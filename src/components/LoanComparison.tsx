@@ -59,7 +59,10 @@ export const LoanComparison = () => {
               <Card 
                 key={index}
                 className={`${guide.color} border-2 transition-colors duration-300 cursor-pointer`}
-                onClick={() => navigate(guide.path)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(guide.path);
+                }}
               >
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
