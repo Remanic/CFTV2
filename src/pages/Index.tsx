@@ -4,6 +4,7 @@ import { LoanComparison } from "@/components/LoanComparison";
 import { QuickUnderstand } from "@/components/QuickUnderstand";
 import { FafsaGuide } from "@/components/FafsaGuide";
 import { LoanForgivenessPrograms } from "@/components/LoanForgivenessPrograms";
+import { LoanRepaymentSection } from "@/components/loan-repayment/LoanRepaymentSection";
 import { AffiliateLoanSection } from "@/components/AffiliateLoanSection";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -34,6 +35,7 @@ const Index = () => {
         <AffiliateLoanSection />
         <FafsaGuide />
         <LoanForgivenessPrograms />
+        <LoanRepaymentSection />
         <LoanComparison />
         <QuickUnderstand />
       </main>
