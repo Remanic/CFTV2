@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { BookOpen, DollarSign, Users, FileText } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { GuideCard } from "./fafsa-guide/GuideCard";
+import { GuideHeader } from "./fafsa-guide/GuideHeader";
 
 export const LoanComparison = () => {
   const navigate = useNavigate();
@@ -8,76 +10,52 @@ export const LoanComparison = () => {
   const loanGuides = [
     {
       title: "Federal Loans 101",
+      description: "Comprehensive guide to federal student loans, types, and benefits",
       icon: BookOpen,
-      color: "bg-[#D6BCFA] hover:bg-[#C4A3F9] border-[#B491F8]",
-      textColor: "text-[#1A1F2C]",
-      path: "/federal-loans-guide",
-      description: "Comprehensive guide to federal student loans, types, and benefits"
+      color: "bg-violet-50 hover:bg-violet-100 border-violet-200",
+      textColor: "text-violet-700",
+      path: "/federal-loans-guide"
     },
     {
       title: "Federal vs Private Loans",
+      description: "Compare federal and private student loans to make informed decisions",
       icon: DollarSign,
-      color: "bg-[#FDE1D3] hover:bg-[#FBD0BC] border-[#F9C1A7]",
-      textColor: "text-[#1A1F2C]",
-      path: "/loan-comparison-guide",
-      description: "Compare federal and private student loans to make informed decisions"
+      color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
+      textColor: "text-rose-700",
+      path: "/loan-comparison-guide"
     },
     {
       title: "Parent PLUS Loans",
+      description: "Everything parents need to know about PLUS loans",
       icon: Users,
-      color: "bg-[#D3E4FD] hover:bg-[#BED7FB] border-[#ACCBF9]",
-      textColor: "text-[#1A1F2C]",
-      path: "/parent-plus-guide",
-      description: "Everything parents need to know about PLUS loans"
+      color: "bg-cyan-50 hover:bg-cyan-100 border-cyan-200",
+      textColor: "text-cyan-700",
+      path: "/parent-plus-guide"
     },
     {
       title: "Essential Student Information",
+      description: "Key information every student should know before borrowing",
       icon: FileText,
-      color: "bg-[#F1F0FB] hover:bg-[#E5E3F9] border-[#D9D6F7]",
-      textColor: "text-[#1A1F2C]",
-      path: "/student-loan-essentials",
-      description: "Key information every student should know before borrowing"
+      color: "bg-emerald-50 hover:bg-emerald-100 border-emerald-200",
+      textColor: "text-emerald-700",
+      path: "/student-loan-essentials"
     }
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Understanding Loan Types
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Navigate your student loan options with confidence using our comprehensive guides.
-          </p>
-        </div>
+        <GuideHeader 
+          title="Understanding Loan Types"
+          description="Navigate your student loan options with confidence using our comprehensive guides."
+        />
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {loanGuides.map((guide, index) => {
-            const Icon = guide.icon;
-            return (
-              <Card 
-                key={index}
-                className={`${guide.color} border-2 transition-colors duration-300 cursor-pointer`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(guide.path);
-                }}
-              >
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Icon className={`h-6 w-6 ${guide.textColor}`} />
-                    <h3 className={`text-xl font-semibold ${guide.textColor}`}>
-                      {guide.title}
-                    </h3>
-                  </div>
-                  <p className={`${guide.textColor} text-lg`}>
-                    {guide.description}
-                  </p>
-                </div>
-              </Card>
-            );
-          })}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {loanGuides.map((guide, index) => (
+            <div key={index} onClick={() => navigate(guide.path)} className="cursor-pointer">
+              <GuideCard {...guide} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
