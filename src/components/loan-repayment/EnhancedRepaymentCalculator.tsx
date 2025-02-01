@@ -11,8 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Calculator, DollarSign, PiggyBank, TrendingUp } from "lucide-react";
+import { Calculator, DollarSign, PiggyBank, TrendingUp, Info } from "lucide-react";
 
 interface LoanDetails {
   loanAmount: string;
@@ -117,7 +116,7 @@ export const EnhancedRepaymentCalculator = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
-                      <InfoCircledIcon className="h-4 w-4 text-gray-500" />
+                      <Info className="h-4 w-4 text-gray-500" />
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>Enter the total amount you need to repay</p>
@@ -146,7 +145,7 @@ export const EnhancedRepaymentCalculator = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
-                      <InfoCircledIcon className="h-4 w-4 text-gray-500" />
+                      <Info className="h-4 w-4 text-gray-500" />
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>Enter the annual interest rate</p>
@@ -172,7 +171,7 @@ export const EnhancedRepaymentCalculator = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
-                      <InfoCircledIcon className="h-4 w-4 text-gray-500" />
+                      <Info className="h-4 w-4 text-gray-500" />
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>Standard term is 120 months (10 years)</p>
