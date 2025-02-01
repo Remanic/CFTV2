@@ -8,12 +8,13 @@ export const LoanRepaymentSection = () => {
 
   const guides = [
     {
-      title: "Repayment Calculator",
-      description: "Find your optimal repayment strategy with our interactive calculator",
+      title: "Loan Calculator",
+      description: "Compare different repayment plans and estimate your monthly payments",
       icon: Calculator,
-      color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
-      textColor: "text-indigo-700",
-      path: "/loan-repayment-calculator"
+      color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
+      textColor: "text-purple-700",
+      path: "/loan-repayment-calculator",
+      highlight: true // New property to highlight this card
     },
     {
       title: "Income-Driven Plans",
@@ -51,7 +52,13 @@ export const LoanRepaymentSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {guides.map((guide, index) => (
-            <div key={index} onClick={() => navigate(guide.path)} className="cursor-pointer">
+            <div 
+              key={index} 
+              onClick={() => navigate(guide.path)} 
+              className={`cursor-pointer transform transition-all duration-300 hover:scale-105 ${
+                guide.highlight ? 'ring-2 ring-purple-400 ring-offset-2 shadow-lg rounded-lg' : ''
+              }`}
+            >
               <GuideCard {...guide} />
             </div>
           ))}
