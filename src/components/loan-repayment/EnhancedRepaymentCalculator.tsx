@@ -65,16 +65,17 @@ export const EnhancedRepaymentCalculator = () => {
   const calculatePlans = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     
-    const amount = parseFloat(loanDetails.loanAmount);
-    const rate = parseFloat(loanDetails.interestRate);
+    // Parse input values
+    const amount = parseFloat(loanDetails.loanAmount.replace(/,/g, ''));
+    const rate = parseFloat(loanDetails.interestRate.replace(/,/g, ''));
     const months = parseInt(loanDetails.loanTerm);
-    const yearlyIncome = parseFloat(loanDetails.income) || 0;
+    const yearlyIncome = parseFloat(loanDetails.income.replace(/,/g, '')) || 0;
     const isPublicService = loanDetails.occupation?.toLowerCase().includes('public') || 
                            loanDetails.occupation?.toLowerCase().includes('government') ||
                            loanDetails.occupation?.toLowerCase().includes('non-profit');
 
-    // Validation for loan amount
-    if (isNaN(amount) || amount <= 0) {
+    // Input validation
+    if (!amount || isNaN(amount) || amount <= 0) {
       toast({
         title: "Invalid Input",
         description: "Please enter a valid loan amount greater than 0.",
@@ -83,8 +84,7 @@ export const EnhancedRepaymentCalculator = () => {
       return;
     }
 
-    // Validation for interest rate
-    if (isNaN(rate) || rate < 0 || rate > 100) {
+    if (!rate || isNaN(rate) || rate <= 0 || rate > 100) {
       toast({
         title: "Invalid Interest Rate",
         description: "Please enter a valid interest rate between 0 and 100.",
@@ -94,22 +94,25 @@ export const EnhancedRepaymentCalculator = () => {
     }
 
     try {
-      const monthlyRate = rate / 100 / 12;
+      // Convert annual rate to monthly rate (divide by 100 for percentage to decimal)
+      const monthlyRate = (rate / 100) / 12;
       
-      // Standard payment calculation
-      const standardPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+      // Standard payment calculation using amortization formula
+      const standardPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / 
+                            (Math.pow(1 + monthlyRate, months) - 1);
       
       // Graduated payment starts at 60% of standard payment
       const graduatedInitialPayment = standardPayment * 0.6;
       
-      // Extended payment uses longer term (25 years = 300 months)
+      // Extended payment (25 years = 300 months)
       const extendedMonths = 300;
-      const extendedPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, extendedMonths)) / (Math.pow(1 + monthlyRate, extendedMonths) - 1);
+      const extendedPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, extendedMonths)) / 
+                             (Math.pow(1 + monthlyRate, extendedMonths) - 1);
       
-      // Income-based payment calculation (10% of discretionary income)
-      const povertyLine = 20000; // Base poverty line
-      const discretionaryIncome = Math.max(0, yearlyIncome - povertyLine);
-      const incomeBasedPayment = (discretionaryIncome * 0.1) / 12;
+      // Income-based payment (10% of discretionary income)
+      const povertyLine = 13590 + (4720 * (parseInt(loanDetails.familySize) - 1)); // 2023 Poverty Guidelines
+      const discretionaryIncome = Math.max(0, yearlyIncome - (povertyLine * 1.5));
+      const incomeBasedPayment = Math.max((discretionaryIncome * 0.1) / 12, 0);
 
       const calculatedPlans: RepaymentPlan[] = [
         {
@@ -134,9 +137,9 @@ export const EnhancedRepaymentCalculator = () => {
         },
         {
           name: "Graduated",
-          monthlyPayment: graduatedInitialPayment,
-          totalInterest: (graduatedInitialPayment * months * 1.3) - amount,
-          totalPayment: graduatedInitialPayment * months * 1.3,
+          monthlyPayment: graduatedInitialPayment || 0,
+          totalInterest: ((graduatedInitialPayment || 0) * months * 1.3) - amount,
+          totalPayment: (graduatedInitialPayment || 0) * months * 1.3,
           timeToRepay: months,
           description: "Payments start low and increase every 2 years",
           popularity: 25,
@@ -154,9 +157,9 @@ export const EnhancedRepaymentCalculator = () => {
         },
         {
           name: "Extended",
-          monthlyPayment: extendedPayment,
-          totalInterest: (extendedPayment * extendedMonths) - amount,
-          totalPayment: extendedPayment * extendedMonths,
+          monthlyPayment: extendedPayment || 0,
+          totalInterest: ((extendedPayment || 0) * extendedMonths) - amount,
+          totalPayment: (extendedPayment || 0) * extendedMonths,
           timeToRepay: extendedMonths,
           description: "Lower monthly payments over 25 years",
           popularity: 15,
@@ -174,9 +177,9 @@ export const EnhancedRepaymentCalculator = () => {
         },
         {
           name: "Income-Based",
-          monthlyPayment: incomeBasedPayment,
-          totalInterest: (incomeBasedPayment * 240) - amount,
-          totalPayment: incomeBasedPayment * 240,
+          monthlyPayment: incomeBasedPayment || 0,
+          totalInterest: ((incomeBasedPayment || 0) * 240) - amount,
+          totalPayment: (incomeBasedPayment || 0) * 240,
           timeToRepay: 240,
           description: "Payments based on your discretionary income",
           popularity: 35,
@@ -203,14 +206,16 @@ export const EnhancedRepaymentCalculator = () => {
         });
       }
     } catch (error) {
+      console.error("Calculation error:", error);
       toast({
         title: "Calculation Error",
         description: "There was an error calculating the repayment plans. Please check your inputs.",
         variant: "destructive",
       });
-      console.error("Calculation error:", error);
     }
   };
+
+  // ... keep existing code (render JSX)
 
   return (
     <div className="space-y-8">
@@ -236,10 +241,39 @@ export const EnhancedRepaymentCalculator = () => {
                 <Input
                   id="loanAmount"
                   name="loanAmount"
-                  type="number"
+                  type="text"
                   placeholder="Enter amount"
                   className="pl-10"
                   value={loanDetails.loanAmount}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Label htmlFor="interestRate">Interest Rate (%)</Label>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="h-4 w-4 text-gray-500" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Enter the annual interest rate (e.g., 5.5 for 5.5%)</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <div className="relative">
+                <Percent className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                <Input
+                  id="interestRate"
+                  name="interestRate"
+                  type="text"
+                  placeholder="Enter rate"
+                  className="pl-10"
+                  value={loanDetails.interestRate}
                   onChange={handleInputChange}
                   required
                 />
@@ -265,7 +299,7 @@ export const EnhancedRepaymentCalculator = () => {
                 <Input
                   id="income"
                   name="income"
-                  type="number"
+                  type="text"
                   placeholder="Enter income"
                   className="pl-10"
                   value={loanDetails.income}
@@ -273,30 +307,6 @@ export const EnhancedRepaymentCalculator = () => {
                   required
                 />
               </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="occupation">Occupation</Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-gray-500" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Enter your job sector (e.g., public service, private, non-profit)</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <Input
-                id="occupation"
-                name="occupation"
-                type="text"
-                placeholder="Enter occupation"
-                value={loanDetails.occupation}
-                onChange={handleInputChange}
-              />
             </div>
           </div>
 
@@ -343,13 +353,13 @@ export const EnhancedRepaymentCalculator = () => {
                   <div>
                     <p className="text-sm text-gray-500">Monthly Payment</p>
                     <p className="text-2xl font-bold text-primary">
-                      ${plan.monthlyPayment.toFixed(2)}
+                      ${Math.round(plan.monthlyPayment).toLocaleString()}
                     </p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Total Interest</p>
                     <p className="text-lg font-semibold text-primary">
-                      ${plan.totalInterest.toFixed(2)}
+                      ${Math.round(plan.totalInterest).toLocaleString()}
                     </p>
                   </div>
                   <div>
