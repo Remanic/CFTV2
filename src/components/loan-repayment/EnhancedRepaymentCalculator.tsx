@@ -66,26 +66,37 @@ export const EnhancedRepaymentCalculator = () => {
     if (e) e.preventDefault();
     
     const amount = parseFloat(loanDetails.loanAmount);
-    const rate = parseFloat(loanDetails.interestRate) / 100 / 12;
+    const rate = parseFloat(loanDetails.interestRate);
     const months = parseInt(loanDetails.loanTerm);
     const yearlyIncome = parseFloat(loanDetails.income) || 0;
     const isPublicService = loanDetails.occupation?.toLowerCase().includes('public') || 
                            loanDetails.occupation?.toLowerCase().includes('government') ||
                            loanDetails.occupation?.toLowerCase().includes('non-profit');
 
-    if (isNaN(amount) || isNaN(rate) || amount <= 0 || rate <= 0) {
+    // Improved validation for interest rate
+    if (isNaN(amount) || amount <= 0) {
       toast({
         title: "Invalid Input",
-        description: "Please enter valid loan amount and interest rate.",
+        description: "Please enter a valid loan amount greater than 0.",
         variant: "destructive",
       });
       return;
     }
 
-    const standardPayment = (amount * rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+    if (isNaN(rate) || rate <= 0 || rate >= 100) {
+      toast({
+        title: "Invalid Interest Rate",
+        description: "Please enter a valid interest rate between 0 and 100.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const monthlyRate = rate / 100 / 12;
+    const standardPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
     const graduatedInitialPayment = standardPayment * 0.6;
     const extendedMonths = 300;
-    const extendedPayment = (amount * rate * Math.pow(1 + rate, extendedMonths)) / (Math.pow(1 + rate, extendedMonths) - 1);
+    const extendedPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, extendedMonths)) / (Math.pow(1 + monthlyRate, extendedMonths) - 1);
     const incomeBasedPayment = Math.max((yearlyIncome - 20000) * 0.1 / 12, 0);
 
     const calculatedPlans: RepaymentPlan[] = [
