@@ -73,7 +73,7 @@ export const EnhancedRepaymentCalculator = () => {
                            loanDetails.occupation?.toLowerCase().includes('government') ||
                            loanDetails.occupation?.toLowerCase().includes('non-profit');
 
-    // Improved validation for interest rate
+    // Validation for loan amount
     if (isNaN(amount) || amount <= 0) {
       toast({
         title: "Invalid Input",
@@ -83,7 +83,8 @@ export const EnhancedRepaymentCalculator = () => {
       return;
     }
 
-    if (isNaN(rate) || rate <= 0 || rate >= 100) {
+    // Validation for interest rate
+    if (isNaN(rate) || rate < 0 || rate > 100) {
       toast({
         title: "Invalid Interest Rate",
         description: "Please enter a valid interest rate between 0 and 100.",
@@ -92,102 +93,122 @@ export const EnhancedRepaymentCalculator = () => {
       return;
     }
 
-    const monthlyRate = rate / 100 / 12;
-    const standardPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
-    const graduatedInitialPayment = standardPayment * 0.6;
-    const extendedMonths = 300;
-    const extendedPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, extendedMonths)) / (Math.pow(1 + monthlyRate, extendedMonths) - 1);
-    const incomeBasedPayment = Math.max((yearlyIncome - 20000) * 0.1 / 12, 0);
+    try {
+      const monthlyRate = rate / 100 / 12;
+      
+      // Standard payment calculation
+      const standardPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+      
+      // Graduated payment starts at 60% of standard payment
+      const graduatedInitialPayment = standardPayment * 0.6;
+      
+      // Extended payment uses longer term (25 years = 300 months)
+      const extendedMonths = 300;
+      const extendedPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, extendedMonths)) / (Math.pow(1 + monthlyRate, extendedMonths) - 1);
+      
+      // Income-based payment calculation (10% of discretionary income)
+      const povertyLine = 20000; // Base poverty line
+      const discretionaryIncome = Math.max(0, yearlyIncome - povertyLine);
+      const incomeBasedPayment = (discretionaryIncome * 0.1) / 12;
 
-    const calculatedPlans: RepaymentPlan[] = [
-      {
-        name: "Standard",
-        monthlyPayment: standardPayment,
-        totalInterest: (standardPayment * months) - amount,
-        totalPayment: standardPayment * months,
-        timeToRepay: months,
-        description: "Fixed monthly payments over 10 years",
-        popularity: 45,
-        pslf_eligible: true,
-        benefits: [
-          "Predictable monthly payments",
-          "Pay less interest over time",
-          "Finish repayment faster"
-        ],
-        optimizationTips: [
-          "Make bi-weekly payments to reduce interest",
-          "Round up payments to pay off faster",
-          "Set up autopay for 0.25% interest rate reduction"
-        ]
-      },
-      {
-        name: "Graduated",
-        monthlyPayment: graduatedInitialPayment,
-        totalInterest: (graduatedInitialPayment * months * 1.3) - amount,
-        totalPayment: graduatedInitialPayment * months * 1.3,
-        timeToRepay: months,
-        description: "Payments start low and increase every 2 years",
-        popularity: 25,
-        pslf_eligible: true,
-        benefits: [
-          "Lower initial payments",
-          "Payments increase with expected income growth",
-          "Good for careers with growing income"
-        ],
-        optimizationTips: [
-          "Make extra payments during income increases",
-          "Consider refinancing after salary increases",
-          "Save money during lower payment periods"
-        ]
-      },
-      {
-        name: "Extended",
-        monthlyPayment: extendedPayment,
-        totalInterest: (extendedPayment * extendedMonths) - amount,
-        totalPayment: extendedPayment * extendedMonths,
-        timeToRepay: extendedMonths,
-        description: "Lower monthly payments over 25 years",
-        popularity: 15,
-        pslf_eligible: false,
-        benefits: [
-          "Lowest monthly payments",
-          "More manageable for tight budgets",
-          "Longer repayment period"
-        ],
-        optimizationTips: [
-          "Consider refinancing if interest rates drop",
-          "Make extra payments when possible",
-          "Evaluate income-driven plans as alternatives"
-        ]
-      },
-      {
-        name: "Income-Based",
-        monthlyPayment: incomeBasedPayment,
-        totalInterest: (incomeBasedPayment * 240) - amount,
-        totalPayment: incomeBasedPayment * 240,
-        timeToRepay: 240,
-        description: "Payments based on your discretionary income",
-        popularity: 35,
-        pslf_eligible: true,
-        benefits: [
-          "Payments adjust with income changes",
-          "Potential loan forgiveness after 20-25 years",
-          "Protection during financial hardship"
-        ],
-        optimizationTips: [
-          "Recertify income annually",
-          "Document public service employment",
-          "Track qualifying payments for forgiveness"
-        ]
+      const calculatedPlans: RepaymentPlan[] = [
+        {
+          name: "Standard",
+          monthlyPayment: standardPayment || 0,
+          totalInterest: ((standardPayment || 0) * months) - amount,
+          totalPayment: (standardPayment || 0) * months,
+          timeToRepay: months,
+          description: "Fixed monthly payments over 10 years",
+          popularity: 45,
+          pslf_eligible: true,
+          benefits: [
+            "Predictable monthly payments",
+            "Pay less interest over time",
+            "Finish repayment faster"
+          ],
+          optimizationTips: [
+            "Make bi-weekly payments to reduce interest",
+            "Round up payments to pay off faster",
+            "Set up autopay for 0.25% interest rate reduction"
+          ]
+        },
+        {
+          name: "Graduated",
+          monthlyPayment: graduatedInitialPayment,
+          totalInterest: (graduatedInitialPayment * months * 1.3) - amount,
+          totalPayment: graduatedInitialPayment * months * 1.3,
+          timeToRepay: months,
+          description: "Payments start low and increase every 2 years",
+          popularity: 25,
+          pslf_eligible: true,
+          benefits: [
+            "Lower initial payments",
+            "Payments increase with expected income growth",
+            "Good for careers with growing income"
+          ],
+          optimizationTips: [
+            "Make extra payments during income increases",
+            "Consider refinancing after salary increases",
+            "Save money during lower payment periods"
+          ]
+        },
+        {
+          name: "Extended",
+          monthlyPayment: extendedPayment,
+          totalInterest: (extendedPayment * extendedMonths) - amount,
+          totalPayment: extendedPayment * extendedMonths,
+          timeToRepay: extendedMonths,
+          description: "Lower monthly payments over 25 years",
+          popularity: 15,
+          pslf_eligible: false,
+          benefits: [
+            "Lowest monthly payments",
+            "More manageable for tight budgets",
+            "Longer repayment period"
+          ],
+          optimizationTips: [
+            "Consider refinancing if interest rates drop",
+            "Make extra payments when possible",
+            "Evaluate income-driven plans as alternatives"
+          ]
+        },
+        {
+          name: "Income-Based",
+          monthlyPayment: incomeBasedPayment,
+          totalInterest: (incomeBasedPayment * 240) - amount,
+          totalPayment: incomeBasedPayment * 240,
+          timeToRepay: 240,
+          description: "Payments based on your discretionary income",
+          popularity: 35,
+          pslf_eligible: true,
+          benefits: [
+            "Payments adjust with income changes",
+            "Potential loan forgiveness after 20-25 years",
+            "Protection during financial hardship"
+          ],
+          optimizationTips: [
+            "Recertify income annually",
+            "Document public service employment",
+            "Track qualifying payments for forgiveness"
+          ]
+        }
+      ];
+
+      setPlans(calculatedPlans);
+      
+      if (!isRealtime) {
+        toast({
+          title: "Calculation Complete",
+          description: "Compare different repayment plans side by side.",
+        });
       }
-    ];
-
-    setPlans(calculatedPlans);
-    if (!isRealtime) {
+    } catch (error) {
       toast({
-        title: "Calculation Complete",
-        description: "Compare different repayment plans side by side.",
+        title: "Calculation Error",
+        description: "There was an error calculating the repayment plans. Please check your inputs.",
+        variant: "destructive",
       });
+      console.error("Calculation error:", error);
     }
   };
 
