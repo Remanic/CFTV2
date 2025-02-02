@@ -10,7 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Calculator, DollarSign, PiggyBank, TrendingUp, Info, Percent } from "lucide-react";
+import { Calculator, DollarSign, PiggyBank, TrendingUp, Info, Percent, Award, Lightbulb } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 interface LoanDetails {
@@ -19,6 +19,7 @@ interface LoanDetails {
   loanTerm: string;
   income: string;
   familySize: string;
+  occupation: string;
 }
 
 interface RepaymentPlan {
@@ -30,6 +31,8 @@ interface RepaymentPlan {
   description: string;
   popularity: number;
   benefits: string[];
+  pslf_eligible: boolean;
+  optimizationTips: string[];
 }
 
 export const EnhancedRepaymentCalculator = () => {
@@ -40,6 +43,7 @@ export const EnhancedRepaymentCalculator = () => {
     loanTerm: "120",
     income: "",
     familySize: "1",
+    occupation: "",
   });
   const [plans, setPlans] = useState<RepaymentPlan[]>([]);
   const [isRealtime, setIsRealtime] = useState(true);
@@ -65,6 +69,9 @@ export const EnhancedRepaymentCalculator = () => {
     const rate = parseFloat(loanDetails.interestRate) / 100 / 12;
     const months = parseInt(loanDetails.loanTerm);
     const yearlyIncome = parseFloat(loanDetails.income) || 0;
+    const isPublicService = loanDetails.occupation?.toLowerCase().includes('public') || 
+                           loanDetails.occupation?.toLowerCase().includes('government') ||
+                           loanDetails.occupation?.toLowerCase().includes('non-profit');
 
     if (isNaN(amount) || isNaN(rate) || amount <= 0 || rate <= 0) {
       toast({
@@ -90,10 +97,16 @@ export const EnhancedRepaymentCalculator = () => {
         timeToRepay: months,
         description: "Fixed monthly payments over 10 years",
         popularity: 45,
+        pslf_eligible: true,
         benefits: [
           "Predictable monthly payments",
           "Pay less interest over time",
           "Finish repayment faster"
+        ],
+        optimizationTips: [
+          "Make bi-weekly payments to reduce interest",
+          "Round up payments to pay off faster",
+          "Set up autopay for 0.25% interest rate reduction"
         ]
       },
       {
@@ -104,10 +117,16 @@ export const EnhancedRepaymentCalculator = () => {
         timeToRepay: months,
         description: "Payments start low and increase every 2 years",
         popularity: 25,
+        pslf_eligible: true,
         benefits: [
           "Lower initial payments",
           "Payments increase with expected income growth",
           "Good for careers with growing income"
+        ],
+        optimizationTips: [
+          "Make extra payments during income increases",
+          "Consider refinancing after salary increases",
+          "Save money during lower payment periods"
         ]
       },
       {
@@ -118,10 +137,16 @@ export const EnhancedRepaymentCalculator = () => {
         timeToRepay: extendedMonths,
         description: "Lower monthly payments over 25 years",
         popularity: 15,
+        pslf_eligible: false,
         benefits: [
           "Lowest monthly payments",
           "More manageable for tight budgets",
           "Longer repayment period"
+        ],
+        optimizationTips: [
+          "Consider refinancing if interest rates drop",
+          "Make extra payments when possible",
+          "Evaluate income-driven plans as alternatives"
         ]
       },
       {
@@ -130,12 +155,18 @@ export const EnhancedRepaymentCalculator = () => {
         totalInterest: (incomeBasedPayment * 240) - amount,
         totalPayment: incomeBasedPayment * 240,
         timeToRepay: 240,
-        description: "Payments based on your income",
+        description: "Payments based on your discretionary income",
         popularity: 35,
+        pslf_eligible: true,
         benefits: [
           "Payments adjust with income changes",
-          "Potential loan forgiveness after 20 years",
+          "Potential loan forgiveness after 20-25 years",
           "Protection during financial hardship"
+        ],
+        optimizationTips: [
+          "Recertify income annually",
+          "Document public service employment",
+          "Track qualifying payments for forgiveness"
         ]
       }
     ];
@@ -185,36 +216,6 @@ export const EnhancedRepaymentCalculator = () => {
 
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Label htmlFor="interestRate">Interest Rate (%)</Label>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Info className="h-4 w-4 text-gray-500" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Enter the annual interest rate</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <div className="relative">
-                <Percent className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                <Input
-                  id="interestRate"
-                  name="interestRate"
-                  type="number"
-                  step="0.1"
-                  placeholder="Enter rate"
-                  className="pl-10"
-                  value={loanDetails.interestRate}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
                 <Label htmlFor="income">Annual Income</Label>
                 <TooltipProvider>
                   <Tooltip>
@@ -222,7 +223,7 @@ export const EnhancedRepaymentCalculator = () => {
                       <Info className="h-4 w-4 text-gray-500" />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Your current or expected annual income</p>
+                      <p>Enter your actual or estimated annual income before taxes</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -237,8 +238,33 @@ export const EnhancedRepaymentCalculator = () => {
                   className="pl-10"
                   value={loanDetails.income}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Label htmlFor="occupation">Occupation</Label>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="h-4 w-4 text-gray-500" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Enter your job sector (e.g., public service, private, non-profit)</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <Input
+                id="occupation"
+                name="occupation"
+                type="text"
+                placeholder="Enter occupation"
+                value={loanDetails.occupation}
+                onChange={handleInputChange}
+              />
             </div>
           </div>
 
@@ -263,6 +289,18 @@ export const EnhancedRepaymentCalculator = () => {
                     {plan.name === "Extended" && <DollarSign className="h-5 w-5 text-primary" />}
                     {plan.name === "Income-Based" && <Calculator className="h-5 w-5 text-primary" />}
                     {plan.name}
+                    {plan.pslf_eligible && (
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Award className="h-4 w-4 text-green-500 ml-1" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Eligible for Public Service Loan Forgiveness</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )}
                   </h3>
                   <span className="text-sm text-gray-500">{plan.popularity}% choose this</span>
                 </div>
@@ -285,7 +323,7 @@ export const EnhancedRepaymentCalculator = () => {
                   <div>
                     <p className="text-sm text-gray-500">Time to Repay</p>
                     <p className="text-lg font-semibold text-primary">
-                      {(plan.timeToRepay / 12).toFixed(1)} years
+                      {Math.round(plan.timeToRepay / 12)} years
                     </p>
                   </div>
                 </div>
@@ -297,6 +335,21 @@ export const EnhancedRepaymentCalculator = () => {
                       <li key={index} className="flex items-start gap-2">
                         <span className="text-primary">•</span>
                         {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-sm font-medium flex items-center gap-2">
+                    <Lightbulb className="h-4 w-4 text-amber-500" />
+                    Optimization Tips:
+                  </p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    {plan.optimizationTips.map((tip, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-amber-500">•</span>
+                        {tip}
                       </li>
                     ))}
                   </ul>
