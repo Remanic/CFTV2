@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -94,32 +95,47 @@ export const EnhancedRepaymentCalculator = () => {
     }
 
     try {
-      // Convert annual rate to monthly rate (divide by 100 for percentage to decimal)
+      // Convert annual rate to monthly rate
       const monthlyRate = (rate / 100) / 12;
       
-      // Standard payment calculation using amortization formula
+      // Standard payment calculation
       const standardPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / 
                             (Math.pow(1 + monthlyRate, months) - 1);
+      const standardTotalPayment = standardPayment * months;
+      const standardTotalInterest = standardTotalPayment - amount;
       
-      // Graduated payment starts at 60% of standard payment
-      const graduatedInitialPayment = standardPayment * 0.6;
+      // Graduated payment calculation (starts at 60% of standard, increases by 10% every 24 months)
+      let graduatedTotalPayment = 0;
+      let graduatedInitialPayment = standardPayment * 0.6;
+      let remainingMonths = months;
+      let graduatedBalance = amount;
+      
+      for (let i = 0; i < months; i++) {
+        const currentPayment = graduatedInitialPayment * (1 + Math.floor(i / 24) * 0.1);
+        const interestPortion = graduatedBalance * monthlyRate;
+        const principalPortion = currentPayment - interestPortion;
+        graduatedBalance = Math.max(0, graduatedBalance - principalPortion);
+        graduatedTotalPayment += currentPayment;
+      }
       
       // Extended payment (25 years = 300 months)
       const extendedMonths = 300;
       const extendedPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, extendedMonths)) / 
                              (Math.pow(1 + monthlyRate, extendedMonths) - 1);
+      const extendedTotalPayment = extendedPayment * extendedMonths;
       
       // Income-based payment (10% of discretionary income)
-      const povertyLine = 13590 + (4720 * (parseInt(loanDetails.familySize) - 1)); // 2023 Poverty Guidelines
+      const povertyLine = 13590 + (4720 * (parseInt(loanDetails.familySize) - 1));
       const discretionaryIncome = Math.max(0, yearlyIncome - (povertyLine * 1.5));
-      const incomeBasedPayment = Math.max((discretionaryIncome * 0.1) / 12, 0);
+      const incomeBasedPayment = Math.max((discretionaryIncome * 0.1) / 12, 10); // Minimum $10 payment
+      const incomeBasedTotalPayment = incomeBasedPayment * 240; // 20 years
 
       const calculatedPlans: RepaymentPlan[] = [
         {
           name: "Standard",
-          monthlyPayment: standardPayment || 0,
-          totalInterest: ((standardPayment || 0) * months) - amount,
-          totalPayment: (standardPayment || 0) * months,
+          monthlyPayment: standardPayment,
+          totalInterest: standardTotalInterest,
+          totalPayment: standardTotalPayment,
           timeToRepay: months,
           description: "Fixed monthly payments over 10 years",
           popularity: 45,
@@ -137,9 +153,9 @@ export const EnhancedRepaymentCalculator = () => {
         },
         {
           name: "Graduated",
-          monthlyPayment: graduatedInitialPayment || 0,
-          totalInterest: ((graduatedInitialPayment || 0) * months * 1.3) - amount,
-          totalPayment: (graduatedInitialPayment || 0) * months * 1.3,
+          monthlyPayment: graduatedInitialPayment,
+          totalInterest: graduatedTotalPayment - amount,
+          totalPayment: graduatedTotalPayment,
           timeToRepay: months,
           description: "Payments start low and increase every 2 years",
           popularity: 25,
@@ -157,9 +173,9 @@ export const EnhancedRepaymentCalculator = () => {
         },
         {
           name: "Extended",
-          monthlyPayment: extendedPayment || 0,
-          totalInterest: ((extendedPayment || 0) * extendedMonths) - amount,
-          totalPayment: (extendedPayment || 0) * extendedMonths,
+          monthlyPayment: extendedPayment,
+          totalInterest: extendedTotalPayment - amount,
+          totalPayment: extendedTotalPayment,
           timeToRepay: extendedMonths,
           description: "Lower monthly payments over 25 years",
           popularity: 15,
@@ -177,9 +193,9 @@ export const EnhancedRepaymentCalculator = () => {
         },
         {
           name: "Income-Based",
-          monthlyPayment: incomeBasedPayment || 0,
-          totalInterest: ((incomeBasedPayment || 0) * 240) - amount,
-          totalPayment: (incomeBasedPayment || 0) * 240,
+          monthlyPayment: incomeBasedPayment,
+          totalInterest: Math.max(0, incomeBasedTotalPayment - amount),
+          totalPayment: incomeBasedTotalPayment,
           timeToRepay: 240,
           description: "Payments based on your discretionary income",
           popularity: 35,
@@ -214,8 +230,6 @@ export const EnhancedRepaymentCalculator = () => {
       });
     }
   };
-
-  // ... keep existing code (render JSX)
 
   return (
     <div className="space-y-8">
@@ -320,9 +334,9 @@ export const EnhancedRepaymentCalculator = () => {
       </Card>
 
       {plans.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {plans.map((plan) => (
-            <Card key={plan.name.toLowerCase()} className="p-4">
+            <Card key={plan.name.toLowerCase()} className="p-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold flex items-center gap-2">
@@ -349,11 +363,17 @@ export const EnhancedRepaymentCalculator = () => {
                 
                 <p className="text-sm text-gray-600">{plan.description}</p>
                 
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <div>
                     <p className="text-sm text-gray-500">Monthly Payment</p>
                     <p className="text-2xl font-bold text-primary">
                       ${Math.round(plan.monthlyPayment).toLocaleString()}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Total Payment</p>
+                    <p className="text-lg font-semibold text-primary">
+                      ${Math.round(plan.totalPayment).toLocaleString()}
                     </p>
                   </div>
                   <div>
@@ -404,3 +424,4 @@ export const EnhancedRepaymentCalculator = () => {
     </div>
   );
 };
+
