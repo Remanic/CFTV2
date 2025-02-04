@@ -1,3 +1,4 @@
+
 import { Hero } from "@/components/Hero";
 import { WhyNeedGuide } from "@/components/WhyNeedGuide";
 import { LoanComparison } from "@/components/LoanComparison";
@@ -10,6 +11,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HowItWorks } from "@/components/HowItWorks";
 import TestimonialSection from "@/components/hero/TestimonialSection";
+import { EnhancedRepaymentCalculator } from "@/components/loan-repayment/EnhancedRepaymentCalculator";
 import { useState, useEffect } from "react";
 
 const Index = () => {
@@ -31,6 +33,10 @@ const Index = () => {
         <WhyNeedGuide />
         <div className="container mx-auto px-4 py-12">
           <TestimonialSection currentTestimonial={currentTestimonial} />
+        </div>
+        <div className="container mx-auto px-4 py-12">
+          <h2 className="text-3xl font-bold text-center mb-8">Loan Repayment Calculator</h2>
+          <EnhancedRepaymentCalculator />
         </div>
         <AffiliateLoanSection />
         <FafsaGuide />

@@ -84,7 +84,6 @@ export const EnhancedRepaymentCalculator = () => {
         loanDetails={loanDetails}
         handleInputChange={handleInputChange}
       />
-
       {plans.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {plans.map((plan) => (
