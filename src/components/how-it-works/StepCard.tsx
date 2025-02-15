@@ -38,8 +38,7 @@ export const StepCard = ({
       className={cn(
         "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
         "hover:shadow-lg",
-        "bg-white border border-[#E2E8F0]",
-        highlight ? "bg-gradient-to-br from-violet-50 to-indigo-50 border-violet-200" : "",
+        highlight ? "bg-white border-violet-200" : "bg-white border border-[#E2E8F0]",
         isActive ? "ring-2 ring-[#8B5CF6]" : "border-[#E2E8F0]"
       )}
       onMouseEnter={onMouseEnter}
@@ -47,7 +46,7 @@ export const StepCard = ({
       <div className="flex items-center gap-4 mb-4">
         <div className={cn(
           "flex items-center justify-center w-12 h-12 rounded-full text-[#8B5CF6] font-bold",
-          highlight ? "bg-violet-100" : "bg-[#F1F0FB]"
+          highlight ? "bg-violet-50" : "bg-[#F1F0FB]"
         )}>
           {number}
         </div>

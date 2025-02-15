@@ -1,5 +1,6 @@
+
 import { Button } from "@/components/ui/button";
-import { Info, Trophy, ArrowRight } from "lucide-react";
+import { Info, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { lenders, type LenderType } from "@/data/lenders";
@@ -52,12 +53,13 @@ export const AffiliateLoanSection = () => {
           <TrustIndicators />
         </div>
 
-        <div className="space-y-6 md:space-y-8">
-          {filteredLenders.map((lender, index) => (
+        <div className="space-y-4">
+          {filteredLenders.map((lender) => (
             <LenderCard 
               key={lender.name} 
               lender={lender}
               featured={lender.featured}
+              showDetails={false}
             />
           ))}
         </div>
