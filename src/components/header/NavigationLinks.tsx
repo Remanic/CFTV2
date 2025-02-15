@@ -1,10 +1,23 @@
-import { Calculator, Home, Car, CreditCard, PiggyBank } from "lucide-react";
+
+import { Calculator, Home, Car, CreditCard, PiggyBank, DollarSign, Shield } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 export const useNavigationLinks = () => {
   const location = useLocation();
 
   const calculatorLinks = [
+    { 
+      icon: DollarSign, 
+      label: "Loan Repayment Calculator", 
+      path: "/loan-repayment-calculator", 
+      color: "text-emerald-500" 
+    },
+    { 
+      icon: Shield, 
+      label: "Loan Forgiveness Checker", 
+      path: "/loan-forgiveness-eligibility", 
+      color: "text-violet-500" 
+    },
     { 
       icon: Home, 
       label: "Mortgage Calculator", 
@@ -40,8 +53,8 @@ export const useNavigationLinks = () => {
     state: { from: location.pathname }
   }));
 
-  const mainCalculators = calculatorLinks.slice(0, 3);
-  const additionalCalculators = calculatorLinks.slice(3);
+  const mainCalculators = calculatorLinks.slice(0, 5);
+  const additionalCalculators = calculatorLinks.slice(5);
 
   return {
     calculatorLinks,

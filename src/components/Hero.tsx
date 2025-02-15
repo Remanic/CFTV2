@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,12 +32,9 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <div className="flex justify-center mt-8">
             <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all font-mono">
               Get Your Free Personalized Loan Plan <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-2 font-mono">
-              Explore All Tools for Free <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
 
