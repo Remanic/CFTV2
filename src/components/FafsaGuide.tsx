@@ -55,7 +55,7 @@ export const FafsaGuide = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+    <section id="fafsa-guide" className="py-20 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4">
         <GuideHeader 
           title="Master Your FAFSA Application"

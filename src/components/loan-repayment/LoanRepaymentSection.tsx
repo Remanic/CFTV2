@@ -42,7 +42,7 @@ export const LoanRepaymentSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section id="loan-repayment" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <GuideHeader 
           title="Loan Repayment Options"

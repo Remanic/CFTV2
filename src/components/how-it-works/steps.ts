@@ -1,3 +1,4 @@
+
 import { 
   GraduationCap, 
   BookOpen, 
@@ -17,10 +18,7 @@ export const steps = [
       "Stay on track with our FAFSA Deadline Checker.",
       "Maximize your aid using the FAFSA Aid Estimator."
     ],
-    cta: {
-      text: "Start FAFSA Guide",
-      link: "/fafsa-application-guide"
-    }
+    sectionId: "fafsa-guide"
   },
   {
     number: "02",
@@ -30,10 +28,7 @@ export const steps = [
       "Learn with our Federal Loan Guide and overview of Federal Loan Types.",
       "Compare private lenders with detailed rates, pros, and cons tailored to your needs."
     ],
-    cta: {
-      text: "Compare Loans",
-      link: "/all-lenders"
-    }
+    sectionId: "loan-comparison"
   },
   {
     number: "03",
@@ -43,10 +38,7 @@ export const steps = [
       "Choose the best repayment plan with our Repayment Guide.",
       "Use the Loan Repayment Calculator to compare and save."
     ],
-    cta: {
-      text: "Calculate Payments",
-      link: "/monthly-loan-emi-calculator"
-    }
+    sectionId: "loan-repayment"
   },
   {
     number: "04",
@@ -55,10 +47,7 @@ export const steps = [
     content: [
       "Get insights into Loan Forgiveness eligibility and explore strategies to qualify."
     ],
-    cta: {
-      text: "Check Eligibility",
-      link: "/fafsa-aid-estimator"
-    }
+    sectionId: "loan-forgiveness"
   },
   {
     number: "05",
@@ -68,25 +57,18 @@ export const steps = [
       "Manage your finances better with our calculators:",
       "Mortgage, EMI, Savings, Credit Card, and Auto Loan calculators."
     ],
-    cta: {
-      text: "Try Calculators",
-      link: "/mortgage-loan-calculator"
-    }
+    sectionId: "financial-tools"
   },
   {
     number: "06",
     title: "Achieve Financial Freedom",
     icon: Star,
     content: [
-      "Simplify your entire journey by:",
-      "Choosing the right loan.",
-      "Maximizing aid opportunities.",
-      "Selecting the best repayment plan.",
-      "Planning for forgiveness and reducing financial stress."
+      "🎓 Congratulations on taking control of your financial future!",
+      "✨ You're now equipped with expert tools and knowledge",
+      "💫 Join thousands who've transformed student debt into financial success",
+      "🌟 Your path to a debt-free future starts here"
     ],
-    cta: {
-      text: "Get Started",
-      link: "/fafsa-application-guide"
-    }
+    highlight: true
   }
 ];

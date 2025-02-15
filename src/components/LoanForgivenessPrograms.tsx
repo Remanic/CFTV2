@@ -47,7 +47,7 @@ export const LoanForgivenessPrograms = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="loan-forgiveness" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <GuideHeader 
           title="Student Loan Forgiveness Programs"
