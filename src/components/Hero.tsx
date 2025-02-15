@@ -15,31 +15,36 @@ export const Hero = () => {
       <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="space-y-4">
-            <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold leading-tight tracking-tight text-gray-900 mt-2 font-mono whitespace-nowrap">
-              Your Complete Student Loan Solution
+            <h1 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-bold leading-tight tracking-tight text-gray-900 mt-2 font-mono">
+              Your Complete Student
+              <br className="hidden sm:block" /> Loan Solution
               <FeaturesList />
             </h1>
 
             {/* Emotional Hook with darker color */}
-            <p className="text-lg text-gray-800 italic font-sans">
+            <p className="text-base sm:text-lg text-gray-800 italic font-sans px-4 max-w-2xl mx-auto">
               Say goodbye to loan stress and confusion – start your journey to financial freedom today.
             </p>
 
             {/* Trust Badge */}
             <div className="flex items-center justify-center gap-2 text-gray-600 font-sans">
-              <Shield className="h-5 w-5 text-primary" />
-              <span className="font-medium">Trusted by over 10,000 students and parents</span>
+              <Shield className="h-5 w-5 text-primary flex-shrink-0" />
+              <span className="font-medium text-sm sm:text-base">Trusted by over 10,000 students and parents</span>
             </div>
           </div>
 
-          <div className="flex justify-center mt-8">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all font-mono">
-              Get Your Free Personalized Loan Plan <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="flex justify-center mt-8 px-4 w-full sm:w-auto">
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all font-mono w-full sm:w-auto whitespace-normal sm:whitespace-nowrap text-sm sm:text-base"
+            >
+              Get Your Free Personalized Loan Plan
+              <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0" />
             </Button>
           </div>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-16 w-full px-4">
             {[
               {
                 icon: <Shield className="h-6 w-6 text-primary" />,
@@ -69,8 +74,8 @@ export const Hero = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
                   {benefit.icon}
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                <p className="text-gray-600 text-sm">{benefit.description}</p>
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">{benefit.title}</h3>
+                <p className="text-gray-600 text-xs sm:text-sm">{benefit.description}</p>
               </div>
             ))}
           </div>
