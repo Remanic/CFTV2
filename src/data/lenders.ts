@@ -109,5 +109,29 @@ export const lenders: Lender[] = [
       "Career support services"
     ],
     link: "https://www.credible.com/laurel-road-student-loans"
+  },
+  {
+    name: "Splash Financial",
+    type: "refinance",
+    featured: false,
+    fixedAPR: "4.47% - 8.99%",
+    variableAPR: "4.49% - 9.99%",
+    minCreditScore: 650,
+    pros: [
+      "Competitive rates",
+      "No application fees",
+      "Quick online application",
+      "Multiple repayment terms"
+    ],
+    cons: [
+      "Not a direct lender",
+      "Must have completed degree"
+    ],
+    specialFeatures: [
+      "Partnership with multiple lenders",
+      "Medical resident refinancing",
+      "Additional rate discounts available"
+    ],
+    link: "https://www.credible.com/splash-financial-student-loans"
   }
 ];
