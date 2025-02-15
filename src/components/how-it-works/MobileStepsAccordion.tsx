@@ -1,3 +1,4 @@
+
 import { Accordion } from "@/components/ui/accordion";
 import { MobileStepCard } from "./MobileStepCard";
 import { Step } from "./types";
@@ -16,6 +17,7 @@ export const MobileStepsAccordion = ({ steps }: MobileStepsAccordionProps) => (
           title={step.title}
           Icon={step.icon}
           content={step.content}
+          sectionId={step.sectionId}
           cta={step.cta}
         />
       ))}
