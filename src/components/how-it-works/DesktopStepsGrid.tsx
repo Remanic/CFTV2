@@ -1,3 +1,4 @@
+
 import { StepCard } from "./StepCard";
 import { Step } from "./types";
 
@@ -16,7 +17,8 @@ export const DesktopStepsGrid = ({ steps, activeStep, onStepHover }: DesktopStep
         title={step.title}
         Icon={step.icon}
         content={step.content}
-        cta={step.cta}
+        sectionId={step.sectionId}
+        highlight={step.highlight}
         isActive={activeStep === index}
         onMouseEnter={() => onStepHover(index)}
       />

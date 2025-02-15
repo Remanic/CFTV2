@@ -18,7 +18,11 @@ export const steps = [
       "Stay on track with our FAFSA Deadline Checker.",
       "Maximize your aid using the FAFSA Aid Estimator."
     ],
-    sectionId: "fafsa-guide"
+    sectionId: "fafsa-guide",
+    cta: {
+      text: "Learn More",
+      link: "#fafsa-guide"
+    }
   },
   {
     number: "02",
@@ -28,7 +32,11 @@ export const steps = [
       "Learn with our Federal Loan Guide and overview of Federal Loan Types.",
       "Compare private lenders with detailed rates, pros, and cons tailored to your needs."
     ],
-    sectionId: "loan-comparison"
+    sectionId: "loan-comparison",
+    cta: {
+      text: "Learn More",
+      link: "#loan-comparison"
+    }
   },
   {
     number: "03",
@@ -38,7 +46,11 @@ export const steps = [
       "Choose the best repayment plan with our Repayment Guide.",
       "Use the Loan Repayment Calculator to compare and save."
     ],
-    sectionId: "loan-repayment"
+    sectionId: "loan-repayment",
+    cta: {
+      text: "Learn More",
+      link: "#loan-repayment"
+    }
   },
   {
     number: "04",
@@ -47,7 +59,11 @@ export const steps = [
     content: [
       "Get insights into Loan Forgiveness eligibility and explore strategies to qualify."
     ],
-    sectionId: "loan-forgiveness"
+    sectionId: "loan-forgiveness",
+    cta: {
+      text: "Learn More",
+      link: "#loan-forgiveness"
+    }
   },
   {
     number: "05",
@@ -57,7 +73,11 @@ export const steps = [
       "Manage your finances better with our calculators:",
       "Mortgage, EMI, Savings, Credit Card, and Auto Loan calculators."
     ],
-    sectionId: "financial-tools"
+    sectionId: "financial-tools",
+    cta: {
+      text: "Learn More",
+      link: "#financial-tools"
+    }
   },
   {
     number: "06",

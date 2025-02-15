@@ -1,3 +1,4 @@
+
 import { LucideIcon } from "lucide-react";
 
 export interface Step {
@@ -5,7 +6,9 @@ export interface Step {
   title: string;
   icon: LucideIcon;
   content: string[];
-  cta: {
+  sectionId?: string;
+  highlight?: boolean;
+  cta?: {
     text: string;
     link: string;
   };
