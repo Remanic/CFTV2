@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -69,24 +70,10 @@ export const EligibilityCheckerTool = () => {
       ];
 
       if (formData.loanType === "private") {
-        const privateLoanMessage = (
-          <div className="bg-red-50 border border-red-100 rounded-lg p-4 mb-4">
-            <div className="flex items-start">
-              <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 mr-2" />
-              <div>
-                <h3 className="font-semibold text-red-800">Private Loans Not Eligible</h3>
-                <p className="text-red-700">
-                  Private student loans are not eligible for federal forgiveness programs. Consider refinancing options or contact your loan provider for alternative repayment plans.
-                </p>
-              </div>
-            </div>
-          </div>
-        );
         setResult({
           eligible: false,
           programs,
-          commonRejectionReasons,
-          privateLoanMessage
+          commonRejectionReasons
         });
         setLoading(false);
         toast({
