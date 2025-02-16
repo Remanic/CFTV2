@@ -29,7 +29,7 @@ export const LoanForgivenessPrograms = () => {
       path: "/pslf-comprehensive-guide"
     },
     {
-      title: "Free Eligibility Check Tool",
+      title: "Student Loan Forgiveness Eligibility Checker",
       description: "Find out instantly if you qualify for student loan forgiveness programs with our interactive tool",
       icon: CheckCircle2,
       color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
