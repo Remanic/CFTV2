@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,9 @@ interface EligibilityResult {
     description: string;
     nextSteps: string[];
     eligibilityScore: number;
+    requirements: string[];
   }>;
+  commonRejectionReasons?: string[];
 }
 
 export const EligibilityCheckerTool = () => {
@@ -23,13 +26,25 @@ export const EligibilityCheckerTool = () => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [result, setResult] = useState<EligibilityResult | null>(null);
+  const [formData, setFormData] = useState({
+    loanType: "",
+    employment: "",
+    employmentYears: "",
+    loanBalance: "",
+    income: "",
+    degree: "",
+    paymentsMade: "",
+  });
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
 
   const checkEligibility = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setProgress(0);
 
-    // Simulate progress updates
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
@@ -40,39 +55,106 @@ export const EligibilityCheckerTool = () => {
       });
     }, 500);
 
-    // Simulated API check
+    // Simulate API check with more specific logic based on user inputs
     setTimeout(() => {
       clearInterval(interval);
       setProgress(100);
-      setResult({
-        eligible: true,
-        programs: [
-          {
+
+      const programs = [];
+      const commonRejectionReasons = [
+        "Missing annual employment certification",
+        "Incorrect loan type (only Direct Loans qualify for most forgiveness programs)",
+        "Employment not qualifying for full required period",
+        "Missing or incorrect payment documentation",
+        "Income requirements not met"
+      ];
+
+      // PSLF Eligibility Check
+      if (formData.employment === "government" || formData.employment === "nonprofit") {
+        const employmentYears = parseInt(formData.employmentYears) || 0;
+        const paymentsMade = parseInt(formData.paymentsMade) || 0;
+        const pslfScore = Math.min(
+          ((employmentYears * 12 + paymentsMade) / 120) * 100,
+          100
+        );
+
+        if (formData.loanType === "direct") {
+          programs.push({
             name: "Public Service Loan Forgiveness (PSLF)",
-            description: "Based on your employment history and loan type",
+            description: "Based on your public service employment and loan type",
             nextSteps: [
-              "Submit Employment Certification Form",
+              "Submit PSLF Employment Certification Form",
               "Verify qualifying payment count",
               "Enroll in income-driven repayment plan"
             ],
-            eligibilityScore: 85
-          },
-          {
-            name: "Income-Driven Repayment Forgiveness",
-            description: "Based on your income and family size",
-            nextSteps: [
-              "Complete IDR plan request",
-              "Submit income documentation",
-              "Review payment options"
-            ],
-            eligibilityScore: 92
-          }
-        ]
+            eligibilityScore: pslfScore,
+            requirements: [
+              "Make 120 qualifying monthly payments",
+              "Work full-time for a qualifying employer",
+              "Have Direct Loans",
+              "Be enrolled in a qualifying repayment plan"
+            ]
+          });
+        }
+      }
+
+      // Teacher Loan Forgiveness Check
+      if (formData.employment === "education" && formData.loanType === "direct") {
+        const employmentYears = parseInt(formData.employmentYears) || 0;
+        const teacherScore = Math.min((employmentYears / 5) * 100, 100);
+
+        programs.push({
+          name: "Teacher Loan Forgiveness",
+          description: "For qualified teachers working in low-income schools",
+          nextSteps: [
+            "Verify school's low-income status",
+            "Complete Teacher Loan Forgiveness Application",
+            "Gather employment certification"
+          ],
+          eligibilityScore: teacherScore,
+          requirements: [
+            "Teach full-time for 5 complete and consecutive years",
+            "Work at a qualifying low-income school",
+            "Have Direct or FFEL Loans",
+            "Meet subject area requirements"
+          ]
+        });
+      }
+
+      // Income-Driven Repayment Forgiveness Check
+      const income = parseInt(formData.income) || 0;
+      const loanBalance = parseInt(formData.loanBalance) || 0;
+      if (income < loanBalance * 0.15) {
+        programs.push({
+          name: "Income-Driven Repayment Forgiveness",
+          description: "Based on your income-to-debt ratio",
+          nextSteps: [
+            "Apply for Income-Driven Repayment Plan",
+            "Submit annual income documentation",
+            "Track qualifying payments"
+          ],
+          eligibilityScore: 75,
+          requirements: [
+            "Enroll in an IDR plan",
+            "Make qualifying payments for 20-25 years",
+            "Recertify income annually",
+            "Have eligible federal loans"
+          ]
+        });
+      }
+
+      setResult({
+        eligible: programs.length > 0,
+        programs,
+        commonRejectionReasons
       });
+
       setLoading(false);
       toast({
         title: "Eligibility Check Complete",
-        description: "We've found potential programs you may qualify for.",
+        description: programs.length > 0 
+          ? "We've found potential programs you may qualify for."
+          : "Based on your inputs, you may not qualify for forgiveness programs at this time.",
       });
     }, 3000);
   };
@@ -92,7 +174,7 @@ export const EligibilityCheckerTool = () => {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="loanType">Loan Type</Label>
-              <Select>
+              <Select onValueChange={(value) => handleInputChange("loanType", value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select loan type" />
                 </SelectTrigger>
@@ -107,7 +189,7 @@ export const EligibilityCheckerTool = () => {
 
             <div className="space-y-2">
               <Label htmlFor="employment">Employment Type</Label>
-              <Select>
+              <Select onValueChange={(value) => handleInputChange("employment", value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select employment type" />
                 </SelectTrigger>
@@ -122,13 +204,43 @@ export const EligibilityCheckerTool = () => {
             </div>
 
             <div className="space-y-2">
+              <Label htmlFor="employmentYears">Years at Current Employment</Label>
+              <Input 
+                type="number" 
+                id="employmentYears" 
+                placeholder="Enter years"
+                onChange={(e) => handleInputChange("employmentYears", e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="paymentsMade">Qualifying Payments Made</Label>
+              <Input 
+                type="number" 
+                id="paymentsMade" 
+                placeholder="Enter number of payments"
+                onChange={(e) => handleInputChange("paymentsMade", e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="loanBalance">Current Loan Balance</Label>
-              <Input type="number" id="loanBalance" placeholder="Enter amount" />
+              <Input 
+                type="number" 
+                id="loanBalance" 
+                placeholder="Enter amount"
+                onChange={(e) => handleInputChange("loanBalance", e.target.value)}
+              />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="income">Annual Income</Label>
-              <Input type="number" id="income" placeholder="Enter annual income" />
+              <Input 
+                type="number" 
+                id="income" 
+                placeholder="Enter annual income"
+                onChange={(e) => handleInputChange("income", e.target.value)}
+              />
             </div>
           </div>
 
@@ -146,33 +258,71 @@ export const EligibilityCheckerTool = () => {
 
         {result && (
           <div className="mt-8 space-y-6">
-            {result.programs.map((program, index) => (
-              <Card key={index} className="border-2 border-green-100">
-                <CardContent className="pt-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="font-semibold text-lg text-gray-900">{program.name}</h3>
-                      <p className="text-gray-600">{program.description}</p>
+            {result.programs.length > 0 ? (
+              result.programs.map((program, index) => (
+                <Card key={index} className="border-2 border-green-100">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="font-semibold text-lg text-gray-900">{program.name}</h3>
+                        <p className="text-gray-600">{program.description}</p>
+                      </div>
+                      <div className="bg-green-50 px-3 py-1 rounded-full">
+                        <span className="text-green-700 font-medium">{program.eligibilityScore}% Match</span>
+                      </div>
                     </div>
-                    <div className="bg-green-50 px-3 py-1 rounded-full">
-                      <span className="text-green-700 font-medium">{program.eligibilityScore}% Match</span>
-                    </div>
-                  </div>
 
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-gray-800">Next Steps:</h4>
-                    <ul className="space-y-2">
-                      {program.nextSteps.map((step, idx) => (
-                        <li key={idx} className="flex items-center text-gray-600">
-                          <span className="mr-2">•</span>
-                          {step}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-medium text-gray-800 mb-2">Requirements:</h4>
+                        <ul className="list-disc pl-5 space-y-1">
+                          {program.requirements.map((req, idx) => (
+                            <li key={idx} className="text-gray-600">{req}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h4 className="font-medium text-gray-800 mb-2">Next Steps:</h4>
+                        <ul className="space-y-2">
+                          {program.nextSteps.map((step, idx) => (
+                            <li key={idx} className="flex items-center text-gray-600">
+                              <span className="mr-2">•</span>
+                              {step}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-4">
+                <h3 className="font-semibold text-yellow-800 mb-2">
+                  No Eligible Programs Found
+                </h3>
+                <p className="text-yellow-700 mb-4">
+                  Based on your current information, you may not qualify for loan forgiveness programs at this time.
+                </p>
+              </div>
+            )}
+
+            {result.commonRejectionReasons && (
+              <div className="bg-gray-50 rounded-lg p-6 mt-6">
+                <h3 className="font-semibold text-gray-900 mb-3">
+                  Common Rejection Reasons to Watch Out For:
+                </h3>
+                <ul className="space-y-2">
+                  {result.commonRejectionReasons.map((reason, idx) => (
+                    <li key={idx} className="flex items-center text-gray-600">
+                      <span className="mr-2">•</span>
+                      {reason}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="flex justify-center">
               <Button variant="outline" className="flex items-center gap-2" asChild>
