@@ -33,7 +33,7 @@ export const AffiliateLoanSection = () => {
             <span className="text-sm font-medium">Compare Today's Best Rates</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
             Compare Top Student Loan Lenders
           </h2>
           
@@ -92,10 +92,7 @@ export const AffiliateLoanSection = () => {
         {/* Lenders List */}
         <div className="space-y-4 max-w-4xl mx-auto">
           {filteredLenders.map((lender) => (
-            <div 
-              key={lender.name}
-              className="transform transition-all duration-300 hover:scale-[1.02]"
-            >
+            <div key={lender.name}>
               <LenderCard 
                 lender={lender}
                 featured={lender.featured}
@@ -111,20 +108,14 @@ export const AffiliateLoanSection = () => {
             <Button 
               variant="default"
               size="lg" 
-              className="group relative overflow-hidden bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all w-full sm:w-auto px-8"
+              className="bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all w-full sm:w-auto px-8"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="flex items-center justify-center gap-2">
                 View All Lenders
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-dark to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
             </Button>
           </Link>
-        </div>
-
-        {/* Additional Trust Indicators */}
-        <div className="mt-16">
-          <TrustIndicators />
         </div>
       </div>
     </section>
