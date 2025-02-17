@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Info, ArrowRight } from "lucide-react";
+import { Info, ArrowRight, Star, Shield, BadgeCheck, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { lenders, type LenderType } from "@/data/lenders";
@@ -19,65 +19,112 @@ export const AffiliateLoanSection = () => {
   };
 
   return (
-    <section className="relative py-12 md:py-20 bg-gradient-to-b from-white to-gray-50">
-      {/* Separator line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-      
+    <section className="relative py-16 md:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 opacity-5 bg-[url('placeholder.svg')] bg-repeat"></div>
+      </div>
+
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4 text-gray-900">
+        {/* Header Section */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-blue-50 text-primary border border-primary/10">
+            <TrendingUp className="w-4 h-4 mr-2" />
+            <span className="text-sm font-medium">Compare Today's Best Rates</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
             Compare Top Student Loan Lenders
           </h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mb-6 px-4">
-            Find and compare the best student loan and refinancing rates from leading lenders.
+          
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+            Find and compare the best student loan and refinancing rates from leading lenders, handpicked for their reliability and competitive offers.
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8 px-4">
-            <Info className="h-4 w-4 flex-shrink-0 text-gray-700" />
-            <span className="text-sm">We earn affiliate commission when you get approved</span>
+          
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
+            <Info className="h-4 w-4 text-primary" />
+            <span>We earn affiliate commission when you get approved through our platform</span>
           </div>
 
+          {/* Trust Indicators */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-10">
+            <div className="flex items-center justify-center gap-2 p-3 rounded-lg bg-white shadow-sm border border-gray-100">
+              <Star className="h-5 w-5 text-yellow-500" />
+              <span className="text-sm font-medium text-gray-700">4.8/5 Average Rating</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 p-3 rounded-lg bg-white shadow-sm border border-gray-100">
+              <Shield className="h-5 w-5 text-primary" />
+              <span className="text-sm font-medium text-gray-700">100% Secure Process</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 p-3 rounded-lg bg-white shadow-sm border border-gray-100">
+              <BadgeCheck className="h-5 w-5 text-secondary" />
+              <span className="text-sm font-medium text-gray-700">Verified Partners</span>
+            </div>
+          </div>
+
+          {/* Loan Type Selector */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
             <Button
               variant={selectedType === "private" ? "default" : "outline"}
               onClick={() => setSelectedType("private")}
-              className="w-full sm:w-auto sm:min-w-[200px]"
+              className={`w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 ${
+                selectedType === "private" 
+                  ? "shadow-lg hover:shadow-xl" 
+                  : "hover:border-primary/50"
+              }`}
             >
               Private Student Loans
             </Button>
             <Button
               variant={selectedType === "refinance" ? "default" : "outline"}
               onClick={() => setSelectedType("refinance")}
-              className="w-full sm:w-auto sm:min-w-[200px]"
+              className={`w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 ${
+                selectedType === "refinance" 
+                  ? "shadow-lg hover:shadow-xl" 
+                  : "hover:border-primary/50"
+              }`}
             >
               Student Loan Refinancing
             </Button>
           </div>
-
-          <TrustIndicators />
         </div>
 
+        {/* Lenders List */}
         <div className="space-y-4 max-w-4xl mx-auto">
           {filteredLenders.map((lender) => (
-            <LenderCard 
-              key={lender.name} 
-              lender={lender}
-              featured={lender.featured}
-              showDetails={false}
-            />
+            <div 
+              key={lender.name}
+              className="transform transition-all duration-300 hover:scale-[1.02]"
+            >
+              <LenderCard 
+                lender={lender}
+                featured={lender.featured}
+                showDetails={false}
+              />
+            </div>
           ))}
         </div>
 
+        {/* Call to Action */}
         <div className="mt-12 text-center">
           <Link to="/all-lenders" onClick={handleViewAllClick}>
             <Button 
               variant="default"
               size="lg" 
-              className="group bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+              className="group relative overflow-hidden bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all w-full sm:w-auto px-8"
             >
-              View All Lenders
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                View All Lenders
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-dark to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
             </Button>
           </Link>
+        </div>
+
+        {/* Additional Trust Indicators */}
+        <div className="mt-16">
+          <TrustIndicators />
         </div>
       </div>
     </section>
