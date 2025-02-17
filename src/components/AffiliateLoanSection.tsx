@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Info, ArrowRight, Star, Shield, BadgeCheck, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -33,7 +32,7 @@ export const AffiliateLoanSection = () => {
             <span className="text-sm font-medium">Compare Today's Best Rates</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
             Compare Top Student Loan Lenders
           </h2>
           

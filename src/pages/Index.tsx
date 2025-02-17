@@ -18,7 +18,7 @@ const Index = () => {
 
   useEffect(() => {
     const testimonialTimer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev === 0 ? 1 : 0));
+      setCurrentTestimonial((prev) => (prev + 1) % 4); // Updated for 4 testimonials
     }, 5000);
     return () => clearInterval(testimonialTimer);
   }, []);
@@ -29,10 +29,10 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <HowItWorks />
-        <WhyNeedGuide />
         <div className="container mx-auto px-4 py-12">
           <TestimonialSection currentTestimonial={currentTestimonial} />
         </div>
+        <WhyNeedGuide />
         <AffiliateLoanSection />
         <FafsaGuide />
         <LoanForgivenessPrograms />
