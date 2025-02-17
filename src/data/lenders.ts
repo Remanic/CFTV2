@@ -8,6 +8,7 @@ export interface Lender {
   fixedAPR: string;
   variableAPR: string;
   minCreditScore: number;
+  loanAmount: string;
   pros: string[];
   cons: string[];
   specialFeatures: string[];
@@ -19,9 +20,10 @@ export const lenders: Lender[] = [
     name: "SoFi",
     type: "private",
     featured: true,
-    fixedAPR: "4.49% - 8.99%",
-    variableAPR: "4.99% - 9.99%",
+    fixedAPR: "5.24% - 11.99%",
+    variableAPR: "5.74% - 12.99%",
     minCreditScore: 650,
+    loanAmount: "$5,000 - $100,000",
     pros: [
       "No origination or late fees",
       "Career coaching and job search assistance",
@@ -40,15 +42,16 @@ export const lenders: Lender[] = [
       "Career advisory services",
       "Comprehensive mobile app"
     ],
-    link: "https://www.credible.com/sofi-student-loans"
+    link: "https://www.sofi.com/private-student-loans"
   },
   {
     name: "Earnest",
     type: "private",
     featured: true,
-    fixedAPR: "4.25% - 9.99%",
-    variableAPR: "4.74% - 10.99%",
+    fixedAPR: "5.49% - 13.03%",
+    variableAPR: "5.89% - 13.24%",
     minCreditScore: 680,
+    loanAmount: "$1,000 - $200,000",
     pros: [
       "Flexible payment options",
       "Skip one payment per year",
@@ -67,15 +70,16 @@ export const lenders: Lender[] = [
       "Flexible payment schedule",
       "Mobile-first experience"
     ],
-    link: "https://www.credible.com/earnest-student-loans"
+    link: "https://www.earnest.com/student-loans"
   },
   {
     name: "College Ave",
     type: "private",
     featured: false,
-    fixedAPR: "4.49% - 8.99%",
-    variableAPR: "4.74% - 9.74%",
+    fixedAPR: "4.99% - 12.99%",
+    variableAPR: "5.39% - 13.95%",
     minCreditScore: 660,
+    loanAmount: "$1,000 - $150,000",
     pros: [
       "Multiple repayment options while in school",
       "Quick 3-minute application process",
@@ -93,15 +97,16 @@ export const lenders: Lender[] = [
       "Multi-year approval option",
       "International student loans"
     ],
-    link: "https://www.credible.com/college-ave-student-loans"
+    link: "https://www.collegeavestudentloans.com"
   },
   {
     name: "Discover",
     type: "private",
     featured: false,
-    fixedAPR: "4.99% - 9.99%",
-    variableAPR: "5.24% - 10.99%",
+    fixedAPR: "5.99% - 13.99%",
+    variableAPR: "6.24% - 14.99%",
     minCreditScore: 650,
+    loanAmount: "$1,000 - $150,000",
     pros: [
       "Cash rewards for good grades",
       "No fees of any kind",
@@ -119,15 +124,16 @@ export const lenders: Lender[] = [
       "Free credit score monitoring",
       "Graduation reward"
     ],
-    link: "https://www.credible.com/discover-student-loans"
+    link: "https://www.discover.com/student-loans"
   },
   {
     name: "Laurel Road",
     type: "refinance",
     featured: true,
-    fixedAPR: "4.24% - 8.99%",
-    variableAPR: "4.49% - 9.99%",
+    fixedAPR: "5.24% - 11.99%",
+    variableAPR: "5.49% - 12.99%",
     minCreditScore: 660,
+    loanAmount: "$5,000 - No maximum",
     pros: [
       "Special rates for healthcare professionals",
       "No maximum loan amount",
@@ -145,15 +151,16 @@ export const lenders: Lender[] = [
       "Career support services",
       "Financial planning tools"
     ],
-    link: "https://www.credible.com/laurel-road-student-loans"
+    link: "https://www.laurelroad.com/student-loans"
   },
   {
     name: "CommonBond",
     type: "refinance",
     featured: false,
-    fixedAPR: "4.44% - 8.99%",
-    variableAPR: "4.99% - 9.99%",
+    fixedAPR: "5.44% - 12.99%",
+    variableAPR: "5.99% - 13.99%",
     minCreditScore: 660,
+    loanAmount: "$5,000 - $500,000",
     pros: [
       "Hybrid loan options available",
       "Social impact program",
@@ -171,6 +178,6 @@ export const lenders: Lender[] = [
       "Economic hardship forbearance",
       "Community events"
     ],
-    link: "https://www.credible.com/commonbond-student-loans"
+    link: "https://www.commonbond.co/refinance-student-loan"
   }
 ];

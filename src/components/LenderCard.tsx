@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Percent, Star, BadgeCheck, BadgeX, DollarSign, GraduationCap, Clock, Shield } from "lucide-react";
@@ -15,7 +14,7 @@ export const LenderCard = ({ lender, featured, showDetails = true }: LenderCardP
   const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    navigate("/all-lenders");
+    navigate("/best-student-loan-lenders");
     window.scrollTo(0, 0);
   };
 
@@ -65,32 +64,23 @@ export const LenderCard = ({ lender, featured, showDetails = true }: LenderCardP
     }`}>
       <div className="p-6 space-y-6">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="text-2xl font-bold text-gray-900">{lender.name}</h3>
-              {featured && (
-                <span className="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">
-                  Editor's Choice
-                </span>
-              )}
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-500">
-              <Shield className="h-4 w-4" />
-              <span>Minimum Credit Score: {lender.minCreditScore}</span>
-            </div>
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <h3 className="text-2xl font-bold text-gray-900">{lender.name}</h3>
+            {featured && (
+              <span className="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">
+                Editor's Choice
+              </span>
+            )}
           </div>
-          <Button 
-            className="w-full md:w-auto whitespace-nowrap group bg-primary hover:bg-primary/90"
-            onClick={() => window.open(lender.link, '_blank')}
-          >
-            Check Your Rate
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <Shield className="h-4 w-4" />
+            <span>Minimum Credit Score: {lender.minCreditScore}</span>
+          </div>
         </div>
 
         {/* Rates Section */}
-        <div className="grid md:grid-cols-2 gap-6 p-4 bg-gray-50 rounded-lg">
+        <div className="grid md:grid-cols-3 gap-6 p-4 bg-gray-50 rounded-lg">
           <div className="space-y-2">
             <div className="text-sm font-medium text-gray-500">Fixed APR</div>
             <div className="flex items-baseline gap-2">
@@ -103,6 +93,12 @@ export const LenderCard = ({ lender, featured, showDetails = true }: LenderCardP
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold text-gray-900">{lender.variableAPR}</span>
               <span className="text-sm text-gray-500">with autopay</span>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <div className="text-sm font-medium text-gray-500">Loan Amount</div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-bold text-gray-900">{lender.loanAmount}</span>
             </div>
           </div>
         </div>

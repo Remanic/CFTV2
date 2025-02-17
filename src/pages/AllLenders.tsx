@@ -16,10 +16,16 @@ const AllLenders = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Best Student Loan Lenders 2024 | Compare Private Loans & Refinancing Rates</title>
-        <meta name="description" content="Compare the best student loan lenders of 2024. Find competitive rates, flexible terms, and exclusive benefits for private student loans and refinancing options." />
-        <meta name="keywords" content="student loans, private student loans, student loan refinancing, best student loan lenders, compare student loans, student loan rates 2024" />
-        <link rel="canonical" href="https://cashflowtime.com/all-lenders" />
+        <title>Best Student Loan Lenders 2024 | Compare Private & Refinancing Rates</title>
+        <meta 
+          name="description" 
+          content="Compare the best student loan lenders of 2024. Find lowest rates, flexible terms, and exclusive benefits from top private student loan providers and refinancing companies. Get personalized rates without affecting your credit score." 
+        />
+        <meta 
+          name="keywords" 
+          content="best student loans, private student loans, student loan refinancing, compare student loan rates, student loan companies, student loan lenders, best student loan refinancing, college loans, graduate student loans" 
+        />
+        <link rel="canonical" href="https://cashflowtime.com/best-student-loan-lenders" />
       </Helmet>
 
       <Header />
