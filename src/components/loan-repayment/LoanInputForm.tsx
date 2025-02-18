@@ -1,4 +1,3 @@
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -76,14 +75,14 @@ export const LoanInputForm = ({
             <Slider
               value={[parseFloat(loanDetails.loanAmount.replace(/,/g, '')) || 0]}
               min={1000}
-              max={200000}
+              max={500000}
               step={1000}
               onValueChange={([value]) => handleSliderChange('loanAmount', value)}
               className="mt-2"
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>$1,000</span>
-              <span>$200,000</span>
+              <span>$500,000</span>
             </div>
           </div>
 
@@ -117,14 +116,14 @@ export const LoanInputForm = ({
             <Slider
               value={[parseFloat(loanDetails.interestRate.replace(/,/g, '')) || 0]}
               min={1}
-              max={15}
+              max={20}
               step={0.1}
               onValueChange={([value]) => handleSliderChange('interestRate', value)}
               className="mt-2"
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>1%</span>
-              <span>15%</span>
+              <span>20%</span>
             </div>
           </div>
 

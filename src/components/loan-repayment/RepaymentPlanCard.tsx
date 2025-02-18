@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import type { RepaymentPlan } from "./utils/calculations";
 import { Progress } from "@/components/ui/progress";
@@ -28,6 +27,21 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
   const interestPercentage = (plan.monthlyBreakdown.interest / plan.monthlyPayment) * 100;
   const totalPrincipalPercentage = ((plan.totalPayment - plan.totalInterest) / plan.totalPayment) * 100;
 
+  const getPlanColor = (planName: string) => {
+    switch (planName) {
+      case "Standard":
+        return "#D3E4FD";
+      case "Graduated":
+        return "#33C3F0";
+      case "Income-Based":
+        return "#1EAEDB";
+      case "Extended":
+        return "#0FA0CE";
+      default:
+        return "#D3E4FD";
+    }
+  };
+
   return (
     <Card className="p-6 hover:shadow-lg transition-shadow">
       <div className="space-y-6">
@@ -53,11 +67,10 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
           )}
         </div>
 
-        {/* Total Payment Breakdown */}
-        <div className="p-4 bg-gray-50 rounded-lg space-y-3">
+        <div className="p-4 bg-gray-50 rounded-lg space-y-3 min-h-[180px]">
           <div className="flex justify-between items-baseline">
-            <span className="text-sm font-medium text-gray-600">Total Payment</span>
-            <span className="text-lg font-bold text-gray-900">{formatCurrency(plan.totalPayment)}</span>
+            <span className="text-sm font-bold text-black">Total Payment</span>
+            <span className="text-lg font-bold text-black">{formatCurrency(plan.totalPayment)}</span>
           </div>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -72,8 +85,11 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
             </div>
             <div className="h-2 rounded-full bg-gray-200 overflow-hidden">
               <div 
-                className="h-full bg-primary" 
-                style={{ width: `${totalPrincipalPercentage}%` }}
+                className="h-full"
+                style={{ 
+                  width: `${totalPrincipalPercentage}%`,
+                  backgroundColor: getPlanColor(plan.name)
+                }}
               />
             </div>
             <div className="flex justify-between text-xs text-gray-500">
@@ -83,10 +99,9 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
           </div>
         </div>
 
-        {/* Monthly Payment Section */}
         <div className="space-y-4">
           <div className="flex justify-between items-baseline">
-            <span className="text-sm font-medium text-gray-500">Monthly Payment</span>
+            <span className="text-sm font-bold text-black">Monthly Payment</span>
             <div className="flex items-center gap-2">
               {(plan.name === "Graduated" || plan.name === "Income-Based") && (
                 <TooltipProvider>
@@ -106,13 +121,12 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
                   </Tooltip>
                 </TooltipProvider>
               )}
-              <span className="text-2xl font-bold text-gray-900">
+              <span className="text-2xl font-bold text-black">
                 {formatCurrency(plan.monthlyPayment)}
               </span>
             </div>
           </div>
           
-          {/* Monthly Payment Breakdown */}
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-gray-500">Principal</span>
@@ -129,12 +143,16 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
             <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
               <div className="flex h-full">
                 <div 
-                  className="bg-primary" 
-                  style={{ width: `${principalPercentage}%` }}
+                  style={{ 
+                    width: `${principalPercentage}%`,
+                    backgroundColor: getPlanColor(plan.name)
+                  }}
                 />
                 <div 
-                  className="bg-primary/30" 
-                  style={{ width: `${interestPercentage}%` }}
+                  style={{ 
+                    width: `${interestPercentage}%`,
+                    backgroundColor: `${getPlanColor(plan.name)}80`
+                  }}
                 />
               </div>
             </div>
@@ -144,7 +162,6 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
             </div>
           </div>
 
-          {/* Payment Progression Visualization */}
           {(plan.name === "Graduated" || plan.name === "Income-Based") && (
             <div className="mt-4 pt-4 border-t border-gray-100">
               <div className="flex items-center gap-2 mb-2">
@@ -185,7 +202,6 @@ export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
           </div>
         </div>
 
-        {/* Benefits and Tips */}
         <div className="space-y-4">
           <div>
             <h4 className="font-medium text-gray-900 mb-2">Benefits</h4>
