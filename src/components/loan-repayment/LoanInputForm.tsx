@@ -1,6 +1,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 import {
   Tooltip,
   TooltipContent,
@@ -22,17 +23,30 @@ interface LoanDetails {
 interface LoanInputFormProps {
   loanDetails: LoanDetails;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSliderChange: (name: string, value: number) => void;
 }
 
 export const LoanInputForm = ({
   loanDetails,
   handleInputChange,
+  handleSliderChange,
 }: LoanInputFormProps) => {
+  const formatCurrency = (value: string) => {
+    const number = parseFloat(value.replace(/,/g, ''));
+    if (isNaN(number)) return '';
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(number);
+  };
+
   return (
     <Card className="p-6">
       <form className="space-y-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="space-y-2">
+          <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Label htmlFor="loanAmount">Loan Amount</Label>
               <TooltipProvider>
@@ -59,9 +73,21 @@ export const LoanInputForm = ({
                 required
               />
             </div>
+            <Slider
+              value={[parseFloat(loanDetails.loanAmount.replace(/,/g, '')) || 0]}
+              min={1000}
+              max={200000}
+              step={1000}
+              onValueChange={([value]) => handleSliderChange('loanAmount', value)}
+              className="mt-2"
+            />
+            <div className="flex justify-between text-xs text-gray-500">
+              <span>$1,000</span>
+              <span>$200,000</span>
+            </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Label htmlFor="interestRate">Interest Rate (%)</Label>
               <TooltipProvider>
@@ -88,9 +114,21 @@ export const LoanInputForm = ({
                 required
               />
             </div>
+            <Slider
+              value={[parseFloat(loanDetails.interestRate.replace(/,/g, '')) || 0]}
+              min={1}
+              max={15}
+              step={0.1}
+              onValueChange={([value]) => handleSliderChange('interestRate', value)}
+              className="mt-2"
+            />
+            <div className="flex justify-between text-xs text-gray-500">
+              <span>1%</span>
+              <span>15%</span>
+            </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Label htmlFor="income">Annual Income</Label>
               <TooltipProvider>
@@ -116,6 +154,18 @@ export const LoanInputForm = ({
                 onChange={handleInputChange}
                 required
               />
+            </div>
+            <Slider
+              value={[parseFloat(loanDetails.income.replace(/,/g, '')) || 0]}
+              min={0}
+              max={200000}
+              step={1000}
+              onValueChange={([value]) => handleSliderChange('income', value)}
+              className="mt-2"
+            />
+            <div className="flex justify-between text-xs text-gray-500">
+              <span>$0</span>
+              <span>$200,000</span>
             </div>
           </div>
         </div>

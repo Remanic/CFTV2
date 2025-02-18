@@ -1,123 +1,117 @@
 
 import { Card } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { PiggyBank, TrendingUp, DollarSign, Calculator, Award, Lightbulb } from "lucide-react";
-
-interface RepaymentPlan {
-  name: string;
-  monthlyPayment: number;
-  totalInterest: number;
-  totalPayment: number;
-  timeToRepay: number;
-  description: string;
-  popularity: number;
-  benefits: string[];
-  pslf_eligible: boolean;
-  optimizationTips: string[];
-}
+import type { RepaymentPlan } from "./utils/calculations";
+import { Progress } from "@/components/ui/progress";
+import { BadgeCheck } from "lucide-react";
 
 interface RepaymentPlanCardProps {
   plan: RepaymentPlan;
 }
 
 export const RepaymentPlanCard = ({ plan }: RepaymentPlanCardProps) => {
-  const getPlanIcon = (name: string) => {
-    switch (name) {
-      case "Standard":
-        return <PiggyBank className="h-5 w-5 text-primary" />;
-      case "Graduated":
-        return <TrendingUp className="h-5 w-5 text-primary" />;
-      case "Extended":
-        return <DollarSign className="h-5 w-5 text-primary" />;
-      case "Income-Based":
-        return <Calculator className="h-5 w-5 text-primary" />;
-      default:
-        return null;
-    }
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
   };
 
-  return (
-    <Card className="p-6">
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
-            {getPlanIcon(plan.name)}
-            {plan.name}
-            {plan.pslf_eligible && (
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Award className="h-4 w-4 text-green-500 ml-1" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Eligible for Public Service Loan Forgiveness</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            )}
-          </h3>
-          <span className="text-sm text-gray-500">{plan.popularity}% choose this</span>
-        </div>
+  const principalPercentage = (plan.monthlyBreakdown.principal / plan.monthlyPayment) * 100;
+  const interestPercentage = (plan.monthlyBreakdown.interest / plan.monthlyPayment) * 100;
 
-        <p className="text-sm text-gray-600">{plan.description}</p>
+  return (
+    <Card className="p-6 hover:shadow-lg transition-shadow">
+      <div className="space-y-6">
+        <div className="flex items-start justify-between">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900">{plan.name}</h3>
+            <p className="text-sm text-gray-500 mt-1">{plan.description}</p>
+          </div>
+          {plan.pslf_eligible && (
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              <BadgeCheck className="w-4 h-4 mr-1" />
+              PSLF Eligible
+            </span>
+          )}
+        </div>
 
         <div className="space-y-4">
           <div>
-            <p className="text-sm text-gray-500">Monthly Payment</p>
-            <p className="text-2xl font-bold text-primary">
-              ${Math.round(plan.monthlyPayment).toLocaleString()}
-            </p>
+            <div className="flex justify-between items-baseline mb-2">
+              <span className="text-sm font-medium text-gray-500">Monthly Payment</span>
+              <span className="text-2xl font-bold text-gray-900">{formatCurrency(plan.monthlyPayment)}</span>
+            </div>
+            
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">Principal</span>
+                <span className="font-medium text-gray-700">{formatCurrency(plan.monthlyBreakdown.principal)}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">Interest</span>
+                <span className="font-medium text-gray-700">{formatCurrency(plan.monthlyBreakdown.interest)}</span>
+              </div>
+              <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
+                <div className="flex h-full">
+                  <div 
+                    className="bg-primary" 
+                    style={{ width: `${principalPercentage}%` }}
+                  />
+                  <div 
+                    className="bg-primary/30" 
+                    style={{ width: `${interestPercentage}%` }}
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between text-xs text-gray-500">
+                <span>Principal ({Math.round(principalPercentage)}%)</span>
+                <span>Interest ({Math.round(interestPercentage)}%)</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <p className="text-sm text-gray-500">Total Payment</p>
-            <p className="text-lg font-semibold text-primary">
-              ${Math.round(plan.totalPayment).toLocaleString()}
-            </p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Total Interest</p>
-            <p className="text-lg font-semibold text-primary">
-              ${Math.round(plan.totalInterest).toLocaleString()}
-            </p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Time to Repay</p>
-            <p className="text-lg font-semibold text-primary">
-              {Math.round(plan.timeToRepay / 12)} years
-            </p>
+
+          <div className="space-y-1">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-500">Total Interest</span>
+              <span className="font-medium text-gray-700">{formatCurrency(plan.totalInterest)}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-500">Total Payment</span>
+              <span className="font-medium text-gray-700">{formatCurrency(plan.totalPayment)}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-500">Time to Repay</span>
+              <span className="font-medium text-gray-700">{Math.round(plan.timeToRepay / 12)} years</span>
+            </div>
           </div>
         </div>
 
-        <div className="space-y-2">
-          <p className="text-sm font-medium">Benefits:</p>
-          <ul className="text-sm text-gray-600 space-y-1">
-            {plan.benefits.map((benefit, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className="space-y-4">
+          <div>
+            <h4 className="font-medium text-gray-900 mb-2">Benefits</h4>
+            <ul className="space-y-1">
+              {plan.benefits.map((benefit, index) => (
+                <li key={index} className="text-sm text-gray-600 flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="space-y-2">
-          <p className="text-sm font-medium flex items-center gap-2">
-            <Lightbulb className="h-4 w-4 text-amber-500" />
-            Optimization Tips:
-          </p>
-          <ul className="text-sm text-gray-600 space-y-1">
-            {plan.optimizationTips.map((tip, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-amber-500">•</span>
-                {tip}
-              </li>
-            ))}
-          </ul>
+          <div>
+            <h4 className="font-medium text-gray-900 mb-2">Optimization Tips</h4>
+            <ul className="space-y-1">
+              {plan.optimizationTips.map((tip, index) => (
+                <li key={index} className="text-sm text-gray-600 flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </Card>
