@@ -1,7 +1,7 @@
 
 import { createRoot } from 'react-dom/client';
 import { lazy, Suspense } from 'react';
-import { LoadingSpinner } from './components/ui/loading-spinner';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import './index.css';
 
 // Lazy load the main App component
