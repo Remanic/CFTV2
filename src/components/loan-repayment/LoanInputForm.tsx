@@ -1,3 +1,4 @@
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -41,6 +42,8 @@ export const LoanInputForm = ({
     }).format(number);
   };
 
+  const sliderStyles = "mt-2 [&>[role=slider]]:bg-[#33C3F0] [&>.bg-primary]:bg-[#33C3F0]";
+
   return (
     <Card className="p-6">
       <form className="space-y-6">
@@ -78,7 +81,7 @@ export const LoanInputForm = ({
               max={500000}
               step={1000}
               onValueChange={([value]) => handleSliderChange('loanAmount', value)}
-              className="mt-2"
+              className={sliderStyles}
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>$1,000</span>
@@ -119,7 +122,7 @@ export const LoanInputForm = ({
               max={20}
               step={0.1}
               onValueChange={([value]) => handleSliderChange('interestRate', value)}
-              className="mt-2"
+              className={sliderStyles}
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>1%</span>
@@ -157,14 +160,14 @@ export const LoanInputForm = ({
             <Slider
               value={[parseFloat(loanDetails.income.replace(/,/g, '')) || 0]}
               min={0}
-              max={200000}
+              max={500000}
               step={1000}
               onValueChange={([value]) => handleSliderChange('income', value)}
-              className="mt-2"
+              className={sliderStyles}
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>$0</span>
-              <span>$200,000</span>
+              <span>$500,000</span>
             </div>
           </div>
         </div>

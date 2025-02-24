@@ -18,17 +18,18 @@ interface RepaymentPlanCardProps {
 }
 
 const getPlanColor = (planName: string) => {
+  const standardPlanColor = "#B3C9E3"; // Darker shade of standard plan color
   switch (planName) {
     case "Standard":
-      return "#D3E4FD";
+      return standardPlanColor;
     case "Graduated":
-      return "#33C3F0";
+      return standardPlanColor;
     case "Income-Based":
-      return "#1EAEDB";
+      return standardPlanColor;
     case "Extended":
-      return "#0FA0CE";
+      return standardPlanColor;
     default:
-      return "#D3E4FD";
+      return standardPlanColor;
   }
 };
 

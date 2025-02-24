@@ -91,7 +91,7 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
       totalInterest: standardTotalInterest,
       totalPayment: standardTotalPayment,
       timeToRepay: months,
-      description: "Fixed monthly payments over 10 years",
+      description: "Fixed monthly payments over 10 years\n",
       popularity: 45,
       pslf_eligible: true,
       monthlyBreakdown: {
@@ -139,7 +139,7 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
       totalInterest: extendedTotalPayment - amount,
       totalPayment: extendedTotalPayment,
       timeToRepay: extendedMonths,
-      description: "Lower monthly payments over 25 years",
+      description: "Lower monthly payments over 25 years\n",
       popularity: 15,
       pslf_eligible: false,
       monthlyBreakdown: {
