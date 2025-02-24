@@ -1,3 +1,4 @@
+import { formatCurrency } from "./formatters";
 
 export interface LoanDetails {
   loanAmount: string;
@@ -91,7 +92,7 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
       totalInterest: standardTotalInterest,
       totalPayment: standardTotalPayment,
       timeToRepay: months,
-      description: "Fixed monthly payments over 10 years\n",
+      description: "Fixed monthly payments over 10 years - straightforward and predictable",
       popularity: 45,
       pslf_eligible: true,
       monthlyBreakdown: {
@@ -139,7 +140,7 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
       totalInterest: extendedTotalPayment - amount,
       totalPayment: extendedTotalPayment,
       timeToRepay: extendedMonths,
-      description: "Lower monthly payments over 25 years\n",
+      description: "Lower monthly payments over 25 years - more affordable monthly cost",
       popularity: 15,
       pslf_eligible: false,
       monthlyBreakdown: {
@@ -161,19 +162,19 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
       name: "Income-Based",
       monthlyPayment: incomeBasedPayment,
       totalInterest: Math.max(0, (incomeBasedPayment * 240) - amount),
-      totalPayment: incomeBasedPayment * 240,
+      totalPayment: Math.min(incomeBasedPayment * 240, amount * 1.5), // Cap at 150% of original loan
       timeToRepay: 240,
       description: "Payments based on your discretionary income",
       popularity: 35,
       pslf_eligible: true,
       monthlyBreakdown: {
-        principal: incomeBasedPayment - incomeBasedMonthlyInterest,
-        interest: incomeBasedMonthlyInterest
+        principal: Math.max(0, incomeBasedPayment - incomeBasedMonthlyInterest),
+        interest: Math.min(incomeBasedPayment, incomeBasedMonthlyInterest)
       },
       benefits: [
+        `Monthly payment: ${formatCurrency(incomeBasedPayment)} (${Math.round((incomeBasedPayment * 12 / yearlyIncome) * 100)}% of annual income)`,
         "Payments adjust with income changes",
-        "Potential loan forgiveness after 20-25 years",
-        "Protection during financial hardship"
+        "Potential loan forgiveness after 20-25 years"
       ],
       optimizationTips: [
         "Recertify income annually",
