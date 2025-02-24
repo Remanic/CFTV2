@@ -39,14 +39,14 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
 
   // Convert annual rate to monthly rate
   const monthlyRate = (rate / 100) / 12;
-  
+
   // Standard payment calculation
   const standardPayment = (amount * monthlyRate * Math.pow(1 + monthlyRate, months)) / 
                          (Math.pow(1 + monthlyRate, months) - 1);
   const standardTotalPayment = standardPayment * months;
   const standardTotalInterest = standardTotalPayment - amount;
   const standardMonthlyInterest = amount * monthlyRate;
-  
+
   // Graduated payment calculation - starts at 75% of standard payment, increases every 2 years by 10%
   let graduatedBalance = amount;
   let graduatedTotalInterest = 0;
@@ -74,16 +74,51 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
                          (Math.pow(1 + monthlyRate, extendedMonths) - 1);
   const extendedTotalPayment = extendedPayment * extendedMonths;
   const extendedMonthlyInterest = amount * monthlyRate;
-  
-  // Income-based payment (10% of discretionary income)
+
+  // Income-based payment calculation (following studentaid.gov guidelines)
   // 2024 Poverty Guidelines for 48 States and DC
   const basePovertyLine2024 = 15060;
   const additionalPersonAmount = 5380;
   const familySize = parseInt(loanDetails.familySize);
   const povertyLine = basePovertyLine2024 + (additionalPersonAmount * (familySize - 1));
+  
+  // Calculate discretionary income (amount over 150% of poverty line)
   const discretionaryIncome = Math.max(0, yearlyIncome - (povertyLine * 1.5));
-  const incomeBasedPayment = Math.max((discretionaryIncome * 0.1) / 12, 10);
-  const incomeBasedMonthlyInterest = amount * monthlyRate;
+  
+  // Calculate monthly payment (10% of discretionary income for new borrowers after July 1, 2014)
+  // 15% for earlier borrowers, we'll use 10% as default
+  const monthlyDiscretionaryPercentage = 0.10;
+  const calculatedMonthlyPayment = (discretionaryIncome * monthlyDiscretionaryPercentage) / 12;
+  
+  // Payment cannot be less than $0 but can be $0 if income is low enough
+  const incomeBasedPayment = Math.max(0, calculatedMonthlyPayment);
+  
+  // For income-based total calculations:
+  // 1. Maximum repayment period is 20 years (240 months) for new borrowers
+  // 2. Remaining balance is forgiven after this period
+  // 3. Calculate interest accrual accurately
+  const ibr_months = 240; // 20 years
+  let ibrTotalPaid = 0;
+  let ibrTotalInterest = 0;
+  let remainingBalance = amount;
+  
+  // Simulate payments over time to calculate total interest and payment
+  for (let i = 0; i < ibr_months && remainingBalance > 0; i++) {
+    const monthlyInterest = remainingBalance * monthlyRate;
+    const principalPayment = Math.min(remainingBalance, Math.max(0, incomeBasedPayment - monthlyInterest));
+    
+    ibrTotalInterest += monthlyInterest;
+    ibrTotalPaid += incomeBasedPayment;
+    remainingBalance = Math.max(0, remainingBalance - principalPayment);
+  }
+  
+  // If there's remaining balance after 20 years, it's forgiven
+  // Track forgiven amount but don't include in total payment
+  const forgivenAmount = remainingBalance;
+  
+  // Calculate monthly breakdown
+  const ibrMonthlyInterest = Math.min(incomeBasedPayment, amount * monthlyRate);
+  const ibrMonthlyPrincipal = Math.max(0, incomeBasedPayment - ibrMonthlyInterest);
 
   return [
     {
@@ -161,25 +196,25 @@ export const calculateRepaymentPlans = (loanDetails: LoanDetails): RepaymentPlan
     {
       name: "Income-Based",
       monthlyPayment: incomeBasedPayment,
-      totalInterest: Math.max(0, (incomeBasedPayment * 240) - amount),
-      totalPayment: Math.min(incomeBasedPayment * 240, amount * 1.5), // Cap at 150% of original loan
-      timeToRepay: 240,
+      totalInterest: ibrTotalInterest,
+      totalPayment: ibrTotalPaid,
+      timeToRepay: ibr_months,
       description: "Payments based on your discretionary income",
       popularity: 35,
       pslf_eligible: true,
       monthlyBreakdown: {
-        principal: Math.max(0, incomeBasedPayment - incomeBasedMonthlyInterest),
-        interest: Math.min(incomeBasedPayment, incomeBasedMonthlyInterest)
+        principal: ibrMonthlyPrincipal,
+        interest: ibrMonthlyInterest
       },
       benefits: [
-        `Monthly payment: ${formatCurrency(incomeBasedPayment)} (${Math.round((incomeBasedPayment * 12 / yearlyIncome) * 100)}% of annual income)`,
-        "Payments adjust with income changes",
-        "Potential loan forgiveness after 20-25 years"
+        `Monthly payment: ${formatCurrency(incomeBasedPayment)} (${Math.round((incomeBasedPayment * 12 / yearlyIncome) * 100 || 0)}% of annual income)`,
+        `Based on discretionary income: ${formatCurrency(discretionaryIncome)} annually`,
+        forgivenAmount > 0 ? `Estimated forgiveness: ${formatCurrency(forgivenAmount)}` : "May qualify for loan forgiveness after 20-25 years"
       ],
       optimizationTips: [
-        "Recertify income annually",
-        "Document public service employment",
-        "Track qualifying payments for forgiveness"
+        "Recertify income annually to maintain eligibility",
+        "Document all qualifying payments",
+        isPublicService ? "Track PSLF eligibility - could qualify in 10 years" : "Consider public service for accelerated forgiveness"
       ]
     }
   ];
