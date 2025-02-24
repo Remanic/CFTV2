@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Helmet } from "react-helmet";
@@ -101,7 +100,6 @@ const IncomeBasedRepayment = () => {
                 </div>
               </div>
 
-              {/* Similar blocks for PAYE, IBR, and ICR plans */}
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-xl font-semibold mb-4">2. PAYE (Pay As You Earn) Plan</h3>
                 <div className="space-y-4">
@@ -119,7 +117,49 @@ const IncomeBasedRepayment = () => {
                 </div>
               </div>
 
-              {/* Continue with IBR and ICR sections */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">3. IBR (Income-Based Repayment) Plan</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-2">
+                    <span className="font-semibold">Status in 2025:</span>
+                    <span>Currently offered. No closures or interruptions reported.</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-2">Details:</p>
+                    <ul className="list-disc pl-6 space-y-2">
+                      <li>Payments are 10% of discretionary income (for new borrowers after July 1, 2014) or 15% (for earlier borrowers)</li>
+                      <li>Forgiveness after 20 years (new borrowers) or 25 years (older borrowers)</li>
+                      <li>Remains stable, unaffected by legal challenges or closures impacting other plans</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Who It's For:</p>
+                    <p>Borrowers who don't qualify for PAYE or need a reliable, long-standing option.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-xl font-semibold mb-4">4. ICR (Income-Contingent Repayment) Plan</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-2">
+                    <span className="font-semibold">Status in 2025:</span>
+                    <span>Currently offered. Reopened to new borrowers in mid-January 2025.</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-2">Details:</p>
+                    <ul className="list-disc pl-6 space-y-2">
+                      <li>Payments are the lesser of 20% of discretionary income or what you'd pay on a 12-year fixed plan</li>
+                      <li>Forgiveness after 25 years</li>
+                      <li>Similar to PAYE, ICR's temporary closure in 2024 was lifted in 2025</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Who It's For:</p>
+                    <p>Borrowers ineligible for other IDR plans, including parent PLUS loan holders (after consolidation).</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -128,10 +168,51 @@ const IncomeBasedRepayment = () => {
             <div className="space-y-6">
               <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
                 <h3 className="text-lg font-semibold mb-2">1. PSLF Eligibility Hack with Minimum Payments</h3>
-                <p>Lower your monthly payments through an IDR plan to maximize the amount forgiven under PSLF. Since forgiveness occurs after 120 payments regardless of the amount paid, smaller payments mean more debt is erased.</p>
+                <div className="space-y-2">
+                  <p className="font-medium">What It Is:</p>
+                  <p>Public Service Loan Forgiveness (PSLF) cancels your remaining loan balance after 120 qualifying payments while working full-time for a qualifying employer.</p>
+                  <p className="font-medium mt-2">How to Do It:</p>
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li>Enroll in SAVE or PAYE, where payments can be as low as $0 based on your income</li>
+                    <li>Even $0 payments count toward the 120 needed for PSLF</li>
+                    <li>Recertify your income yearly to keep payments minimal</li>
+                  </ul>
+                  <p className="mt-2"><span className="font-medium">Example:</span> If you owe $50,000 and your SAVE payment is $0, after 120 payments (10 years), the full $50,000 is forgiven under PSLF.</p>
+                </div>
               </div>
-              
-              {/* Continue with other tips sections */}
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
+                <h3 className="text-lg font-semibold mb-2">2. Marriage and Income Strategy</h3>
+                <div className="space-y-2">
+                  <p><span className="font-medium">What to Know:</span> For most IDR plans (PAYE, IBR, ICR), filing taxes jointly includes your spouse's income, potentially raising your payments.</p>
+                  <p><span className="font-medium">Hack:</span> Under SAVE, filing separately considers only your income, lowering your payment if your spouse earns more.</p>
+                  <p><span className="font-medium">Consideration:</span> Compare this benefit against tax advantages of filing jointly before deciding.</p>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
+                <h3 className="text-lg font-semibold mb-2">3. Switching Plans Smartly</h3>
+                <div className="space-y-2">
+                  <p><span className="font-medium">What to Know:</span> You can switch IDR plans if your finances change, but it might reset your forgiveness timeline or alter payments.</p>
+                  <p><span className="font-medium">Hack:</span> Stick with your current plan if you're near forgiveness. Use the Loan Simulator to weigh pros and cons before switching.</p>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
+                <h3 className="text-lg font-semibold mb-2">4. Build an Emergency Loan Fund</h3>
+                <div className="space-y-2">
+                  <p><span className="font-medium">What to Do:</span> Save the difference between your IDR payment and a standard payment in a high-yield savings account.</p>
+                  <p><span className="font-medium">Why It Helps:</span> If plans like SAVE are discontinued, this fund can cover higher payments, offering peace of mind amid uncertainty.</p>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
+                <h3 className="text-lg font-semibold mb-2">5. Leverage the PSLF Buy Back Program</h3>
+                <div className="space-y-2">
+                  <p><span className="font-medium">What It Is:</span> A 2025 update allowing borrowers to "buy back" PSLF credit for months spent in forbearance.</p>
+                  <p><span className="font-medium">Hack:</span> If you've lost PSLF progress due to forbearance, this program could restore your timeline—check with your servicer for eligibility.</p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -150,26 +231,82 @@ const IncomeBasedRepayment = () => {
             </div>
           </section>
 
-          {/* Continue with Latest Changes, Why Use, and FAQ sections */}
-          
           <section id="latest-changes" className="scroll-mt-20">
             <h2 className="text-2xl font-bold mb-6">Latest Changes to IDR Plans in 2025</h2>
-            <div className="prose max-w-none">
-              {/* Latest changes content */}
+            <div className="space-y-4">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <ul className="space-y-4">
+                  <li>
+                    <span className="font-semibold">SAVE Plan:</span> Still offered but under legal threat. Borrowers are in forbearance (no payments, no interest, but no forgiveness credit) due to litigation.
+                  </li>
+                  <li>
+                    <span className="font-semibold">PAYE and ICR:</span> Both reopened to new enrollees in mid-January 2025 after being closed since June 2024.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Legislative Risks:</span> House Republican proposals could limit IDR forgiveness or PSLF, but these aren't law yet.
+                  </li>
+                  <li>
+                    <span className="font-semibold">PSLF Buy Back:</span> A new option to reclaim forgiveness credit for past forbearance periods.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Stay Informed:</span> Check StudentAid.gov regularly for updates, especially if you're on SAVE.
+                  </li>
+                </ul>
+              </div>
             </div>
           </section>
 
           <section id="why-use" className="scroll-mt-20">
             <h2 className="text-2xl font-bold mb-6">Why Use an IDR Plan?</h2>
-            <div className="prose max-w-none">
-              {/* Why use content */}
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <p className="mb-4">IDR plans are perfect if:</p>
+              <ul className="list-disc pl-6 space-y-2 mb-4">
+                <li>Your loan payments exceed 10-15% of your income</li>
+                <li>You're pursuing PSLF or long-term forgiveness</li>
+                <li>You need flexibility due to low or variable income</li>
+              </ul>
+              <p>If you can pay more to save on interest, a standard plan might suit you better—but for most, IDR offers critical relief.</p>
             </div>
           </section>
 
           <section id="faqs" className="scroll-mt-20">
             <h2 className="text-2xl font-bold mb-6">FAQ: Common Questions About Income-Driven Repayment Plans</h2>
             <div className="space-y-6">
-              {/* FAQ content */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-semibold mb-2">1. Who is eligible for an IDR plan?</h3>
+                    <p>Most federal student loan borrowers are eligible for at least one IDR plan. However, each plan has specific requirements. For example, PAYE is only available to borrowers who took out loans after 2007. Parent PLUS loans are only eligible for ICR after consolidation.</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">2. Can I switch between different IDR plans?</h3>
+                    <p>Yes, you can switch plans if your financial situation changes. However, switching may affect your payment amount and forgiveness timeline.</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">3. What happens if my income changes?</h3>
+                    <p>You must recertify your income and family size every year. If your income drops, your payments could decrease. If it increases, your payments may go up, but they'll never exceed the standard 10-year repayment amount.</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">4. Is there loan forgiveness under IDR plans?</h3>
+                    <p>Yes! After 20-25 years of payments (depending on the plan), your remaining balance is forgiven. If you work in public service, you may qualify for forgiveness after just 10 years through the Public Service Loan Forgiveness (PSLF) program.</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">5. How does marriage affect my IDR plan?</h3>
+                    <p>For most plans, if you file taxes jointly, your spouse's income will be considered in your payment calculation. However, under the SAVE plan, if you file separately, only your income is considered.</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">6. What are the pros and cons of IDR plans?</h3>
+                    <div className="space-y-2">
+                      <p><span className="font-semibold">Pros:</span> Lower payments, potential for $0 payments, loan forgiveness, and credit protection.</p>
+                      <p><span className="font-semibold">Cons:</span> Longer repayment terms mean you may pay more interest over time. Forgiveness may also be taxable.</p>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">7. How does the recent legal situation affect IDR plans?</h3>
+                    <p>As of 2024, the SAVE plan has faced legal challenges, and some features are temporarily blocked. However, other IDR plans like PAYE, IBR, and ICR are still available. Stay updated by checking StudentAid.gov.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </div>
