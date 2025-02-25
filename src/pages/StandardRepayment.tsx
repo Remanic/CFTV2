@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Helmet } from "react-helmet";
@@ -7,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { TableOfContents } from "@/components/fafsa-guide/TableOfContents";
 import { Button } from "@/components/ui/button";
 import { ChevronUp } from "lucide-react";
-import { FAQAccordion } from "@/components/loan-repayment/FAQAccordion";
+import { StandardFAQAccordion } from "@/components/loan-repayment/StandardFAQAccordion";
 
 const sections = [
   { id: "what-is-standard", title: "1. What Is the Standard Plan?" },
@@ -27,11 +26,12 @@ const StandardRepayment = () => {
       const scrolled = window.scrollY;
       const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (scrolled / maxHeight) * 100;
-      setProgress(progress);
+      setProgress(Math.min(progress, 100));
       setShowScrollTop(scrolled > 300);
     };
 
     window.addEventListener("scroll", updateProgress);
+    updateProgress();
     return () => window.removeEventListener("scroll", updateProgress);
   }, []);
 
@@ -55,6 +55,7 @@ const StandardRepayment = () => {
         <Progress 
           value={progress} 
           className="h-1 rounded-none bg-gray-200 dark:bg-gray-700"
+          style={{ "--progress-background": "rgb(79, 70, 229)" } as React.CSSProperties}
         />
       </div>
 
@@ -165,7 +166,7 @@ const StandardRepayment = () => {
 
           <section id="faqs" className="scroll-mt-20">
             <h2 className="text-2xl font-bold mb-6">FAQ: Common Questions About the Standard Repayment Plan</h2>
-            <FAQAccordion />
+            <StandardFAQAccordion />
           </section>
         </div>
       </main>
