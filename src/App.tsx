@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -30,6 +29,8 @@ import LoanRepaymentCalculator from "./pages/LoanRepaymentCalculator";
 import IncomeBasedRepayment from "./pages/IncomeBasedRepayment";
 import StandardRepayment from "./pages/StandardRepayment";
 import GraduatedRepayment from "./pages/GraduatedRepayment";
+import ExtendedRepayment from "./pages/ExtendedRepayment";
+import PrivateLoanRepayment from "./pages/PrivateLoanRepayment";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,8 @@ const App = () => (
           <Route path="/income-driven-repayment" element={<IncomeBasedRepayment />} />
           <Route path="/standard-repayment" element={<StandardRepayment />} />
           <Route path="/graduated-repayment" element={<GraduatedRepayment />} />
+          <Route path="/extended-repayment" element={<ExtendedRepayment />} />
+          <Route path="/private-loan-repayment" element={<PrivateLoanRepayment />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

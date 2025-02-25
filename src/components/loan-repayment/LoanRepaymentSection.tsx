@@ -1,6 +1,7 @@
+
 import { GuideCard } from "../fafsa-guide/GuideCard";
 import { GuideHeader } from "../fafsa-guide/GuideHeader";
-import { Calculator, DollarSign, PiggyBank, TrendingUp } from "lucide-react";
+import { Calculator, DollarSign, PiggyBank, TrendingUp, Clock, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const LoanRepaymentSection = () => {
@@ -8,7 +9,7 @@ export const LoanRepaymentSection = () => {
 
   const guides = [
     {
-      title: "Repayment Calculator",
+      title: "Repayment Simulator",
       description: "Find your optimal repayment strategy with our interactive calculator",
       icon: Calculator,
       color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
@@ -38,6 +39,22 @@ export const LoanRepaymentSection = () => {
       color: "bg-amber-50 hover:bg-amber-100 border-amber-200",
       textColor: "text-amber-700",
       path: "/graduated-repayment"
+    },
+    {
+      title: "Extended Plans",
+      description: "Learn about longer repayment terms up to 25 years",
+      icon: Clock,
+      color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
+      textColor: "text-rose-700",
+      path: "/extended-repayment"
+    },
+    {
+      title: "Private Loan Options",
+      description: "Compare private loan refinancing and repayment strategies",
+      icon: ExternalLink,
+      color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
+      textColor: "text-purple-700",
+      path: "/private-loan-repayment"
     }
   ];
 
@@ -46,10 +63,10 @@ export const LoanRepaymentSection = () => {
       <div className="container mx-auto px-4">
         <GuideHeader 
           title="Loan Repayment Options"
-          description="Explore different repayment plans and find the best strategy for your student loans. Use our calculator to compare options and make informed decisions."
+          description="Explore different repayment plans and find the best strategy for your student loans. Use our simulator to compare options and make informed decisions."
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {guides.map((guide, index) => (
             <div key={index} onClick={() => navigate(guide.path)} className="cursor-pointer">
               <GuideCard {...guide} />

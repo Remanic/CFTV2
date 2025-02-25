@@ -8,7 +8,7 @@ export const useNavigationLinks = () => {
   const calculatorLinks = [
     { 
       icon: DollarSign, 
-      label: "Loan Repayment Calculator", 
+      label: "Loan Repayment Simulator", 
       path: "/loan-repayment-calculator", 
       color: "text-emerald-500" 
     },
