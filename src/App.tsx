@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,8 +26,6 @@ import FederalLoansGuide from "./pages/FederalLoansGuide";
 import LoanComparisonGuide from "./pages/LoanComparisonGuide";
 import ParentPlusGuide from "./pages/ParentPlusGuide";
 import StudentLoanEssentials from "./pages/StudentLoanEssentials";
-
-// Import new pages
 import LoanRepaymentCalculator from "./pages/LoanRepaymentCalculator";
 import IncomeBasedRepayment from "./pages/IncomeBasedRepayment";
 import StandardRepayment from "./pages/StandardRepayment";
@@ -63,13 +62,10 @@ const App = () => (
           <Route path="/loan-comparison-guide" element={<LoanComparisonGuide />} />
           <Route path="/parent-plus-guide" element={<ParentPlusGuide />} />
           <Route path="/student-loan-essentials" element={<StudentLoanEssentials />} />
-          
-          {/* New loan repayment routes */}
           <Route path="/loan-repayment-calculator" element={<LoanRepaymentCalculator />} />
           <Route path="/income-driven-repayment" element={<IncomeBasedRepayment />} />
           <Route path="/standard-repayment" element={<StandardRepayment />} />
           <Route path="/graduated-repayment" element={<GraduatedRepayment />} />
-          
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
