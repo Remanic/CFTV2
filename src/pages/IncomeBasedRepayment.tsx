@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { TableOfContents } from "@/components/fafsa-guide/TableOfContents";
 import { Button } from "@/components/ui/button";
 import { ChevronUp } from "lucide-react";
+import { FAQAccordion } from "@/components/loan-repayment/FAQAccordion";
 
 const sections = [
   { id: "what-is-idr", title: "1. What Are IDR Plans?" },
@@ -93,9 +94,17 @@ const IncomeBasedRepayment = () => {
                     <p className="font-semibold mb-2">Details:</p>
                     <ul className="list-disc pl-6 space-y-2">
                       <li>Payments are 5% of discretionary income for undergraduate loans and 10% for graduate loans</li>
-                      <li>Payments can drop to $0, and unpaid interest doesn't capitalize</li>
-                      <li>Forgiveness after 20-25 years, or as little as 10 years for low original balances</li>
+                      <li>Payments can drop to $0, and unpaid interest doesn't capitalize (it won't increase your loan balance)</li>
+                      <li>Forgiveness after 20-25 years, or as little as 10 years for borrowers with low original balances (e.g., $12,000 or less)</li>
                     </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-2">Changes Up to 2025:</p>
+                    <p>Introduced as a replacement for REPAYE, SAVE is currently in limbo. As of 2025, borrowers are in a general forbearance due to legal disputes—no payments are due, and interest isn't accruing, but this time doesn't count toward forgiveness.</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Who It's For:</p>
+                    <p>Borrowers seeking the lowest possible payments, especially for undergraduate loans.</p>
                   </div>
                 </div>
               </div>
@@ -271,43 +280,7 @@ const IncomeBasedRepayment = () => {
 
           <section id="faqs" className="scroll-mt-20">
             <h2 className="text-2xl font-bold mb-6">FAQ: Common Questions About Income-Driven Repayment Plans</h2>
-            <div className="space-y-6">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-semibold mb-2">1. Who is eligible for an IDR plan?</h3>
-                    <p>Most federal student loan borrowers are eligible for at least one IDR plan. However, each plan has specific requirements. For example, PAYE is only available to borrowers who took out loans after 2007. Parent PLUS loans are only eligible for ICR after consolidation.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">2. Can I switch between different IDR plans?</h3>
-                    <p>Yes, you can switch plans if your financial situation changes. However, switching may affect your payment amount and forgiveness timeline.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">3. What happens if my income changes?</h3>
-                    <p>You must recertify your income and family size every year. If your income drops, your payments could decrease. If it increases, your payments may go up, but they'll never exceed the standard 10-year repayment amount.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">4. Is there loan forgiveness under IDR plans?</h3>
-                    <p>Yes! After 20-25 years of payments (depending on the plan), your remaining balance is forgiven. If you work in public service, you may qualify for forgiveness after just 10 years through the Public Service Loan Forgiveness (PSLF) program.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">5. How does marriage affect my IDR plan?</h3>
-                    <p>For most plans, if you file taxes jointly, your spouse's income will be considered in your payment calculation. However, under the SAVE plan, if you file separately, only your income is considered.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">6. What are the pros and cons of IDR plans?</h3>
-                    <div className="space-y-2">
-                      <p><span className="font-semibold">Pros:</span> Lower payments, potential for $0 payments, loan forgiveness, and credit protection.</p>
-                      <p><span className="font-semibold">Cons:</span> Longer repayment terms mean you may pay more interest over time. Forgiveness may also be taxable.</p>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">7. How does the recent legal situation affect IDR plans?</h3>
-                    <p>As of 2024, the SAVE plan has faced legal challenges, and some features are temporarily blocked. However, other IDR plans like PAYE, IBR, and ICR are still available. Stay updated by checking StudentAid.gov.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <FAQAccordion />
           </section>
         </div>
       </main>
