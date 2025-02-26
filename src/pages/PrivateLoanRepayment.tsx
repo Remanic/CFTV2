@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Helmet } from "react-helmet";
@@ -230,8 +229,22 @@ const PrivateLoanRepayment = () => {
           </section>
 
           <section id="faqs" className="scroll-mt-20">
-            <h2 className="text-2xl font-bold mb-6">FAQs: Common Repayment Questions</h2>
-            <FAQSection title="" faqs={faqs} />
+            <h2 className="text-2xl font-bold mb-6">FAQs: Common Questions About Private Loan Repayment</h2>
+            <div className="space-y-8">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <div className="space-y-6">
+                  {faqs.map((faq, index) => (
+                    <div key={index} className="space-y-2">
+                      <p className="font-medium text-purple-900">{faq.question}</p>
+                      <p className="text-gray-600">{faq.answer}</p>
+                      {index < faqs.length - 1 && (
+                        <div className="border-b border-gray-200 pt-4"></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </section>
         </div>
       </main>
