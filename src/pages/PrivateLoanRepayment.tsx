@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { TableOfContents } from "@/components/fafsa-guide/TableOfContents";
 import { Button } from "@/components/ui/button";
 import { ChevronUp } from "lucide-react";
-import { FAQSection } from "@/components/fafsa-deadline/shared/FAQSection";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const sections = [
   { id: "understanding", title: "1. Understanding Private Loans" },
@@ -230,21 +230,18 @@ const PrivateLoanRepayment = () => {
 
           <section id="faqs" className="scroll-mt-20">
             <h2 className="text-2xl font-bold mb-6">FAQs: Common Questions About Private Loan Repayment</h2>
-            <div className="space-y-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <div className="space-y-6">
-                  {faqs.map((faq, index) => (
-                    <div key={index} className="space-y-2">
-                      <p className="font-medium text-purple-900">{faq.question}</p>
-                      <p className="text-gray-600">{faq.answer}</p>
-                      {index < faqs.length - 1 && (
-                        <div className="border-b border-gray-200 pt-4"></div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <Accordion type="single" collapsible className="w-full space-y-2">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`faq-${index}`} className="bg-white border rounded-lg">
+                  <AccordionTrigger className="px-4 hover:no-underline">
+                    <span className="text-left font-medium">{faq.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4 text-gray-600">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </section>
         </div>
       </main>
