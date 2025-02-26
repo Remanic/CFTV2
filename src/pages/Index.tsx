@@ -12,16 +12,25 @@ import { Footer } from "@/components/Footer";
 import { HowItWorks } from "@/components/HowItWorks";
 import TestimonialSection from "@/components/hero/TestimonialSection";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     const testimonialTimer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % 4); // Updated for 4 testimonials
+      setCurrentTestimonial((prev) => (prev + 1) % 4);
     }, 5000);
     return () => clearInterval(testimonialTimer);
   }, []);
+
+  // If we're already on the index page and try to navigate to index, prevent the navigation
+  useEffect(() => {
+    if (location.pathname === "/" && location.state?.from === "/") {
+      window.history.replaceState(null, "", "/");
+    }
+  }, [location]);
 
   return (
     <div className="min-h-screen flex flex-col">

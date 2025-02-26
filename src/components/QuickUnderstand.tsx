@@ -8,6 +8,11 @@ export const QuickUnderstand = () => {
   const location = useLocation();
 
   const handleNavigate = (path: string) => {
+    // Prevent navigation if we're already on the target path
+    if (location.pathname === path) {
+      return;
+    }
+    
     window.scrollTo({ top: 0, behavior: 'instant' });
     navigate(path, { state: { from: location.pathname } });
   };
