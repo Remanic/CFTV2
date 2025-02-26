@@ -1,4 +1,3 @@
-
 import { GuideCard } from "../fafsa-guide/GuideCard";
 import { GuideHeader } from "../fafsa-guide/GuideHeader";
 import { Calculator, DollarSign, PiggyBank, TrendingUp, Clock, ExternalLink } from "lucide-react";
@@ -49,8 +48,8 @@ export const LoanRepaymentSection = () => {
       path: "/extended-repayment"
     },
     {
-      title: "Private Loan Options",
-      description: "Compare private loan refinancing and repayment strategies",
+      title: "Private Loan Repayment",
+      description: "Learn effective strategies for managing and repaying private student loans",
       icon: ExternalLink,
       color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
       textColor: "text-purple-700",
