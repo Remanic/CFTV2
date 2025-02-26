@@ -1,3 +1,4 @@
+
 import { GuideCard } from "./fafsa-guide/GuideCard";
 import { GuideHeader } from "./fafsa-guide/GuideHeader";
 import { BookOpen, ClipboardCheck, Calculator, Calendar, Search } from "lucide-react";
@@ -10,7 +11,7 @@ export const FafsaGuide = () => {
       icon: Search,
       color: "bg-yellow-50 hover:bg-yellow-100 border-yellow-200",
       textColor: "text-yellow-700",
-      path: "/state-deadline-finder"
+      path: "/fafsa-state-deadlines"
     },
     {
       title: "Comprehensive Guide to Filling Out the FAFSA Form",
@@ -34,7 +35,7 @@ export const FafsaGuide = () => {
       icon: Calendar,
       color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
       textColor: "text-purple-700",
-      path: "/fafsa-deadline-2024-2025"
+      path: "/fafsa-deadlines"
     },
     {
       title: "FAFSA Deadlines for 2025",
@@ -42,7 +43,7 @@ export const FafsaGuide = () => {
       icon: Calendar,
       color: "bg-orange-50 hover:bg-orange-100 border-orange-200",
       textColor: "text-orange-700",
-      path: "/fafsa-deadline-2025-2026"
+      path: "/fafsa-deadlines"
     },
     {
       title: "FAFSA Aid Estimator",
@@ -50,7 +51,7 @@ export const FafsaGuide = () => {
       icon: Calculator,
       color: "bg-pink-50 hover:bg-pink-100 border-pink-200",
       textColor: "text-pink-700",
-      path: "/fafsa-aid-estimator"
+      path: "/fafsa-aid-calculator"
     }
   ];
 
