@@ -21,10 +21,6 @@ export const AffiliateLoanSection = () => {
     navigate(path, { state: { from: location.pathname } });
   };
 
-  const handleViewAllClick = () => {
-    handleNavigate("/all-lenders");
-  };
-
   return (
     <section className="relative py-16 md:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden">
       {/* Background Pattern */}
@@ -101,7 +97,7 @@ export const AffiliateLoanSection = () => {
           {filteredLenders.map((lender) => (
             <div 
               key={lender.name}
-              onClick={() => handleNavigate(`/lender/${lender.id}`)}
+              onClick={() => handleNavigate(`/lender/${lender.name.toLowerCase().replace(/\s+/g, '-')}`)}
               className="cursor-pointer"
             >
               <LenderCard 

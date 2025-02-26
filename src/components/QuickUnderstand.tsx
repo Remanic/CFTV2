@@ -8,14 +8,48 @@ export const QuickUnderstand = () => {
   const location = useLocation();
 
   const handleNavigate = (path: string) => {
-    // Prevent navigation if we're already on the target path
-    if (location.pathname === path) {
-      return;
-    }
-    
+    if (location.pathname === path) return;
     window.scrollTo({ top: 0, behavior: 'instant' });
     navigate(path, { state: { from: location.pathname } });
   };
+
+  const tools = [
+    {
+      title: "Mortgage Calculator",
+      description: "Calculate your monthly mortgage payments, including principal, interest, taxes, and insurance",
+      icon: Home,
+      color: "text-orange-500",
+      path: "/mortgage-calculator"
+    },
+    {
+      title: "Auto Loan Calculator",
+      description: "Estimate your monthly car payments and total interest over the loan term",
+      icon: Car,
+      color: "text-purple-500",
+      path: "/auto-loan-calculator"
+    },
+    {
+      title: "Credit Card Payment Calculator",
+      description: "Plan your credit card debt repayment and understand total interest costs",
+      icon: CreditCard,
+      color: "text-pink-500",
+      path: "/credit-card-calculator"
+    },
+    {
+      title: "EMI Calculator",
+      description: "Calculate Equated Monthly Installments for any loan amount and term",
+      icon: Calculator,
+      color: "text-indigo-500",
+      path: "/emi-calculator"
+    },
+    {
+      title: "Savings Calculator",
+      description: "Plan your savings goals and calculate compound interest earnings",
+      icon: PiggyBank,
+      color: "text-green-500",
+      path: "/savings-calculator"
+    }
+  ];
 
   return (
     <section id="financial-tools" className="py-20 bg-gray-50">
@@ -30,90 +64,25 @@ export const QuickUnderstand = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card 
-            className="border-2 border-orange-200 hover:border-orange-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/mortgage-payment-calculator")}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Home className="h-6 w-6 text-orange-500" />
-                <span>Mortgage Calculator</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Calculate your monthly mortgage payments, including principal, interest, taxes, and insurance
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card 
-            className="border-2 border-purple-200 hover:border-purple-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/car-loan-calculator")}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Car className="h-6 w-6 text-purple-500" />
-                <span>Auto Loan Calculator</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Estimate your monthly car payments and total interest over the loan term
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card 
-            className="border-2 border-pink-200 hover:border-pink-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/credit-card-payment-calculator")}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CreditCard className="h-6 w-6 text-pink-500" />
-                <span>Credit Card Payment Calculator</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Plan your credit card debt repayment and understand total interest costs
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card 
-            className="border-2 border-indigo-200 hover:border-indigo-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/loan-emi-calculator")}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calculator className="h-6 w-6 text-indigo-500" />
-                <span>EMI Calculator</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Calculate Equated Monthly Installments for any loan amount and term
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card 
-            className="border-2 border-green-200 hover:border-green-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/compound-interest-calculator")}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <PiggyBank className="h-6 w-6 text-green-500" />
-                <span>Savings Calculator</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Plan your savings goals and calculate compound interest earnings
-              </p>
-            </CardContent>
-          </Card>
+          {tools.map((tool) => (
+            <Card 
+              key={tool.title}
+              className={`border-2 border-${tool.color.replace('text-', '')}-200 hover:border-${tool.color.replace('text-', '')}-300 transition-colors duration-300 cursor-pointer`}
+              onClick={() => handleNavigate(tool.path)}
+            >
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <tool.icon className={`h-6 w-6 ${tool.color}`} />
+                  <span>{tool.title}</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  {tool.description}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

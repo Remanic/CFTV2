@@ -11,7 +11,7 @@ export const LoanForgivenessPrograms = () => {
       icon: GraduationCap,
       color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
       textColor: "text-rose-700",
-      path: "/public-service-loan-forgiveness"
+      path: "/pslf-guide"
     },
     {
       title: "Teacher Loan Forgiveness Program",
@@ -35,7 +35,7 @@ export const LoanForgivenessPrograms = () => {
       icon: CheckCircle2,
       color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
       textColor: "text-indigo-700",
-      path: "/student-loan-forgiveness-eligibility"
+      path: "/loan-forgiveness-eligibility"
     },
     {
       title: "Latest Loan Forgiveness Updates",

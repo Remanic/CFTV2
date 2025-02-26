@@ -1,14 +1,9 @@
 
-import { Card } from "@/components/ui/card";
 import { BookOpen, DollarSign, Users, FileText } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
 import { GuideCard } from "./fafsa-guide/GuideCard";
 import { GuideHeader } from "./fafsa-guide/GuideHeader";
 
 export const LoanComparison = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  
   const loanGuides = [
     {
       title: "Federal Loans 101",
