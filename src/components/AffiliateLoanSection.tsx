@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Info, ArrowRight, Star, Shield, BadgeCheck, TrendingUp } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { lenders, type LenderType } from "@/data/lenders";
 import { LenderCard } from "./LenderCard";
@@ -8,13 +8,21 @@ import { TrustIndicators } from "./TrustIndicators";
 
 export const AffiliateLoanSection = () => {
   const [selectedType, setSelectedType] = useState<LenderType>("private");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const filteredLenders = lenders
     .filter(lender => lender.type === selectedType)
     .slice(0, 3);
 
+  const handleNavigate = (path: string) => {
+    if (location.pathname === path) return;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    navigate(path, { state: { from: location.pathname } });
+  };
+
   const handleViewAllClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigate("/all-lenders");
   };
 
   return (
@@ -91,7 +99,11 @@ export const AffiliateLoanSection = () => {
         {/* Lenders List */}
         <div className="space-y-4 max-w-4xl mx-auto">
           {filteredLenders.map((lender) => (
-            <div key={lender.name}>
+            <div 
+              key={lender.name}
+              onClick={() => handleNavigate(`/lender/${lender.id}`)}
+              className="cursor-pointer"
+            >
               <LenderCard 
                 lender={lender}
                 featured={lender.featured}
@@ -103,18 +115,17 @@ export const AffiliateLoanSection = () => {
 
         {/* Call to Action */}
         <div className="mt-12 text-center">
-          <Link to="/all-lenders" onClick={handleViewAllClick}>
-            <Button 
-              variant="default"
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all w-full sm:w-auto px-8"
-            >
-              <span className="flex items-center justify-center gap-2">
-                View All Lenders
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Button>
-          </Link>
+          <Button 
+            variant="default"
+            size="lg" 
+            onClick={() => handleNavigate("/all-lenders")}
+            className="bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all w-full sm:w-auto px-8"
+          >
+            <span className="flex items-center justify-center gap-2">
+              View All Lenders
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Button>
         </div>
       </div>
     </section>

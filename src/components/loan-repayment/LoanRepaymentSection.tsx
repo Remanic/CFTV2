@@ -1,11 +1,9 @@
+
 import { GuideCard } from "../fafsa-guide/GuideCard";
 import { GuideHeader } from "../fafsa-guide/GuideHeader";
 import { Calculator, DollarSign, PiggyBank, TrendingUp, Clock, ExternalLink } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 export const LoanRepaymentSection = () => {
-  const navigate = useNavigate();
-
   const guides = [
     {
       title: "Repayment Simulator",
@@ -21,7 +19,7 @@ export const LoanRepaymentSection = () => {
       icon: DollarSign,
       color: "bg-fuchsia-50 hover:bg-fuchsia-100 border-fuchsia-200",
       textColor: "text-fuchsia-700",
-      path: "/income-driven-repayment"
+      path: "/income-based-repayment"
     },
     {
       title: "Standard Repayment",
@@ -67,9 +65,7 @@ export const LoanRepaymentSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {guides.map((guide, index) => (
-            <div key={index} onClick={() => navigate(guide.path)} className="cursor-pointer">
-              <GuideCard {...guide} />
-            </div>
+            <GuideCard key={index} {...guide} />
           ))}
         </div>
       </div>
