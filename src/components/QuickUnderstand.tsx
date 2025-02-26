@@ -1,3 +1,4 @@
+
 import { Calculator, Home, Car, CreditCard, PiggyBank } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -26,7 +27,7 @@ export const QuickUnderstand = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Card 
             className="border-2 border-orange-200 hover:border-orange-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/mortgage-loan-calculator")}
+            onClick={() => handleNavigate("/mortgage-payment-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -43,7 +44,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-purple-200 hover:border-purple-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/auto-loan-payment-calculator")}
+            onClick={() => handleNavigate("/car-loan-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -77,7 +78,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-indigo-200 hover:border-indigo-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/monthly-loan-emi-calculator")}
+            onClick={() => handleNavigate("/loan-emi-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -94,7 +95,7 @@ export const QuickUnderstand = () => {
 
           <Card 
             className="border-2 border-green-200 hover:border-green-300 transition-colors duration-300 cursor-pointer"
-            onClick={() => handleNavigate("/compound-savings-calculator")}
+            onClick={() => handleNavigate("/compound-interest-calculator")}
           >
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
