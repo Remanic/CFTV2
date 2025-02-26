@@ -1,7 +1,8 @@
+
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Calculator, GraduationCap, PiggyBank, CreditCard, ChartBar, Home, Car, Search, BookOpen, ClipboardCheck, Calendar } from "lucide-react";
+import { Search, BookOpen, ClipboardCheck, Calendar, Calculator } from "lucide-react";
 
 interface NavItemsProps {
   calculatorLinks: Array<{
@@ -17,7 +18,7 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
     {
       icon: Search,
       label: "Find State Deadlines",
-      path: "/state-deadline-finder",
+      path: "/fafsa-state-deadlines",
       color: "text-yellow-500"
     },
     {
@@ -35,19 +36,13 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
     {
       icon: Calendar,
       label: "2024 Deadlines",
-      path: "/fafsa-deadline-2024-2025",
+      path: "/fafsa-deadlines",
       color: "text-purple-500"
-    },
-    {
-      icon: Calendar,
-      label: "2025 Deadlines",
-      path: "/fafsa-deadline-2025-2026",
-      color: "text-orange-500"
     },
     {
       icon: Calculator,
       label: "Aid Estimator",
-      path: "/fafsa-aid-estimator",
+      path: "/fafsa-aid-calculator",
       color: "text-pink-500"
     }
   ];
@@ -64,7 +59,7 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
               {calculatorLinks.map(({ icon: Icon, label, path, color }) => (
                 <li key={path}>
                   <Link
-                    to={path.toLowerCase()}
+                    to={path}
                     className="flex items-center gap-3 rounded-lg p-3 hover:bg-gray-50 transition-colors"
                   >
                     <Icon className={`h-5 w-5 ${color}`} />

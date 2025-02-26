@@ -9,25 +9,25 @@ export const useNavigationLinks = () => {
     { 
       icon: DollarSign, 
       label: "Loan Repayment Simulator", 
-      path: "/loan-repayment-calculator", 
+      path: "/student-loan-repayment-calculator", 
       color: "text-emerald-500" 
     },
     { 
       icon: Shield, 
       label: "Loan Forgiveness Checker", 
-      path: "/loan-forgiveness-eligibility", 
+      path: "/student-loan-forgiveness-eligibility", 
       color: "text-violet-500" 
     },
     { 
       icon: Home, 
       label: "Mortgage Calculator", 
-      path: "/mortgage-loan-calculator", 
+      path: "/mortgage-payment-calculator", 
       color: "text-blue-500" 
     },
     { 
       icon: Car, 
       label: "Auto Loan Calculator", 
-      path: "/auto-loan-payment-calculator", 
+      path: "/car-loan-calculator", 
       color: "text-green-500" 
     },
     { 
@@ -39,13 +39,13 @@ export const useNavigationLinks = () => {
     { 
       icon: Calculator, 
       label: "EMI Calculator", 
-      path: "/monthly-loan-emi-calculator", 
+      path: "/loan-emi-calculator", 
       color: "text-orange-500" 
     },
     { 
       icon: PiggyBank, 
       label: "Savings Calculator", 
-      path: "/compound-savings-calculator", 
+      path: "/compound-interest-calculator", 
       color: "text-pink-500" 
     },
   ].map(link => ({
