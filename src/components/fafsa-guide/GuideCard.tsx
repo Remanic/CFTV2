@@ -1,7 +1,8 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { LucideIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface GuideCardProps {
   title: string;
@@ -14,10 +15,18 @@ interface GuideCardProps {
 
 export const GuideCard = ({ title, description, icon: Icon, color, textColor, path }: GuideCardProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  const handleNavigate = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (location.pathname === path) return;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    navigate(path, { state: { from: location.pathname } });
+  };
   
   return (
     <Card 
-      onClick={() => navigate(path)}
+      onClick={handleNavigate}
       className={`group relative overflow-hidden ${color} border-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}
     >
       <CardHeader>
@@ -29,10 +38,7 @@ export const GuideCard = ({ title, description, icon: Icon, color, textColor, pa
       <CardContent className="space-y-4">
         <p className="text-gray-600">{description}</p>
         <Button 
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate(path);
-          }}
+          onClick={handleNavigate}
           className="w-full bg-white hover:bg-gray-50 text-gray-800 border border-gray-200"
         >
           Learn More

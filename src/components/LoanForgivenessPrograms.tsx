@@ -1,3 +1,4 @@
+
 import { GuideCard } from "./fafsa-guide/GuideCard";
 import { GuideHeader } from "./fafsa-guide/GuideHeader";
 import { GraduationCap, School, Award, CheckCircle2, Info } from "lucide-react";
@@ -34,7 +35,7 @@ export const LoanForgivenessPrograms = () => {
       icon: CheckCircle2,
       color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
       textColor: "text-indigo-700",
-      path: "/loan-forgiveness-eligibility"
+      path: "/student-loan-forgiveness-eligibility"
     },
     {
       title: "Latest Loan Forgiveness Updates",

@@ -1,11 +1,13 @@
+
 import { Card } from "@/components/ui/card";
 import { BookOpen, DollarSign, Users, FileText } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { GuideCard } from "./fafsa-guide/GuideCard";
 import { GuideHeader } from "./fafsa-guide/GuideHeader";
 
 export const LoanComparison = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   
   const loanGuides = [
     {
@@ -52,9 +54,7 @@ export const LoanComparison = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {loanGuides.map((guide, index) => (
-            <div key={index} onClick={() => navigate(guide.path)} className="cursor-pointer">
-              <GuideCard {...guide} />
-            </div>
+            <GuideCard key={index} {...guide} />
           ))}
         </div>
       </div>
