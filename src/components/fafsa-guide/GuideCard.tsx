@@ -1,8 +1,8 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
 interface GuideCardProps {
   title: string;
@@ -13,38 +13,59 @@ interface GuideCardProps {
   path: string;
 }
 
-export const GuideCard = ({ title, description, icon: Icon, color, textColor, path }: GuideCardProps) => {
+export const GuideCard = ({ 
+  title, 
+  description, 
+  icon: Icon, 
+  color, 
+  textColor, 
+  path 
+}: GuideCardProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-  
-  const handleNavigate = (e: React.MouseEvent) => {
-    e.stopPropagation();
+
+  const handleNavigate = () => {
     if (location.pathname === path) return;
     window.scrollTo({ top: 0, behavior: 'instant' });
     navigate(path, { state: { from: location.pathname } });
   };
-  
+
   return (
     <Card 
+      className={`overflow-hidden border transition-all duration-300 hover:shadow-md ${color}`}
       onClick={handleNavigate}
-      className={`group relative overflow-hidden ${color} border-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleNavigate();
+        }
+      }}
     >
-      <CardHeader>
-        <CardTitle className="flex items-center gap-3">
-          <Icon className={`h-6 w-6 ${textColor}`} />
-          <span className={textColor}>{title}</span>
-        </CardTitle>
+      <CardHeader className="pb-2">
+        <div className="flex items-center gap-2">
+          <div className="p-2 rounded-md bg-white/80 backdrop-blur-sm">
+            <Icon className={`h-5 w-5 ${textColor}`} />
+          </div>
+          <h3 className="font-semibold text-lg text-gray-900">{title}</h3>
+        </div>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="text-gray-600">{description}</p>
+      <CardContent className="text-sm text-gray-600 pb-4">
+        <p>{description}</p>
+      </CardContent>
+      <CardFooter className="pt-0 pb-4">
         <Button 
-          onClick={handleNavigate}
-          className="w-full bg-white hover:bg-gray-50 text-gray-800 border border-gray-200"
+          variant="link" 
+          className={`px-0 font-medium ${textColor} hover:underline`}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleNavigate();
+          }}
         >
           Learn More
         </Button>
-      </CardContent>
-      <div className="absolute inset-0 border-2 border-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+      </CardFooter>
     </Card>
   );
 };

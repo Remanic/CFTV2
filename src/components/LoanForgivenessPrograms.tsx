@@ -11,7 +11,7 @@ export const LoanForgivenessPrograms = () => {
       icon: GraduationCap,
       color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
       textColor: "text-rose-700",
-      path: "/pslf-guide"
+      path: "/pslf"
     },
     {
       title: "Teacher Loan Forgiveness Program",

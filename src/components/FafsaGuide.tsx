@@ -43,7 +43,7 @@ export const FafsaGuide = () => {
       icon: Calendar,
       color: "bg-orange-50 hover:bg-orange-100 border-orange-200",
       textColor: "text-orange-700",
-      path: "/fafsa-deadlines"
+      path: "/fafsa-deadlines-2025"
     },
     {
       title: "FAFSA Aid Estimator",
