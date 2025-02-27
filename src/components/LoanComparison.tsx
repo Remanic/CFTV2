@@ -14,12 +14,12 @@ export const LoanComparison = () => {
       path: "/federal-loans-guide"
     },
     {
-      title: "Federal vs Private Loans",
-      description: "Compare federal and private student loans to make informed decisions",
+      title: "Private Student Loans",
+      description: "Everything you need to know about private student loans",
       icon: DollarSign,
       color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
       textColor: "text-rose-700",
-      path: "/loan-comparison-guide"
+      path: "/private-loans-guide"
     },
     {
       title: "Parent PLUS Loans",
