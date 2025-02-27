@@ -6,6 +6,14 @@ import { GuideHeader } from "./fafsa-guide/GuideHeader";
 export const LoanComparison = () => {
   const loanGuides = [
     {
+      title: "Federal vs. Private Loans",
+      description: "Compare federal and private student loans to make the right choice",
+      icon: DollarSign,
+      color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
+      textColor: "text-indigo-700",
+      path: "/loan-comparison-guide"
+    },
+    {
       title: "Federal Loans 101",
       description: "Comprehensive guide to federal student loans, types, and benefits",
       icon: BookOpen,
@@ -47,7 +55,7 @@ export const LoanComparison = () => {
           description="Navigate your student loan options with confidence using our comprehensive guides."
         />
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {loanGuides.map((guide, index) => (
             <GuideCard key={index} {...guide} />
           ))}
