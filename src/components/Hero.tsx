@@ -118,10 +118,10 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative py-8 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-blue-50 to-white">
-      {/* Background Pattern */}
+    <section className="relative py-8 md:py-16 lg:py-20 overflow-hidden bg-white">
+      {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-[url('placeholder.svg')] bg-repeat opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('placeholder.svg')] bg-repeat opacity-10"></div>
       </div>
 
       <div className="container mx-auto px-4 max-w-6xl relative">
@@ -140,11 +140,24 @@ export const Hero = () => {
               />
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900 font-sans">
-              Your Complete Student
-              <br className="hidden sm:block" /> Loan Solution
-              <FeaturesList />
-            </h1>
+            <div className="space-y-3">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-5xl font-bold leading-tight tracking-tight text-gray-900 font-sans">
+                Your Complete Student
+                <span className="hidden sm:inline"> </span>
+                <br className="sm:hidden" />
+                Loan Solution
+              </h1>
+              
+              <div className="max-w-xl mx-auto transform transition-all">
+                <div className="flex flex-wrap justify-center gap-2 md:gap-3 my-4">
+                  <span className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium">Navigate FAFSA</span>
+                  <span className="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">Find Best Loans</span>
+                  <span className="px-3 py-1 bg-rose-50 text-rose-700 rounded-full text-sm font-medium">Maximize Aid</span>
+                  <span className="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-sm font-medium">Simplify Repayment</span>
+                </div>
+                <p className="text-base text-gray-500 italic font-medium">All in One Place</p>
+              </div>
+            </div>
 
             <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
               Say goodbye to loan stress and confusion – start your journey to financial freedom today with our comprehensive guide.
@@ -156,15 +169,15 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center mt-10 px-4 w-full sm:w-auto">
+          <div className="flex flex-col items-center mt-8 px-4 w-full sm:w-auto">
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger asChild>
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all text-lg px-8 py-6 h-auto rounded-full animate-pulse"
+                  className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all text-base md:text-lg px-6 py-2.5 h-auto rounded-full"
                 >
                   Get Your Free Guide to Student Loans
-                  <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
+                  <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0" />
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
@@ -229,7 +242,7 @@ export const Hero = () => {
           </div>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16 w-full">
             {[
               {
                 icon: <BookOpen className="h-6 w-6 text-primary" />,
@@ -254,9 +267,9 @@ export const Hero = () => {
             ].map((benefit, index) => (
               <div 
                 key={index} 
-                className="text-center p-6 rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:translate-y-[-4px]"
+                className="text-center p-4 md:p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:translate-y-[-4px]"
               >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-50 mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-50 mb-4">
                   {benefit.icon}
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2 text-lg">{benefit.title}</h3>

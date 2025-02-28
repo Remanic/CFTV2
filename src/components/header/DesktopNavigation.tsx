@@ -3,6 +3,12 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Search, BookOpen, ClipboardCheck, Calendar, Calculator } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface NavItemsProps {
   calculatorLinks: Array<{
@@ -14,6 +20,15 @@ interface NavItemsProps {
 }
 
 export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    consent: false
+  });
+  const { toast } = useToast();
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   const fafsaLinks = [
     {
       icon: Search,
@@ -46,6 +61,40 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
       color: "text-pink-500"
     }
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.consent) {
+      toast({
+        title: "Consent Required",
+        description: "Please agree to receive the guide via email.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Here you would integrate with your email service
+      // For demo, we'll simulate an API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast({
+        title: "Success!",
+        description: "Your free student loan guide has been sent to your email.",
+      });
+      setDialogOpen(false);
+      setFormData({ name: "", email: "", consent: false });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem sending your guide. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <NavigationMenu>
@@ -93,9 +142,70 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Button className="bg-primary hover:bg-primary/90 text-white">
-            Get Started
-          </Button>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-primary hover:bg-primary/90 text-white">
+                Get Started
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold text-gray-900">Get Your Free Student Loan Guide</DialogTitle>
+                <DialogDescription className="text-gray-600">
+                  We'll send a comprehensive student loan guide tailored to your needs directly to your inbox.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="header-name" className="text-gray-700">Full Name</Label>
+                    <Input
+                      id="header-name"
+                      placeholder="Enter your full name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="header-email" className="text-gray-700">Email Address</Label>
+                    <Input
+                      id="header-email"
+                      type="email"
+                      placeholder="Enter your email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="flex items-start space-x-2 pt-2">
+                    <Checkbox
+                      id="header-consent"
+                      checked={formData.consent}
+                      onCheckedChange={(checked) => 
+                        setFormData(prev => ({ ...prev, consent: checked as boolean }))
+                      }
+                    />
+                    <Label 
+                      htmlFor="header-consent" 
+                      className="text-sm text-gray-600 leading-tight"
+                    >
+                      I agree to receive my free guide and related information via email. You can unsubscribe at any time.
+                    </Label>
+                  </div>
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full font-semibold rounded-full"
+                  disabled={loading}
+                >
+                  {loading ? "Preparing Your Guide..." : "Send My Free Guide Now"}
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
