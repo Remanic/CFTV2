@@ -118,12 +118,12 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-b from-white to-blue-50">
+    <section className="relative py-8 md:py-16 overflow-hidden bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="space-y-4">
-            {/* Reduced spacing for the limited time offer banner */}
-            <div className="inline-flex items-center justify-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-1">
+            {/* Reduced spacing by 50% for the limited time offer banner */}
+            <div className="inline-flex items-center justify-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
               <Clock className="h-4 w-4 mr-1" />
               <span>Limited time offer - Get your free guide</span>
             </div>
@@ -137,6 +137,9 @@ export const Hero = () => {
                 Clear guidance, better choices, and less stress with your education financing.
               </p>
             </div>
+
+            {/* Features List moved below the intro text */}
+            <FeaturesList />
 
             {/* CTA Button */}
             <div className="flex flex-col items-center mt-6 mb-2 px-4 w-full sm:w-auto">
@@ -210,14 +213,12 @@ export const Hero = () => {
               </Dialog>
               <p className="text-sm text-amber-600 mt-2 font-medium">Free for a limited time - No credit card required</p>
               
-              {/* Trusted by text moved below the button without the white box */}
+              {/* Trusted by text as plain text without container */}
               <div className="flex items-center justify-center gap-2 text-gray-600 mt-2">
                 <Shield className="h-5 w-5 text-green-600 flex-shrink-0" />
                 <span className="font-medium text-sm sm:text-base">Trusted by 10,000+ students and parents</span>
               </div>
             </div>
-
-            <FeaturesList />
           </div>
 
           {/* Benefits Grid - moved below the fold */}
