@@ -1,16 +1,20 @@
+
 import { AlertCircle, Clock, GraduationCap, Award } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const WhyNeedGuide = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-            Why You Need This Guide
+          <span className="inline-block px-4 py-1.5 bg-purple-100 text-purple-800 rounded-full text-sm font-medium mb-4">
+            Why This Matters
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900">
+            Take Control of Your Student Loans
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Don't let student loan debt define your life. It's time to take control with expert strategies designed to lighten your financial load and give you back your freedom.
+            Don't let confusing loan terms and complex applications hold you back. Our guide makes it simple to understand your options.
           </p>
         </div>
         
@@ -18,7 +22,7 @@ export const WhyNeedGuide = () => {
           <Card className="border-2 border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <AlertCircle className="h-6 w-6 text-primary" />
+                <AlertCircle className="h-6 w-6 text-red-500" />
                 <span>$1.7 Trillion Crisis</span>
               </CardTitle>
             </CardHeader>
@@ -29,11 +33,11 @@ export const WhyNeedGuide = () => {
             </CardContent>
           </Card>
           
-          <Card className="border-2 border-warning/10 hover:border-warning/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <Card className="border-2 border-amber-500/10 hover:border-amber-500/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Clock className="h-6 w-6 text-warning" />
-                <span>20+ Years of Struggle</span>
+                <Clock className="h-6 w-6 text-amber-500" />
+                <span>20+ Years of Payments</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -43,16 +47,16 @@ export const WhyNeedGuide = () => {
             </CardContent>
           </Card>
           
-          <Card className="border-2 border-secondary/10 hover:border-secondary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <Card className="border-2 border-green-500/10 hover:border-green-500/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Award className="h-6 w-6 text-secondary" />
+                <Award className="h-6 w-6 text-green-500" />
                 <span>Your Path to Freedom</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 leading-relaxed">
-                You don't need to navigate this alone. Our guide delivers personalized repayment strategies, forgiveness insights, and insider tips to save you thousands.
+                You don't need to navigate this alone. Our guide delivers personalized repayment strategies, forgiveness insights, and insider tips to save you thousands of dollars over the life of your loans.
               </p>
             </CardContent>
           </Card>

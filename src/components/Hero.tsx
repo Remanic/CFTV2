@@ -118,66 +118,42 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative py-8 md:py-16 lg:py-20 overflow-hidden bg-white">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-[url('placeholder.svg')] bg-repeat opacity-10"></div>
-      </div>
-
+    <section className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="space-y-6">
-            <div className="flex flex-wrap justify-center gap-2 mb-4">
-              <FeaturePill 
-                icon={BookOpen} 
-                text="Expert Guidance" 
-                className="bg-blue-50 text-blue-700"
-              />
-              <FeaturePill 
-                icon={Clock} 
-                text="Limited Time Offer" 
-                className="bg-amber-50 text-amber-700"
-              />
+            <div className="inline-flex items-center justify-center px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
+              <Clock className="h-4 w-4 mr-2" />
+              <span>Limited time offer - Get your free guide</span>
             </div>
 
             <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-5xl font-bold leading-tight tracking-tight text-gray-900 font-sans">
-                Your Complete Student
-                <span className="hidden sm:inline"> </span>
-                <br className="sm:hidden" />
-                Loan Solution
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-gray-900 font-sans">
+                Simplify Your <span className="text-blue-600">Student Loan</span> Journey
               </h1>
               
-              <div className="max-w-xl mx-auto transform transition-all">
-                <div className="flex flex-wrap justify-center gap-2 md:gap-3 my-4">
-                  <span className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium">Navigate FAFSA</span>
-                  <span className="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">Find Best Loans</span>
-                  <span className="px-3 py-1 bg-rose-50 text-rose-700 rounded-full text-sm font-medium">Maximize Aid</span>
-                  <span className="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-sm font-medium">Simplify Repayment</span>
-                </div>
-                <p className="text-base text-gray-500 italic font-medium">All in One Place</p>
-              </div>
+              <p className="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto mt-4">
+                Clear guidance, better choices, and less stress with your education financing.
+              </p>
             </div>
 
-            <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
-              Say goodbye to loan stress and confusion – start your journey to financial freedom today with our comprehensive guide.
-            </p>
+            <FeaturesList />
 
-            <div className="flex items-center justify-center gap-2 text-gray-600">
-              <Shield className="h-5 w-5 text-primary flex-shrink-0" />
-              <span className="font-medium text-sm sm:text-base">Trusted by over 10,000 students and parents</span>
+            <div className="flex items-center justify-center gap-2 text-gray-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 mt-4">
+              <Shield className="h-5 w-5 text-green-600 flex-shrink-0" />
+              <span className="font-medium text-sm sm:text-base">Trusted by 10,000+ students and parents</span>
             </div>
           </div>
 
-          <div className="flex flex-col items-center mt-8 px-4 w-full sm:w-auto">
+          <div className="flex flex-col items-center mt-10 px-4 w-full sm:w-auto">
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger asChild>
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all text-base md:text-lg px-6 py-2.5 h-auto rounded-full"
+                  className="bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all text-lg md:text-xl px-8 py-6 h-auto rounded-full animate-pulse"
                 >
-                  Get Your Free Guide to Student Loans
-                  <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0" />
+                  Get Your Free Student Loan Guide
+                  <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
@@ -230,7 +206,7 @@ export const Hero = () => {
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full font-semibold rounded-full"
+                    className="w-full font-semibold rounded-full text-lg py-6"
                     disabled={loading}
                   >
                     {loading ? "Preparing Your Guide..." : "Send My Free Guide Now"}
@@ -238,31 +214,31 @@ export const Hero = () => {
                 </form>
               </DialogContent>
             </Dialog>
-            <p className="text-sm text-amber-600 mt-2 font-medium animate-pulse">Free for now, but not forever.</p>
+            <p className="text-sm text-amber-600 mt-2 font-medium">Free for a limited time - No credit card required</p>
           </div>
 
           {/* Benefits Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16 w-full">
             {[
               {
-                icon: <BookOpen className="h-6 w-6 text-primary" />,
-                title: "Expert Guidance",
-                description: "Step-by-step help with FAFSA and loan applications"
+                icon: <BookOpen className="h-6 w-6 text-blue-600" />,
+                title: "Step-by-Step Guidance",
+                description: "Clear instructions for FAFSA and loan applications"
               },
               {
-                icon: <Shield className="h-6 w-6 text-primary" />,
-                title: "Smart Comparison",
-                description: "Compare lenders and find your best rate"
+                icon: <Shield className="h-6 w-6 text-green-600" />,
+                title: "Compare Options",
+                description: "See all your loan options side by side"
               },
               {
-                icon: <Shield className="h-6 w-6 text-primary" />,
-                title: "Aid Optimization",
-                description: "Maximize your financial aid opportunities"
+                icon: <Shield className="h-6 w-6 text-purple-600" />,
+                title: "Maximum Aid",
+                description: "Get all the financial aid you qualify for"
               },
               {
-                icon: <Shield className="h-6 w-6 text-primary" />,
-                title: "Easy Management",
-                description: "Track and manage all your loans in one place"
+                icon: <Shield className="h-6 w-6 text-amber-600" />,
+                title: "Smart Repayment",
+                description: "Find the plan that saves you the most money"
               }
             ].map((benefit, index) => (
               <div 

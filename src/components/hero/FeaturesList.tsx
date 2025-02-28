@@ -1,3 +1,4 @@
+
 import { GraduationCap, Search, Star, CheckCircle2 } from "lucide-react";
 import { FeaturePill } from "./FeaturePill";
 
