@@ -25,6 +25,22 @@ const Index = () => {
     return () => clearInterval(testimonialTimer);
   }, []);
 
+  // Scroll to section if returning from another page
+  useEffect(() => {
+    if (location.state?.scrollToSection) {
+      const section = document.getElementById(location.state.scrollToSection);
+      if (section) {
+        // Give a little delay to ensure the page is loaded
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+      
+      // Clear the state after scrolling
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
   // If we're already on the index page and try to navigate to index, prevent the navigation
   useEffect(() => {
     if (location.pathname === "/" && location.state?.from === "/") {
