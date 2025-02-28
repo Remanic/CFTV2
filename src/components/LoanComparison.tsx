@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Shuffle, TrendingUp, Home, Car } from "lucide-react";
+import { Shuffle, TrendingUp, Home, Car, CreditCard, PiggyBank, Calculator } from "lucide-react";
 
 export const LoanComparison = () => {
   return (
@@ -68,6 +68,71 @@ export const LoanComparison = () => {
               </Button>
             </Link>
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <CreditCard className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Credit Card Calculator</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Determine how long it will take to pay off credit card debt and how much interest you'll pay.</p>
+            <Link 
+              to="/credit-card-payment-calculator" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Calculate Credit Card
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Calculator className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">EMI Calculator</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Calculate equated monthly installments for loans with this simple, accurate tool.</p>
+            <Link 
+              to="/loan-emi-calculator" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Calculate EMI
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <PiggyBank className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Savings Calculator</h3>
+            <p className="text-gray-600 mb-6 flex-grow">See how your savings can grow with compound interest over time.</p>
+            <Link 
+              to="/compound-interest-calculator" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Calculate Savings
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <Link 
+            to="/all-lenders"
+            state={{ from: "/", section: "loan-comparison" }}
+          >
+            <Button variant="outline" className="border-blue-200 text-blue-700 hover:bg-blue-50">
+              <TrendingUp className="h-5 w-5 mr-2" />
+              View All Student Loan Lenders
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

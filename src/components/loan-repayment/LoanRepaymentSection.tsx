@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { DollarSign, Calculator, BookOpen, Clock } from "lucide-react";
+import { DollarSign, Calculator, BookOpen, Clock, BarChart, PieChart, ScatterChart } from "lucide-react";
 
 export const LoanRepaymentSection = () => {
   return (
@@ -37,27 +37,63 @@ export const LoanRepaymentSection = () => {
 
           <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
             <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <BookOpen className="h-6 w-6 text-emerald-600" />
+              <BarChart className="h-6 w-6 text-emerald-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Repayment Guides</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Learn about Standard, Income-Driven, Graduated, and Extended repayment options for federal loans.</p>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Income-Driven Plans</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Explore repayment plans based on your income, including IBR, PAYE, REPAYE, and ICR.</p>
+            <Link 
+              to="/income-based-repayment" 
+              state={{ from: "/", section: "loan-repayment" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                Explore IDR Plans
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
+            <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <PieChart className="h-6 w-6 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Fixed Payment Plans</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Learn about standard and fixed payment options for consistent monthly payments.</p>
+            <Link 
+              to="/standard-repayment" 
+              state={{ from: "/", section: "loan-repayment" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                Standard Plans
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
+            <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <ScatterChart className="h-6 w-6 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Graduated & Extended</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Explore plans with increasing payments over time or extended terms for lower monthly costs.</p>
             <div className="space-y-3">
               <Link 
-                to="/standard-repayment" 
+                to="/graduated-repayment" 
                 state={{ from: "/", section: "loan-repayment" }}
                 className="inline-block w-full"
               >
                 <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  Standard Repayment
+                  Graduated Repayment
                 </Button>
               </Link>
               <Link 
-                to="/income-based-repayment" 
+                to="/extended-repayment" 
                 state={{ from: "/", section: "loan-repayment" }}
                 className="inline-block w-full"
               >
                 <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  Income-Driven Plans
+                  Extended Repayment
                 </Button>
               </Link>
             </div>
@@ -67,8 +103,8 @@ export const LoanRepaymentSection = () => {
             <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
               <DollarSign className="h-6 w-6 text-emerald-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Repayment Strategies</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Explore proven strategies to repay your loans faster and save money on interest.</p>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Private Loan Options</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Strategies for managing private student loans and refinancing options.</p>
             <div className="space-y-3">
               <Link 
                 to="/private-loan-repayment" 
@@ -80,12 +116,40 @@ export const LoanRepaymentSection = () => {
                 </Button>
               </Link>
               <Link 
+                to="/private-loans-guide" 
+                state={{ from: "/", section: "loan-repayment" }}
+                className="inline-block w-full"
+              >
+                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                  Private Loans Guide
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
+            <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <BookOpen className="h-6 w-6 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Loan Basics</h3>
+            <p className="text-gray-600 mb-6 flex-grow">New to student loans? Learn the essentials about federal and private loan options.</p>
+            <div className="space-y-3">
+              <Link 
                 to="/federal-loans-guide" 
                 state={{ from: "/", section: "loan-repayment" }}
                 className="inline-block w-full"
               >
                 <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  Federal Loan Strategies
+                  Federal Loans Guide
+                </Button>
+              </Link>
+              <Link 
+                to="/student-loan-essentials" 
+                state={{ from: "/", section: "loan-repayment" }}
+                className="inline-block w-full"
+              >
+                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                  Loan Essentials
                 </Button>
               </Link>
             </div>

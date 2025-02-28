@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Briefcase, GraduationCap, Clock, ShieldCheck } from "lucide-react";
+import { Briefcase, GraduationCap, Clock, ShieldCheck, Bell } from "lucide-react";
 
 export const LoanForgivenessPrograms = () => {
   return (
@@ -36,12 +36,12 @@ export const LoanForgivenessPrograms = () => {
                 </Button>
               </Link>
               <Link 
-                to="/student-loan-forgiveness-eligibility" 
+                to="/pslf-comprehensive-guide" 
                 state={{ from: "/", section: "loan-forgiveness" }}
                 className="flex-1"
               >
-                <Button className="w-full bg-violet-600 hover:bg-violet-700">
-                  Check Eligibility
+                <Button variant="outline" className="w-full border-violet-200 text-violet-700 hover:bg-violet-50">
+                  Full Guide
                 </Button>
               </Link>
             </div>
@@ -77,19 +77,42 @@ export const LoanForgivenessPrograms = () => {
           </div>
         </div>
 
-        <div className="mt-12 text-center">
-          <Link 
-            to="/latest-loan-forgiveness" 
-            state={{ from: "/", section: "loan-forgiveness" }}
-          >
-            <Button 
-              variant="link" 
-              className="text-violet-700 text-lg hover:text-violet-800"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-8">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-violet-100 flex flex-col">
+            <div className="mb-4 bg-violet-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <ShieldCheck className="h-6 w-6 text-violet-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Forgiveness Eligibility Checker</h3>
+            <p className="text-gray-600 mb-2 flex-grow">Find out if you qualify for loan forgiveness programs based on your specific situation.</p>
+            
+            <Link 
+              to="/student-loan-forgiveness-eligibility" 
+              state={{ from: "/", section: "loan-forgiveness" }}
+              className="inline-block"
             >
-              <Clock className="h-5 w-5 mr-2" />
-              Stay Updated on the Latest Loan Forgiveness News
-            </Button>
-          </Link>
+              <Button className="w-full bg-violet-600 hover:bg-violet-700">
+                Check Your Eligibility
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-violet-100 flex flex-col">
+            <div className="mb-4 bg-violet-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Bell className="h-6 w-6 text-violet-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Latest Forgiveness News</h3>
+            <p className="text-gray-600 mb-2 flex-grow">Stay updated on new forgiveness programs and changes to existing programs.</p>
+            
+            <Link 
+              to="/latest-loan-forgiveness" 
+              state={{ from: "/", section: "loan-forgiveness" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-violet-600 hover:bg-violet-700">
+                Get Latest Updates
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
