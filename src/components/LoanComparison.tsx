@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { BookOpen, FileText, TrendingUp } from "lucide-react";
+import { BookOpen, FileText, TrendingUp, DollarSign } from "lucide-react";
 
 export const LoanComparison = () => {
   return (
@@ -65,6 +65,42 @@ export const LoanComparison = () => {
             >
               <Button className="w-full bg-blue-600 hover:bg-blue-700">
                 Read Essentials Guide
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-2xl mx-auto">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <DollarSign className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Private Student Loans</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Understand private student loan options, interest rates, repayment terms, and when they might be right for you.</p>
+            <Link 
+              to="/private-loans-guide" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Private Loans Guide
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <BookOpen className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Federal Student Loans</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Learn about federal student loan programs, benefits, and protections available to help finance your education.</p>
+            <Link 
+              to="/federal-loans-guide" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Federal Loans Guide
               </Button>
             </Link>
           </div>

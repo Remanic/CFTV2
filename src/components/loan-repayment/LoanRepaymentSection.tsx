@@ -70,7 +70,7 @@ export const LoanRepaymentSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-2xl mx-auto">
           <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
             <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
               <ScatterChart className="h-6 w-6 text-emerald-600" />
@@ -103,56 +103,17 @@ export const LoanRepaymentSection = () => {
             <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
               <DollarSign className="h-6 w-6 text-emerald-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Private Loan Options</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Strategies for managing private student loans and refinancing options.</p>
-            <div className="space-y-3">
-              <Link 
-                to="/private-loan-repayment" 
-                state={{ from: "/", section: "loan-repayment" }}
-                className="inline-block w-full"
-              >
-                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  Private Loan Strategies
-                </Button>
-              </Link>
-              <Link 
-                to="/private-loans-guide" 
-                state={{ from: "/", section: "loan-repayment" }}
-                className="inline-block w-full"
-              >
-                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  Private Loans Guide
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
-            <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <BookOpen className="h-6 w-6 text-emerald-600" />
-            </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Loan Basics</h3>
-            <p className="text-gray-600 mb-6 flex-grow">New to student loans? Learn the essentials about federal and private loan options.</p>
-            <div className="space-y-3">
-              <Link 
-                to="/federal-loans-guide" 
-                state={{ from: "/", section: "loan-repayment" }}
-                className="inline-block w-full"
-              >
-                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  Federal Loans Guide
-                </Button>
-              </Link>
-              <Link 
-                to="/student-loan-essentials" 
-                state={{ from: "/", section: "loan-repayment" }}
-                className="inline-block w-full"
-              >
-                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
-                  Loan Essentials
-                </Button>
-              </Link>
-            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Private Loan Repayment</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Strategies for effectively managing and repaying your private student loans.</p>
+            <Link 
+              to="/private-loan-repayment" 
+              state={{ from: "/", section: "loan-repayment" }}
+              className="inline-block w-full"
+            >
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                Private Loan Strategies
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
