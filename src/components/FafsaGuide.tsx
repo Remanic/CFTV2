@@ -1,72 +1,73 @@
 
-import { GuideCard } from "./fafsa-guide/GuideCard";
-import { GuideHeader } from "./fafsa-guide/GuideHeader";
-import { BookOpen, ClipboardCheck, Calculator, Calendar, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ClipboardList, Search, Calculator } from "lucide-react";
 
 export const FafsaGuide = () => {
-  const guides = [
-    {
-      title: "Find Your State's FAFSA Deadline",
-      description: "Check FAFSA deadlines for your state",
-      icon: Search,
-      color: "bg-yellow-50 hover:bg-yellow-100 border-yellow-200",
-      textColor: "text-yellow-700",
-      path: "/fafsa-state-deadlines"
-    },
-    {
-      title: "Comprehensive Guide to Filling Out the FAFSA Form",
-      description: "Step-by-step instructions to complete your FAFSA application successfully",
-      icon: BookOpen,
-      color: "bg-blue-50 hover:bg-blue-100 border-blue-200",
-      textColor: "text-blue-700",
-      path: "/fafsa-application-guide"
-    },
-    {
-      title: "Review & Understand Your FAFSA Submission",
-      description: "Learn how to review and understand your FAFSA submission details",
-      icon: ClipboardCheck,
-      color: "bg-green-50 hover:bg-green-100 border-green-200",
-      textColor: "text-green-700",
-      path: "/fafsa-review-guide"
-    },
-    {
-      title: "FAFSA Deadlines for 2024",
-      description: "Important deadlines and submission timeline for the 2024-2025 academic year",
-      icon: Calendar,
-      color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
-      textColor: "text-purple-700",
-      path: "/fafsa-deadlines"
-    },
-    {
-      title: "FAFSA Deadlines for 2025",
-      description: "Key dates and deadlines for the 2025-2026 academic year FAFSA submission",
-      icon: Calendar,
-      color: "bg-orange-50 hover:bg-orange-100 border-orange-200",
-      textColor: "text-orange-700",
-      path: "/fafsa-deadlines-2025"
-    },
-    {
-      title: "FAFSA Aid Estimator",
-      description: "Calculate your estimated financial aid before submitting your application",
-      icon: Calculator,
-      color: "bg-pink-50 hover:bg-pink-100 border-pink-200",
-      textColor: "text-pink-700",
-      path: "/fafsa-aid-calculator"
-    }
-  ];
-
   return (
-    <section id="fafsa-guide" className="py-20 bg-gradient-to-b from-white to-blue-50">
+    <section 
+      id="fafsa-guide" 
+      className="py-16 bg-purple-50"
+    >
       <div className="container mx-auto px-4">
-        <GuideHeader 
-          title="Master Your FAFSA Application"
-          description="Join millions of students who use FAFSA annually. Let us guide you through every step of the process."
-        />
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Complete FAFSA Guide</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Everything you need to know about the Free Application for Federal Student Aid (FAFSA).
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {guides.map((guide, index) => (
-            <GuideCard key={index} {...guide} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-purple-100 flex flex-col">
+            <div className="mb-4 bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <ClipboardList className="h-6 w-6 text-purple-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">FAFSA Application Guide</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Step-by-step instructions to complete your FAFSA application correctly the first time.</p>
+            <Link 
+              to="/fafsa-application-guide" 
+              state={{ from: "/", section: "fafsa-guide" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                Read the Guide
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-purple-100 flex flex-col">
+            <div className="mb-4 bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Search className="h-6 w-6 text-purple-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Find State Deadlines</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Don't miss out on state aid. Find FAFSA state submission deadlines that may differ from federal ones.</p>
+            <Link 
+              to="/fafsa-state-deadlines" 
+              state={{ from: "/", section: "fafsa-guide" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                Find Deadlines
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-purple-100 flex flex-col">
+            <div className="mb-4 bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Calculator className="h-6 w-6 text-purple-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Estimate Your Aid</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Get a quick estimate of how much federal student aid you might receive before you apply.</p>
+            <Link 
+              to="/fafsa-aid-estimator" 
+              state={{ from: "/", section: "fafsa-guide" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                Calculate Now
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -1,64 +1,95 @@
 
-import { GuideCard } from "./fafsa-guide/GuideCard";
-import { GuideHeader } from "./fafsa-guide/GuideHeader";
-import { GraduationCap, School, Award, CheckCircle2, Info } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { Briefcase, GraduationCap, Clock, ShieldCheck } from "lucide-react";
 
 export const LoanForgivenessPrograms = () => {
-  const guides = [
-    {
-      title: "Public Service Loan Forgiveness (PSLF)",
-      description: "Complete guide to PSLF eligibility, requirements, and application process",
-      icon: GraduationCap,
-      color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
-      textColor: "text-rose-700",
-      path: "/pslf"
-    },
-    {
-      title: "Teacher Loan Forgiveness Program",
-      description: "Comprehensive guide for teachers seeking loan forgiveness",
-      icon: School,
-      color: "bg-cyan-50 hover:bg-cyan-100 border-cyan-200",
-      textColor: "text-cyan-700",
-      path: "/teacher-loan-forgiveness"
-    },
-    {
-      title: "Comprehensive Guide: Public Service Loan Forgiveness (PSLF)",
-      description: "In-depth analysis of PSLF program benefits and requirements",
-      icon: Award,
-      color: "bg-emerald-50 hover:bg-emerald-100 border-emerald-200",
-      textColor: "text-emerald-700",
-      path: "/pslf-comprehensive-guide"
-    },
-    {
-      title: "Student Loan Forgiveness Eligibility Checker",
-      description: "Find out instantly if you qualify for student loan forgiveness programs with our interactive tool",
-      icon: CheckCircle2,
-      color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
-      textColor: "text-indigo-700",
-      path: "/loan-forgiveness-eligibility"
-    },
-    {
-      title: "Latest Loan Forgiveness Updates",
-      description: "Stay informed with the newest student loan forgiveness opportunities and program changes",
-      icon: Info,
-      color: "bg-violet-50 hover:bg-violet-100 border-violet-200",
-      textColor: "text-violet-700",
-      path: "/latest-loan-forgiveness"
-    }
-  ];
-
   return (
-    <section id="loan-forgiveness" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section 
+      id="loan-forgiveness" 
+      className="py-16 bg-violet-50"
+    >
       <div className="container mx-auto px-4">
-        <GuideHeader 
-          title="Student Loan Forgiveness Programs"
-          description="Discover your path to financial freedom. Check your eligibility for federal student loan forgiveness programs and get personalized guidance on your journey to debt relief."
-        />
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Loan Forgiveness Programs</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            You may be eligible to have part or all of your student loans forgiven. Learn about the available programs.
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {guides.map((guide, index) => (
-            <GuideCard key={index} {...guide} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-violet-100 flex flex-col">
+            <div className="mb-4 bg-violet-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Briefcase className="h-6 w-6 text-violet-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Public Service Loan Forgiveness</h3>
+            <p className="text-gray-600 mb-2 flex-grow">For those working in government or non-profit organizations. Get your federal loans forgiven after 10 years of payments.</p>
+            
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
+              <Link 
+                to="/public-service-loan-forgiveness" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button variant="outline" className="w-full border-violet-200 text-violet-700 hover:bg-violet-50">
+                  Learn More
+                </Button>
+              </Link>
+              <Link 
+                to="/student-loan-forgiveness-eligibility" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button className="w-full bg-violet-600 hover:bg-violet-700">
+                  Check Eligibility
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-violet-100 flex flex-col">
+            <div className="mb-4 bg-violet-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <GraduationCap className="h-6 w-6 text-violet-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Teacher Loan Forgiveness</h3>
+            <p className="text-gray-600 mb-2 flex-grow">For teachers working in low-income schools. Up to $17,500 of your federal student loans could be forgiven.</p>
+            
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
+              <Link 
+                to="/teacher-loan-forgiveness" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button variant="outline" className="w-full border-violet-200 text-violet-700 hover:bg-violet-50">
+                  Learn More
+                </Button>
+              </Link>
+              <Link 
+                to="/student-loan-forgiveness-eligibility" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button className="w-full bg-violet-600 hover:bg-violet-700">
+                  Check Eligibility
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link 
+            to="/latest-loan-forgiveness" 
+            state={{ from: "/", section: "loan-forgiveness" }}
+          >
+            <Button 
+              variant="link" 
+              className="text-violet-700 text-lg hover:text-violet-800"
+            >
+              <Clock className="h-5 w-5 mr-2" />
+              Stay Updated on the Latest Loan Forgiveness News
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

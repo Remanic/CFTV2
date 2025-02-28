@@ -1,64 +1,73 @@
 
-import { BookOpen, DollarSign, Users, FileText } from "lucide-react";
-import { GuideCard } from "./fafsa-guide/GuideCard";
-import { GuideHeader } from "./fafsa-guide/GuideHeader";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { Shuffle, TrendingUp, Home, Car } from "lucide-react";
 
 export const LoanComparison = () => {
-  const loanGuides = [
-    {
-      title: "Federal vs. Private Loans",
-      description: "Compare federal and private student loans to make the right choice",
-      icon: DollarSign,
-      color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
-      textColor: "text-indigo-700",
-      path: "/loan-comparison-guide"
-    },
-    {
-      title: "Federal Loans 101",
-      description: "Comprehensive guide to federal student loans, types, and benefits",
-      icon: BookOpen,
-      color: "bg-violet-50 hover:bg-violet-100 border-violet-200",
-      textColor: "text-violet-700",
-      path: "/federal-loans-guide"
-    },
-    {
-      title: "Private Student Loans",
-      description: "Everything you need to know about private student loans",
-      icon: DollarSign,
-      color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
-      textColor: "text-rose-700",
-      path: "/private-loans-guide"
-    },
-    {
-      title: "Parent PLUS Loans",
-      description: "Everything parents need to know about PLUS loans",
-      icon: Users,
-      color: "bg-cyan-50 hover:bg-cyan-100 border-cyan-200",
-      textColor: "text-cyan-700",
-      path: "/parent-plus-guide"
-    },
-    {
-      title: "Essential Student Information",
-      description: "Key information every student should know before borrowing",
-      icon: FileText,
-      color: "bg-emerald-50 hover:bg-emerald-100 border-emerald-200",
-      textColor: "text-emerald-700",
-      path: "/student-loan-essentials"
-    }
-  ];
-
   return (
-    <section id="loan-comparison" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section 
+      id="loan-comparison" 
+      className="py-16 bg-blue-50"
+    >
       <div className="container mx-auto px-4">
-        <GuideHeader 
-          title="Understanding Loan Types"
-          description="Navigate your student loan options with confidence using our comprehensive guides."
-        />
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {loanGuides.map((guide, index) => (
-            <GuideCard key={index} {...guide} />
-          ))}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Loan Comparison Tools</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Compare different loan options to find the best rates and terms for your needs.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Shuffle className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Student Loan Comparison</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Compare federal and private student loan options to find the best fit for your education financing.</p>
+            <Link 
+              to="/loan-comparison-guide" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Compare Options
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Home className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Mortgage Calculator</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Calculate monthly payments, interest costs, and amortization schedules for home loans.</p>
+            <Link 
+              to="/mortgage-payment-calculator" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Calculate Mortgage
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+            <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Car className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Auto Loan Calculator</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Estimate monthly payments and total costs for vehicle financing.</p>
+            <Link 
+              to="/car-loan-calculator" 
+              state={{ from: "/", section: "loan-comparison" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                Calculate Auto Loan
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

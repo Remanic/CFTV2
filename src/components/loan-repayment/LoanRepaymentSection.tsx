@@ -1,72 +1,95 @@
 
-import { GuideCard } from "../fafsa-guide/GuideCard";
-import { GuideHeader } from "../fafsa-guide/GuideHeader";
-import { Calculator, DollarSign, PiggyBank, TrendingUp, Clock, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { DollarSign, Calculator, BookOpen, Clock } from "lucide-react";
 
 export const LoanRepaymentSection = () => {
-  const guides = [
-    {
-      title: "Repayment Simulator",
-      description: "Find your optimal repayment strategy with our interactive calculator",
-      icon: Calculator,
-      color: "bg-indigo-50 hover:bg-indigo-100 border-indigo-200",
-      textColor: "text-indigo-700",
-      path: "/loan-repayment-calculator"
-    },
-    {
-      title: "Income-Driven Plans",
-      description: "Learn about income-based repayment options and how they work",
-      icon: DollarSign,
-      color: "bg-fuchsia-50 hover:bg-fuchsia-100 border-fuchsia-200",
-      textColor: "text-fuchsia-700",
-      path: "/income-based-repayment"
-    },
-    {
-      title: "Standard Repayment",
-      description: "Understand the traditional 10-year repayment plan",
-      icon: PiggyBank,
-      color: "bg-teal-50 hover:bg-teal-100 border-teal-200",
-      textColor: "text-teal-700",
-      path: "/standard-repayment"
-    },
-    {
-      title: "Graduated Plans",
-      description: "Explore plans with increasing payments over time",
-      icon: TrendingUp,
-      color: "bg-amber-50 hover:bg-amber-100 border-amber-200",
-      textColor: "text-amber-700",
-      path: "/graduated-repayment"
-    },
-    {
-      title: "Extended Plans",
-      description: "Learn about longer repayment terms up to 25 years",
-      icon: Clock,
-      color: "bg-rose-50 hover:bg-rose-100 border-rose-200",
-      textColor: "text-rose-700",
-      path: "/extended-repayment"
-    },
-    {
-      title: "Private Loan Repayment",
-      description: "Learn effective strategies for managing and repaying private student loans",
-      icon: ExternalLink,
-      color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
-      textColor: "text-purple-700",
-      path: "/private-loan-repayment"
-    }
-  ];
-
   return (
-    <section id="loan-repayment" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section 
+      id="loan-repayment" 
+      className="py-16 bg-emerald-50"
+    >
       <div className="container mx-auto px-4">
-        <GuideHeader 
-          title="Loan Repayment Options"
-          description="Explore different repayment plans and find the best strategy for your student loans. Use our simulator to compare options and make informed decisions."
-        />
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Student Loan Repayment Plans</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Find the best repayment plan for your financial situation and goals.
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {guides.map((guide, index) => (
-            <GuideCard key={index} {...guide} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
+            <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <Calculator className="h-6 w-6 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Repayment Calculator</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Calculate monthly payments, interest costs, and compare different repayment plans side by side.</p>
+            <Link 
+              to="/student-loan-repayment-calculator" 
+              state={{ from: "/", section: "loan-repayment" }}
+              className="inline-block"
+            >
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                Calculate Options
+              </Button>
+            </Link>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
+            <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <BookOpen className="h-6 w-6 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Repayment Guides</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Learn about Standard, Income-Driven, Graduated, and Extended repayment options for federal loans.</p>
+            <div className="space-y-3">
+              <Link 
+                to="/standard-repayment" 
+                state={{ from: "/", section: "loan-repayment" }}
+                className="inline-block w-full"
+              >
+                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                  Standard Repayment
+                </Button>
+              </Link>
+              <Link 
+                to="/income-based-repayment" 
+                state={{ from: "/", section: "loan-repayment" }}
+                className="inline-block w-full"
+              >
+                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                  Income-Driven Plans
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col">
+            <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <DollarSign className="h-6 w-6 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Repayment Strategies</h3>
+            <p className="text-gray-600 mb-6 flex-grow">Explore proven strategies to repay your loans faster and save money on interest.</p>
+            <div className="space-y-3">
+              <Link 
+                to="/private-loan-repayment" 
+                state={{ from: "/", section: "loan-repayment" }}
+                className="inline-block w-full"
+              >
+                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                  Private Loan Strategies
+                </Button>
+              </Link>
+              <Link 
+                to="/federal-loans-guide" 
+                state={{ from: "/", section: "loan-repayment" }}
+                className="inline-block w-full"
+              >
+                <Button variant="outline" className="w-full border-emerald-200 text-emerald-700 hover:bg-emerald-50">
+                  Federal Loan Strategies
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
