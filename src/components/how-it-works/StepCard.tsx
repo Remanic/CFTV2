@@ -1,5 +1,5 @@
 
-import { LucideIcon, ChevronRight } from "lucide-react";
+import { LucideIcon, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,10 @@ interface StepCardProps {
   highlight?: boolean;
   isActive?: boolean;
   onMouseEnter?: () => void;
+  cta?: {
+    text: string;
+    link: string;
+  };
 }
 
 export const StepCard = ({
@@ -23,6 +27,7 @@ export const StepCard = ({
   highlight,
   isActive,
   onMouseEnter,
+  cta,
 }: StepCardProps) => {
   const handleClick = () => {
     if (sectionId) {
@@ -89,7 +94,7 @@ export const StepCard = ({
         <Button
           onClick={handleClick}
           className={cn(
-            "w-full mt-auto transition-all duration-300",
+            "w-full mt-auto transition-all duration-300 flex items-center justify-center gap-2",
             highlight 
               ? "bg-violet-600 hover:bg-violet-700" 
               : "bg-[#8B5CF6] hover:bg-[#7C3AED]",
@@ -97,7 +102,8 @@ export const StepCard = ({
             "group-hover:translate-y-[-2px]",
           )}
         >
-          Learn More
+          <span>Go to {title}</span>
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Button>
       )}
     </div>

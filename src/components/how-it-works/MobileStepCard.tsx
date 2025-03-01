@@ -1,5 +1,5 @@
 
-import { LucideIcon, ChevronRight } from "lucide-react";
+import { LucideIcon, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   AccordionContent,
@@ -65,9 +65,10 @@ export const MobileStepCard = ({
           {sectionId && (
             <Button
               onClick={handleClick}
-              className="w-full mt-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white transition-all duration-300 hover:translate-y-[-2px]"
+              className="w-full mt-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white transition-all duration-300 hover:translate-y-[-2px] flex items-center justify-center gap-2"
             >
-              Learn More
+              <span>Go to {title}</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
           )}
         </div>

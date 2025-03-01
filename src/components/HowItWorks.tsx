@@ -13,6 +13,7 @@ export const HowItWorks = () => {
       {/* Decorative background elements */}
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50 rounded-full opacity-30"></div>
       <div className="absolute top-1/2 -left-24 w-64 h-64 bg-purple-50 rounded-full opacity-30"></div>
+      <div className="absolute bottom-32 right-1/4 w-32 h-32 bg-yellow-50 rounded-full opacity-20 animate-blob"></div>
       
       <div className="container mx-auto px-4 relative">
         <div className="mb-6 text-center">
