@@ -41,17 +41,17 @@ export const StepCard = ({
   return (
     <div
       className={cn(
-        "group relative p-6 rounded-xl border",
+        "group relative p-6 rounded-xl border transition-colors duration-200",
         highlight 
           ? "bg-white border-violet-200" 
           : "bg-white border-[#E2E8F0]",
         isActive 
-          ? "ring-2 ring-[#8B5CF6]" 
+          ? "border-[#8B5CF6]" 
           : "border-[#E2E8F0]"
       )}
       onMouseEnter={onMouseEnter}
     >
-      {/* Decorative elements */}
+      {/* Simplified decorative elements */}
       {highlight && (
         <div className="absolute -top-2 -right-2 h-6 w-6 bg-violet-100 rounded-full flex items-center justify-center z-10">
           <div className="h-4 w-4 bg-violet-500 rounded-full"></div>
@@ -98,7 +98,7 @@ export const StepCard = ({
             "text-white"
           )}
         >
-          <span>View Details</span>
+          <span>Learn More</span>
           <ArrowRight className="w-4 h-4" />
         </Button>
       )}

@@ -22,7 +22,7 @@ const Index = () => {
   useEffect(() => {
     const testimonialTimer = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % 4);
-    }, 5000);
+    }, 8000); // Increased time for smoother transitions
     return () => clearInterval(testimonialTimer);
   }, []);
 
@@ -54,29 +54,31 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
+        {/* Moved WhyNeedGuide up after Hero for better flow */}
+        <WhyNeedGuide />
+        
         <div className="py-4 bg-gradient-to-b from-blue-50 to-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
           </div>
         </div>
+        
         <HowItWorks />
-        <div className="bg-gray-50 py-12">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">Student Success Stories</h3>
+        
+        {/* Improved testimonial section with better spacing */}
+        <section className="bg-gray-50 py-16">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800">Student Success Stories</h3>
             <TestimonialSection currentTestimonial={currentTestimonial} />
           </div>
-        </div>
+        </section>
+        
         <div className="py-4 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
           </div>
         </div>
-        <WhyNeedGuide />
-        <div className="py-4 bg-white">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-          </div>
-        </div>
+        
         <AffiliateLoanSection />
         <FafsaGuide />
         <LoanForgivenessPrograms />

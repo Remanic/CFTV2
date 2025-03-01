@@ -10,11 +10,10 @@ export const HowItWorks = () => {
 
   return (
     <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
-      {/* Decorative background elements - reduced animation */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50 rounded-full opacity-30"></div>
-      <div className="absolute top-1/2 -left-24 w-64 h-64 bg-purple-50 rounded-full opacity-30"></div>
+      {/* Static decorative elements - removed animations */}
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50 rounded-full opacity-20"></div>
+      <div className="absolute top-1/2 -left-24 w-64 h-64 bg-purple-50 rounded-full opacity-20"></div>
       <div className="absolute bottom-32 right-1/4 w-32 h-32 bg-yellow-50 rounded-full opacity-20"></div>
-      <div className="absolute top-1/3 right-1/3 w-16 h-16 bg-blue-50 rounded-full opacity-20"></div>
       
       <div className="container mx-auto px-4 relative">
         <div className="mb-6 text-center">
