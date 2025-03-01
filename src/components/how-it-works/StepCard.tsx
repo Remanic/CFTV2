@@ -102,7 +102,7 @@ export const StepCard = ({
             "group-hover:translate-y-[-2px]",
           )}
         >
-          <span>Go to {title}</span>
+          <span>View Details</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Button>
       )}

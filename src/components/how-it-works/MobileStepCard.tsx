@@ -67,7 +67,7 @@ export const MobileStepCard = ({
               onClick={handleClick}
               className="w-full mt-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white transition-all duration-300 hover:translate-y-[-2px] flex items-center justify-center gap-2"
             >
-              <span>Go to {title}</span>
+              <span>View Details</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
           )}

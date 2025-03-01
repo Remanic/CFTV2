@@ -11,20 +11,28 @@ export const HowItWorks = () => {
   return (
     <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50 rounded-full opacity-30"></div>
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50 rounded-full opacity-30 animate-pulse"></div>
       <div className="absolute top-1/2 -left-24 w-64 h-64 bg-purple-50 rounded-full opacity-30"></div>
       <div className="absolute bottom-32 right-1/4 w-32 h-32 bg-yellow-50 rounded-full opacity-20 animate-blob"></div>
+      <div className="absolute top-1/3 right-1/3 w-16 h-16 bg-blue-50 rounded-full opacity-20 animate-pulse delay-700"></div>
       
       <div className="container mx-auto px-4 relative">
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-center animate-fade-in">
           <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4 shadow-sm">
-            Simple Process
+            Simple 6-Step Process
           </span>
         </div>
         <SectionHeader 
-          title="How CashFlowTime Works"
-          subtitle="A simple 6-step guide to tackle student loans with confidence"
+          title="Master Your Student Loan Journey"
+          subtitle="From FAFSA to financial freedom in 6 simple steps"
         />
+        
+        <div className="max-w-xl mx-auto mb-12 text-center">
+          <p className="text-gray-600 text-lg animate-fade-in delay-200">
+            Our proven system guides you through every aspect of student loans, saving you time, 
+            reducing stress, and potentially thousands in repayments.
+          </p>
+        </div>
         
         <DesktopStepsGrid 
           steps={steps}

@@ -14,9 +14,9 @@ export const steps = [
     title: "Navigate FAFSA with Confidence",
     icon: GraduationCap,
     content: [
-      "Use our FAFSA Guide for step-by-step instructions.",
-      "Stay on track with our FAFSA Deadline Checker.",
-      "Maximize your aid using the FAFSA Aid Estimator."
+      "Step-by-step FAFSA guidance",
+      "Track deadlines automatically",
+      "Maximize your eligible aid"
     ],
     sectionId: "fafsa-guide",
     cta: {
@@ -29,8 +29,9 @@ export const steps = [
     title: "Explore Loan Options",
     icon: BookOpen,
     content: [
-      "Learn with our Federal Loan Guide and overview of Federal Loan Types.",
-      "Compare private lenders with detailed rates, pros, and cons tailored to your needs."
+      "Compare federal vs private loans",
+      "Find the best rates for your situation",
+      "Understand all terms before committing"
     ],
     sectionId: "loan-comparison",
     cta: {
@@ -40,11 +41,12 @@ export const steps = [
   },
   {
     number: "03",
-    title: "Plan for Loan Repayment",
+    title: "Plan for Repayment",
     icon: Calculator,
     content: [
-      "Choose the best repayment plan with our Repayment Guide.",
-      "Use the Loan Repayment Calculator to compare and save."
+      "Choose the best repayment plan",
+      "Calculate savings across options",
+      "Minimize interest & total costs"
     ],
     sectionId: "loan-repayment",
     cta: {
@@ -54,10 +56,12 @@ export const steps = [
   },
   {
     number: "04",
-    title: "Understand Loan Forgiveness Eligibility",
+    title: "Unlock Forgiveness Options",
     icon: CheckCircle2,
     content: [
-      "Get insights into Loan Forgiveness eligibility and explore strategies to qualify."
+      "Check eligibility automatically",
+      "Navigate requirements step-by-step",
+      "Maximize forgiveness potential"
     ],
     sectionId: "loan-forgiveness",
     cta: {
@@ -67,11 +71,12 @@ export const steps = [
   },
   {
     number: "05",
-    title: "Leverage Smart Tools for Every Decision",
+    title: "Smart Financial Tools",
     icon: Calculator,
     content: [
-      "Manage your finances better with our calculators:",
-      "Mortgage, EMI, Savings, Credit Card, and Auto Loan calculators."
+      "Comprehensive calculators suite",
+      "Model different financial scenarios",
+      "Make informed decisions quickly"
     ],
     sectionId: "financial-tools",
     cta: {
@@ -84,10 +89,9 @@ export const steps = [
     title: "Achieve Financial Freedom",
     icon: Star,
     content: [
-      "🎓 Congratulations on taking control of your financial future!",
-      "✨ You're now equipped with expert tools and knowledge",
-      "💫 Join thousands who've transformed student debt into financial success",
-      "🌟 Your path to a debt-free future starts here"
+      "Eliminate student debt faster",
+      "Build wealth while managing loans",
+      "Join thousands of success stories"
     ],
     highlight: true
   }
