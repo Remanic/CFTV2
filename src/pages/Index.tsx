@@ -12,6 +12,7 @@ import { Footer } from "@/components/Footer";
 import { HowItWorks } from "@/components/HowItWorks";
 import TestimonialSection from "@/components/hero/TestimonialSection";
 import { BackToTop } from "@/components/BackToTop";
+import { CtaBanner } from "@/components/CtaBanner";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -54,7 +55,6 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
-        {/* Moved WhyNeedGuide up after Hero for better flow */}
         <WhyNeedGuide />
         
         <div className="py-4 bg-gradient-to-b from-blue-50 to-white">
@@ -65,10 +65,9 @@ const Index = () => {
         
         <HowItWorks />
         
-        {/* Improved testimonial section with better spacing */}
         <section className="bg-gray-50 py-16">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800">Student Success Stories</h3>
+            <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800 font-playfair">Student Success Stories</h3>
             <TestimonialSection currentTestimonial={currentTestimonial} />
           </div>
         </section>
@@ -85,6 +84,10 @@ const Index = () => {
         <LoanRepaymentSection />
         <LoanComparison />
         <QuickUnderstand />
+        
+        {/* New CTA Banner before footer */}
+        <CtaBanner />
+        
         <BackToTop />
       </main>
       <Footer />

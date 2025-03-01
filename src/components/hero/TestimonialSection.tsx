@@ -57,14 +57,14 @@ const TestimonialSection = ({ currentTestimonial: initialTestimonial }: Testimon
           <div className="flex gap-3">
             <button 
               onClick={goToPrevTestimonial}
-              className="h-9 w-9 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 transition-colors"
+              className="h-9 w-9 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button 
               onClick={goToNextTestimonial}
-              className="h-9 w-9 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600 transition-colors"
+              className="h-9 w-9 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-600"
               aria-label="Next testimonial"
             >
               <ChevronRight className="h-5 w-5" />
@@ -78,9 +78,9 @@ const TestimonialSection = ({ currentTestimonial: initialTestimonial }: Testimon
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
                 className={cn(
-                  "h-2 rounded-full transition-all duration-300 focus:outline-none",
+                  "h-2 rounded-full",
                   index === currentTestimonial
-                    ? "w-8 bg-primary"
+                    ? "w-8 bg-blue-600"
                     : "w-2 bg-gray-200 hover:bg-gray-300"
                 )}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -94,19 +94,19 @@ const TestimonialSection = ({ currentTestimonial: initialTestimonial }: Testimon
             <div
               key={index}
               className={cn(
-                "absolute w-full transition-all duration-500 ease-in-out",
+                "absolute w-full",
                 index === currentTestimonial
                   ? 'opacity-100 translate-x-0'
                   : 'opacity-0 translate-x-full pointer-events-none'
               )}
               style={{ 
-                transitionDelay: index === currentTestimonial ? '0ms' : '0ms' 
+                transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
               }}
             >
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
-                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-                    <span className="text-primary font-semibold text-xl">
+                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
+                    <span className="text-blue-600 font-semibold text-xl">
                       {testimonial.author[0]}
                     </span>
                   </div>
@@ -121,7 +121,7 @@ const TestimonialSection = ({ currentTestimonial: initialTestimonial }: Testimon
                     "{testimonial.quote}"
                   </p>
                   <div>
-                    <span className="font-semibold text-gray-900 mr-2">
+                    <span className="font-semibold text-gray-900 mr-2 font-playfair">
                       {testimonial.author}
                     </span>
                     <span className="text-gray-500">

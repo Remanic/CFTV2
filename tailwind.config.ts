@@ -22,6 +22,9 @@ export default {
       screens: {
         'xs': '475px',
       },
+      fontFamily: {
+        'playfair': ['"Playfair Display"', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -29,7 +32,7 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#2563eb",
+          DEFAULT: "#2563eb", // Consistent blue as primary color
           foreground: "#ffffff",
         },
         secondary: {
@@ -72,17 +75,17 @@ export default {
         },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-5px)" }, // Reduced movement for better performance
         },
         blob: {
           "0%": {
             transform: "translate(0px, 0px) scale(1)",
           },
           "33%": {
-            transform: "translate(30px, -50px) scale(1.1)",
+            transform: "translate(20px, -30px) scale(1.05)", // Reduced scale for better performance
           },
           "66%": {
-            transform: "translate(-20px, 20px) scale(0.9)",
+            transform: "translate(-15px, 15px) scale(0.95)",
           },
           "100%": {
             transform: "translate(0px, 0px) scale(1)",
@@ -92,8 +95,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        float: "float 3s ease-in-out infinite",
-        blob: "blob 7s infinite",
+        float: "float 4s ease-in-out infinite", // Slower animation for better performance
+        blob: "blob 10s infinite", // Slower animation for better performance
       },
     },
   },

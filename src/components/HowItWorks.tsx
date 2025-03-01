@@ -10,7 +10,7 @@ export const HowItWorks = () => {
 
   return (
     <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
-      {/* Static decorative elements - removed animations */}
+      {/* Static decorative elements without animations */}
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50 rounded-full opacity-20"></div>
       <div className="absolute top-1/2 -left-24 w-64 h-64 bg-purple-50 rounded-full opacity-20"></div>
       <div className="absolute bottom-32 right-1/4 w-32 h-32 bg-yellow-50 rounded-full opacity-20"></div>
