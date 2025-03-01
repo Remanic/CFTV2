@@ -41,13 +41,12 @@ export const StepCard = ({
   return (
     <div
       className={cn(
-        "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
-        "hover:shadow-lg",
+        "group relative p-6 rounded-xl border",
         highlight 
-          ? "bg-white border-2 border-violet-200" 
-          : "bg-white border border-[#E2E8F0]",
+          ? "bg-white border-violet-200" 
+          : "bg-white border-[#E2E8F0]",
         isActive 
-          ? "ring-2 ring-[#8B5CF6] transform scale-[1.02]" 
+          ? "ring-2 ring-[#8B5CF6]" 
           : "border-[#E2E8F0]"
       )}
       onMouseEnter={onMouseEnter}
@@ -55,15 +54,14 @@ export const StepCard = ({
       {/* Decorative elements */}
       {highlight && (
         <div className="absolute -top-2 -right-2 h-6 w-6 bg-violet-100 rounded-full flex items-center justify-center z-10">
-          <div className="h-4 w-4 bg-violet-500 rounded-full animate-pulse"></div>
+          <div className="h-4 w-4 bg-violet-500 rounded-full"></div>
         </div>
       )}
       
       <div className="flex items-center gap-4 mb-4">
         <div className={cn(
           "flex items-center justify-center w-12 h-12 rounded-full text-[#8B5CF6] font-bold",
-          highlight ? "bg-violet-50" : "bg-[#F1F0FB]",
-          "group-hover:scale-110 transition-transform duration-300"
+          highlight ? "bg-violet-50" : "bg-[#F1F0FB]"
         )}>
           {number}
         </div>
@@ -82,8 +80,7 @@ export const StepCard = ({
           <li key={i} className="flex items-start gap-2">
             <ChevronRight className={cn(
               "w-4 h-4 mt-1",
-              highlight ? "text-violet-600" : "text-[#8B5CF6]",
-              "group-hover:translate-x-1 transition-transform duration-300"
+              highlight ? "text-violet-600" : "text-[#8B5CF6]"
             )} />
             <span>{item}</span>
           </li>
@@ -94,16 +91,15 @@ export const StepCard = ({
         <Button
           onClick={handleClick}
           className={cn(
-            "w-full mt-auto transition-all duration-300 flex items-center justify-center gap-2",
+            "w-full mt-auto flex items-center justify-center gap-2",
             highlight 
               ? "bg-violet-600 hover:bg-violet-700" 
               : "bg-[#8B5CF6] hover:bg-[#7C3AED]",
-            "text-white",
-            "group-hover:translate-y-[-2px]",
+            "text-white"
           )}
         >
           <span>View Details</span>
-          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="w-4 h-4" />
         </Button>
       )}
     </div>

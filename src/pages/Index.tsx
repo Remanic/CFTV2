@@ -60,13 +60,11 @@ const Index = () => {
           </div>
         </div>
         <HowItWorks />
-        <div className="py-4 bg-white">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        <div className="bg-gray-50 py-12">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">Student Success Stories</h3>
+            <TestimonialSection currentTestimonial={currentTestimonial} />
           </div>
-        </div>
-        <div className="container mx-auto px-4 py-12">
-          <TestimonialSection currentTestimonial={currentTestimonial} />
         </div>
         <div className="py-4 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
