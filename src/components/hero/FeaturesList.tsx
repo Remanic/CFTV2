@@ -5,7 +5,7 @@ import { FeaturePill } from "./FeaturePill";
 export const FeaturesList = () => {
   return (
     <div className="flex flex-col items-center mt-4">
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:flex lg:flex-wrap justify-center gap-2 md:gap-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:flex lg:flex-wrap justify-center gap-2 md:gap-4">
         <FeaturePill
           icon={GraduationCap}
           text="Navigate FAFSA"
@@ -28,7 +28,7 @@ export const FeaturesList = () => {
         />
       </div>
       
-      <span className="text-base md:text-lg font-serif italic mt-4 text-black font-mono">
+      <span className="text-sm sm:text-base md:text-lg font-serif italic mt-3 text-black font-mono">
         All in One Place
       </span>
     </div>
