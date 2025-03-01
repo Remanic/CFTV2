@@ -39,9 +39,9 @@ export const MobileStepCard = ({
   return (
     <AccordionItem 
       value={`step-${number}`}
-      className="border border-[#E2E8F0] rounded-lg bg-white"
+      className="border border-[#E2E8F0] rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-300"
     >
-      <AccordionTrigger className="hover:no-underline px-4">
+      <AccordionTrigger className="hover:no-underline px-4 py-3">
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#F1F0FB] text-[#8B5CF6] font-bold text-sm">
             {number}
@@ -52,7 +52,7 @@ export const MobileStepCard = ({
           </div>
         </div>
       </AccordionTrigger>
-      <AccordionContent className="px-4 pb-4">
+      <AccordionContent className="px-4 pb-4 space-y-3">
         <div className="pl-14">
           <ul className="space-y-2 text-[#4A5568] mb-4">
             {content.map((item, i) => (
@@ -65,7 +65,7 @@ export const MobileStepCard = ({
           {sectionId && (
             <Button
               onClick={handleClick}
-              className="w-full mt-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white transition-colors"
+              className="w-full mt-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white transition-all duration-300 hover:translate-y-[-2px]"
             >
               Learn More
             </Button>

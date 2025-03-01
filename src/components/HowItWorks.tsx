@@ -9,10 +9,14 @@ export const HowItWorks = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-50 rounded-full opacity-30"></div>
+      <div className="absolute top-1/2 -left-24 w-64 h-64 bg-purple-50 rounded-full opacity-30"></div>
+      
+      <div className="container mx-auto px-4 relative">
         <div className="mb-6 text-center">
-          <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4 shadow-sm">
             Simple Process
           </span>
         </div>
@@ -20,6 +24,7 @@ export const HowItWorks = () => {
           title="How CashFlowTime Works"
           subtitle="A simple 6-step guide to tackle student loans with confidence"
         />
+        
         <DesktopStepsGrid 
           steps={steps}
           activeStep={activeStep}

@@ -9,7 +9,10 @@ interface FeaturePillProps {
 
 export const FeaturePill = ({ icon: Icon, text, className = "" }: FeaturePillProps) => {
   return (
-    <div className={`inline-flex items-center justify-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 ${className}`}>
+    <div className={`inline-flex items-center justify-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1 sm:py-1.5
+      rounded-full text-xs sm:text-sm md:text-base font-medium
+      shadow-sm hover:shadow-md transition-all duration-300 
+      hover:translate-y-[-2px] ${className}`}>
       <Icon className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
       <span className="font-medium truncate">{text}</span>
     </div>

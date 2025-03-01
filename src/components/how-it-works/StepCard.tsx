@@ -38,15 +38,27 @@ export const StepCard = ({
       className={cn(
         "group relative p-6 rounded-xl transition-all duration-300 flex flex-col h-full",
         "hover:shadow-lg",
-        highlight ? "bg-white border-violet-200" : "bg-white border border-[#E2E8F0]",
-        isActive ? "ring-2 ring-[#8B5CF6]" : "border-[#E2E8F0]"
+        highlight 
+          ? "bg-white border-2 border-violet-200" 
+          : "bg-white border border-[#E2E8F0]",
+        isActive 
+          ? "ring-2 ring-[#8B5CF6] transform scale-[1.02]" 
+          : "border-[#E2E8F0]"
       )}
       onMouseEnter={onMouseEnter}
     >
+      {/* Decorative elements */}
+      {highlight && (
+        <div className="absolute -top-2 -right-2 h-6 w-6 bg-violet-100 rounded-full flex items-center justify-center z-10">
+          <div className="h-4 w-4 bg-violet-500 rounded-full animate-pulse"></div>
+        </div>
+      )}
+      
       <div className="flex items-center gap-4 mb-4">
         <div className={cn(
           "flex items-center justify-center w-12 h-12 rounded-full text-[#8B5CF6] font-bold",
-          highlight ? "bg-violet-50" : "bg-[#F1F0FB]"
+          highlight ? "bg-violet-50" : "bg-[#F1F0FB]",
+          "group-hover:scale-110 transition-transform duration-300"
         )}>
           {number}
         </div>
@@ -65,7 +77,8 @@ export const StepCard = ({
           <li key={i} className="flex items-start gap-2">
             <ChevronRight className={cn(
               "w-4 h-4 mt-1",
-              highlight ? "text-violet-600" : "text-[#8B5CF6]"
+              highlight ? "text-violet-600" : "text-[#8B5CF6]",
+              "group-hover:translate-x-1 transition-transform duration-300"
             )} />
             <span>{item}</span>
           </li>
@@ -76,9 +89,12 @@ export const StepCard = ({
         <Button
           onClick={handleClick}
           className={cn(
-            "w-full mt-auto transition-colors",
-            highlight ? "bg-violet-600 hover:bg-violet-700" : "bg-[#8B5CF6] hover:bg-[#7C3AED]",
-            "text-white"
+            "w-full mt-auto transition-all duration-300",
+            highlight 
+              ? "bg-violet-600 hover:bg-violet-700" 
+              : "bg-[#8B5CF6] hover:bg-[#7C3AED]",
+            "text-white",
+            "group-hover:translate-y-[-2px]",
           )}
         >
           Learn More

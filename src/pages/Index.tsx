@@ -11,6 +11,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HowItWorks } from "@/components/HowItWorks";
 import TestimonialSection from "@/components/hero/TestimonialSection";
+import { BackToTop } from "@/components/BackToTop";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -49,21 +50,42 @@ const Index = () => {
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <Header />
       <main className="flex-grow">
         <Hero />
+        <div className="py-4 bg-gradient-to-b from-blue-50 to-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
+          </div>
+        </div>
         <HowItWorks />
+        <div className="py-4 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+          </div>
+        </div>
         <div className="container mx-auto px-4 py-12">
           <TestimonialSection currentTestimonial={currentTestimonial} />
         </div>
+        <div className="py-4 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+          </div>
+        </div>
         <WhyNeedGuide />
+        <div className="py-4 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+          </div>
+        </div>
         <AffiliateLoanSection />
         <FafsaGuide />
         <LoanForgivenessPrograms />
         <LoanRepaymentSection />
         <LoanComparison />
         <QuickUnderstand />
+        <BackToTop />
       </main>
       <Footer />
     </div>

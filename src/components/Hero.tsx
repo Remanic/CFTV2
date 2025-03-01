@@ -1,3 +1,4 @@
+
 import { ArrowRight, Shield, Clock, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FeaturesList } from "./hero/FeaturesList";
@@ -111,7 +112,10 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative py-6 md:py-16 overflow-hidden bg-gradient-to-b from-white to-blue-50">
+    <section className="relative py-4 sm:py-6 md:py-12 overflow-hidden bg-gradient-to-b from-white to-blue-50">
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-100/30 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute top-0 right-1/4 w-64 h-64 bg-purple-100/30 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      
       <div className="container mx-auto px-4 max-w-6xl relative">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="space-y-4">
@@ -122,7 +126,10 @@ export const Hero = () => {
 
             <div className="space-y-3">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 font-sans">
-                Simplify Your <span className="text-blue-600">Student Loan</span> Journey
+                Simplify Your <span className="text-blue-600 relative inline-block">
+                  Student Loan
+                  <span className="absolute bottom-0 left-0 right-0 h-1 bg-blue-200 -rotate-1"></span>
+                </span> Journey
               </h1>
               
               <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto mt-2">
@@ -137,9 +144,12 @@ export const Hero = () => {
                 <DialogTrigger asChild>
                   <Button 
                     size="lg" 
-                    className="bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all text-base sm:text-lg md:text-xl px-4 sm:px-8 py-4 sm:py-6 h-auto rounded-full animate-pulse w-full sm:w-auto max-w-xs sm:max-w-none"
+                    className="bg-blue-600 hover:bg-blue-700 hover:scale-105 shadow-lg hover:shadow-xl 
+                      transition-all text-base sm:text-lg md:text-xl px-4 sm:px-8 py-4 sm:py-6 h-auto 
+                      rounded-full w-full sm:w-auto max-w-xs sm:max-w-none"
                   >
-                    Get Your Free Guide
+                    <span className="xs:hidden">Get Free Guide</span>
+                    <span className="hidden xs:inline">Get Your Free Guide</span>
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                   </Button>
                 </DialogTrigger>
@@ -235,9 +245,11 @@ export const Hero = () => {
             ].map((benefit, index) => (
               <div 
                 key={index} 
-                className="text-center p-3 sm:p-4 md:p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:translate-y-[-4px]"
+                className="text-center p-3 sm:p-4 md:p-6 rounded-xl bg-white shadow-sm hover:shadow-md 
+                  transition-all duration-300 border border-gray-100 hover:translate-y-[-4px] group"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-50 mb-3 sm:mb-4">
+                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-50 
+                  mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                   {benefit.icon}
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-base sm:text-lg">{benefit.title}</h3>
