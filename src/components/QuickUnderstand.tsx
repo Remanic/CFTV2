@@ -1,5 +1,5 @@
 
-import { Calculator, Home, Car, CreditCard, PiggyBank } from "lucide-react";
+import { Calculator, Home, Car, CreditCard, PiggyBank, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -8,7 +8,7 @@ export const QuickUnderstand = () => {
     <section id="financial-tools" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 font-playfair">
             Financial Planning Calculators
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -28,8 +28,9 @@ export const QuickUnderstand = () => {
               state={{ from: "/", section: "financial-tools" }}
               className="inline-block"
             >
-              <Button className="w-full bg-gray-700 hover:bg-gray-800">
-                Calculate Mortgage
+              <Button className="w-full bg-gray-700 hover:bg-gray-800 group">
+                <span>Calculate Mortgage</span>
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </div>

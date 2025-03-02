@@ -12,7 +12,7 @@ export const HeroHeading = () => {
 
       <div className="space-y-3">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 font-sans">
-          Simplify Your <span className="text-blue-600 relative inline-block">
+          Simplify Your <span className="text-blue-600 relative inline-block font-playfair">
             Student Loan
             <span className="absolute bottom-0 left-0 right-0 h-1 bg-blue-200 -rotate-1"></span>
           </span> Journey

@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Briefcase, GraduationCap, Clock, ShieldCheck, Bell } from "lucide-react";
+import { Briefcase, GraduationCap, Clock, ShieldCheck, Bell, Star, ArrowRight } from "lucide-react";
 
 export const LoanForgivenessPrograms = () => {
   return (
@@ -11,14 +11,20 @@ export const LoanForgivenessPrograms = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Loan Forgiveness Programs</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 font-playfair">Loan Forgiveness Programs</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             You may be eligible to have part or all of your student loans forgiven. Learn about the available programs.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white p-6 rounded-xl shadow-md border border-violet-100 flex flex-col">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-violet-100 flex flex-col relative">
+            <div className="absolute -top-3 -right-3 bg-violet-600 text-white text-xs px-2 py-1 rounded-full">
+              <div className="flex items-center">
+                <Star className="h-3 w-3 mr-1 fill-white" />
+                <span>Most Popular</span>
+              </div>
+            </div>
             <div className="mb-4 bg-violet-100 rounded-full w-12 h-12 flex items-center justify-center">
               <Briefcase className="h-6 w-6 text-violet-600" />
             </div>
@@ -40,8 +46,8 @@ export const LoanForgivenessPrograms = () => {
                 state={{ from: "/", section: "loan-forgiveness" }}
                 className="flex-1"
               >
-                <Button variant="outline" className="w-full border-violet-200 text-violet-700 hover:bg-violet-50">
-                  Full Guide
+                <Button className="w-full bg-violet-600 hover:bg-violet-700">
+                  Full Guide <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
               </Link>
             </div>
@@ -90,8 +96,9 @@ export const LoanForgivenessPrograms = () => {
               state={{ from: "/", section: "loan-forgiveness" }}
               className="inline-block"
             >
-              <Button className="w-full bg-violet-600 hover:bg-violet-700">
-                Check Your Eligibility
+              <Button className="w-full bg-violet-600 hover:bg-violet-700 group">
+                <span>Check Your Eligibility</span>
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </div>

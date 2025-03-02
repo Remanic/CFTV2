@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { BookOpen, FileText, TrendingUp, DollarSign } from "lucide-react";
+import { BookOpen, FileText, TrendingUp, DollarSign, ArrowRight, CheckCircle } from "lucide-react";
 
 export const LoanComparison = () => {
   return (
@@ -11,14 +11,20 @@ export const LoanComparison = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Loan Understanding Resources</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 font-playfair">Loan Understanding Resources</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive guides to help you understand student loans, loan comparison, and make informed borrowing decisions.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col">
+          <div className="bg-white p-6 rounded-xl shadow-md border border-blue-100 flex flex-col relative">
+            <div className="absolute -top-3 -right-3 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
+              <div className="flex items-center">
+                <CheckCircle className="h-3 w-3 mr-1" />
+                <span>Essential Guide</span>
+              </div>
+            </div>
             <div className="mb-4 bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
               <BookOpen className="h-6 w-6 text-blue-600" />
             </div>
@@ -29,8 +35,9 @@ export const LoanComparison = () => {
               state={{ from: "/", section: "loan-comparison" }}
               className="inline-block"
             >
-              <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                Read Comparison Guide
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 group">
+                <span>Read Comparison Guide</span>
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </div>

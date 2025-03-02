@@ -21,12 +21,12 @@ export const HeroCTA = () => {
         <DialogTrigger asChild>
           <Button 
             size="lg" 
-            className="bg-blue-600 hover:bg-blue-700 hover:scale-105 shadow-lg hover:shadow-xl 
+            className="bg-blue-600 hover:bg-blue-700 hover:scale-102 shadow-lg hover:shadow-xl 
               transition-all text-base sm:text-lg md:text-xl px-4 sm:px-8 py-4 sm:py-6 h-auto 
               rounded-full w-full sm:w-auto max-w-xs sm:max-w-none"
           >
             <span className="xs:hidden">Get Free Guide</span>
-            <span className="hidden xs:inline">Get Your Free Guide</span>
+            <span className="hidden xs:inline">Get Your Free Student Loan Guide</span>
             <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
           </Button>
         </DialogTrigger>
