@@ -1,5 +1,6 @@
 
 import { BookOpen, Shield, MoveRight, BarChart3 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const BenefitsGrid = () => {
   const benefits = [
@@ -25,13 +26,36 @@ export const BenefitsGrid = () => {
     }
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-8 md:mt-12 w-full">
+    <motion.div 
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-8 md:mt-12 w-full"
+    >
       {benefits.map((benefit, index) => (
-        <div 
+        <motion.div 
           key={index} 
+          variants={item}
+          whileHover={{ y: -4, transition: { duration: 0.2 } }}
           className="text-center p-3 sm:p-4 md:p-6 rounded-xl bg-white shadow-sm hover:shadow-md 
-            transition-all duration-300 border border-gray-100 hover:translate-y-[-2px] group"
+            transition-all duration-300 border border-gray-100 group"
         >
           <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-50 
             mb-3 sm:mb-4 group-hover:scale-105 transition-transform duration-300">
@@ -39,8 +63,8 @@ export const BenefitsGrid = () => {
           </div>
           <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-base sm:text-lg">{benefit.title}</h3>
           <p className="text-gray-600 text-xs sm:text-sm">{benefit.description}</p>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
