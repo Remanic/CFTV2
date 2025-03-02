@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { DollarSign, Calculator, BookOpen, Clock, BarChart, PieChart, ScatterChart, TrendingUp } from "lucide-react";
+import { DollarSign, Calculator, BookOpen, Clock, BarChart, PieChart, ScatterChart, TrendingUp, Star } from "lucide-react";
 
 export const LoanRepaymentSection = () => {
   return (
@@ -21,7 +21,10 @@ export const LoanRepaymentSection = () => {
           <div className="bg-white p-6 rounded-xl shadow-md border border-emerald-100 flex flex-col relative">
             <div className="absolute -top-3 -right-3">
               <span className="bg-amber-500 text-white text-xs px-2 py-1 rounded-full uppercase font-bold tracking-wide shadow-md">
-                Most Popular
+                <div className="flex items-center">
+                  <Star className="h-3 w-3 mr-1 fill-white" />
+                  <span>Most Popular</span>
+                </div>
               </span>
             </div>
             <div className="mb-4 bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center">

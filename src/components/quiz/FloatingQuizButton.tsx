@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { QuizQuestions } from "./QuizQuestions";
 import { QuizResults } from "./QuizResults";
-import { Target } from "lucide-react";
+import { Target, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -66,8 +66,8 @@ export const FloatingQuizButton = () => {
 
   // Position differently based on device - aligned with back-to-top button
   const buttonPosition = isMobile
-    ? "bottom-24 right-4" // Mobile position (higher up, aligned with back-to-top)
-    : "bottom-24 right-8"; // Desktop position
+    ? "bottom-[88px] right-4" // Mobile position (aligned with back-to-top)
+    : "bottom-[88px] right-8"; // Desktop position (aligned with back-to-top)
 
   return (
     <>
@@ -95,10 +95,10 @@ export const FloatingQuizButton = () => {
                 </span>
                 <button 
                   onClick={() => setShowTooltip(false)}
-                  className="absolute -top-16 right-0 text-white opacity-70 hover:opacity-100 text-xs font-bold"
+                  className="absolute -top-16 -right-1 text-white opacity-70 hover:opacity-100 flex items-center justify-center h-5 w-5 rounded-full bg-blue-900"
                   aria-label="Close tooltip"
                 >
-                  <span className="absolute top-0.5 right-2">×</span>
+                  <X className="h-3 w-3" />
                 </button>
               </div>
             )}
@@ -117,10 +117,10 @@ export const FloatingQuizButton = () => {
               />
               <Button
                 onClick={handleStartQuiz}
-                className={`rounded-full ${isMobile ? 'h-12 w-12' : 'h-14 w-14'} p-0 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all relative z-10`}
+                className={`rounded-full ${isMobile ? 'h-10 w-10' : 'h-14 w-14'} p-0 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all relative z-10`}
                 aria-label="Take quiz"
               >
-                <Target className={isMobile ? "h-5 w-5" : "h-6 w-6"} />
+                <Target className={isMobile ? "h-4 w-4" : "h-6 w-6"} />
               </Button>
             </div>
           </motion.div>
