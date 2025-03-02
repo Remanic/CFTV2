@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ClipboardList, Search, Calculator, ClipboardCheck, Calendar, Star, TrendingUp } from "lucide-react";
+import { ClipboardList, Search, Calculator, ClipboardCheck, Calendar, Star, TrendingUp, ArrowRight } from "lucide-react";
 
 export const FafsaGuide = () => {
   return (
