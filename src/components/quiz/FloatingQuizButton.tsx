@@ -51,10 +51,10 @@ export const FloatingQuizButton = () => {
     setDialogOpen(true);
   };
 
-  // Position differently based on device
+  // Position differently based on device - moved up to avoid overlapping with back-to-top button
   const buttonPosition = isMobile
-    ? "bottom-4 right-4" // Mobile position
-    : "bottom-8 right-8"; // Desktop position
+    ? "bottom-20 right-4" // Mobile position moved higher
+    : "bottom-24 right-8"; // Desktop position moved higher
 
   return (
     <>
@@ -78,13 +78,27 @@ export const FloatingQuizButton = () => {
               Find Your Personalized Path
               <div className="absolute w-2 h-2 bg-blue-800 rotate-45 bottom-[-4px] right-6"></div>
             </span>
-            <Button
-              onClick={handleStartQuiz}
-              className="rounded-full h-14 w-14 p-0 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all"
-              aria-label="Take quiz"
-            >
-              <Target className="h-6 w-6" />
-            </Button>
+            <div className="relative">
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.7, 0.4, 0.7],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+                className="absolute inset-0 rounded-full bg-blue-200 z-0"
+              />
+              <Button
+                onClick={handleStartQuiz}
+                className="rounded-full h-14 w-14 p-0 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all relative z-10"
+                aria-label="Take quiz"
+              >
+                <Target className="h-6 w-6" />
+              </Button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
