@@ -12,7 +12,7 @@ import {
   DialogDescription,
   DialogTrigger
 } from "@/components/ui/dialog";
-import { ArrowRight, MapPin, Target, ThumbsUp } from "lucide-react";
+import { ArrowRight, MapPin, Target, ThumbsUp, BadgeCheck, ArrowDownRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const LoanJourneyQuiz = () => {
@@ -38,19 +38,34 @@ export const LoanJourneyQuiz = () => {
             
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Find Your Student Loan Path
+                60-Second Loan Journey Assessment
               </h3>
               <p className="text-gray-600 max-w-md mx-auto">
-                Take our quick 60-second assessment to get personalized guidance for your student loan journey.
+                Answer 4 quick questions to get personalized recommendations for your specific student loan needs.
               </p>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-4 my-4">
+              <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <BadgeCheck className="h-4 w-4 text-green-500" />
+                <span>Save time researching</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <BadgeCheck className="h-4 w-4 text-green-500" />
+                <span>Get tailored resources</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <BadgeCheck className="h-4 w-4 text-green-500" />
+                <span>Skip irrelevant content</span>
+              </div>
             </div>
             
             <div className="flex justify-center">
               <Button 
                 onClick={handleStart}
-                className="px-6 py-6 text-lg"
+                className="px-6 py-6 text-lg shadow-md hover:shadow-lg"
               >
-                Start Student Loan Quiz <ArrowRight className="ml-1 h-5 w-5" />
+                Start Quick Assessment <ArrowRight className="ml-1 h-5 w-5" />
               </Button>
             </div>
             
@@ -76,29 +91,43 @@ export const LoanJourneyQuiz = () => {
     <section id="loan-journey-quiz" className="py-12 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
-            <div className="p-6 sm:p-8">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center">
-                  <MapPin className="h-5 w-5 text-blue-600 mr-2" />
-                  <h2 className="text-xl font-bold text-gray-800">Student Loan Journey Quiz</h2>
+          <div className="relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="absolute -top-12 right-8 hidden md:flex items-center"
+            >
+              <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-lg text-sm font-medium">
+                Most popular tool
+              </span>
+              <ArrowDownRight className="h-5 w-5 text-yellow-500 ml-1" />
+            </motion.div>
+            
+            <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+              <div className="p-6 sm:p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <MapPin className="h-5 w-5 text-blue-600 mr-2" />
+                    <h2 className="text-xl font-bold text-gray-800">Student Loan Journey Quiz</h2>
+                  </div>
+                  
+                  {stage === "completed" && (
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={resetQuiz}
+                      className="text-sm"
+                    >
+                      Take Again
+                    </Button>
+                  )}
                 </div>
                 
-                {stage === "completed" && (
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={resetQuiz}
-                    className="text-sm"
-                  >
-                    Take Again
-                  </Button>
-                )}
+                <AnimatePresence mode="wait">
+                  {renderQuizContent()}
+                </AnimatePresence>
               </div>
-              
-              <AnimatePresence mode="wait">
-                {renderQuizContent()}
-              </AnimatePresence>
             </div>
           </div>
         </div>

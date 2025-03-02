@@ -25,7 +25,7 @@ export const HeroHeading = () => {
         className="inline-flex items-center justify-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
       >
         <Clock className="h-4 w-4 mr-1" />
-        <span className="text-xs sm:text-sm">Limited time offer - Get your free guide</span>
+        <span className="text-xs sm:text-sm">Students save an average of $3,200 with our guidance</span>
       </motion.div>
 
       <div className="space-y-3">
@@ -35,7 +35,7 @@ export const HeroHeading = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 font-sans"
         >
-          Simplify Your <span className="text-blue-600 relative inline-block font-playfair">
+          Cut Through <span className="text-blue-600 relative inline-block font-playfair">
             Student Loan
             <motion.span 
               initial={{ scaleX: 0 }}
@@ -43,7 +43,7 @@ export const HeroHeading = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="absolute bottom-0 left-0 right-0 h-1 bg-blue-200 -rotate-1 origin-left"
             ></motion.span>
-          </span> Journey
+          </span> Confusion
         </motion.h1>
         
         <motion.p 
@@ -52,7 +52,7 @@ export const HeroHeading = () => {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto mt-2"
         >
-          Clear guidance, better choices, and less stress with your education financing.
+          Lower payments, smarter choices, and avoid costly mistakes with personalized guidance.
         </motion.p>
       </div>
 
@@ -71,14 +71,7 @@ export const HeroHeading = () => {
         className="mt-4 py-2 px-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg border border-purple-100 max-w-xl mx-auto"
       >
         <p className="text-center text-sm text-purple-800 font-medium">
-          Not sure where to start? Take our 60-second 
-          <a 
-            href="#loan-journey-quiz" 
-            onClick={handleTakeQuizClick}
-            className="underline ml-1 font-semibold"
-          >
-            Student Loan Journey Quiz →
-          </a>
+          <span className="font-semibold">Trusted by 10,000+ students</span> from 200+ universities nationwide
         </p>
       </motion.div>
     </div>

@@ -6,25 +6,25 @@ import { useQuiz } from "./QuizContext";
 import { CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Define quiz questions - updated for more accuracy
+// Enhanced quiz questions for more accuracy and targeted recommendations
 const questions = [
   {
     id: "application_status",
     question: "Where are you in your student loan journey?",
     options: [
-      { value: "research", label: "Researching loan options and FAFSA aid" },
-      { value: "application", label: "Starting or completing applications" },
-      { value: "comparing", label: "Comparing different loan offers" },
-      { value: "repayment", label: "Managing existing loan repayments" }
+      { value: "research", label: "Researching loan options" },
+      { value: "application", label: "Applying for financial aid or loans" },
+      { value: "comparing", label: "Comparing loan offers" },
+      { value: "repayment", label: "Managing or repaying existing loans" }
     ]
   },
   {
     id: "financial_need",
-    question: "What's your primary financial aid concern?",
+    question: "What's your most immediate financial concern?",
     options: [
-      { value: "maximize_aid", label: "Maximizing FAFSA financial aid" },
+      { value: "maximize_aid", label: "Getting the most financial aid possible" },
       { value: "low_rates", label: "Finding the lowest interest rates" },
-      { value: "repayment_options", label: "Flexible repayment options" },
+      { value: "repayment_options", label: "Understanding repayment options" },
       { value: "forgiveness", label: "Qualifying for loan forgiveness" }
     ]
   },
@@ -40,12 +40,12 @@ const questions = [
   },
   {
     id: "specific_goal",
-    question: "What specific outcome are you hoping to achieve?",
+    question: "What specific outcome do you want to achieve?",
     options: [
-      { value: "understand", label: "Understand loan options better" },
+      { value: "understand", label: "Understand which loans are best for me" },
       { value: "lower_payments", label: "Lower my monthly payments" },
       { value: "pay_less", label: "Pay less interest overall" },
-      { value: "qualify_forgiveness", label: "See if I qualify for forgiveness" }
+      { value: "qualify_forgiveness", label: "See if I qualify for loan forgiveness" }
     ]
   }
 ];
@@ -88,7 +88,7 @@ export const QuizQuestions = () => {
           {questions.map((_, index) => (
             <div 
               key={index} 
-              className={`h-2 w-2 rounded-full ${index === currentQuestion 
+              className={`h-2 ${index === currentQuestion ? 'w-8' : 'w-2'} rounded-full transition-all duration-300 ${index === currentQuestion 
                 ? 'bg-blue-600' 
                 : index < currentQuestion 
                   ? 'bg-green-500' 
@@ -148,7 +148,7 @@ export const QuizQuestions = () => {
           disabled={!currentAnswer}
           className={`flex items-center ${!currentAnswer ? 'opacity-50' : ''}`}
         >
-          {isLastQuestion ? 'Get Recommendations' : 'Next'}
+          {isLastQuestion ? 'Get Personalized Recommendations' : 'Next'}
           {!isLastQuestion && <ArrowRight className="w-4 h-4 ml-1" />}
         </Button>
       </div>

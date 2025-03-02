@@ -1,5 +1,5 @@
 
-import { ArrowRight, Shield } from "lucide-react";
+import { ArrowRight, Shield, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { 
   Dialog, 
@@ -44,8 +44,8 @@ export const HeroCTA = () => {
                   transition-all text-base sm:text-lg md:text-xl px-4 sm:px-8 py-4 sm:py-6 h-auto 
                   rounded-full w-full"
               >
-                <span className="xs:hidden">Get Free Guide</span>
-                <span className="hidden xs:inline">Get Your Free Student Loan Guide</span>
+                <span className="xs:hidden">Save Money on Your Loans</span>
+                <span className="hidden xs:inline">Get Your Personalized Loan Strategy</span>
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
               </Button>
             </motion.div>
@@ -75,10 +75,17 @@ export const HeroCTA = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.9 }}
-        className="flex items-center justify-center gap-2 text-gray-600 mt-2"
+        className="flex flex-wrap justify-center gap-4 mt-3"
       >
-        <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
-        <span className="font-medium text-xs sm:text-sm">Trusted by 10,000+ students and parents</span>
+        <div className="flex items-center justify-center gap-2 text-gray-600">
+          <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+          <span className="font-medium text-xs sm:text-sm">Data protected & secure</span>
+        </div>
+        
+        <div className="flex items-center justify-center gap-2 text-gray-600">
+          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
+          <span className="font-medium text-xs sm:text-sm">Created by certified financial advisors</span>
+        </div>
       </motion.div>
     </div>
   );

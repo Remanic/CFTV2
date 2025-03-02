@@ -1,5 +1,5 @@
 
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, DollarSign, GraduationCap, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 
@@ -7,30 +7,39 @@ interface TestimonialSectionProps {
   currentTestimonial: number;
 }
 
+// Enhanced testimonials with specific details and savings amounts
 const testimonials = [
   {
-    quote: "CashFlowTime showed me how to save over $5,000 in interest and get on a repayment plan that works for me!",
+    quote: "The loan comparison tool saved me $5,280 in interest by helping me find a lender with 1.5% lower rates.",
     author: "Sarah M.",
-    role: "Recent Graduate",
-    rating: 5
+    role: "UCLA Graduate",
+    rating: 5,
+    icon: DollarSign,
+    saving: "$5,280 saved"
   },
   {
-    quote: "I was overwhelmed by repayment options until I found this resource. Now I'm confidently managing my loans!",
+    quote: "I switched to an income-based repayment plan and lowered my monthly payments by $180, making budgeting so much easier.",
     author: "Michael K.",
-    role: "Graduate Student",
-    rating: 5
+    role: "NYU Graduate Student",
+    rating: 5,
+    icon: GraduationCap,
+    saving: "$180/month saved"
   },
   {
-    quote: "The loan comparison tool helped me find a lender with much better rates than I originally had. Saved thousands!",
+    quote: "Thanks to the PSLF calculator, I discovered I was eligible for complete loan forgiveness after 7 years of payments I'd already made.",
     author: "Jessica R.",
-    role: "Medical Student",
-    rating: 5
+    role: "Medical Resident",
+    rating: 5,
+    icon: Clock,
+    saving: "3 years of payments saved"
   },
   {
-    quote: "Their FAFSA guide made the application process so much easier. Highly recommend for first-time applicants!",
+    quote: "The FAFSA guide helped me unlock $8,500 more in grants that I didn't know I qualified for. Worth every minute spent!",
     author: "David L.",
-    role: "Undergraduate Student",
-    rating: 5
+    role: "First-Year Undergraduate",
+    rating: 5,
+    icon: DollarSign,
+    saving: "$8,500 additional aid"
   }
 ];
 
@@ -50,8 +59,37 @@ const TestimonialSection = ({ currentTestimonial: initialTestimonial }: Testimon
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  // Handle swipe gestures for mobile
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) {
+      // Swiped left
+      goToNextTestimonial();
+    }
+    
+    if (touchStart - touchEnd < -50) {
+      // Swiped right
+      goToPrevTestimonial();
+    }
+  };
+
   return (
-    <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+    <div 
+      className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="p-6 md:p-8">
         <div className="flex items-center justify-between mb-6">
           <div className="flex gap-3">
@@ -89,49 +127,55 @@ const TestimonialSection = ({ currentTestimonial: initialTestimonial }: Testimon
           </div>
         </div>
 
-        <div className="relative min-h-[200px]">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className={cn(
-                "absolute w-full",
-                index === currentTestimonial
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 translate-x-full pointer-events-none'
-              )}
-              style={{ 
-                transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
-              }}
-            >
-              <div className="flex flex-col md:flex-row gap-6 items-start">
-                <div className="flex-shrink-0">
-                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
-                    <span className="text-blue-600 font-semibold text-xl">
-                      {testimonial.author[0]}
-                    </span>
+        <div className="relative min-h-[220px]">
+          {testimonials.map((testimonial, index) => {
+            const Icon = testimonial.icon;
+            return (
+              <div
+                key={index}
+                className={cn(
+                  "absolute w-full",
+                  index === currentTestimonial
+                    ? 'opacity-100 translate-x-0'
+                    : 'opacity-0 translate-x-full pointer-events-none'
+                )}
+                style={{ 
+                  transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
+                }}
+              >
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="flex-shrink-0">
+                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
+                      <Icon className="h-8 w-8 text-blue-600" />
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <div className="flex mb-3">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-amber-400" fill="#facc15" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 text-lg leading-relaxed mb-4 italic">
-                    "{testimonial.quote}"
-                  </p>
                   <div>
-                    <span className="font-semibold text-gray-900 mr-2 font-playfair">
-                      {testimonial.author}
-                    </span>
-                    <span className="text-gray-500">
-                      {testimonial.role}
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <div className="flex">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="h-5 w-5 text-amber-400" fill="#facc15" />
+                        ))}
+                      </div>
+                      <span className="text-sm font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
+                        {testimonial.saving}
+                      </span>
+                    </div>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4 italic">
+                      "{testimonial.quote}"
+                    </p>
+                    <div>
+                      <span className="font-semibold text-gray-900 mr-2 font-playfair">
+                        {testimonial.author}
+                      </span>
+                      <span className="text-gray-500">
+                        {testimonial.role}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

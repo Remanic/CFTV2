@@ -59,10 +59,11 @@ const Index = () => {
         <Header />
         <main className="flex-grow">
           <Hero />
-          <WhyNeedGuide />
           
-          {/* Insert the Loan Journey Quiz here, after the Hero and Why Need Guide sections */}
+          {/* Moved the Loan Journey Quiz higher up, immediately after Hero */}
           <LoanJourneyQuiz />
+          
+          <WhyNeedGuide />
           
           <div className="py-4 bg-gradient-to-b from-blue-50 to-white">
             <div className="container mx-auto px-4 max-w-6xl">
