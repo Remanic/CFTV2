@@ -50,7 +50,7 @@ export const LoanJourneyQuiz = () => {
                 onClick={handleStart}
                 className="px-6 py-6 text-lg"
               >
-                Start Quick Assessment <ArrowRight className="ml-1 h-5 w-5" />
+                Start Student Loan Quiz <ArrowRight className="ml-1 h-5 w-5" />
               </Button>
             </div>
             
@@ -73,7 +73,7 @@ export const LoanJourneyQuiz = () => {
   };
   
   return (
-    <section className="py-12 bg-gradient-to-b from-white to-blue-50">
+    <section id="loan-journey-quiz" className="py-12 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
@@ -81,7 +81,7 @@ export const LoanJourneyQuiz = () => {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center">
                   <MapPin className="h-5 w-5 text-blue-600 mr-2" />
-                  <h2 className="text-xl font-bold text-gray-800">Loan Journey Quiz</h2>
+                  <h2 className="text-xl font-bold text-gray-800">Student Loan Journey Quiz</h2>
                 </div>
                 
                 {stage === "completed" && (

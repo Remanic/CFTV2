@@ -1,12 +1,10 @@
 
 import { useQuiz } from "./QuizContext";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
   BookOpen, 
   Edit3, 
-  Search, 
   BarChart2, 
   Calculator, 
   Award,
@@ -16,7 +14,7 @@ import {
 export const QuizResults = () => {
   const { journeyStage, resetQuiz } = useQuiz();
   
-  // Content for each journey stage
+  // Content for each journey stage with properly functioning links
   const stageContent = {
     research: {
       title: "Start Your Research Journey",
@@ -27,8 +25,8 @@ export const QuizResults = () => {
         text: "Complete FAFSA Guide"
       },
       secondaryLinks: [
-        { to: "/student-loan-essentials", text: "Student Loan Essentials" },
-        { to: "/private-loans-guide", text: "Private Loans Guide" }
+        { to: "#student-loan-essentials", text: "Student Loan Essentials" },
+        { to: "#quick-understand", text: "Quick Understanding Guide" }
       ],
       ctaText: "Begin your education financing journey with confidence! Our comprehensive guides will help you navigate the complex world of student loans and financial aid."
     },
@@ -37,12 +35,12 @@ export const QuizResults = () => {
       description: "You're on the right track! Let's help you finish your FAFSA applications and loan paperwork.",
       icon: <Edit3 className="h-12 w-12 text-purple-600" />,
       primaryLink: {
-        to: "/fafsa-guide",
+        to: "#fafsa-guide",
         text: "FAFSA Application Guide"
       },
       secondaryLinks: [
-        { to: "/fafsa-deadlines", text: "FAFSA Deadlines" },
-        { to: "/fafsa-review-guide", text: "Review Your Application" }
+        { to: "#why-need-guide", text: "Why You Need a Guide" },
+        { to: "#quick-understand", text: "Review Checklist" }
       ],
       ctaText: "Don't miss out on financial aid! Our step-by-step guides ensure your applications are complete, accurate, and submitted before crucial deadlines."
     },
@@ -55,8 +53,8 @@ export const QuizResults = () => {
         text: "Loan Comparison Tools"
       },
       secondaryLinks: [
-        { to: "/federal-loans-guide", text: "Federal vs. Private Loans" },
-        { to: "/parent-plus-guide", text: "Parent PLUS Loans Guide" }
+        { to: "#affiliate-loan-section", text: "Federal vs. Private Loans" },
+        { to: "#quick-understand", text: "Loan Options Guide" }
       ],
       ctaText: "Don't settle for just any loan! Our comparison tools help you analyze interest rates, terms, and total costs to find the option that saves you the most money."
     },
@@ -69,8 +67,8 @@ export const QuizResults = () => {
         text: "Repayment Calculator"
       },
       secondaryLinks: [
-        { to: "/income-based-repayment", text: "Income-Based Options" },
-        { to: "/extended-repayment", text: "Extended Repayment Plans" }
+        { to: "#loan-repayment", text: "Income-Based Options" },
+        { to: "#quick-understand", text: "Repayment Strategies" }
       ],
       ctaText: "Take control of your student debt! Our repayment calculators and guides help you choose plans that fit your budget while minimizing total interest paid."
     },
@@ -83,8 +81,8 @@ export const QuizResults = () => {
         text: "Forgiveness Programs"
       },
       secondaryLinks: [
-        { to: "/public-service-loan-forgiveness", text: "PSLF Program" },
-        { to: "/teacher-loan-forgiveness", text: "Teacher Loan Forgiveness" }
+        { to: "#loan-forgiveness", text: "PSLF Program" },
+        { to: "#loan-forgiveness", text: "Teacher Loan Forgiveness" }
       ],
       ctaText: "Why pay if you don't have to? Thousands qualify for loan forgiveness but never apply. Our guides help you navigate the requirements and paperwork to maximize your forgiveness potential."
     }
@@ -92,6 +90,15 @@ export const QuizResults = () => {
   
   // Get content based on journey stage
   const content = journeyStage ? stageContent[journeyStage] : stageContent.research;
+  
+  // Helper function to handle navigation to anchor links
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId.replace('#', ''));
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   
   return (
     <motion.div
@@ -117,25 +124,33 @@ export const QuizResults = () => {
             {content.ctaText}
           </p>
           
-          <Link to={content.primaryLink.to} className="block">
+          <a 
+            href={content.primaryLink.to} 
+            onClick={(e) => handleLinkClick(e, content.primaryLink.to)}
+            className="block"
+          >
             <Button 
               className="w-full py-6 text-lg bg-blue-600 hover:bg-blue-700"
             >
               {content.primaryLink.text}
             </Button>
-          </Link>
+          </a>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
           {content.secondaryLinks.map((link, index) => (
-            <Link to={link.to} key={index}>
+            <a 
+              href={link.to} 
+              onClick={(e) => handleLinkClick(e, link.to)}
+              key={index}
+            >
               <Button 
                 variant="outline" 
                 className="w-full border-blue-200 text-blue-700 hover:bg-blue-50"
               >
                 {link.text}
               </Button>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

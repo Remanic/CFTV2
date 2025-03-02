@@ -1,5 +1,5 @@
 
-import { ArrowRight, Shield, Target } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { 
   Dialog, 
@@ -60,23 +60,6 @@ export const HeroCTA = () => {
             <GuideForm onClose={() => setDialogOpen(false)} />
           </DialogContent>
         </Dialog>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <Button 
-            variant="outline" 
-            size="lg" 
-            onClick={handleQuizClick}
-            className="text-base sm:text-lg px-4 sm:px-6 py-4 sm:py-6 h-auto rounded-full 
-              border-purple-200 text-purple-700 hover:bg-purple-50 w-full sm:w-auto"
-          >
-            <Target className="mr-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
-            <span>Find My Loan Path</span>
-          </Button>
-        </motion.div>
       </div>
       
       <motion.p 

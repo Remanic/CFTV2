@@ -79,32 +79,43 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const determineJourneyStage = (answers: Record<string, any>): LoanJourneyStage => {
-    // Logic to determine which stage the user is in based on their answers
+    // Enhanced logic to determine stage based on the new questions
     
-    // Q1: Have you started the loan application process?
-    const hasStartedApplication = answers.application_status === "yes";
+    // First question: Where are you in your journey?
+    const journeyPhase = answers.application_status || "";
     
-    // Q2: Are you comparing different loan options?
-    const isComparingLoans = answers.comparing_loans === "yes";
+    // Second question: Primary financial concern
+    const financialConcern = answers.financial_need || "";
     
-    // Q3: Do you already have student loans you're repaying?
-    const hasExistingLoans = answers.existing_loans === "yes";
+    // Third question: Loan type preference
+    const loanType = answers.loan_type || "";
     
-    // Q4: Are you interested in loan forgiveness options?
-    const interestedInForgiveness = answers.forgiveness_interest === "yes";
+    // Fourth question: Specific goal
+    const specificGoal = answers.specific_goal || "";
 
-    // Simple decision tree
-    if (interestedInForgiveness && hasExistingLoans) {
-      return "forgiveness";
-    } else if (hasExistingLoans) {
-      return "repayment";
-    } else if (isComparingLoans) {
-      return "comparison";
-    } else if (hasStartedApplication) {
-      return "application";
-    } else {
+    // Enhanced decision tree
+    if (journeyPhase === "research" || specificGoal === "understand") {
       return "research";
+    } 
+    
+    if (journeyPhase === "application" || financialConcern === "maximize_aid") {
+      return "application";
     }
+    
+    if (journeyPhase === "comparing" || loanType === "federal" || loanType === "private" || loanType === "parent") {
+      return "comparison";
+    }
+    
+    if (journeyPhase === "repayment" || specificGoal === "lower_payments" || specificGoal === "pay_less" || loanType === "refinancing") {
+      return "repayment";
+    }
+    
+    if (financialConcern === "forgiveness" || specificGoal === "qualify_forgiveness") {
+      return "forgiveness";
+    }
+    
+    // Default fallback
+    return "research";
   };
 
   return (

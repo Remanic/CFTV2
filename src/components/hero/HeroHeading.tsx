@@ -2,8 +2,20 @@
 import { Clock } from "lucide-react";
 import { FeaturesList } from "./FeaturesList";
 import { motion } from "framer-motion";
+import { useQuiz } from "../quiz/QuizContext";
 
 export const HeroHeading = () => {
+  const { startQuiz } = useQuiz();
+  
+  const handleTakeQuizClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    startQuiz();
+    const quizSection = document.getElementById("loan-journey-quiz");
+    if (quizSection) {
+      quizSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   return (
     <div className="space-y-4">
       <motion.div 
@@ -60,7 +72,11 @@ export const HeroHeading = () => {
       >
         <p className="text-center text-sm text-purple-800 font-medium">
           Not sure where to start? Take our 60-second 
-          <a href="#loan-journey-quiz" className="underline ml-1 font-semibold">
+          <a 
+            href="#loan-journey-quiz" 
+            onClick={handleTakeQuizClick}
+            className="underline ml-1 font-semibold"
+          >
             Student Loan Journey Quiz →
           </a>
         </p>

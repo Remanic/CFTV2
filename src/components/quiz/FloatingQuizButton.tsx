@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { QuizQuestions } from "./QuizQuestions";
 import { QuizResults } from "./QuizResults";
-import { HelpCircle, X, Target } from "lucide-react";
+import { Target } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -53,6 +53,9 @@ export const FloatingQuizButton = () => {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             className={`fixed ${buttonPosition} z-50`}
           >
+            <span className="absolute -top-14 right-0 bg-blue-800 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap shadow-md">
+              Find Your Path
+            </span>
             <Button
               onClick={handleStartQuiz}
               className="rounded-full h-14 w-14 p-0 bg-blue-600 hover:bg-blue-700 shadow-lg"
@@ -60,9 +63,6 @@ export const FloatingQuizButton = () => {
             >
               <Target className="h-6 w-6" />
             </Button>
-            <span className="absolute -top-10 right-0 bg-blue-800 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap shadow-md">
-              Find Your Path
-            </span>
           </motion.div>
         )}
       </AnimatePresence>

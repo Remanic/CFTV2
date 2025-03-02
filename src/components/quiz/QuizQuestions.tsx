@@ -6,42 +6,46 @@ import { useQuiz } from "./QuizContext";
 import { CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Define quiz questions
+// Define quiz questions - updated for more accuracy
 const questions = [
   {
     id: "application_status",
-    question: "Have you started the FAFSA or loan application process yet?",
+    question: "Where are you in your student loan journey?",
     options: [
-      { value: "yes", label: "Yes, I've started the application process" },
-      { value: "no", label: "No, I haven't started yet" },
-      { value: "unsure", label: "I'm not sure how to begin" }
+      { value: "research", label: "Researching loan options and FAFSA aid" },
+      { value: "application", label: "Starting or completing applications" },
+      { value: "comparing", label: "Comparing different loan offers" },
+      { value: "repayment", label: "Managing existing loan repayments" }
     ]
   },
   {
-    id: "comparing_loans",
-    question: "Are you currently comparing different student loan options?",
+    id: "financial_need",
+    question: "What's your primary financial aid concern?",
     options: [
-      { value: "yes", label: "Yes, I'm evaluating different loans" },
-      { value: "no", label: "No, I haven't reached that stage" },
-      { value: "confused", label: "I'm confused about the different options" }
+      { value: "maximize_aid", label: "Maximizing FAFSA financial aid" },
+      { value: "low_rates", label: "Finding the lowest interest rates" },
+      { value: "repayment_options", label: "Flexible repayment options" },
+      { value: "forgiveness", label: "Qualifying for loan forgiveness" }
     ]
   },
   {
-    id: "existing_loans",
-    question: "Do you already have student loans you're repaying?",
+    id: "loan_type",
+    question: "Which type of loans are you most interested in?",
     options: [
-      { value: "yes", label: "Yes, I'm currently repaying loans" },
-      { value: "soon", label: "Not yet, but I will be soon" },
-      { value: "no", label: "No, I don't have any loans yet" }
+      { value: "federal", label: "Federal student loans" },
+      { value: "private", label: "Private student loans" },
+      { value: "parent", label: "Parent PLUS loans" },
+      { value: "refinancing", label: "Refinancing existing loans" }
     ]
   },
   {
-    id: "forgiveness_interest",
-    question: "Are you interested in learning about loan forgiveness programs?",
+    id: "specific_goal",
+    question: "What specific outcome are you hoping to achieve?",
     options: [
-      { value: "yes", label: "Yes, I want to know if I qualify" },
-      { value: "maybe", label: "Maybe, I need more information" },
-      { value: "no", label: "No, not at this time" }
+      { value: "understand", label: "Understand loan options better" },
+      { value: "lower_payments", label: "Lower my monthly payments" },
+      { value: "pay_less", label: "Pay less interest overall" },
+      { value: "qualify_forgiveness", label: "See if I qualify for forgiveness" }
     ]
   }
 ];
