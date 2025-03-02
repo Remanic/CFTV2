@@ -19,6 +19,7 @@ export const FloatingQuizButton = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [pulsing, setPulsing] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
   const { stage, startQuiz } = useQuiz();
   const isMobile = useIsMobile();
 
@@ -46,15 +47,27 @@ export const FloatingQuizButton = () => {
     }
   }, [showButton]);
 
+  // Hide tooltip after 10 seconds or when clicked
+  useEffect(() => {
+    if (showButton && showTooltip) {
+      const tooltipTimer = setTimeout(() => {
+        setShowTooltip(false);
+      }, 10000);
+      
+      return () => clearTimeout(tooltipTimer);
+    }
+  }, [showButton, showTooltip]);
+
   const handleStartQuiz = () => {
     startQuiz();
     setDialogOpen(true);
+    setShowTooltip(false);
   };
 
-  // Position differently based on device - moved up to avoid overlapping with back-to-top button
+  // Position differently based on device - aligned with back-to-top button
   const buttonPosition = isMobile
-    ? "bottom-20 right-4" // Mobile position moved higher
-    : "bottom-24 right-8"; // Desktop position moved higher
+    ? "bottom-24 right-4" // Mobile position (higher up, aligned with back-to-top)
+    : "bottom-24 right-8"; // Desktop position
 
   return (
     <>
@@ -74,18 +87,29 @@ export const FloatingQuizButton = () => {
             }}
             className={`fixed ${buttonPosition} z-50`}
           >
-            <span className="absolute -top-16 right-0 bg-blue-800 text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap shadow-md">
-              Find Your Personalized Path
-              <div className="absolute w-2 h-2 bg-blue-800 rotate-45 bottom-[-4px] right-6"></div>
-            </span>
+            {showTooltip && (
+              <div className="relative">
+                <span className="absolute -top-16 right-0 bg-blue-800 text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                  Find Your Personalized Path
+                  <div className="absolute w-2 h-2 bg-blue-800 rotate-45 bottom-[-4px] right-6"></div>
+                </span>
+                <button 
+                  onClick={() => setShowTooltip(false)}
+                  className="absolute -top-16 right-0 text-white opacity-70 hover:opacity-100 text-xs font-bold"
+                  aria-label="Close tooltip"
+                >
+                  <span className="absolute top-0.5 right-2">×</span>
+                </button>
+              </div>
+            )}
             <div className="relative">
               <motion.div
                 animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.7, 0.4, 0.7],
+                  scale: [1, 1.2, 1],
+                  opacity: [0.7, 0.3, 0.7],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 1.5,
                   repeat: Infinity,
                   repeatType: "loop",
                 }}
@@ -93,10 +117,10 @@ export const FloatingQuizButton = () => {
               />
               <Button
                 onClick={handleStartQuiz}
-                className="rounded-full h-14 w-14 p-0 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all relative z-10"
+                className={`rounded-full ${isMobile ? 'h-12 w-12' : 'h-14 w-14'} p-0 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all relative z-10`}
                 aria-label="Take quiz"
               >
-                <Target className="h-6 w-6" />
+                <Target className={isMobile ? "h-5 w-5" : "h-6 w-6"} />
               </Button>
             </div>
           </motion.div>
