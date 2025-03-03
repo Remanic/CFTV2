@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { DollarSign, Percent } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -76,7 +77,7 @@ export const CreditCardForm: React.FC<CreditCardFormProps> = ({ onCalculate }) =
       ))}
       <Button 
         onClick={handleSubmit}
-        className="w-full bg-pink-500 hover:bg-pink-600"
+        className="w-full bg-pink-600 hover:bg-pink-700"
         size="lg"
       >
         Calculate Payment Plan

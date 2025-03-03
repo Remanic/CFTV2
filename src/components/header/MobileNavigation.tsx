@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp, GraduationCap, ChartBar, Search, BookOpen, ClipboardCheck, Calendar, Calculator } from "lucide-react";
@@ -69,7 +70,7 @@ export const MobileNavigation = ({
       <div className="space-y-2">
         <button
           onClick={() => setIsCalculatorsExpanded(!isCalculatorsExpanded)}
-          className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-500"
+          className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50"
         >
           Calculators
           {isCalculatorsExpanded ? (
@@ -80,12 +81,12 @@ export const MobileNavigation = ({
         </button>
 
         {isCalculatorsExpanded && (
-          <div className="space-y-2">
+          <div className="space-y-1 pl-2">
             {mainCalculators.map(({ icon: Icon, label, path, color }) => (
               <Link
                 key={path}
                 to={path}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <Icon className={`h-5 w-5 ${color}`} />
                 <span className="text-sm font-medium text-gray-700">{label}</span>
@@ -95,7 +96,7 @@ export const MobileNavigation = ({
               <Link
                 key={path}
                 to={path}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <Icon className={`h-5 w-5 ${color}`} />
                 <span className="text-sm font-medium text-gray-700">{label}</span>
@@ -108,7 +109,7 @@ export const MobileNavigation = ({
       <div className="border-t pt-4">
         <button
           onClick={() => setIsFafsaExpanded(!isFafsaExpanded)}
-          className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-500"
+          className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50"
         >
           FAFSA Resources
           {isFafsaExpanded ? (
@@ -119,12 +120,12 @@ export const MobileNavigation = ({
         </button>
 
         {isFafsaExpanded && (
-          <div className="mt-2 space-y-2">
+          <div className="mt-1 space-y-1 pl-2">
             {fafsaLinks.map(({ icon: Icon, label, path, color }) => (
               <Link
                 key={path}
                 to={path}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <Icon className={`h-5 w-5 ${color}`} />
                 <span className="text-sm font-medium text-gray-700">{label}</span>

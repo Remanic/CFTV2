@@ -7,18 +7,18 @@ export const LoanRepaymentSection = () => {
   return (
     <section 
       id="loan-repayment" 
-      className="py-16 bg-orange-50"
+      className="py-12 md:py-16 bg-orange-50"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Student Loan Repayment Plans</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-4">Student Loan Repayment Plans</h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Find the best repayment plan for your financial situation and goals.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-xl shadow-md border border-orange-100 flex flex-col relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="bg-white p-5 md:p-6 rounded-xl shadow-md border border-orange-100 flex flex-col relative">
             <div className="absolute -top-3 -right-3">
               <span className="bg-amber-500 text-white text-xs px-2 py-1 rounded-full uppercase font-bold tracking-wide shadow-md">
                 <div className="flex items-center">
@@ -27,11 +27,11 @@ export const LoanRepaymentSection = () => {
                 </div>
               </span>
             </div>
-            <div className="mb-4 bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <Calculator className="h-6 w-6 text-orange-600" />
+            <div className="mb-4 bg-orange-100 rounded-full w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
+              <Calculator className="h-5 w-5 md:h-6 md:w-6 text-orange-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Repayment Calculator</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Calculate monthly payments, interest costs, and compare different repayment plans side by side.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">Repayment Calculator</h3>
+            <p className="text-sm md:text-base text-gray-600 mb-5 md:mb-6 flex-grow">Calculate monthly payments, interest costs, and compare different repayment plans side by side.</p>
             <Link 
               to="/student-loan-repayment-calculator" 
               state={{ from: "/", section: "loan-repayment" }}
@@ -43,12 +43,12 @@ export const LoanRepaymentSection = () => {
             </Link>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
-            <div className="mb-4 bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <BarChart className="h-6 w-6 text-orange-600" />
+          <div className="bg-white p-5 md:p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
+            <div className="mb-4 bg-orange-100 rounded-full w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
+              <BarChart className="h-5 w-5 md:h-6 md:w-6 text-orange-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Income-Driven Plans</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Explore repayment plans based on your income, including IBR, PAYE, REPAYE, and ICR.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">Income-Driven Plans</h3>
+            <p className="text-sm md:text-base text-gray-600 mb-5 md:mb-6 flex-grow">Explore repayment plans based on your income, including IBR, PAYE, REPAYE, and ICR.</p>
             <Link 
               to="/income-based-repayment" 
               state={{ from: "/", section: "loan-repayment" }}
@@ -60,12 +60,12 @@ export const LoanRepaymentSection = () => {
             </Link>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
-            <div className="mb-4 bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <PieChart className="h-6 w-6 text-orange-600" />
+          <div className="bg-white p-5 md:p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
+            <div className="mb-4 bg-orange-100 rounded-full w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
+              <PieChart className="h-5 w-5 md:h-6 md:w-6 text-orange-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Fixed Payment Plans</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Learn about standard and fixed payment options for consistent monthly payments.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">Fixed Payment Plans</h3>
+            <p className="text-sm md:text-base text-gray-600 mb-5 md:mb-6 flex-grow">Learn about standard and fixed payment options for consistent monthly payments.</p>
             <Link 
               to="/standard-repayment" 
               state={{ from: "/", section: "loan-repayment" }}
@@ -78,13 +78,13 @@ export const LoanRepaymentSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-2xl mx-auto">
-          <div className="bg-white p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
-            <div className="mb-4 bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <ScatterChart className="h-6 w-6 text-orange-600" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8 max-w-2xl mx-auto">
+          <div className="bg-white p-5 md:p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
+            <div className="mb-4 bg-orange-100 rounded-full w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
+              <ScatterChart className="h-5 w-5 md:h-6 md:w-6 text-orange-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Graduated & Extended</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Explore plans with increasing payments over time or extended terms for lower monthly costs.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">Graduated & Extended</h3>
+            <p className="text-sm md:text-base text-gray-600 mb-5 md:mb-6 flex-grow">Explore plans with increasing payments over time or extended terms for lower monthly costs.</p>
             <div className="space-y-3">
               <Link 
                 to="/graduated-repayment" 
@@ -107,12 +107,12 @@ export const LoanRepaymentSection = () => {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
-            <div className="mb-4 bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <DollarSign className="h-6 w-6 text-orange-600" />
+          <div className="bg-white p-5 md:p-6 rounded-xl shadow-md border border-orange-100 flex flex-col">
+            <div className="mb-4 bg-orange-100 rounded-full w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
+              <DollarSign className="h-5 w-5 md:h-6 md:w-6 text-orange-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Private Loan Repayment</h3>
-            <p className="text-gray-600 mb-6 flex-grow">Strategies for effectively managing and repaying your private student loans.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">Private Loan Repayment</h3>
+            <p className="text-sm md:text-base text-gray-600 mb-5 md:mb-6 flex-grow">Strategies for effectively managing and repaying your private student loans.</p>
             <Link 
               to="/private-loan-repayment" 
               state={{ from: "/", section: "loan-repayment" }}
