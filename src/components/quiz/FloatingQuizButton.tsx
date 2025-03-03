@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { useQuiz } from "./QuizContext";
 import {
@@ -22,6 +22,7 @@ export const FloatingQuizButton = () => {
   const [showTooltip, setShowTooltip] = useState(true);
   const { stage, startQuiz } = useQuiz();
   const isMobile = useIsMobile();
+  const tooltipRef = useRef<HTMLSpanElement>(null);
 
   // Show floating button after scrolling down
   useEffect(() => {
@@ -47,16 +48,30 @@ export const FloatingQuizButton = () => {
     }
   }, [showButton]);
 
-  // Hide tooltip after 10 seconds or when clicked
+  // Hide tooltip after 30 seconds or when clicked
   useEffect(() => {
     if (showButton && showTooltip) {
       const tooltipTimer = setTimeout(() => {
         setShowTooltip(false);
-      }, 10000);
+      }, 30000);
       
       return () => clearTimeout(tooltipTimer);
     }
   }, [showButton, showTooltip]);
+
+  // Close tooltip when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target as Node)) {
+        setShowTooltip(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleStartQuiz = () => {
     startQuiz();
@@ -66,8 +81,8 @@ export const FloatingQuizButton = () => {
 
   // Position differently based on device - aligned with back-to-top button
   const buttonPosition = isMobile
-    ? "bottom-[148px] right-4" // Higher placement on mobile to avoid overlapping
-    : "bottom-[148px] right-8"; // Higher placement on desktop
+    ? "bottom-24 right-4" // Position aligned with back-to-top button on mobile
+    : "bottom-24 right-8"; // Position aligned with back-to-top button on desktop
 
   return (
     <>
@@ -89,7 +104,7 @@ export const FloatingQuizButton = () => {
           >
             {showTooltip && (
               <div className="relative">
-                <span className="absolute -top-16 right-0 bg-rose-700 text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                <span ref={tooltipRef} className="absolute -top-16 right-0 bg-rose-700 text-white text-xs px-3 py-2 rounded-full whitespace-nowrap shadow-md">
                   Find Your Personalized Path
                   <div className="absolute w-2 h-2 bg-rose-700 rotate-45 bottom-[-4px] right-6"></div>
                 </span>
@@ -117,7 +132,7 @@ export const FloatingQuizButton = () => {
               />
               <Button
                 onClick={handleStartQuiz}
-                className={`rounded-full ${isMobile ? 'h-9 w-9' : 'h-12 w-12'} p-0 bg-rose-600 hover:bg-rose-700 shadow-lg hover:shadow-xl transition-all relative z-10`}
+                className={`rounded-full ${isMobile ? 'h-8 w-8' : 'h-10 w-10'} p-0 bg-rose-600 hover:bg-rose-700 shadow-lg hover:shadow-xl transition-all relative z-10`}
                 aria-label="Take quiz"
               >
                 <Target className={isMobile ? "h-4 w-4" : "h-5 w-5"} />
