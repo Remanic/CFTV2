@@ -23,30 +23,29 @@ const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const location = useLocation();
 
+  // Optimize testimonial timing - reduced animation frequency
   useEffect(() => {
     const testimonialTimer = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % 4);
-    }, 8000); // Increased time for smoother transitions
+    }, 12000); // Increased from 8000 to 12000 ms for less frequent transitions
     return () => clearInterval(testimonialTimer);
   }, []);
 
-  // Scroll to section if returning from another page
+  // Scroll to section only when needed
   useEffect(() => {
     if (location.state?.scrollToSection) {
       const section = document.getElementById(location.state.scrollToSection);
       if (section) {
-        // Give a little delay to ensure the page is loaded
         setTimeout(() => {
           section.scrollIntoView({ behavior: 'smooth' });
         }, 300);
       }
       
-      // Clear the state after scrolling
       window.history.replaceState({}, document.title);
     }
   }, [location.state]);
 
-  // If we're already on the index page and try to navigate to index, prevent the navigation
+  // Prevent unnecessary navigation
   useEffect(() => {
     if (location.pathname === "/" && location.state?.from === "/") {
       window.history.replaceState(null, "", "/");
@@ -59,10 +58,7 @@ const Index = () => {
         <Header />
         <main className="flex-grow">
           <Hero />
-          
-          {/* Moved the Loan Journey Quiz higher up, immediately after Hero */}
           <LoanJourneyQuiz />
-          
           <WhyNeedGuide />
           
           <div className="py-4 bg-gradient-to-b from-blue-50 to-white">
@@ -92,13 +88,8 @@ const Index = () => {
           <LoanRepaymentSection />
           <LoanComparison />
           <QuickUnderstand />
-          
-          {/* New CTA Banner before footer */}
           <CtaBanner />
-          
           <BackToTop />
-          
-          {/* Floating Quiz Button */}
           <FloatingQuizButton />
         </main>
         <Footer />
