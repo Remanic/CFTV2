@@ -51,7 +51,7 @@ export const BenefitsGrid = () => {
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0 }
   };
 
@@ -75,16 +75,16 @@ export const BenefitsGrid = () => {
         >
           <div className="flex items-center gap-2 mb-2">
             <span className={cn(
-              "inline-flex items-center justify-center w-8 h-8 rounded-full",
+              "inline-flex items-center justify-center w-6 h-6 rounded-full",
               benefit.iconBg
             )}>
               {benefit.icon}
             </span>
-            <h3 className="font-semibold text-gray-900 text-base sm:text-lg">
+            <h3 className="font-semibold text-gray-900 text-base">
               {benefit.title}
             </h3>
           </div>
-          <p className="text-gray-600 text-sm pl-10">
+          <p className="text-gray-600 text-sm ml-8">
             {benefit.description}
           </p>
         </motion.div>

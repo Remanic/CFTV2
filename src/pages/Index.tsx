@@ -23,11 +23,11 @@ const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const location = useLocation();
 
-  // Optimize testimonial timing - reduced animation frequency
+  // Optimize testimonial timing - reduced animation frequency 
   useEffect(() => {
     const testimonialTimer = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % 4);
-    }, 12000); // Increased from 8000 to 12000 ms for less frequent transitions
+    }, 15000); // Further increased from 12000 to 15000 ms for even less frequent transitions
     return () => clearInterval(testimonialTimer);
   }, []);
 
@@ -69,9 +69,9 @@ const Index = () => {
           
           <HowItWorks />
           
-          <section className="bg-gray-50 py-16">
+          <section className="bg-gray-50 py-12 md:py-16">
             <div className="container mx-auto px-4 max-w-4xl">
-              <h3 className="text-2xl font-semibold text-center mb-8 text-gray-800 font-playfair">Student Success Stories</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-center mb-8 text-gray-800 font-playfair">Student Success Stories</h3>
               <TestimonialSection currentTestimonial={currentTestimonial} />
             </div>
           </section>
@@ -82,12 +82,12 @@ const Index = () => {
             </div>
           </div>
           
-          <AffiliateLoanSection />
-          <FafsaGuide />
-          <LoanForgivenessPrograms />
-          <LoanRepaymentSection />
-          <LoanComparison />
           <QuickUnderstand />
+          <FafsaGuide />
+          <AffiliateLoanSection />
+          <LoanComparison />
+          <LoanRepaymentSection />
+          <LoanForgivenessPrograms />
           <CtaBanner />
           <BackToTop />
           <FloatingQuizButton />
