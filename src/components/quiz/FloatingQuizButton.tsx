@@ -66,8 +66,8 @@ export const FloatingQuizButton = () => {
 
   // Position differently based on device - aligned with back-to-top button
   const buttonPosition = isMobile
-    ? "bottom-[88px] right-4" // Mobile position (aligned with back-to-top)
-    : "bottom-[88px] right-8"; // Desktop position (aligned with back-to-top)
+    ? "bottom-[148px] right-4" // Higher placement on mobile to avoid overlapping
+    : "bottom-[148px] right-8"; // Higher placement on desktop
 
   return (
     <>
@@ -89,13 +89,13 @@ export const FloatingQuizButton = () => {
           >
             {showTooltip && (
               <div className="relative">
-                <span className="absolute -top-16 right-0 bg-blue-800 text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                <span className="absolute -top-16 right-0 bg-rose-700 text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap shadow-md">
                   Find Your Personalized Path
-                  <div className="absolute w-2 h-2 bg-blue-800 rotate-45 bottom-[-4px] right-6"></div>
+                  <div className="absolute w-2 h-2 bg-rose-700 rotate-45 bottom-[-4px] right-6"></div>
                 </span>
                 <button 
                   onClick={() => setShowTooltip(false)}
-                  className="absolute -top-16 -right-1 text-white opacity-70 hover:opacity-100 flex items-center justify-center h-5 w-5 rounded-full bg-blue-900"
+                  className="absolute -top-16 -right-1 text-white opacity-70 hover:opacity-100 flex items-center justify-center h-5 w-5 rounded-full bg-rose-800"
                   aria-label="Close tooltip"
                 >
                   <X className="h-3 w-3" />
@@ -113,14 +113,14 @@ export const FloatingQuizButton = () => {
                   repeat: Infinity,
                   repeatType: "loop",
                 }}
-                className="absolute inset-0 rounded-full bg-blue-200 z-0"
+                className="absolute inset-0 rounded-full bg-rose-200 z-0"
               />
               <Button
                 onClick={handleStartQuiz}
-                className={`rounded-full ${isMobile ? 'h-10 w-10' : 'h-14 w-14'} p-0 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all relative z-10`}
+                className={`rounded-full ${isMobile ? 'h-9 w-9' : 'h-12 w-12'} p-0 bg-rose-600 hover:bg-rose-700 shadow-lg hover:shadow-xl transition-all relative z-10`}
                 aria-label="Take quiz"
               >
-                <Target className={isMobile ? "h-4 w-4" : "h-6 w-6"} />
+                <Target className={isMobile ? "h-4 w-4" : "h-5 w-5"} />
               </Button>
             </div>
           </motion.div>
@@ -146,7 +146,7 @@ export const FloatingQuizButton = () => {
               <QuizResults />
             ) : (
               <div className="text-center p-4">
-                <Target className="h-16 w-16 mx-auto text-blue-600 mb-4" />
+                <Target className="h-16 w-16 mx-auto text-rose-600 mb-4" />
                 <h3 className="text-lg font-semibold mb-2">
                   Find Your Ideal Loan Strategy
                 </h3>
@@ -154,7 +154,7 @@ export const FloatingQuizButton = () => {
                   Answer 4 quick questions to get personalized guidance for your
                   student loan journey and save thousands.
                 </p>
-                <Button onClick={startQuiz} className="w-full py-6">
+                <Button onClick={startQuiz} className="w-full py-6 bg-rose-600 hover:bg-rose-700">
                   Start Quick Assessment
                 </Button>
               </div>
