@@ -6,8 +6,7 @@ import {
   BarChart2, 
   Calculator, 
   Award,
-  ChevronRight,
-  ExternalLink
+  ChevronRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -25,7 +24,7 @@ type JourneyPath = {
 };
 
 export const JourneyPathSelector = () => {
-  const [selectedPath, setSelectedPath] = useState<string | null>(null);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
   
   const journeyPaths: JourneyPath[] = [
     {
@@ -96,64 +95,64 @@ export const JourneyPathSelector = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      {/* Mobile view: Dropdown selector */}
-      <div className="block md:hidden mb-4">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-          <label className="block text-gray-700 text-sm font-medium mb-2">Where are you in your loan journey?</label>
-          <select 
-            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            onChange={(e) => {
-              const pathId = e.target.value;
-              if (pathId) {
-                setSelectedPath(pathId);
-                const path = journeyPaths.find(p => p.id === pathId);
-                if (path) {
-                  scrollToSection(path.targetSection);
-                }
-              }
-            }}
-            value={selectedPath || ""}
+    <div className="max-w-5xl mx-auto">
+      {/* Mobile view: Card layout */}
+      <div className="block md:hidden space-y-3">
+        {journeyPaths.map((path) => (
+          <div 
+            key={path.id}
+            className={cn(
+              "relative p-4 rounded-lg border transition-all duration-200",
+              path.borderColor, path.bgColor, "shadow-sm"
+            )}
           >
-            <option value="" disabled>Select your stage</option>
-            {journeyPaths.map(path => (
-              <option key={path.id} value={path.id}>
-                {path.title}
-              </option>
-            ))}
-          </select>
-          
-          {selectedPath && (
-            <div className="mt-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className={cn(
+                  "inline-flex items-center justify-center w-8 h-8 rounded-full",
+                  path.bgColor
+                )}>
+                  <span className={path.color}>{path.icon}</span>
+                </span>
+                <h3 className="font-semibold text-gray-900 text-sm">
+                  {path.title}
+                </h3>
+              </div>
+              
               <Button 
-                className="w-full"
-                onClick={() => {
-                  const path = journeyPaths.find(p => p.id === selectedPath);
-                  if (path) {
-                    scrollToSection(path.targetSection);
-                  }
-                }}
+                size="sm"
+                className={cn(
+                  "text-xs px-3 py-1 h-8 whitespace-nowrap",
+                  `bg-${path.color.split('-')[1]}-600 hover:bg-${path.color.split('-')[1]}-700`
+                )}
+                onClick={() => scrollToSection(path.targetSection)}
               >
-                Go to {journeyPaths.find(p => p.id === selectedPath)?.actionText}
+                {path.actionText}
+                <ChevronRight className="h-3 w-3 ml-1" />
               </Button>
             </div>
-          )}
-        </div>
+            
+            <p className="text-gray-600 text-xs mt-2 ml-10">
+              {path.description}
+            </p>
+          </div>
+        ))}
       </div>
       
-      {/* Desktop view: Visual path selector */}
-      <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      {/* Desktop view: Visual path selector grid */}
+      <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {journeyPaths.map((path) => (
           <div 
             key={path.id}
             className={cn(
               "relative p-4 rounded-lg border transition-all duration-200 cursor-pointer",
               "hover:shadow-md flex flex-col h-full",
-              selectedPath === path.id 
-                ? `${path.borderColor} ${path.bgColor} shadow-sm` 
-                : "border-gray-200 bg-white"
+              hoveredPath === path.id 
+                ? `${path.borderColor} ${path.bgColor} shadow-sm scale-105` 
+                : `${path.borderColor} ${path.bgColor} shadow-sm`
             )}
-            onClick={() => setSelectedPath(path.id)}
+            onMouseEnter={() => setHoveredPath(path.id)}
+            onMouseLeave={() => setHoveredPath(null)}
           >
             <div className="flex items-center gap-2 mb-2">
               <span className={cn(
@@ -167,26 +166,24 @@ export const JourneyPathSelector = () => {
               </h3>
             </div>
             
-            <p className="text-gray-600 text-xs mb-3 flex-grow">
+            <p className="text-gray-600 text-xs mb-4 flex-grow">
               {path.description}
             </p>
             
-            {selectedPath === path.id && (
-              <Button 
-                size="sm"
-                className={cn(
-                  "mt-2 w-full text-xs justify-between group",
-                  `bg-${path.color.split('-')[1]}-600 hover:bg-${path.color.split('-')[1]}-700`
-                )}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  scrollToSection(path.targetSection);
-                }}
-              >
-                {path.actionText}
-                <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
-              </Button>
-            )}
+            <Button 
+              size="sm"
+              className={cn(
+                "mt-auto w-full text-xs justify-between group",
+                `bg-${path.color.split('-')[1]}-600 hover:bg-${path.color.split('-')[1]}-700`
+              )}
+              onClick={() => scrollToSection(path.targetSection)}
+            >
+              {path.actionText}
+              <ChevronRight className={cn(
+                "h-4 w-4 transition-transform",
+                hoveredPath === path.id ? "translate-x-1" : ""
+              )} />
+            </Button>
           </div>
         ))}
       </div>
