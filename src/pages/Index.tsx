@@ -82,12 +82,12 @@ const Index = () => {
             </div>
           </div>
           
-          <QuickUnderstand />
-          <FafsaGuide />
           <AffiliateLoanSection />
+          <FafsaGuide />
           <LoanComparison />
           <LoanRepaymentSection />
           <LoanForgivenessPrograms />
+          <QuickUnderstand />
           <CtaBanner />
           <BackToTop />
           <FloatingQuizButton />
