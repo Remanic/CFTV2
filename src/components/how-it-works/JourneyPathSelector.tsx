@@ -22,6 +22,7 @@ type JourneyPath = {
   borderColor: string;
   targetSection: string;
   actionText: string;
+  buttonColor: string;
 };
 
 export const JourneyPathSelector = () => {
@@ -37,7 +38,8 @@ export const JourneyPathSelector = () => {
       bgColor: "bg-indigo-50",
       borderColor: "border-indigo-200",
       targetSection: "#affiliate-loan-section",
-      actionText: "View lenders"
+      actionText: "View lenders",
+      buttonColor: "bg-indigo-600 hover:bg-indigo-700"
     },
     {
       id: "application",
@@ -48,7 +50,8 @@ export const JourneyPathSelector = () => {
       bgColor: "bg-purple-50",
       borderColor: "border-purple-200",
       targetSection: "#fafsa-guide",
-      actionText: "FAFSA guide"
+      actionText: "FAFSA guide",
+      buttonColor: "bg-purple-600 hover:bg-purple-700"
     },
     {
       id: "comparison",
@@ -59,7 +62,8 @@ export const JourneyPathSelector = () => {
       bgColor: "bg-emerald-50",
       borderColor: "border-emerald-200",
       targetSection: "#loan-comparison",
-      actionText: "Compare loans"
+      actionText: "Compare loans",
+      buttonColor: "bg-emerald-600 hover:bg-emerald-700"
     },
     {
       id: "repayment",
@@ -70,7 +74,8 @@ export const JourneyPathSelector = () => {
       bgColor: "bg-orange-50",
       borderColor: "border-orange-200",
       targetSection: "#loan-repayment",
-      actionText: "Repayment options"
+      actionText: "Repayment options",
+      buttonColor: "bg-orange-600 hover:bg-orange-700"
     },
     {
       id: "forgiveness",
@@ -81,7 +86,8 @@ export const JourneyPathSelector = () => {
       bgColor: "bg-amber-50",
       borderColor: "border-amber-200",
       targetSection: "#loan-forgiveness",
-      actionText: "Forgiveness programs"
+      actionText: "Forgiveness programs",
+      buttonColor: "bg-amber-600 hover:bg-amber-700"
     },
     {
       id: "tools",
@@ -92,7 +98,8 @@ export const JourneyPathSelector = () => {
       bgColor: "bg-blue-50",
       borderColor: "border-blue-200",
       targetSection: "#quick-understand",
-      actionText: "Use tools"
+      actionText: "Use tools",
+      buttonColor: "bg-blue-600 hover:bg-blue-700"
     }
   ];
 
@@ -115,7 +122,7 @@ export const JourneyPathSelector = () => {
     <div className="max-w-5xl mx-auto">
       {/* Enhanced question subtitle - made more visible */}
       <div className="mb-6 text-center">
-        <h3 className="text-lg md:text-xl font-medium text-blue-700 px-4 py-2 rounded-lg bg-blue-50 inline-block shadow-sm border border-blue-100">
+        <h3 className="text-lg md:text-xl font-semibold text-blue-700 px-6 py-3 rounded-lg bg-blue-50 inline-block shadow-sm border border-blue-200">
           Where are you in the student loan process?
         </h3>
       </div>
@@ -147,7 +154,7 @@ export const JourneyPathSelector = () => {
                 size="sm"
                 className={cn(
                   "text-xs px-3 py-1 h-8 whitespace-nowrap",
-                  path.color.replace('text-', 'bg-').replace('-600', '-600 hover:bg-' + path.color.split('-')[1] + '-700')
+                  path.buttonColor
                 )}
                 onClick={() => scrollToSection(path.targetSection)}
               >
@@ -204,7 +211,7 @@ export const JourneyPathSelector = () => {
               size="sm"
               className={cn(
                 "mt-auto w-full text-sm justify-between",
-                path.color.replace('text-', 'bg-').replace('-600', '-600 hover:bg-' + path.color.split('-')[1] + '-700'),
+                path.buttonColor,
                 "opacity-90 group-hover:opacity-100 transition-opacity"
               )}
             >

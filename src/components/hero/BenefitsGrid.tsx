@@ -6,36 +6,36 @@ import { cn } from "@/lib/utils";
 export const BenefitsGrid = () => {
   const benefits = [
     {
-      icon: <Sparkles className="h-5 w-5 text-blue-600" />,
+      icon: <Sparkles className="h-5 w-5 text-white" />,
       title: "Step-by-Step Guidance",
       description: "Clear instructions for FAFSA and loan applications",
       color: "from-blue-500/20 to-blue-600/10",
       borderColor: "border-blue-200",
-      iconBg: "bg-blue-50"
+      iconBg: "bg-blue-600"
     },
     {
-      icon: <ChartBar className="h-5 w-5 text-green-600" />,
+      icon: <ChartBar className="h-5 w-5 text-white" />,
       title: "Compare Options",
       description: "See all your loan options side by side",
       color: "from-green-500/20 to-green-600/10",
       borderColor: "border-green-200",
-      iconBg: "bg-green-50"
+      iconBg: "bg-green-600"
     },
     {
-      icon: <CheckCircle2 className="h-5 w-5 text-purple-600" />,
+      icon: <CheckCircle2 className="h-5 w-5 text-white" />,
       title: "Maximum Aid",
       description: "Get all the financial aid you qualify for",
       color: "from-purple-500/20 to-purple-600/10",
       borderColor: "border-purple-200",
-      iconBg: "bg-purple-50"
+      iconBg: "bg-purple-600"
     },
     {
-      icon: <Coins className="h-5 w-5 text-amber-600" />,
+      icon: <Coins className="h-5 w-5 text-white" />,
       title: "Smart Repayment",
       description: "Find the plan that saves you the most money",
       color: "from-amber-500/20 to-amber-600/10",
       borderColor: "border-amber-200",
-      iconBg: "bg-amber-50"
+      iconBg: "bg-amber-600"
     }
   ];
 
@@ -60,7 +60,7 @@ export const BenefitsGrid = () => {
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6 md:mt-8 w-full"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 md:mt-8 w-full"
     >
       {benefits.map((benefit, index) => (
         <motion.div 
@@ -70,12 +70,12 @@ export const BenefitsGrid = () => {
             "relative overflow-hidden p-4 rounded-xl bg-gradient-to-br shadow-sm",
             "hover:shadow-md transition-all duration-200",
             `${benefit.color} ${benefit.borderColor} border`,
-            "flex flex-col items-start text-left"
+            "flex flex-col items-start text-left h-full"
           )}
         >
           <div className="flex items-center gap-2 mb-2">
             <span className={cn(
-              "inline-flex items-center justify-center w-6 h-6 rounded-full",
+              "inline-flex items-center justify-center w-8 h-8 rounded-full",
               benefit.iconBg
             )}>
               {benefit.icon}
@@ -84,7 +84,7 @@ export const BenefitsGrid = () => {
               {benefit.title}
             </h3>
           </div>
-          <p className="text-gray-600 text-sm ml-8">
+          <p className="text-gray-600 text-sm ml-10">
             {benefit.description}
           </p>
         </motion.div>
