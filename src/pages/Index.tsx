@@ -31,13 +31,20 @@ const Index = () => {
     return () => clearInterval(testimonialTimer);
   }, []);
 
-  // Scroll to section only when needed
+  // Improved scroll to section with offset adjustment
   useEffect(() => {
     if (location.state?.scrollToSection) {
       const section = document.getElementById(location.state.scrollToSection);
       if (section) {
+        const headerOffset = 80; // Adjust based on header height
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
         setTimeout(() => {
-          section.scrollIntoView({ behavior: 'smooth' });
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }, 300);
       }
       
@@ -82,12 +89,24 @@ const Index = () => {
             </div>
           </div>
           
-          <AffiliateLoanSection />
-          <FafsaGuide />
-          <LoanComparison />
-          <LoanRepaymentSection />
-          <LoanForgivenessPrograms />
-          <QuickUnderstand />
+          <div id="affiliate-loan-section">
+            <AffiliateLoanSection />
+          </div>
+          <div id="fafsa-guide">
+            <FafsaGuide />
+          </div>
+          <div id="loan-comparison">
+            <LoanComparison />
+          </div>
+          <div id="loan-repayment">
+            <LoanRepaymentSection />
+          </div>
+          <div id="loan-forgiveness">
+            <LoanForgivenessPrograms />
+          </div>
+          <div id="quick-understand">
+            <QuickUnderstand />
+          </div>
           <CtaBanner />
           <BackToTop />
           <FloatingQuizButton />
