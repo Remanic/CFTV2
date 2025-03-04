@@ -1,6 +1,7 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
+// Define more specific journey stages for better resource matching
 type QuizStage = "not_started" | "in_progress" | "completed";
 type LoanJourneyStage = 
   | "research" 
