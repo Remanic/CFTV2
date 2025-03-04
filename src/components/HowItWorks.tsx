@@ -18,14 +18,8 @@ export const HowItWorks = () => {
 
         <SectionHeader 
           title="Master Your Student Loan Journey"
-          subtitle="Where are you in the student loan process?"
+          subtitle=""
         />
-        
-        <div className="max-w-xl mx-auto mb-8 text-center">
-          <p className="text-gray-600">
-            Select your current stage to get personalized guidance tailored to your specific needs.
-          </p>
-        </div>
 
         <JourneyPathSelector />
       </div>

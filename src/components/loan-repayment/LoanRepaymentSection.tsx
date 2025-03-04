@@ -19,6 +19,11 @@ export const LoanRepaymentSection = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           <div className="bg-white p-5 md:p-6 rounded-xl shadow-md border border-orange-100 flex flex-col relative">
+            {/* Most Popular Tag */}
+            <div className="absolute -top-3 -right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md flex items-center gap-1">
+              <Star className="h-3 w-3" fill="white" />
+              Most Popular
+            </div>
             <div className="mb-4 bg-orange-100 rounded-full w-10 md:w-12 h-10 md:h-12 flex items-center justify-center">
               <Calculator className="h-5 w-5 md:h-6 md:w-6 text-orange-600" />
             </div>

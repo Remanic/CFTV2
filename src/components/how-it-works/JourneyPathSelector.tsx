@@ -52,7 +52,7 @@ export const JourneyPathSelector = () => {
     },
     {
       id: "comparison",
-      title: "Comparing Options",
+      title: "Comparing Loan Options",
       description: "Evaluating federal, private and other loan types",
       icon: <BarChart2 className="h-5 w-5" />,
       color: "text-emerald-600",
@@ -113,6 +113,13 @@ export const JourneyPathSelector = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
+      {/* Enhanced question subtitle - made more visible */}
+      <div className="mb-6 text-center">
+        <h3 className="text-lg md:text-xl font-medium text-blue-700 px-4 py-2 rounded-lg bg-blue-50 inline-block shadow-sm border border-blue-100">
+          Where are you in the student loan process?
+        </h3>
+      </div>
+      
       {/* Mobile view: Card layout */}
       <div className="block md:hidden space-y-3">
         {journeyPaths.map((path) => (
