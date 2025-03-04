@@ -1,4 +1,5 @@
 
+import React from "react";
 import { 
   FileText, 
   BarChart2, 
@@ -21,12 +22,18 @@ export type JourneyPath = {
   buttonColor: string;
 };
 
+// Create a function that returns the icon components
+// This avoids using JSX directly in the .ts file
+const createIconElement = (IconComponent: any) => {
+  return React.createElement(IconComponent, { className: "h-5 w-5" });
+};
+
 export const journeyPaths: JourneyPath[] = [
   {
     id: "lenders",
     title: "Compare Lenders & Rates",
     description: "Find and compare the best student loan options for your needs",
-    icon: <Landmark className="h-5 w-5" />,
+    icon: createIconElement(Landmark),
     color: "text-indigo-600",
     bgColor: "bg-indigo-50",
     borderColor: "border-indigo-200",
@@ -38,7 +45,7 @@ export const journeyPaths: JourneyPath[] = [
     id: "application",
     title: "Application Process",
     description: "Completing FAFSA and loan applications correctly",
-    icon: <FileText className="h-5 w-5" />,
+    icon: createIconElement(FileText),
     color: "text-purple-600",
     bgColor: "bg-purple-50",
     borderColor: "border-purple-200",
@@ -50,7 +57,7 @@ export const journeyPaths: JourneyPath[] = [
     id: "comparison",
     title: "Comparing Loan Options",
     description: "Evaluating federal, private and other loan types",
-    icon: <BarChart2 className="h-5 w-5" />,
+    icon: createIconElement(BarChart2),
     color: "text-emerald-600",
     bgColor: "bg-emerald-50",
     borderColor: "border-emerald-200",
@@ -62,7 +69,7 @@ export const journeyPaths: JourneyPath[] = [
     id: "repayment",
     title: "Repayment Planning",
     description: "Finding the best repayment strategy for your situation",
-    icon: <Calculator className="h-5 w-5" />,
+    icon: createIconElement(Calculator),
     color: "text-orange-600",
     bgColor: "bg-orange-50",
     borderColor: "border-orange-200",
@@ -74,7 +81,7 @@ export const journeyPaths: JourneyPath[] = [
     id: "forgiveness",
     title: "Loan Forgiveness",
     description: "Programs that may eliminate part or all of your debt",
-    icon: <Award className="h-5 w-5" />,
+    icon: createIconElement(Award),
     color: "text-amber-600",
     bgColor: "bg-amber-50",
     borderColor: "border-amber-200",
@@ -86,7 +93,7 @@ export const journeyPaths: JourneyPath[] = [
     id: "tools",
     title: "Financial Tools",
     description: "Calculators and tools to help plan your financial future",
-    icon: <CreditCard className="h-5 w-5" />,
+    icon: createIconElement(CreditCard),
     color: "text-blue-600",
     bgColor: "bg-blue-50",
     borderColor: "border-blue-200",
