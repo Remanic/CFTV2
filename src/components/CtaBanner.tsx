@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { saveUserInfo, downloadGuide } from "@/utils/guideUtils";
 
 export const CtaBanner = () => {
   const [loading, setLoading] = useState(false);
@@ -15,6 +16,7 @@ export const CtaBanner = () => {
     email: "",
     consent: false
   });
+  const [showDownload, setShowDownload] = useState(false);
   const { toast } = useToast();
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -31,23 +33,41 @@ export const CtaBanner = () => {
 
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
+      // Save user information to localStorage
+      saveUserInfo(formData.name, formData.email);
+      
+      // Show success toast and download option
       toast({
         title: "Success!",
-        description: "Your free student loan guide has been sent to your email.",
+        description: "Your free student loan guide is ready to download.",
       });
-      setDialogOpen(false);
-      setFormData({ name: "", email: "", consent: false });
+      
+      setShowDownload(true);
     } catch (error) {
       toast({
         title: "Error",
-        description: "There was a problem sending your guide. Please try again.",
+        description: "There was a problem preparing your guide. Please try again.",
         variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDownload = () => {
+    downloadGuide("studentLoanGuide");
+    setDialogOpen(false);
+    setFormData({ name: "", email: "", consent: false });
+    setShowDownload(false);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+    setShowDownload(false);
+    setFormData({ name: "", email: "", consent: false });
   };
 
   return (
@@ -79,55 +99,71 @@ export const CtaBanner = () => {
                       We'll send a comprehensive student loan guide tailored to your needs directly to your inbox.
                     </DialogDescription>
                   </DialogHeader>
-                  <form onSubmit={handleSubmit} className="space-y-6 mt-4">
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="cta-name" className="text-gray-700">Full Name</Label>
-                        <Input
-                          id="cta-name"
-                          placeholder="Enter your full name"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                          className="w-full"
-                        />
+                  
+                  {!showDownload ? (
+                    <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="cta-name" className="text-gray-700">Full Name</Label>
+                          <Input
+                            id="cta-name"
+                            placeholder="Enter your full name"
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                            className="w-full"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="cta-email" className="text-gray-700">Email Address</Label>
+                          <Input
+                            id="cta-email"
+                            type="email"
+                            placeholder="Enter your email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                            className="w-full"
+                          />
+                        </div>
+                        <div className="flex items-start space-x-2 pt-2">
+                          <Checkbox
+                            id="cta-consent"
+                            checked={formData.consent}
+                            onCheckedChange={(checked) => 
+                              setFormData(prev => ({ ...prev, consent: checked as boolean }))
+                            }
+                          />
+                          <Label 
+                            htmlFor="cta-consent" 
+                            className="text-xs sm:text-sm text-gray-600 leading-tight"
+                          >
+                            I agree to receive my free guide and related information via email. You can unsubscribe at any time.
+                          </Label>
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="cta-email" className="text-gray-700">Email Address</Label>
-                        <Input
-                          id="cta-email"
-                          type="email"
-                          placeholder="Enter your email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                          className="w-full"
-                        />
+                      <Button 
+                        type="submit" 
+                        className="w-full font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+                        disabled={loading}
+                      >
+                        {loading ? "Preparing Your Guide..." : "Send My Free Guide Now"}
+                      </Button>
+                    </form>
+                  ) : (
+                    <div className="mt-4 space-y-6">
+                      <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <p className="text-green-800 font-medium mb-2">Your guide is ready!</p>
+                        <p className="text-gray-600 text-sm">Click the button below to download your free student loan guide.</p>
                       </div>
-                      <div className="flex items-start space-x-2 pt-2">
-                        <Checkbox
-                          id="cta-consent"
-                          checked={formData.consent}
-                          onCheckedChange={(checked) => 
-                            setFormData(prev => ({ ...prev, consent: checked as boolean }))
-                          }
-                        />
-                        <Label 
-                          htmlFor="cta-consent" 
-                          className="text-xs sm:text-sm text-gray-600 leading-tight"
-                        >
-                          I agree to receive my free guide and related information via email. You can unsubscribe at any time.
-                        </Label>
-                      </div>
+                      <Button 
+                        onClick={handleDownload}
+                        className="w-full font-semibold py-3 bg-green-600 hover:bg-green-700"
+                      >
+                        Download Your Guide Now
+                      </Button>
                     </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors"
-                      disabled={loading}
-                    >
-                      {loading ? "Preparing Your Guide..." : "Send My Free Guide Now"}
-                    </Button>
-                  </form>
+                  )}
                 </DialogContent>
               </Dialog>
             </div>

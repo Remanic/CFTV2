@@ -1,4 +1,3 @@
-
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -9,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { saveUserInfo, downloadGuide } from "@/utils/guideUtils";
 
 interface NavItemsProps {
   calculatorLinks: Array<{
@@ -26,6 +26,7 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
     email: "",
     consent: false
   });
+  const [showDownload, setShowDownload] = useState(false);
   const { toast } = useToast();
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -75,25 +76,32 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
 
     setLoading(true);
     try {
-      // Here you would integrate with your email service
-      // For demo, we'll simulate an API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      saveUserInfo(formData.name, formData.email);
       
       toast({
         title: "Success!",
-        description: "Your free student loan guide has been sent to your email.",
+        description: "Your free student loan guide is ready to download.",
       });
-      setDialogOpen(false);
-      setFormData({ name: "", email: "", consent: false });
+      
+      setShowDownload(true);
     } catch (error) {
       toast({
         title: "Error",
-        description: "There was a problem sending your guide. Please try again.",
+        description: "There was a problem preparing your guide. Please try again.",
         variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDownload = () => {
+    downloadGuide("studentLoanGuide");
+    setDialogOpen(false);
+    setFormData({ name: "", email: "", consent: false });
+    setShowDownload(false);
   };
 
   return (
@@ -155,55 +163,71 @@ export const DesktopNavigation = ({ calculatorLinks }: NavItemsProps) => {
                   We'll send a comprehensive student loan guide tailored to your needs directly to your inbox.
                 </DialogDescription>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-6 mt-4">
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="header-name" className="text-gray-700">Full Name</Label>
-                    <Input
-                      id="header-name"
-                      placeholder="Enter your full name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                      className="w-full"
-                    />
+              
+              {!showDownload ? (
+                <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="header-name" className="text-gray-700">Full Name</Label>
+                      <Input
+                        id="header-name"
+                        placeholder="Enter your full name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="header-email" className="text-gray-700">Email Address</Label>
+                      <Input
+                        id="header-email"
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="flex items-start space-x-2 pt-2">
+                      <Checkbox
+                        id="header-consent"
+                        checked={formData.consent}
+                        onCheckedChange={(checked) => 
+                          setFormData(prev => ({ ...prev, consent: checked as boolean }))
+                        }
+                      />
+                      <Label 
+                        htmlFor="header-consent" 
+                        className="text-sm text-gray-600 leading-tight"
+                      >
+                        I agree to receive my free guide and related information via email. You can unsubscribe at any time.
+                      </Label>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="header-email" className="text-gray-700">Email Address</Label>
-                    <Input
-                      id="header-email"
-                      type="email"
-                      placeholder="Enter your email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                      className="w-full"
-                    />
+                  <Button 
+                    type="submit" 
+                    className="w-full font-semibold rounded-full"
+                    disabled={loading}
+                  >
+                    {loading ? "Preparing Your Guide..." : "Send My Free Guide Now"}
+                  </Button>
+                </form>
+              ) : (
+                <div className="mt-4 space-y-6">
+                  <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <p className="text-green-800 font-medium mb-2">Your guide is ready!</p>
+                    <p className="text-gray-600 text-sm">Click the button below to download your free student loan guide.</p>
                   </div>
-                  <div className="flex items-start space-x-2 pt-2">
-                    <Checkbox
-                      id="header-consent"
-                      checked={formData.consent}
-                      onCheckedChange={(checked) => 
-                        setFormData(prev => ({ ...prev, consent: checked as boolean }))
-                      }
-                    />
-                    <Label 
-                      htmlFor="header-consent" 
-                      className="text-sm text-gray-600 leading-tight"
-                    >
-                      I agree to receive my free guide and related information via email. You can unsubscribe at any time.
-                    </Label>
-                  </div>
+                  <Button 
+                    onClick={handleDownload}
+                    className="w-full font-semibold py-3 bg-green-600 hover:bg-green-700"
+                  >
+                    Download Your Guide Now
+                  </Button>
                 </div>
-                <Button 
-                  type="submit" 
-                  className="w-full font-semibold rounded-full"
-                  disabled={loading}
-                >
-                  {loading ? "Preparing Your Guide..." : "Send My Free Guide Now"}
-                </Button>
-              </form>
+              )}
             </DialogContent>
           </Dialog>
         </NavigationMenuItem>
