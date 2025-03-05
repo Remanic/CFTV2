@@ -34,7 +34,7 @@ import PrivateLoanRepayment from "./pages/PrivateLoanRepayment";
 import PrivateLoansGuide from "./pages/PrivateLoansGuide";
 import DownloadGuide from "./pages/DownloadGuide";
 import { SpeedInsights } from "@vercel/speed-insights";
-import { Analytics } from "@vercel/analytics";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
