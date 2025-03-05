@@ -105,6 +105,7 @@ export const AffiliateLoanSection = () => {
                 lender={lender}
                 featured={lender.featured}
                 showDetails={false}
+                onCompareRates={() => handleNavigate("/all-lenders")}
               />
             </div>
           ))}

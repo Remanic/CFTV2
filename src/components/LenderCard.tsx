@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Percent, Star, BadgeCheck, BadgeX, DollarSign, GraduationCap, Clock, Shield } from "lucide-react";
@@ -8,14 +9,19 @@ interface LenderCardProps {
   lender: Lender;
   featured?: boolean;
   showDetails?: boolean;
+  onCompareRates?: () => void;
 }
 
-export const LenderCard = ({ lender, featured, showDetails = true }: LenderCardProps) => {
+export const LenderCard = ({ lender, featured, showDetails = true, onCompareRates }: LenderCardProps) => {
   const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    navigate("/best-student-loan-lenders");
-    window.scrollTo(0, 0);
+    if (onCompareRates) {
+      onCompareRates();
+    } else {
+      navigate("/all-lenders");
+      window.scrollTo(0, 0);
+    }
   };
 
   if (!showDetails) {
@@ -47,7 +53,10 @@ export const LenderCard = ({ lender, featured, showDetails = true }: LenderCardP
           </div>
 
           <Button 
-            onClick={handleViewDetails}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent the parent div's onClick from firing
+              handleViewDetails();
+            }}
             className="w-full sm:w-auto whitespace-nowrap group"
           >
             Compare Rates
