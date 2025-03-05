@@ -50,44 +50,6 @@ export const HeroCTA = () => {
     }
   }, [dialogOpen]);
 
-  // Handle direct guide download without form
-  const handleDirectDownload = () => {
-    // Track the direct download action
-    try {
-      if (window.gtag) {
-        window.gtag('event', 'guide_direct_download', {
-          'event_category': 'conversion',
-          'event_label': 'loan_guide_direct'
-        });
-      }
-      
-      // Create a link to the guide PDF
-      const link = document.createElement('a');
-      link.href = '/guides/student-loan-guide-by-CashFlowTime.pdf';
-      link.download = 'student-loan-guide-by-CashFlowTime.pdf';
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      // Show success toast
-      toast({
-        title: "Guide Downloaded",
-        description: "Your Student Loan Guide has been downloaded successfully!",
-      });
-      
-      console.log('Guide directly downloaded - tracking event sent');
-    } catch (error) {
-      console.error('Error with direct guide download:', error);
-      
-      toast({
-        title: "Download Failed",
-        description: "We couldn't download your guide. Please try the form option instead.",
-        variant: "destructive"
-      });
-    }
-  };
-
   return (
     <div className="flex flex-col items-center mt-4 sm:mt-6 mb-2 w-full">
       <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full justify-center">
@@ -111,25 +73,6 @@ export const HeroCTA = () => {
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                 </Button>
               </DialogTrigger>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="w-full xs:w-auto max-w-xs xs:max-w-none"
-            >
-              <Button 
-                variant="outline"
-                size="lg" 
-                onClick={handleDirectDownload}
-                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:text-blue-800
-                  transition-all text-base sm:text-lg px-4 sm:px-6 py-4 sm:py-6 h-auto 
-                  rounded-full w-full"
-              >
-                <span>Download Now</span>
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
-              </Button>
             </motion.div>
           </div>
           

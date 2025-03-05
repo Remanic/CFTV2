@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
-import { saveUserInfo, downloadGuide, sendGuideToEmail } from "@/utils/guideUtils";
+import { saveUserInfo, sendGuideToEmail } from "@/utils/guideUtils";
 
 interface GuideFormProps {
   onClose: () => void;
@@ -78,16 +78,19 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
     }
   };
 
-  const handleDownload = () => {
-    // Track download after form submission
+  const handleDownloadRedirect = () => {
+    // Track download page redirect action
     if (window.gtag) {
-      window.gtag('event', 'guide_download_after_form', {
+      window.gtag('event', 'guide_download_page_redirect', {
         'event_category': 'conversion',
-        'event_label': 'loan_guide_form_download'
+        'event_label': 'loan_guide_download_page'
       });
     }
     
-    downloadGuide("studentLoanGuide");
+    // Redirect to the download page with user info as query parameters
+    window.location.href = `/download-guide?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&guide=studentLoanGuide`;
+    
+    // Reset the form state
     onClose();
     setFormData({ name: "", email: "", consent: false });
     setShowDownload(false);
@@ -152,19 +155,19 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
             <p className="text-green-800 font-medium mb-2">Your guide is ready!</p>
             {emailSent ? (
               <p className="text-gray-600 text-sm">
-                We've sent the guide to your email. You can also download it directly using the button below.
+                We've sent the guide to your email. Click the button below to go to the download page.
               </p>
             ) : (
               <p className="text-gray-600 text-sm">
-                Click the button below to download your free student loan guide.
+                Click the button below to go to the download page for your free student loan guide.
               </p>
             )}
           </div>
           <Button 
-            onClick={handleDownload}
+            onClick={handleDownloadRedirect}
             className="w-full font-semibold rounded-full text-base sm:text-lg py-4 sm:py-6 bg-green-600 hover:bg-green-700"
           >
-            Download Your Guide Now
+            Go to Download Page
           </Button>
         </div>
       )}
