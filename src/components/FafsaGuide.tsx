@@ -85,9 +85,6 @@ export const FafsaGuide = () => {
             className="bg-white p-6 rounded-xl shadow-md border border-purple-100 flex flex-col relative"
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
-            <div className="absolute -top-3 -right-3 bg-purple-600 text-white text-xs px-2 py-1 rounded-full">
-              Popular
-            </div>
             <div className="mb-4 bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center">
               <ClipboardList className="h-6 w-6 text-purple-600" />
             </div>
@@ -127,13 +124,16 @@ export const FafsaGuide = () => {
 
           <motion.div
             variants={item}
-            className="bg-white p-6 rounded-xl shadow-md border border-purple-100 flex flex-col"
+            className="bg-white p-6 rounded-xl shadow-md border border-purple-100 flex flex-col relative"
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
+            <div className="absolute -top-3 -right-3 bg-purple-600 text-white text-xs px-2 py-1 rounded-full">
+              Popular
+            </div>
             <div className="mb-4 bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center">
               <Calculator className="h-6 w-6 text-purple-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Estimate Your Aid</h3>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Estimate Your Federal Aid</h3>
             <p className="text-gray-600 mb-6 flex-grow">Get a quick estimate of how much federal student aid you might receive before you apply.</p>
             <Link 
               to="/fafsa-aid-calculator" 
@@ -162,7 +162,7 @@ export const FafsaGuide = () => {
             <div className="mb-4 bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center">
               <Calendar className="h-6 w-6 text-purple-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">2024-2025 Deadlines</h3>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">2024-2025 Deadlines Complete Guide</h3>
             <p className="text-gray-600 mb-6 flex-grow">Critical FAFSA submission deadlines for federal and state aid for this academic year.</p>
             <div className="grid grid-cols-2 gap-3">
               <Link 
