@@ -9,7 +9,7 @@ import {
   DialogDescription, 
   DialogTrigger 
 } from "@/components/ui/dialog";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GuideForm } from "./GuideForm";
 import { useQuiz } from "../quiz/QuizContext";
 import { motion } from "framer-motion";
@@ -28,27 +28,6 @@ export const HeroCTA = () => {
       quizSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  // Track when the dialog opens for analytics
-  useEffect(() => {
-    if (dialogOpen) {
-      // Track dialog open event
-      try {
-        // Send tracking event
-        if (window.gtag) {
-          window.gtag('event', 'guide_dialog_open', {
-            'event_category': 'engagement',
-            'event_label': 'loan_guide_cta'
-          });
-        }
-        
-        // Log event for debugging
-        console.log('Guide dialog opened - tracking event sent');
-      } catch (error) {
-        console.error('Error tracking guide dialog open:', error);
-      }
-    }
-  }, [dialogOpen]);
 
   return (
     <div className="flex flex-col items-center mt-4 sm:mt-6 mb-2 w-full">
