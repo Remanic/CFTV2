@@ -1,6 +1,7 @@
 
 import { ChevronRight } from "lucide-react";
 import { Resource } from "./types";
+import { useNavigate } from "react-router-dom";
 
 interface ResourceCardProps {
   resource: Resource;
@@ -8,10 +9,30 @@ interface ResourceCardProps {
 }
 
 export const ResourceCard = ({ resource, handleLinkClick }: ResourceCardProps) => {
+  const navigate = useNavigate();
+  
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // Check if it's an internal link
+    if (resource.link.startsWith('/') || resource.link.startsWith('#')) {
+      // For internal page navigation, use React Router
+      if (resource.link.startsWith('/')) {
+        navigate(resource.link);
+      } else if (resource.link.startsWith('#')) {
+        // For anchor links, use the existing handler
+        handleLinkClick(e, resource.link);
+      }
+    } else {
+      // For external links, use the existing handler
+      handleLinkClick(e, resource.link);
+    }
+  };
+  
   return (
     <a 
       href={resource.link} 
-      onClick={(e) => handleLinkClick(e, resource.link)}
+      onClick={handleClick}
       className="block"
     >
       <div className={`p-4 rounded-lg border ${resource.color} hover:shadow-md transition-shadow flex flex-col h-full`}>

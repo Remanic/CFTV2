@@ -1,5 +1,4 @@
-
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 // Define more specific journey stages for better resource matching
 type QuizStage = "not_started" | "in_progress" | "completed";
@@ -46,6 +45,37 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [journeyStage, setJourneyStage] = useState<LoanJourneyStage | null>(null);
 
+  // Load persisted state from localStorage on initial render
+  useEffect(() => {
+    try {
+      const persistedState = localStorage.getItem('quizPersistedState');
+      if (persistedState) {
+        const { stage: savedStage, answers: savedAnswers, journeyStage: savedJourneyStage } = JSON.parse(persistedState);
+        
+        if (savedStage) setStage(savedStage);
+        if (savedAnswers) setAnswers(savedAnswers);
+        if (savedJourneyStage) setJourneyStage(savedJourneyStage);
+      }
+    } catch (error) {
+      console.error("Error loading persisted quiz state:", error);
+    }
+  }, []);
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    if (stage !== "not_started") {
+      try {
+        localStorage.setItem('quizPersistedState', JSON.stringify({
+          stage,
+          answers,
+          journeyStage
+        }));
+      } catch (error) {
+        console.error("Error saving quiz state to localStorage:", error);
+      }
+    }
+  }, [stage, answers, journeyStage]);
+
   const startQuiz = () => {
     setStage("in_progress");
     setCurrentQuestion(0);
@@ -77,6 +107,8 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
     setCurrentQuestion(0);
     setAnswers({});
     setJourneyStage(null);
+    localStorage.removeItem('quizPersistedState');
+    sessionStorage.removeItem('quizState');
   };
 
   const determineJourneyStage = (answers: Record<string, any>): LoanJourneyStage => {

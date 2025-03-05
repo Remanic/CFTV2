@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuiz } from "./QuizContext";
 import { QuizQuestions } from "./QuizQuestions";
 import { QuizResults } from "./QuizResults";
@@ -14,10 +14,24 @@ import {
 } from "@/components/ui/dialog";
 import { ArrowRight, MapPin, Target, ThumbsUp, BadgeCheck, ArrowDownRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 export const LoanJourneyQuiz = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const { stage, startQuiz, resetQuiz } = useQuiz();
+  const location = useLocation();
+  
+  // Check if we're returning from another page
+  useEffect(() => {
+    const fromQuiz = location.state?.fromQuiz === true;
+    if (fromQuiz && stage === "completed") {
+      // Scroll to the quiz section when returning
+      const quizElement = document.getElementById('loan-journey-quiz');
+      if (quizElement) {
+        quizElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [location, stage]);
   
   const handleStart = () => {
     startQuiz();
