@@ -12,7 +12,7 @@ export interface GuideInfo {
 // Available guides in the system
 export const availableGuides: Record<string, GuideInfo> = {
   studentLoanGuide: {
-    fileName: "student-loan-guide-by-CashFlowTime.pdf",
+    fileName: "Navigating_Student_Loans_A_Complete_Guide_CashFlowTime.pdf",
     displayName: "Comprehensive Student Loan Guide",
     description: "A complete guide to understanding and managing student loans."
   }
