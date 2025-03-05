@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Briefcase, GraduationCap, Clock, ShieldCheck, Bell, Star, ArrowRight, Calculator } from "lucide-react";
+import { Briefcase, GraduationCap, Clock, ShieldCheck, Bell, Star, ArrowRight, Calculator, CheckCircle } from "lucide-react";
 
 export const LoanForgivenessPrograms = () => {
   return (
@@ -17,7 +17,7 @@ export const LoanForgivenessPrograms = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="bg-white p-6 rounded-xl shadow-md border border-amber-100 flex flex-col relative">
             <div className="absolute -top-3 -right-3 bg-amber-500 text-white text-xs px-2 py-1 rounded-full uppercase font-bold tracking-wide shadow-md">
               <div className="flex items-center">
@@ -81,9 +81,35 @@ export const LoanForgivenessPrograms = () => {
               </Link>
             </div>
           </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md border border-amber-100 flex flex-col relative">
+            <div className="absolute -top-3 -right-3 bg-amber-500 text-white text-xs px-2 py-1 rounded-full uppercase font-bold tracking-wide shadow-md">
+              <div className="flex items-center">
+                <Star className="h-3 w-3 mr-1 fill-white" />
+                <span>Popular</span>
+              </div>
+            </div>
+            <div className="mb-4 bg-amber-100 rounded-full w-12 h-12 flex items-center justify-center">
+              <CheckCircle className="h-6 w-6 text-amber-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Eligibility Checker</h3>
+            <p className="text-gray-600 mb-2 flex-grow">Find out if you qualify for loan forgiveness programs based on your specific situation and loan details.</p>
+            
+            <div className="mt-4">
+              <Link 
+                to="/student-loan-forgiveness-eligibility" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="w-full"
+              >
+                <Button className="w-full bg-amber-600 hover:bg-amber-700">
+                  Check Your Eligibility <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mt-8">
           <div className="bg-white p-6 rounded-xl shadow-md border border-amber-100 flex flex-col relative">
             <div className="absolute -top-3 -right-3 bg-amber-500 text-white text-xs px-2 py-1 rounded-full uppercase font-bold tracking-wide shadow-md">
               <div className="flex items-center">
@@ -152,3 +178,4 @@ export const LoanForgivenessPrograms = () => {
     </section>
   );
 };
+
