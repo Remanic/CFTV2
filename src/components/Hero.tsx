@@ -1,7 +1,11 @@
 
 import { HeroHeading } from "./hero/HeroHeading";
 import { HeroCTA } from "./hero/HeroCTA";
-import { BenefitsGrid } from "./hero/BenefitsGrid";
+import { lazy, Suspense } from "react";
+import { LoadingSpinner } from "./ui/loading-spinner";
+
+// Lazy load the benefits grid which is below the fold
+const BenefitsGrid = lazy(() => import("./hero/BenefitsGrid").then(module => ({ default: module.BenefitsGrid })));
 
 export const Hero = () => {
   return (
@@ -13,7 +17,9 @@ export const Hero = () => {
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <HeroHeading />
           <HeroCTA />
-          <BenefitsGrid />
+          <Suspense fallback={<div className="h-24 w-full" />}>
+            <BenefitsGrid />
+          </Suspense>
         </div>
       </div>
     </section>

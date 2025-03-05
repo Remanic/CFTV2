@@ -2,8 +2,16 @@
 import { Sparkles, ChartBar, CheckCircle2, Coins } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 export const BenefitsGrid = () => {
+  // Avoid hydration mismatch by rendering on client-side only
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const benefits = [
     {
       icon: <Sparkles className="h-5 w-5 text-white" />,
@@ -39,27 +47,41 @@ export const BenefitsGrid = () => {
     }
   ];
 
+  // Optimized animation configuration with reduced motion
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
+        staggerChildren: 0.05, // Reduced from 0.1
+        delayChildren: 0.2,    // Reduced from 0.3
+        duration: 0.3          // Added explicit duration
       }
     }
   };
 
   const item = {
-    hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, y: 5 }, // Reduced y-offset from 10 to 5
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.2  // Explicit short duration for smoother animation
+      }
+    }
   };
+
+  // Return placeholder for SSR to avoid hydration mismatches
+  if (!isClient) {
+    return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 md:mt-8 w-full h-48" />;
+  }
 
   return (
     <motion.div 
       variants={container}
       initial="hidden"
-      animate="show"
+      whileInView="show"
+      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 md:mt-8 w-full"
     >
       {benefits.map((benefit, index) => (
@@ -72,6 +94,12 @@ export const BenefitsGrid = () => {
             `${benefit.color} ${benefit.borderColor} border`,
             "flex flex-col items-start text-left h-full"
           )}
+          style={{ 
+            // Set fixed height to prevent CLS
+            minHeight: "120px",
+            // Use will-change sparingly for GPU acceleration
+            willChange: "opacity, transform"
+          }}
         >
           <div className="flex items-center gap-2 mb-2">
             <span className={cn(
@@ -92,3 +120,5 @@ export const BenefitsGrid = () => {
     </motion.div>
   );
 };
+
+export default BenefitsGrid;

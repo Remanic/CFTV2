@@ -1,42 +1,79 @@
 
+import { lazy, Suspense, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Hero } from "@/components/Hero";
 import { WhyNeedGuide } from "@/components/WhyNeedGuide";
-import { LoanComparison } from "@/components/LoanComparison";
-import { QuickUnderstand } from "@/components/QuickUnderstand";
-import { FafsaGuide } from "@/components/FafsaGuide";
-import { LoanForgivenessPrograms } from "@/components/LoanForgivenessPrograms";
-import { LoanRepaymentSection } from "@/components/loan-repayment/LoanRepaymentSection";
-import { AffiliateLoanSection } from "@/components/AffiliateLoanSection";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { HowItWorks } from "@/components/HowItWorks";
-import TestimonialSection from "@/components/hero/TestimonialSection";
-import { BackToTop } from "@/components/BackToTop";
-import { CtaBanner } from "@/components/CtaBanner";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { LoanJourneyQuiz } from "@/components/quiz/LoanJourneyQuiz";
 import { QuizProvider } from "@/components/quiz/QuizContext";
 import { FloatingQuizButton } from "@/components/quiz/FloatingQuizButton";
 
+// Above the fold critical components
+import { HowItWorks } from "@/components/HowItWorks";
+
+// Lazy load below-the-fold components
+const TestimonialSection = lazy(() => import("@/components/hero/TestimonialSection"));
+const AffiliateLoanSection = lazy(() => import("@/components/AffiliateLoanSection").then(m => ({ default: m.AffiliateLoanSection })));
+const FafsaGuide = lazy(() => import("@/components/FafsaGuide").then(m => ({ default: m.FafsaGuide })));
+const LoanComparison = lazy(() => import("@/components/LoanComparison").then(m => ({ default: m.LoanComparison })));
+const LoanRepaymentSection = lazy(() => import("@/components/loan-repayment/LoanRepaymentSection").then(m => ({ default: m.LoanRepaymentSection })));
+const LoanForgivenessPrograms = lazy(() => import("@/components/LoanForgivenessPrograms").then(m => ({ default: m.LoanForgivenessPrograms })));
+const QuickUnderstand = lazy(() => import("@/components/QuickUnderstand").then(m => ({ default: m.QuickUnderstand })));
+const CtaBanner = lazy(() => import("@/components/CtaBanner").then(m => ({ default: m.CtaBanner })));
+const BackToTop = lazy(() => import("@/components/BackToTop").then(m => ({ default: m.BackToTop })));
+const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
+
+// Lightweight fallback component
+const SectionFallback = ({ height = "300px" }: { height?: string }) => (
+  <div className="flex justify-center items-center py-8" style={{ height }}>
+    <LoadingSpinner />
+  </div>
+);
+
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const location = useLocation();
+  const [isClient, setIsClient] = useState(false);
+
+  // Set client-side rendering flag to avoid hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Optimize testimonial timing - reduced animation frequency 
   useEffect(() => {
-    const testimonialTimer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % 4);
-    }, 15000); // Further increased from 12000 to 15000 ms for even less frequent transitions
-    return () => clearInterval(testimonialTimer);
-  }, []);
+    // Only start testimonial timer if visible in viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const testimonialTimer = setInterval(() => {
+            setCurrentTestimonial((prev) => (prev + 1) % 4);
+          }, 15000);
+          return () => clearInterval(testimonialTimer);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const testimonialSection = document.getElementById("testimonial-section");
+    if (testimonialSection) {
+      observer.observe(testimonialSection);
+    }
+
+    return () => {
+      if (testimonialSection) {
+        observer.unobserve(testimonialSection);
+      }
+    };
+  }, [isClient]);
 
   // Improved scroll to section with offset adjustment
   useEffect(() => {
     if (location.state?.scrollToSection) {
       const section = document.getElementById(location.state.scrollToSection);
       if (section) {
-        const headerOffset = 80; // Adjust based on header height
+        const headerOffset = 80; 
         const elementPosition = section.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
         
@@ -76,10 +113,14 @@ const Index = () => {
           
           <HowItWorks />
           
-          <section className="bg-gray-50 py-12 md:py-16">
+          <section id="testimonial-section" className="bg-gray-50 py-12 md:py-16">
             <div className="container mx-auto px-4 max-w-4xl">
               <h3 className="text-xl md:text-2xl font-semibold text-center mb-8 text-gray-800 font-playfair">Student Success Stories</h3>
-              <TestimonialSection currentTestimonial={currentTestimonial} />
+              {isClient && (
+                <Suspense fallback={<SectionFallback height="200px" />}>
+                  <TestimonialSection currentTestimonial={currentTestimonial} />
+                </Suspense>
+              )}
             </div>
           </section>
           
@@ -90,28 +131,48 @@ const Index = () => {
           </div>
           
           <div id="affiliate-loan-section">
-            <AffiliateLoanSection />
+            <Suspense fallback={<SectionFallback />}>
+              <AffiliateLoanSection />
+            </Suspense>
           </div>
           <div id="fafsa-guide">
-            <FafsaGuide />
+            <Suspense fallback={<SectionFallback />}>
+              <FafsaGuide />
+            </Suspense>
           </div>
           <div id="loan-comparison">
-            <LoanComparison />
+            <Suspense fallback={<SectionFallback />}>
+              <LoanComparison />
+            </Suspense>
           </div>
           <div id="loan-repayment">
-            <LoanRepaymentSection />
+            <Suspense fallback={<SectionFallback />}>
+              <LoanRepaymentSection />
+            </Suspense>
           </div>
           <div id="loan-forgiveness">
-            <LoanForgivenessPrograms />
+            <Suspense fallback={<SectionFallback />}>
+              <LoanForgivenessPrograms />
+            </Suspense>
           </div>
           <div id="quick-understand">
-            <QuickUnderstand />
+            <Suspense fallback={<SectionFallback />}>
+              <QuickUnderstand />
+            </Suspense>
           </div>
-          <CtaBanner />
-          <BackToTop />
-          <FloatingQuizButton />
+          <Suspense fallback={<SectionFallback height="100px" />}>
+            <CtaBanner />
+          </Suspense>
+          <Suspense fallback={null}>
+            <BackToTop />
+          </Suspense>
+          <Suspense fallback={null}>
+            <FloatingQuizButton />
+          </Suspense>
         </main>
-        <Footer />
+        <Suspense fallback={<div className="py-4 bg-gray-100 text-center">Loading footer...</div>}>
+          <Footer />
+        </Suspense>
       </div>
     </QuizProvider>
   );
