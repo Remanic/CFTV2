@@ -1,4 +1,3 @@
-
 import { ArrowRight, Shield, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -44,8 +43,8 @@ export const HeroCTA = () => {
                   transition-all text-base sm:text-lg md:text-xl px-4 sm:px-8 py-4 sm:py-6 h-auto 
                   rounded-full w-full"
               >
-                <span className="xs:hidden">Save Money on Your Loans</span>
-                <span className="hidden xs:inline">Get Your Personalized Loan Strategy</span>
+                <span className="xs:hidden">Get Your Free Loan Guide</span>
+                <span className="hidden xs:inline">Claim Your Free Student Loan Guide</span>
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
               </Button>
             </motion.div>
