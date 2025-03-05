@@ -1,39 +1,55 @@
 
 interface IDRPlanCardProps {
   title: string;
-  status: string;
-  details: string[];
-  changes?: string;
-  audience: string;
+  bestFor: string;
+  calculation: string;
+  uniqueFeature: string;
+  forgiveness: string;
+  note?: string;
+  example?: string;
 }
 
-export const IDRPlanCard = ({ title, status, details, changes, audience }: IDRPlanCardProps) => {
+export const IDRPlanCard = ({ 
+  title, 
+  bestFor, 
+  calculation, 
+  uniqueFeature, 
+  forgiveness, 
+  note, 
+  example 
+}: IDRPlanCardProps) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
       <h3 className="text-xl font-semibold mb-4">{title}</h3>
       <div className="space-y-4">
         <div className="flex items-start gap-2">
-          <span className="font-semibold">Status in 2025:</span>
-          <span>{status}</span>
+          <span className="font-semibold">Best For:</span>
+          <span>{bestFor}</span>
         </div>
-        <div>
-          <p className="font-semibold mb-2">Details:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            {details.map((detail, index) => (
-              <li key={index}>{detail}</li>
-            ))}
-          </ul>
+        <div className="flex items-start gap-2">
+          <span className="font-semibold">Payment Calculation:</span>
+          <span>{calculation}</span>
         </div>
-        {changes && (
-          <div>
-            <p className="font-semibold mb-2">Changes Up to 2025:</p>
-            <p>{changes}</p>
+        <div className="flex items-start gap-2">
+          <span className="font-semibold">Unique Feature:</span>
+          <span>{uniqueFeature}</span>
+        </div>
+        <div className="flex items-start gap-2">
+          <span className="font-semibold">Forgiveness:</span>
+          <span>{forgiveness}</span>
+        </div>
+        {note && (
+          <div className="flex items-start gap-2">
+            <span className="font-semibold">Note:</span>
+            <span>{note}</span>
           </div>
         )}
-        <div>
-          <p className="font-semibold">Who It's For:</p>
-          <p>{audience}</p>
-        </div>
+        {example && (
+          <div className="flex items-start gap-2">
+            <span className="font-semibold">Example/Insight:</span>
+            <span>{example}</span>
+          </div>
+        )}
       </div>
     </div>
   );
