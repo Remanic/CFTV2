@@ -31,7 +31,6 @@ export const Header = () => {
             to="/" 
             className="flex items-center gap-3"
           >
-            <img src="/cft-logo.svg" alt="CFT Logo" className="w-8 h-8 rounded-md" />
             <span className="text-xl md:text-2xl font-bold text-primary tracking-tight hover:text-primary/90 transition-colors">
               CashFlowTime
             </span>
