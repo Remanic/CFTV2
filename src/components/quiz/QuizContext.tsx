@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 // Define more specific journey stages for better resource matching
@@ -112,43 +113,73 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const determineJourneyStage = (answers: Record<string, any>): LoanJourneyStage => {
-    // Enhanced logic to determine stage based on the new questions
+    // Enhanced logic to determine stage based on multiple selections
     
     // First question: Where are you in your journey?
-    const journeyPhase = answers.application_status || "";
+    const journeyPhases = Array.isArray(answers.application_status) 
+      ? answers.application_status 
+      : answers.application_status ? [answers.application_status] : [];
     
     // Second question: Primary financial concern
-    const financialConcern = answers.financial_need || "";
+    const financialConcerns = Array.isArray(answers.financial_need) 
+      ? answers.financial_need 
+      : answers.financial_need ? [answers.financial_need] : [];
     
     // Third question: Loan type preference
-    const loanType = answers.loan_type || "";
+    const loanTypes = Array.isArray(answers.loan_type) 
+      ? answers.loan_type 
+      : answers.loan_type ? [answers.loan_type] : [];
     
     // Fourth question: Specific goal
-    const specificGoal = answers.specific_goal || "";
+    const specificGoals = Array.isArray(answers.specific_goal) 
+      ? answers.specific_goal 
+      : answers.specific_goal ? [answers.specific_goal] : [];
 
-    // Enhanced decision tree
-    if (journeyPhase === "research" || specificGoal === "understand") {
-      return "research";
-    } 
-    
-    if (journeyPhase === "application" || financialConcern === "maximize_aid") {
-      return "application";
-    }
-    
-    if (journeyPhase === "comparing" || loanType === "federal" || loanType === "private" || loanType === "parent") {
-      return "comparison";
-    }
-    
-    if (journeyPhase === "repayment" || specificGoal === "lower_payments" || specificGoal === "pay_less" || loanType === "refinancing") {
-      return "repayment";
-    }
-    
-    if (financialConcern === "forgiveness" || specificGoal === "qualify_forgiveness") {
-      return "forgiveness";
-    }
-    
-    // Default fallback
-    return "research";
+    // Enhanced decision tree with scoring system for multiple selections
+    let stageScores = {
+      research: 0,
+      application: 0,
+      comparison: 0,
+      repayment: 0,
+      forgiveness: 0
+    };
+
+    // Score based on journey phase
+    if (journeyPhases.includes("research")) stageScores.research += 2;
+    if (journeyPhases.includes("application")) stageScores.application += 2;
+    if (journeyPhases.includes("comparing")) stageScores.comparison += 2;
+    if (journeyPhases.includes("repayment")) stageScores.repayment += 2;
+
+    // Score based on financial concerns
+    if (financialConcerns.includes("maximize_aid")) stageScores.application += 1;
+    if (financialConcerns.includes("low_rates")) stageScores.comparison += 1;
+    if (financialConcerns.includes("repayment_options")) stageScores.repayment += 1;
+    if (financialConcerns.includes("forgiveness")) stageScores.forgiveness += 2;
+
+    // Score based on loan types
+    if (loanTypes.includes("federal")) stageScores.comparison += 1;
+    if (loanTypes.includes("private")) stageScores.comparison += 1;
+    if (loanTypes.includes("parent")) stageScores.comparison += 1;
+    if (loanTypes.includes("refinancing")) stageScores.repayment += 1;
+
+    // Score based on specific goals
+    if (specificGoals.includes("understand")) stageScores.research += 1;
+    if (specificGoals.includes("lower_payments")) stageScores.repayment += 1;
+    if (specificGoals.includes("pay_less")) stageScores.repayment += 1;
+    if (specificGoals.includes("qualify_forgiveness")) stageScores.forgiveness += 2;
+
+    // Determine the highest scoring stage
+    let highestScore = 0;
+    let highestStage: LoanJourneyStage = "research"; // Default
+
+    Object.entries(stageScores).forEach(([stage, score]) => {
+      if (score > highestScore) {
+        highestScore = score;
+        highestStage = stage as LoanJourneyStage;
+      }
+    });
+
+    return highestStage;
   };
 
   return (

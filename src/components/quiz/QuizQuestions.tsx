@@ -1,6 +1,5 @@
 
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+import { CheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuiz } from "./QuizContext";
 import { CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
@@ -62,10 +61,34 @@ export const QuizQuestions = () => {
   
   const question = questions[currentQuestion];
   const isLastQuestion = currentQuestion === questions.length - 1;
-  const currentAnswer = answers[question.id] || "";
+  const currentAnswer = answers[question.id] || [];
   
-  const handleOptionChange = (value: string) => {
-    setAnswer(question.id, value);
+  const handleOptionToggle = (value: string) => {
+    setAnswer(question.id, updateSelections(value, currentAnswer));
+  };
+  
+  // Helper function to handle multiple selections (up to 2)
+  const updateSelections = (value: string, currentSelections: string[]) => {
+    if (!Array.isArray(currentSelections)) {
+      currentSelections = currentSelections ? [currentSelections] : [];
+    }
+    
+    // If already selected, remove it
+    if (currentSelections.includes(value)) {
+      return currentSelections.filter(item => item !== value);
+    } 
+    // If not selected and we have less than 2 selections, add it
+    else if (currentSelections.length < 2) {
+      return [...currentSelections, value];
+    } 
+    // If we already have 2 selections, replace the first one (oldest)
+    else {
+      return [currentSelections[1], value];
+    }
+  };
+  
+  const isOptionSelected = (value: string) => {
+    return Array.isArray(currentAnswer) && currentAnswer.includes(value);
   };
   
   const handleNext = () => {
@@ -99,35 +122,41 @@ export const QuizQuestions = () => {
         <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
           {question.question}
         </h3>
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600 text-sm mb-1">
           Question {currentQuestion + 1} of {questions.length}
+        </p>
+        <p className="text-blue-600 text-xs font-medium">
+          Select up to 2 options for more specific recommendations
         </p>
       </div>
       
       <div className="mt-4">
-        <RadioGroup 
-          value={currentAnswer} 
-          onValueChange={handleOptionChange}
-          className="flex flex-col space-y-3"
-        >
+        <div className="flex flex-col space-y-3">
           {question.options.map((option) => (
             <div 
               key={option.value}
-              className={`flex items-center space-x-2 p-3 rounded-lg border-2 transition-all
-                ${currentAnswer === option.value 
+              onClick={() => handleOptionToggle(option.value)}
+              className={`flex items-center space-x-2 p-3 rounded-lg border-2 transition-all cursor-pointer
+                ${isOptionSelected(option.value) 
                   ? 'border-blue-500 bg-blue-50' 
                   : 'border-gray-200 hover:border-blue-200'}`}
             >
-              <RadioGroupItem value={option.value} id={option.value} className="ml-1" />
-              <Label htmlFor={option.value} className="flex-grow cursor-pointer font-medium">
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                isOptionSelected(option.value) 
+                  ? 'border-blue-500 bg-blue-500 text-white' 
+                  : 'border-gray-300'
+              }`}>
+                {isOptionSelected(option.value) && <CheckIcon className="h-3 w-3" />}
+              </div>
+              <label className="flex-grow cursor-pointer font-medium">
                 {option.label}
-              </Label>
-              {currentAnswer === option.value && (
+              </label>
+              {isOptionSelected(option.value) && (
                 <CheckCircle className="h-5 w-5 text-blue-500" />
               )}
             </div>
           ))}
-        </RadioGroup>
+        </div>
       </div>
       
       <div className="mt-6 flex justify-between">
@@ -145,8 +174,8 @@ export const QuizQuestions = () => {
         
         <Button 
           onClick={handleNext}
-          disabled={!currentAnswer}
-          className={`flex items-center ${!currentAnswer ? 'opacity-50' : ''}`}
+          disabled={Array.isArray(currentAnswer) ? currentAnswer.length === 0 : !currentAnswer}
+          className={`flex items-center ${Array.isArray(currentAnswer) && currentAnswer.length === 0 ? 'opacity-50' : ''}`}
         >
           {isLastQuestion ? 'Get Personalized Recommendations' : 'Next'}
           {!isLastQuestion && <ArrowRight className="w-4 h-4 ml-1" />}

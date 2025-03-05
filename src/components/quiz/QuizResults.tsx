@@ -16,7 +16,7 @@ export const QuizResults = () => {
   const location = useLocation();
   
   const resources = getPersonalizedResources(journeyStage, answers, expanded);
-  const hasMoreResources = !expanded && getPersonalizedResources(journeyStage, answers, true).length > 4;
+  const hasMoreResources = !expanded && getPersonalizedResources(journeyStage, answers, true).length > 6;
   
   // Helper function to handle navigation to anchor links
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetLink: string) => {
@@ -72,6 +72,13 @@ export const QuizResults = () => {
       className="w-full"
     >
       <QuizHeader />
+      
+      <div className="mb-4 px-4 py-3 bg-blue-50 border border-blue-200 rounded-lg">
+        <p className="text-sm text-blue-700">
+          <span className="font-medium">Based on your answers</span>, we've selected {resources.length} resources tailored to your needs.
+          Click on any resource to view it.
+        </p>
+      </div>
       
       <ResourceList 
         resources={resources}

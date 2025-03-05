@@ -21,7 +21,7 @@ export const ResourceList = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {resources.map((resource, index) => (
           <ResourceCard 
-            key={index} 
+            key={`${resource.title}-${index}`} 
             resource={resource} 
             handleLinkClick={handleLinkClick} 
           />
