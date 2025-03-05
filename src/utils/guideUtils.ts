@@ -1,5 +1,5 @@
-
 import { toast } from "@/hooks/use-toast";
+import emailjs from 'emailjs-com';
 
 // Types for guide information
 export interface GuideInfo {
@@ -79,4 +79,57 @@ export const downloadGuide = (guideKey: keyof typeof availableGuides) => {
     title: "Guide Downloaded",
     description: `Your ${guide.displayName} has been downloaded.`,
   });
+};
+
+// Send guide to user's email
+export const sendGuideToEmail = async (
+  name: string, 
+  email: string, 
+  guideKey: keyof typeof availableGuides
+): Promise<boolean> => {
+  const guide = availableGuides[guideKey];
+  
+  if (!guide) {
+    toast({
+      title: "Guide Not Found",
+      description: "We couldn't find the requested guide to send. Please try again later.",
+      variant: "destructive"
+    });
+    return false;
+  }
+  
+  const templateParams = {
+    to_name: name,
+    to_email: email,
+    guide_name: guide.displayName,
+    guide_link: `${window.location.origin}/guides/${guide.fileName}`,
+    from_name: "Student Loan Guide Team"
+  };
+
+  try {
+    // Replace these IDs with your actual EmailJS service, template and user IDs
+    // You'll need to sign up at https://www.emailjs.com/ and create a template
+    const SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID"; // Replace with your service ID
+    const TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID"; // Replace with your template ID
+    const USER_ID = "YOUR_EMAILJS_USER_ID"; // Replace with your user ID
+
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);
+    
+    toast({
+      title: "Guide Sent!",
+      description: `Your ${guide.displayName} has been sent to ${email}.`,
+    });
+    
+    return true;
+  } catch (error) {
+    console.error("Error sending email:", error);
+    
+    toast({
+      title: "Email Sending Failed",
+      description: "We couldn't send the guide to your email. Please try downloading it directly.",
+      variant: "destructive"
+    });
+    
+    return false;
+  }
 };

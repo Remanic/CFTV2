@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
-import { saveUserInfo, downloadGuide } from "@/utils/guideUtils";
+import { saveUserInfo, downloadGuide, sendGuideToEmail } from "@/utils/guideUtils";
 
 interface GuideFormProps {
   onClose: () => void;
@@ -18,6 +18,7 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
     email: "",
     consent: false
   });
+  const [emailSent, setEmailSent] = useState(false);
   const [showDownload, setShowDownload] = useState(false);
   const { toast } = useToast();
 
@@ -34,16 +35,19 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
 
     setLoading(true);
     try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       // Save user information to localStorage
       saveUserInfo(formData.name, formData.email);
       
-      // Show success toast and download option
+      // Send the guide to the user's email
+      const emailSuccess = await sendGuideToEmail(formData.name, formData.email, "studentLoanGuide");
+      setEmailSent(emailSuccess);
+      
+      // Show success toast and download option regardless of email status
       toast({
         title: "Success!",
-        description: "Your free student loan guide is ready to download.",
+        description: emailSuccess
+          ? "Your free student loan guide has been sent to your email and is ready to download."
+          : "Your free student loan guide is ready to download.",
       });
       
       setShowDownload(true);
@@ -63,6 +67,7 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
     onClose();
     setFormData({ name: "", email: "", consent: false });
     setShowDownload(false);
+    setEmailSent(false);
   };
 
   return (
@@ -121,7 +126,15 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
         <div className="mt-4 space-y-6">
           <div className="bg-green-50 p-4 rounded-lg border border-green-200">
             <p className="text-green-800 font-medium mb-2">Your guide is ready!</p>
-            <p className="text-gray-600 text-sm">Click the button below to download your free student loan guide.</p>
+            {emailSent ? (
+              <p className="text-gray-600 text-sm">
+                We've sent the guide to your email. You can also download it directly using the button below.
+              </p>
+            ) : (
+              <p className="text-gray-600 text-sm">
+                Click the button below to download your free student loan guide.
+              </p>
+            )}
           </div>
           <Button 
             onClick={handleDownload}
