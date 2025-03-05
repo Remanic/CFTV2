@@ -102,15 +102,22 @@ export const QuizResults = () => {
           title: "Loan Forgiveness Eligibility Checker",
           description: "Find out if you qualify for loan forgiveness programs",
           icon: <Award className="h-5 w-5 text-amber-600" />,
-          link: "/loan-forgiveness-eligibility",
+          link: "/student-loan-forgiveness-eligibility",
           color: "bg-amber-50 border-amber-200 text-amber-800"
         },
         {
           title: "Public Service Loan Forgiveness Guide",
           description: "Complete guide to PSLF eligibility and application",
           icon: <School className="h-5 w-5 text-red-600" />,
-          link: "/public-service-loan-forgiveness",
+          link: "/pslf-comprehensive-guide",
           color: "bg-red-50 border-red-200 text-red-800"
+        },
+        {
+          title: "Income-Driven Repayment Forgiveness",
+          description: "How to get loan forgiveness after 20-25 years of IDR payments",
+          icon: <Calculator className="h-5 w-5 text-green-600" />,
+          link: "/idr-forgiveness",
+          color: "bg-green-50 border-green-200 text-green-800"
         }
       ]
     };
@@ -157,6 +164,29 @@ export const QuizResults = () => {
         link: "/extended-repayment",
         color: "bg-orange-50 border-orange-200 text-orange-800"
       });
+    }
+    
+    if (answers.specific_goal === "lower_payments") {
+      resources.push({
+        title: "Income-Driven Repayment Guide",
+        description: "Make payments based on your income for more affordable monthly payments",
+        icon: <Calculator className="h-5 w-5 text-blue-600" />,
+        link: "/income-based-repayment",
+        color: "bg-blue-50 border-blue-200 text-blue-800"
+      });
+    }
+    
+    if (answers.specific_goal === "qualify_forgiveness") {
+      // Only add if not already added in the forgiveness section
+      if (!resources.some(r => r.link === "/idr-forgiveness")) {
+        resources.push({
+          title: "Income-Driven Repayment Forgiveness",
+          description: "How to get loan forgiveness after 20-25 years of IDR payments",
+          icon: <Calculator className="h-5 w-5 text-green-600" />,
+          link: "/idr-forgiveness",
+          color: "bg-green-50 border-green-200 text-green-800"
+        });
+      }
     }
     
     // Limit to max 4 resources (or show all if expanded)

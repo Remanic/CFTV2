@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Briefcase, GraduationCap, Clock, ShieldCheck, Bell, Star, ArrowRight } from "lucide-react";
+import { Briefcase, GraduationCap, Clock, ShieldCheck, Bell, Star, ArrowRight, Calculator } from "lucide-react";
 
 export const LoanForgivenessPrograms = () => {
   return (
@@ -33,12 +33,12 @@ export const LoanForgivenessPrograms = () => {
             
             <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <Link 
-                to="/public-service-loan-forgiveness" 
+                to="/student-loan-forgiveness-eligibility" 
                 state={{ from: "/", section: "loan-forgiveness" }}
                 className="flex-1"
               >
                 <Button variant="outline" className="w-full border-amber-200 text-amber-700 hover:bg-amber-50">
-                  Learn More
+                  Check Eligibility
                 </Button>
               </Link>
               <Link 
@@ -62,21 +62,21 @@ export const LoanForgivenessPrograms = () => {
             
             <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <Link 
-                to="/teacher-loan-forgiveness" 
-                state={{ from: "/", section: "loan-forgiveness" }}
-                className="flex-1"
-              >
-                <Button variant="outline" className="w-full border-amber-200 text-amber-700 hover:bg-amber-50">
-                  Learn More
-                </Button>
-              </Link>
-              <Link 
                 to="/student-loan-forgiveness-eligibility" 
                 state={{ from: "/", section: "loan-forgiveness" }}
                 className="flex-1"
               >
-                <Button className="w-full bg-amber-600 hover:bg-amber-700">
+                <Button variant="outline" className="w-full border-amber-200 text-amber-700 hover:bg-amber-50">
                   Check Eligibility
+                </Button>
+              </Link>
+              <Link 
+                to="/teacher-loan-forgiveness" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button className="w-full bg-amber-600 hover:bg-amber-700">
+                  Full Guide <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
               </Link>
             </div>
@@ -92,21 +92,31 @@ export const LoanForgivenessPrograms = () => {
               </div>
             </div>
             <div className="mb-4 bg-amber-100 rounded-full w-12 h-12 flex items-center justify-center">
-              <ShieldCheck className="h-6 w-6 text-amber-600" />
+              <Calculator className="h-6 w-6 text-amber-600" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Forgiveness Eligibility Checker</h3>
-            <p className="text-gray-600 mb-2 flex-grow">Find out if you qualify for loan forgiveness programs based on your specific situation.</p>
+            <h3 className="text-xl font-bold mb-3 text-gray-900">Income-Driven Repayment (IDR) Forgiveness</h3>
+            <p className="text-gray-600 mb-2 flex-grow">Make payments based on your income, then receive forgiveness after 20-25 years of qualified payments.</p>
             
-            <Link 
-              to="/student-loan-forgiveness-eligibility" 
-              state={{ from: "/", section: "loan-forgiveness" }}
-              className="inline-block"
-            >
-              <Button className="w-full bg-amber-600 hover:bg-amber-700 group">
-                <span>Check Your Eligibility</span>
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
+              <Link 
+                to="/student-loan-forgiveness-eligibility" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button variant="outline" className="w-full border-amber-200 text-amber-700 hover:bg-amber-50">
+                  Check Eligibility
+                </Button>
+              </Link>
+              <Link 
+                to="/income-based-repayment" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button className="w-full bg-amber-600 hover:bg-amber-700">
+                  Full Guide <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-md border border-amber-100 flex flex-col">
@@ -116,15 +126,26 @@ export const LoanForgivenessPrograms = () => {
             <h3 className="text-xl font-bold mb-3 text-gray-900">Latest Forgiveness News</h3>
             <p className="text-gray-600 mb-2 flex-grow">Stay updated on new forgiveness programs and changes to existing programs.</p>
             
-            <Link 
-              to="/latest-loan-forgiveness" 
-              state={{ from: "/", section: "loan-forgiveness" }}
-              className="inline-block"
-            >
-              <Button className="w-full bg-amber-600 hover:bg-amber-700">
-                Get Latest Updates
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
+              <Link 
+                to="/student-loan-forgiveness-eligibility" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button variant="outline" className="w-full border-amber-200 text-amber-700 hover:bg-amber-50">
+                  Check Eligibility
+                </Button>
+              </Link>
+              <Link 
+                to="/latest-loan-forgiveness" 
+                state={{ from: "/", section: "loan-forgiveness" }}
+                className="flex-1"
+              >
+                <Button className="w-full bg-amber-600 hover:bg-amber-700">
+                  Latest Updates <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
