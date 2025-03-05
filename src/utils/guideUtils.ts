@@ -1,3 +1,4 @@
+
 import { toast } from "@/hooks/use-toast";
 import emailjs from 'emailjs-com';
 
@@ -11,11 +12,11 @@ export interface GuideInfo {
 // Available guides in the system
 export const availableGuides: Record<string, GuideInfo> = {
   studentLoanGuide: {
-    fileName: "student-loan-guide-by-CashFlowTime.pdf", // Updated filename to match actual file
+    fileName: "student-loan-guide-by-CashFlowTime.pdf",
     displayName: "Comprehensive Student Loan Guide",
     description: "A complete guide to understanding and managing student loans."
   }
-  // Removed FAFSA guide since it doesn't exist
+  // Add more guides as needed
 };
 
 // Save user information for future use
@@ -57,24 +58,33 @@ export const downloadGuide = (guideKey: keyof typeof availableGuides) => {
     return;
   }
   
-  // Create path to guide in public folder
-  const guidePath = `/guides/${guide.fileName}`;
-  
-  // Create a link and trigger download
-  const link = document.createElement("a");
-  link.href = guidePath;
-  link.download = guide.fileName;
-  link.target = "_blank";
-  
-  // Add to DOM, click, and remove
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  
-  toast({
-    title: "Guide Downloaded",
-    description: `Your ${guide.displayName} has been downloaded.`,
-  });
+  try {
+    // Create path to guide in public folder
+    const guidePath = `/guides/${guide.fileName}`;
+    
+    // Create a link and trigger download
+    const link = document.createElement("a");
+    link.href = guidePath;
+    link.download = guide.fileName;
+    link.target = "_blank";
+    
+    // Add to DOM, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast({
+      title: "Guide Downloaded",
+      description: `Your ${guide.displayName} has been downloaded.`,
+    });
+  } catch (error) {
+    console.error("Error downloading guide:", error);
+    toast({
+      title: "Download Failed",
+      description: "We couldn't download your guide. Please try again later.",
+      variant: "destructive"
+    });
+  }
 };
 
 // Send guide to user's email

@@ -32,6 +32,7 @@ import GraduatedRepayment from "./pages/GraduatedRepayment";
 import ExtendedRepayment from "./pages/ExtendedRepayment";
 import PrivateLoanRepayment from "./pages/PrivateLoanRepayment";
 import PrivateLoansGuide from "./pages/PrivateLoansGuide";
+import DownloadGuide from "./pages/DownloadGuide";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +103,9 @@ const App = () => (
           <Route path="/extended-repayment-plan" element={<ExtendedRepayment />} />
           <Route path="/private-loan-repayment" element={<PrivateLoanRepayment />} />
           <Route path="/private-student-loan-repayment" element={<PrivateLoanRepayment />} />
+          
+          {/* Download Guide Page */}
+          <Route path="/download-guide" element={<DownloadGuide />} />
           
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

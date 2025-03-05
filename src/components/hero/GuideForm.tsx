@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { saveUserInfo, sendGuideToEmail } from "@/utils/guideUtils";
+import { useNavigate } from "react-router-dom";
 
 interface GuideFormProps {
   onClose: () => void;
@@ -21,6 +22,7 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
   const [emailSent, setEmailSent] = useState(false);
   const [showDownload, setShowDownload] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,11 +65,13 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
   };
 
   const handleDownloadRedirect = () => {
-    // Redirect to the download page with user info as query parameters
-    window.location.href = `/download-guide?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&guide=studentLoanGuide`;
+    // Close the dialog
+    onClose();
+    
+    // Navigate to the download page with user info as query parameters
+    navigate(`/download-guide?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&guide=studentLoanGuide`);
     
     // Reset the form state
-    onClose();
     setFormData({ name: "", email: "", consent: false });
     setShowDownload(false);
     setEmailSent(false);
