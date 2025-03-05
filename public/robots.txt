@@ -1,0 +1,14 @@
+
+# robots.txt for cashflowtime.com
+User-agent: *
+Allow: /
+
+# Crawl delay to prevent server overload
+Crawl-delay: 2
+
+# Disallow any temporary pages or admin areas if needed
+# Disallow: /admin/
+# Disallow: /temp/
+
+# Sitemap location
+Sitemap: https://cashflowtime.com/sitemap.xml
