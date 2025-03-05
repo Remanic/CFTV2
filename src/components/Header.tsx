@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -28,8 +29,9 @@ export const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link 
             to="/" 
-            className="flex items-center gap-2"
+            className="flex items-center gap-3"
           >
+            <img src="/cft-logo.svg" alt="CFT Logo" className="w-8 h-8 rounded-md" />
             <span className="text-xl md:text-2xl font-bold text-primary tracking-tight hover:text-primary/90 transition-colors">
               CashFlowTime
             </span>
