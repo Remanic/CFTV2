@@ -11,15 +11,11 @@ export interface GuideInfo {
 // Available guides in the system
 export const availableGuides: Record<string, GuideInfo> = {
   studentLoanGuide: {
-    fileName: "student-loan-guide.pdf", // This file should be placed in public/guides/
+    fileName: "student-loan-guide-by-CashFlowTime.pdf", // Updated filename to match actual file
     displayName: "Comprehensive Student Loan Guide",
     description: "A complete guide to understanding and managing student loans."
-  },
-  fafsaGuide: {
-    fileName: "fafsa-application-guide.pdf", // This file should be placed in public/guides/
-    displayName: "FAFSA Application Guide",
-    description: "Step-by-step instructions for completing your FAFSA application."
   }
+  // Removed FAFSA guide since it doesn't exist
 };
 
 // Save user information for future use
