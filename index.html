@@ -9,6 +9,7 @@
     <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="CashFlowTime - Your comprehensive resource for student loans, FAFSA guidance, loan forgiveness programs, and financial calculators." />
@@ -30,6 +31,17 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://cashflowtime.com" />
+    
+    <!-- Google Analytics Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      // Replace with your actual Measurement ID when deploying
+      gtag('config', 'G-MEASUREMENT_ID');
+    </script>
     
     <title>CashFlowTime - Student Loan & FAFSA Guidance</title>
   </head>

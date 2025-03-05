@@ -42,6 +42,14 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
       const emailSuccess = await sendGuideToEmail(formData.name, formData.email, "studentLoanGuide");
       setEmailSent(emailSuccess);
       
+      // Track form submission event
+      if (window.gtag) {
+        window.gtag('event', 'guide_form_submission', {
+          'event_category': 'conversion',
+          'event_label': 'loan_guide_form'
+        });
+      }
+      
       // Show success toast and download option regardless of email status
       toast({
         title: "Success!",
@@ -52,6 +60,14 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
       
       setShowDownload(true);
     } catch (error) {
+      // Track error event
+      if (window.gtag) {
+        window.gtag('event', 'guide_form_error', {
+          'event_category': 'error',
+          'event_label': 'loan_guide_form'
+        });
+      }
+      
       toast({
         title: "Error",
         description: "There was a problem preparing your guide. Please try again.",
@@ -63,6 +79,14 @@ export const GuideForm = ({ onClose }: GuideFormProps) => {
   };
 
   const handleDownload = () => {
+    // Track download after form submission
+    if (window.gtag) {
+      window.gtag('event', 'guide_download_after_form', {
+        'event_category': 'conversion',
+        'event_label': 'loan_guide_form_download'
+      });
+    }
+    
     downloadGuide("studentLoanGuide");
     onClose();
     setFormData({ name: "", email: "", consent: false });
