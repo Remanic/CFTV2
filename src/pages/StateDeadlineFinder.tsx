@@ -1,6 +1,7 @@
-import { StateDeadlineFinderTool } from "@/components/fafsa-deadline/StateDeadlineFinderTool";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { StateDeadlineFinderTool } from "@/components/fafsa-deadline/StateDeadlineFinderTool";
 
 const StateDeadlineFinder = () => {
   return (

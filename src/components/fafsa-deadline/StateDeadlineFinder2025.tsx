@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { stateDeadlines2025 } from "./data/2025/stateDeadlines";
 import { StateDeadline } from "./data/2025/types";
 import { SearchInput } from "./components/SearchInput";
@@ -80,35 +79,26 @@ export const StateDeadlineFinder2025 = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            Find Your State's FAFSA Deadline
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex flex-col md:flex-row gap-4">
-            <SearchInput
-              searchTerm={searchTerm}
-              onSearchChange={handleSearchChange}
-              onClearSearch={clearSearch}
-              searchResults={searchResults}
-              onResultClick={handleSearchResultClick}
-              noResults={noResults}
-              showResults={!!searchTerm}
-            />
-            
-            <StateSelector
-              selectedState={selectedState}
-              onStateSelect={handleStateSelect}
-              uniqueStates={uniqueStates}
-            />
-          </div>
+    <div className="w-full max-w-4xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-4">
+        <SearchInput
+          searchTerm={searchTerm}
+          onSearchChange={handleSearchChange}
+          onClearSearch={clearSearch}
+          searchResults={searchResults}
+          onResultClick={handleSearchResultClick}
+          noResults={noResults}
+          showResults={!!searchTerm}
+        />
+        
+        <StateSelector
+          selectedState={selectedState}
+          onStateSelect={handleStateSelect}
+          uniqueStates={uniqueStates}
+        />
+      </div>
 
-          <DeadlineDisplay selectedDeadline={selectedDeadline} />
-        </CardContent>
-      </Card>
+      <DeadlineDisplay selectedDeadline={selectedDeadline} />
     </div>
   );
 };

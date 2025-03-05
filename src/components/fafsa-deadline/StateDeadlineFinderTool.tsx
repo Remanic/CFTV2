@@ -1,18 +1,17 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet";
-import { useNavigate } from "react-router-dom";
 import { Calendar, Search } from "lucide-react";
+import { StateDeadlineFinder } from "./StateDeadlineFinder";
+import { StateDeadlineFinder2025 } from "./StateDeadlineFinder2025";
 
 export const StateDeadlineFinderTool = () => {
   const [selectedYear, setSelectedYear] = useState<"2024" | "2025">("2024");
-  const navigate = useNavigate();
 
   const handleYearSelect = (year: "2024" | "2025") => {
     setSelectedYear(year);
-    const path = year === "2024" ? "/fafsa-deadline-2024-2025" : "/fafsa-deadline-2025-2026";
-    navigate(`${path}#state-deadlines-finder`);
   };
 
   return (
@@ -55,6 +54,11 @@ export const StateDeadlineFinderTool = () => {
                 2025-2026
               </Button>
             </div>
+          </div>
+          
+          {/* Display the appropriate finder component based on selected year */}
+          <div className="mt-8">
+            {selectedYear === "2024" ? <StateDeadlineFinder /> : <StateDeadlineFinder2025 />}
           </div>
         </CardContent>
       </Card>
